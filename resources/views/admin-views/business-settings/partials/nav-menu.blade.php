@@ -12,7 +12,7 @@
                 <a class="nav-link {{ Request::is('admin/business-settings/refund/settings') ?'active':'' }}" href="{{ route('admin.refund.refund_settings') }}"  aria-disabled="true">{{translate('messages.refund_settings')}}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('admin/business-settings/business-setup/restaurant') ?'active':'' }}" href="{{ route('admin.business-settings.business-setup',  ['tab' => 'restaurant']) }}"  aria-disabled="true">{{translate('messages.restaurant')}}</a>
+                <a class="nav-link {{ Request::is('admin/business-settings/business-setup/restaurant') ?'active':'' }}" href="{{ route('admin.business-settings.business-setup',  ['tab' => 'restaurant']) }}"  aria-disabled="true">{{translate('messages.vendor')}}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('admin/business-settings/business-setup/deliveryman') ?'active':'' }}" href="{{ route('admin.business-settings.business-setup',  ['tab' => 'deliveryman']) }}"  aria-disabled="true">{{translate('messages.delivery_man')}}</a>
@@ -20,13 +20,13 @@
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('admin/business-settings/business-setup/customer') ?'active':'' }}" href="{{ route('admin.business-settings.business-setup',  ['tab' => 'customer']) }}"  aria-disabled="true">{{translate('messages.customers')}}</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link {{ Request::is('admin/business-settings/language*') ? 'active' : '' }}"
                 href="{{ route('admin.language.index') }}">{{translate('messages.Language')}}</a>
-            </li>
-            <li class="nav-item">
+            </li> -->
+            <!-- <li class="nav-item">
                 <a class="nav-link {{ Request::is('admin/business-settings/business-setup/landing-page') ?'active':'' }}" href="{{ route('admin.business-settings.business-setup',  ['tab' => 'landing-page']) }}"  aria-disabled="true">{{translate('messages.landing_page')}}</a>
-            </li>
+            </li> -->
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('admin/business-settings/business-setup/disbursement') ?'active':'' }}" href="{{ route('admin.business-settings.business-setup',  ['tab' => 'disbursement']) }}"  aria-disabled="true">{{translate('messages.disbursement')}}</a>
             </li>

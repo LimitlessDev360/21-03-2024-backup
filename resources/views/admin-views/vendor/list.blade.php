@@ -11,7 +11,7 @@
     <div class="content container-fluid">
         <!-- Page Header -->
         <div class="page-header">
-            <h1 class="page-header-title"><i class="tio-filter-list"></i> {{translate('messages.restaurants')}} <span class="badge badge-soft-dark ml-2" id="itemCount">{{$restaurants->total()}}</span></h1>
+            <h1 class="page-header-title"><i class="tio-filter-list"></i> {{translate('messages.Vendors')}} <span class="badge badge-soft-dark ml-2" id="itemCount">{{$restaurants->total()}}</span></h1>
         </div>
         <!-- End Page Header -->
 
@@ -28,8 +28,8 @@
                         data-placeholder="{{translate('messages.all')}}" class="form-control js-select2-custom set-filter">
                             <option value="all" {{$type=='all'?'selected':''}}>{{translate('messages.all')}}</option>
                             @if ($toggle_veg_non_veg)
-                            <option value="veg" {{$type=='veg'?'selected':''}}>{{translate('messages.veg')}}</option>
-                            <option value="non_veg" {{$type=='non_veg'?'selected':''}}>{{translate('messages.non_veg')}}</option>
+                            <!-- <option value="veg" {{$type=='veg'?'selected':''}}>{{translate('messages.veg')}}</option>
+                            <option value="non_veg" {{$type=='non_veg'?'selected':''}}>{{translate('messages.non_veg')}}</option> -->
                             @endif
                         </select>
                         <!-- End Veg/NonVeg filter -->
@@ -54,7 +54,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-6 col-md-3">
+                <!-- <div class="col-sm-6 col-md-3">
                     <div class="select-item">
                         <select name="cuisine_id" id="cuisine"
                                 data-url="{{url()->full()}}" data-filter="cuisine_id"
@@ -68,7 +68,7 @@
                         @endforeach
                     </select>
                     </div>
-                </div>
+                </div> -->
                 @if(!isset(auth('admin')->user()->zone_id))
                     <div class="col-sm-6 col-md-3">
                         <div class="select-item">
@@ -97,7 +97,7 @@
             <div class="col-xl-3 col-sm-6">
                 <div class="resturant-card bg--1">
                     <h4 class="title" id="itemCount" >{{$restaurants->total()}}</h4>
-                    <span class="subtitle">{{translate('messages.total_restaurants')}}</span>
+                    <span class="subtitle">{{translate('messages.total_vendors')}}</span>
                     <img class="resturant-icon" src="{{dynamicAsset('/public/assets/admin/img/resturant/map-pin.png')}}" alt="resturant">
                 </div>
             </div>
@@ -115,7 +115,7 @@
                     ->count())
                     @php($active_restaurants = isset($active_restaurants) ? $active_restaurants : 0)
                     <h4 class="title">{{$active_restaurants}}</h4>
-                    <span class="subtitle">{{translate('messages.active_restaurants')}}</span>
+                    <span class="subtitle">{{translate('messages.active_vendors')}}</span>
                     <img class="resturant-icon" src="{{dynamicAsset('/public/assets/admin/img/resturant/active-rest.png')}}" alt="resturant">
                 </div>
             </div>
@@ -132,7 +132,7 @@
                     ->count())
                     @php($inactive_restaurants = isset($inactive_restaurants) ? $inactive_restaurants : 0)
                     <h4 class="title">{{$inactive_restaurants}}</h4>
-                    <span class="subtitle">{{translate('messages.inactive_restaurants')}}</span>
+                    <span class="subtitle">{{translate('messages.inactive_vendors')}}</span>
                     <img class="resturant-icon" src="{{dynamicAsset('/public/assets/admin/img/resturant/inactive-rest.png')}}" alt="resturant">
                 </div>
             </div>
@@ -148,7 +148,7 @@
                     ->type($type)->RestaurantModel($typ)
                     ->count())
                     <h4 class="title">{{$data}}</h4>
-                    <span class="subtitle">{{translate('messages.newly_joined_restaurants')}}</span>
+                    <span class="subtitle">{{translate('messages.new_joined_restaurants')}}</span>
                     <img class="resturant-icon" src="{{dynamicAsset('/public/assets/admin/img/resturant/new-rest.png')}}" alt="resturant">
                 </div>
             </div>
@@ -179,7 +179,7 @@
                 <div>
                     @php($restaurant_withdraws = \App\Models\WithdrawRequest::where(['approved'=>1])->sum('amount'))
                     @php($restaurant_withdraws = isset($restaurant_withdraws) ? $restaurant_withdraws : 0)
-                    <span>{{translate('messages.total_restaurant_withdraws')}}</span> <strong>{{\App\CentralLogics\Helpers::format_currency($restaurant_withdraws)}}</strong>
+                    <span>{{translate('messages.total_vendor_withdraws')}}</span> <strong>{{\App\CentralLogics\Helpers::format_currency($restaurant_withdraws)}}</strong>
                 </div>
             </li>
         </ul>
@@ -193,12 +193,12 @@
 
                     <div class="card-header py-2 border-0">
                         <div class="search--button-wrapper">
-                            <h3 class="card-title">{{translate('messages.restaurants_list')}}</h3>
+                            <h3 class="card-title">{{translate('messages.Vendors_list')}}</h3>
                             <form class="my-2 ml-auto mr-sm-2 mr-xl-4 ml-sm-auto flex-grow-1 flex-grow-sm-0">
 
                                 <div class="input--group input-group input-group-merge input-group-flush">
                                     <input id="datatableSearch_" type="search" name="search" class="form-control"
-                                          value="{{ request()?->search  ?? null }}"  placeholder="{{ translate('Ex:_search_by_Restaurant_name_of_Phone_number') }}" aria-label="{{translate('messages.search')}}" required>
+                                          value="{{ request()?->search  ?? null }}"  placeholder="{{ translate('Ex:_search_by_vendor_name') }}" aria-label="{{translate('messages.search')}}" required>
                                     <button type="submit" class="btn btn--secondary"><i class="tio-search"></i></button>
 
                                 </div>
@@ -253,10 +253,10 @@
                             <thead class="thead-light">
                             <tr>
                                 <th class="text-uppercase w-90px">{{translate('messages.sl')}}</th>
-                                <th class="initial-58">{{translate('messages.restaurant_info')}}</th>
+                                <th class="initial-58">{{translate('messages.vendor_info')}}</th>
                                 <th class="w-230px text-center">{{translate('messages.owner_info')}} </th>
                                 <th class="w-130px">{{translate('messages.zone')}}</th>
-                                <th class="w-130px">{{translate('messages.cuisine')}}</th>
+                                <!-- <th class="w-130px">{{translate('messages.cuisine')}}</th> -->
                                 <th class="w-100px">{{translate('messages.status')}}</th>
                                 <th class="text-center w-60px">{{translate('messages.action')}}</th>
                             </tr>
@@ -306,7 +306,7 @@
                                     <td>
                                         {{$dm->zone?$dm->zone->name:translate('messages.zone_deleted')}}
                                     </td>
-                                    <td>
+                                    <!-- <td>
                                         <div class="white-space-initial">
                                             @if ($dm->cuisine)
                                             @forelse($dm->cuisine as $c)
@@ -316,7 +316,7 @@
                                             @endforelse
                                             @endif
                                         </div>
-                                </td>
+                                </td> -->
                                     <td>
                                         @if(isset($dm->vendor->status))
                                             @if($dm->vendor->status)

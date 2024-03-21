@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title', translate('Food_List'))
+@section('title', translate('Product_List'))
 
 @push('css_or_js')
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -13,7 +13,7 @@
         <div class="page-header">
             <div class="row align-items-center">
                 <div class="col-md-auto mb-md-0 mb-3 mr-auto">
-                    <h1 class="page-header-title"> {{ translate('messages.food_list') }}<span
+                    <h1 class="page-header-title"> {{ translate('messages.prouct_list') }}<span
                             class="badge badge-soft-dark ml-2" id="foodCount">{{ $foods->total() }}</span></h1>
                 </div>
                 @if ($toggle_veg_non_veg)
@@ -21,22 +21,22 @@
                         <select name="type" data-url="{{ url()->full() }}" data-filter="type"
                             data-placeholder="{{ translate('messages.all') }}" class="form-control set-filter">
                             <option value="all" {{ $type == 'all' ? 'selected' : '' }}>{{ translate('messages.all') }}</option>
-                            <option value="veg" {{ $type == 'veg' ? 'selected' : '' }}>{{ translate('messages.veg') }}</option>
+                            <!-- <option value="veg" {{ $type == 'veg' ? 'selected' : '' }}>{{ translate('messages.veg') }}</option>
                             <option value="non_veg" {{ $type == 'non_veg' ? 'selected' : '' }}>{{ translate('messages.non_veg') }}
-                            </option>
+                            </option> -->
                         </select>
                     </div>
                 @endif
                 <div class="col-md-auto mb-3 mb-md-0 min-240">
                     <select name="restaurant_id" id="restaurant"
                             data-url="{{ url()->full() }}" data-filter="restaurant_id"
-                        data-placeholder="{{ translate('messages.select_restaurant') }}"
-                        class="js-data-example-ajax form-control set-filter" title="Select Restaurant"
-                        oninvalid="this.setCustomValidity('{{ translate('messages.please_select_restaurant') }}')">
+                        data-placeholder="{{ translate('messages.select_vendor') }}"
+                        class="js-data-example-ajax form-control set-filter" title="Select Vendor"
+                        oninvalid="this.setCustomValidity('{{ translate('messages.please_select_vendor') }}')">
                         @if ($restaurant)
                             <option value="{{ $restaurant->id }}" selected>{{ $restaurant->name }}</option>
                         @else
-                            <option value="all" selected>{{ translate('messages.all_restaurants') }}</option>
+                            <option value="all" selected>{{ translate('messages.all_vendors') }}</option>
                         @endif
                     </select>
                 </div>
@@ -153,7 +153,7 @@
                                             </div>
 
                                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                                <span class="mr-2">{{ translate('messages.restaurant') }}</span>
+                                                <span class="mr-2">{{ translate('messages.vendor') }}</span>
 
                                                 <!-- Checkbox Switch -->
                                                 <label class="toggle-switch toggle-switch-sm" for="toggleColumn_vendor">
@@ -242,7 +242,7 @@
                                     <th class="w-60px">{{ translate('messages.sl') }}</th>
                                     <th class="w-100px">{{ translate('messages.name') }}</th>
                                     <th class="w-120px">{{ translate('messages.category') }}</th>
-                                    <th class="w-120px">{{ translate('messages.restaurant') }}</th>
+                                    <th class="w-120px">{{ translate('messages.vendor') }}</th>
                                     <th class="w-100px">{{ translate('messages.price') }}</th>
                                     <th class="w-100px">{{ translate('messages.status') }}</th>
                                     <th class="w-120px text-center">

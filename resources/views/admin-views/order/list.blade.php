@@ -15,7 +15,7 @@
                     <img src="{{dynamicAsset('/public/assets/admin/img/orders.png')}}" alt="public">
                 </div>
                 <span>
-                    {{ translate(str_replace('_',' ',$status))}} {{translate('messages.orders')}}
+                   {{ $status == "food_on_the_way" ? "Product" : translate(str_replace('_',' ',$status))}} {{translate('messages.orders')}}
                 </span>
                 <span class="badge badge-soft-dark ml-2">{{$total}}</span>
             </h1>
@@ -144,7 +144,7 @@
                                         <!-- End Checkbox Switch -->
                                     </div>
                                     <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <span class="mr-2">{{translate('messages.restaurant')}}</span>
+                                        <span class="mr-2">{{translate('messages.vendor')}}</span>
 
                                         <!-- Checkbox Switch -->
                                         <label class="toggle-switch toggle-switch-sm"
@@ -240,7 +240,7 @@
                         <th class="table-column-pl-0 w-90px">{{translate('messages.Order_ID')}}</th>
                         <th class="w-140px">{{translate('messages.order_date')}}</th>
                         <th class="w-130px">{{translate('messages.customer_information')}}</th>
-                        <th class="w-140px">{{translate('messages.restaurant')}}</th>
+                        <th class="w-140px">{{translate('messages.vendor')}}</th>
                         <th class="w-120px">{{translate('messages.total_amount')}}</th>
                         <th class="text-center w-120px">{{translate('messages.order_status')}}</th>
                         <th class="text-center w-100px">{{translate('messages.actions')}}</th>
@@ -440,7 +440,7 @@
                         </select>
                     </div>
                     <hr class="my-4">
-                    <small class="text-cap mb-3">{{translate('messages.restaurant')}}</small>
+                    <small class="text-cap mb-3">{{translate('messages.vendor')}}</small>
                     <div class="mb-2 initial-36">
                         <select name="vendor[]" id="vendor_ids" class="form-control js-select2-custom" multiple="multiple">
                         @foreach(\App\Models\Restaurant::whereIn('id', $vendor_ids)->get(['id','name']) as $restaurant)

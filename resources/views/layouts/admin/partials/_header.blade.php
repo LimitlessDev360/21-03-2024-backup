@@ -34,7 +34,7 @@
                 <ul class="navbar-nav align-items-center flex-row">
 
 
-                    <li class="nav-item d-none d-sm-inline-block mr-2">
+                    <!-- <li class="nav-item d-none d-sm-inline-block mr-2">
                         <div class="hs-unfold">
                             <div>
                                 @php( $local = session()->has('local')?session('local'):null)
@@ -70,7 +70,7 @@
                                 @endif
                             </div>
                         </div>
-                    </li>
+                    </li> -->
 
                     <li class="nav-item d-none d-sm-inline-block mr-4">
                         <!-- Notification -->

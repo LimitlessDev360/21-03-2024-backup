@@ -15,7 +15,7 @@
                     <img src="{{dynamicAsset('/public/assets/admin/img/delivery-man.png')}}" alt="public">
                 </div>
                 <span>
-                    {{ translate('messages.add_new_deliveryman') }}
+                    {{ translate('messages.add_deliveryman') }}
                 </span>
             </h1>
         </div>

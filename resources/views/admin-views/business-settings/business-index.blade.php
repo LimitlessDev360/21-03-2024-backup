@@ -16,7 +16,7 @@
                     </span>
                 </h1>
               <div class="d-flex flex-wrap justify-content-end align-items-center flex-grow-1">
-                <div class="blinkings active">
+                <!-- <div class="blinkings active">
                     <i class="tio-info-outined"></i>
                     <div class="business-notes">
                         <h6><img src="{{dynamicAsset('/public/assets/admin/img/notes.png')}}" alt=""> {{translate('Note')}}</h6>
@@ -24,7 +24,7 @@
                             {{translate('Don’t_forget_to_click_the_‘Save_Information’_button_below_to_save_changes.')}}
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
             </div>
             @include('admin-views.business-settings.partials.nav-menu')
@@ -65,7 +65,7 @@
                             </label>
                         </div>
                         <p class="mt-2 mb-0">
-                            {{ translate('*By_turning_the_‘Maintenance_Mode’_ON,_all_your_apps_and_customer_website_will_be_disabled_temporarily._Only_the_Admin_Panel,_Admin_Landing_Page_&_Restaurant_Panel_will_be_functional.') }}
+                            {{ translate('*By_turning_the_‘Maintenance_Mode’_ON,_all_your_apps_and_customer_website_will_be_disabled_temporarily._Only_the_Admin_Panel,_Admin_Landing_Page_&_Vendor_Panel_will_be_functional.') }}
                         </p>
                     </div>
                 </div>
@@ -673,7 +673,7 @@
                                             &nbsp;
                                         <span class="form-label-secondary text-danger d-flex"
                                         data-toggle="tooltip" data-placement="right"
-                                        data-original-title="{{ translate('Set_up_Default_Commission_on_evrey_order._Admin_can_set_restaurant_wise_different_commission_rates_from_respective_restaurant_settings.') }}"><img
+                                        data-original-title="{{ translate('Set_up_Default_Commission_on_evrey_order._Admin_can_set_vendor_wise_different_commission_rates_from_respective_vendor_settings.') }}"><img
                                             src="{{ dynamicAsset('/public/assets/admin/img/info-circle.svg') }}">
                                     </span>
                                         </label>
@@ -739,7 +739,7 @@
                                 <div class="col-xl-4 col-lg-4 col-sm-6">
                                     @php($vnv = \App\Models\BusinessSetting::where('key', 'toggle_veg_non_veg')->first())
                                     @php($vnv = $vnv ? $vnv->value : 0)
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label class="toggle-switch toggle-switch-sm d-flex justify-content-between border rounded px-3 px-xl-4 form-control" >
                                         <span class="pr-2 d-flex align-items-center"><span class="line--limit-1">{{ translate('Veg_/_Non_Veg_Option') }}</span><span class="input-label-secondary text--title" data-toggle="tooltip" data-placement="right" data-original-title="{{translate('If_enabled,_customers_can_filter_food_according_to_their_preference_from_the_Customer_App_or_Website.')}}">
                                             <i class="tio-info-outined"></i>
@@ -759,7 +759,7 @@
                                                 <span class="toggle-switch-indicator"></span>
                                             </span>
                                         </label>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-sm-6">
                                     @php($business_model = \App\Models\BusinessSetting::where('key', 'business_model')->first())
@@ -789,7 +789,7 @@
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-sm-6">
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label class="toggle-switch toggle-switch-sm d-flex justify-content-between border rounded px-3 px-xl-4 form-control">
                                         <span class="pr-2 d-flex align-items-center"><span class="line--limit-1">{{ translate('Subscription Base Business Model ') }}</span><span class="input-label-secondary text--title" data-toggle="tooltip" data-placement="right"
                                         data-original-title="{{translate('If_enabled,_the_package_based_subscription_business_model_option_will_be_available_for_restaurants')}}">
@@ -811,7 +811,7 @@
                                                 <span class="toggle-switch-indicator"></span>
                                             </span>
                                         </label>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-sm-6">
                                     @php($tax_included = \App\Models\BusinessSetting::where('key', 'tax_included')->first())
@@ -819,7 +819,7 @@
                                     <div class="form-group">
                                         <label class="form-label d-none d-sm-block">&nbsp;</label>
                                         <label class="toggle-switch toggle-switch-sm d-flex justify-content-between border rounded px-3 px-xl-4 form-control" >
-                                        <span class="pr-2 d-flex align-items-center"><span class="line--limit-1">{{ translate('messages.Include_TAX_Amount') }}</span><span class="input-label-secondary text--title" data-toggle="tooltip" data-placement="right" data-original-title="{{translate('messages.If_enabled,_the_customer_will_see_the_total_food_price,_including_VAT/TAX._If_it’s_disabled,_the_VAT/TAX_will_be_calculated_separately_from_the_total_cost_of_the_food,_and_he_can_see_a_separate_VAT/TAX_amount_on_the_invoice')}}">
+                                        <span class="pr-2 d-flex align-items-center"><span class="line--limit-1">{{ translate('messages.Include_GST_Amount') }}</span><span class="input-label-secondary text--title" data-toggle="tooltip" data-placement="right" data-original-title="{{translate('messages.If_enabled,_the_customer_will_see_the_total_food_price,_including_GST._If_it’s_disabled,_the_GST_will_be_calculated_separately_from_the_total_cost_of_the_food,_and_he_can_see_a_separate_GST_amount_on_the_invoice')}}">
                                             <i class="tio-info-outined"></i>
                                             </span></span>
                                             <input type="checkbox"  value="1" id="tax_included"
@@ -827,10 +827,10 @@
                                             data-type="toggle"
                                             data-image-on="{{ dynamicAsset('/public/assets/admin/img/modal/tax-on.png') }}"
                                             data-image-off="{{ dynamicAsset('/public/assets/admin/img/modal/tax-off.png') }}"
-                                            data-title-on="{{ translate('Want_to_Enable') }} <strong>{{ translate('Tax_Amount') }} </strong> ?"
-                                            data-title-off="{{ translate('Want_to_disable') }} <strong>{{ translate('Tax_Amount') }}</strong> ?"
-                                            data-text-on="<p>{{ translate('If_enabled,_customers_will_see_the_food_Price_added_with_Tax') }}</p>"
-                                            data-text-off="<p>{{ translate('If_disabled,_customers_will_see_the_food_price_without_Tax') }}</p>"
+                                            data-title-on="{{ translate('Want_to_Enable') }} <strong>{{ translate('GST_Amount') }} </strong> ?"
+                                            data-title-off="{{ translate('Want_to_disable') }} <strong>{{ translate('GST_Amount') }}</strong> ?"
+                                            data-text-on="<p>{{ translate('If_enabled,_customers_will_see_the_food_Price_added_with_GST') }}</p>"
+                                            data-text-off="<p>{{ translate('If_disabled,_customers_will_see_the_food_price_without_GST') }}</p>"
                                             class="status toggle-switch-input dynamic-checkbox-toggle"
                                             name="tax_included"
                                             {{ $tax_included == 1 ? 'checked' : '' }}>
@@ -1000,7 +1000,7 @@
                                                 </span>
                                                 <span class="form-label-secondary text-danger d-flex"
                                                     data-toggle="tooltip" data-placement="right"
-                                                    data-original-title="{{ translate('messages.If_enabled,_customers_can_make_partial_payments._For_example,_a_customer_can_pay_$20_initially_out_of_their_$50_payment_&_use_other_payment_methods_for_the_rest._Partial_payments_must_be_made_through_their_wallets.')}}"><img
+                                                    data-original-title="{{ translate('messages.If_enabled,_customers_can_make_partial_payments._For_example,_a_customer_can_pay_₹20_initially_out_of_their_₹50_payment_&_use_other_payment_methods_for_the_rest._Partial_payments_must_be_made_through_their_wallets.')}}"><img
                                                         src="{{ dynamicAsset('/public/assets/admin/img/info-circle.svg') }}"
                                                         alt="{{ translate('messages.customer_varification_toggle') }}"> *
                                                 </span>
@@ -1094,7 +1094,7 @@
 
 
 
-                                <div class="col-sm-6 col-lg-4">
+                                <!-- <div class="col-sm-6 col-lg-4">
                                     @php($guest_checkout_status = \App\Models\BusinessSetting::where('key', 'guest_checkout_status')->first())
                                     @php($guest_checkout_status = $guest_checkout_status ? $guest_checkout_status->value : 0)
                                     <div class="form-group mb-0">
@@ -1129,7 +1129,7 @@
                                             </span>
                                         </label>
                                     </div>
-                                </div>
+                                </div> -->
 
                             </div>
                             <div class="btn--container justify-content-end">

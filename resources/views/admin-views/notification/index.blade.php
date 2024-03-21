@@ -51,7 +51,7 @@
                                 <select name="tergat" class="form-control" id="tergat" data-placeholder="{{ translate('messages.Ex:_contact@company.com') }} " required>
                                     <option value="customer">{{translate('messages.customer')}}</option>
                                     <option value="deliveryman">{{translate('messages.deliveryman')}}</option>
-                                    <option value="restaurant">{{translate('messages.restaurant')}}</option>
+                                    <option value="restaurant">{{translate('messages.vendors')}}</option>
                                 </select>
                             </div>
                         </div>

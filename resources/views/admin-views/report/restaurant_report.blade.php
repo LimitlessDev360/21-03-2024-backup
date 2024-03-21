@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title', translate('messages.restaurant_report'))
+@section('title', translate('messages.vendor_report'))
 
 @push('css_or_js')
 @endpush
@@ -13,7 +13,7 @@
             <h1 class="page-header-title">
                 <i class="tio-filter-list"></i>
                 <span>
-                    {{ translate('messages.restaurant_report') }}
+                    {{ translate('messages.vendor_report') }}
                     @if ($from && $to)
                         <span class="h6 mb-0 badge badge-soft-success ml-2">
                             ( {{ $from }} - {{ $to }} )</span>
@@ -62,8 +62,8 @@
                             data-placeholder="{{translate('messages.select_type')}}" class="form-control js-select2-custom set-filter">
                                 <option value="all" {{$type=='all'?'selected':''}}>{{translate('messages.all_types')}}</option>
                                 @if ($toggle_veg_non_veg)
-                                <option value="veg" {{$type=='veg'?'selected':''}}>{{translate('messages.veg')}}</option>
-                                <option value="non_veg" {{$type=='non_veg'?'selected':''}}>{{translate('messages.non_veg')}}</option>
+                                <!-- <option value="veg" {{$type=='veg'?'selected':''}}>{{translate('messages.veg')}}</option>
+                                <option value="non_veg" {{$type=='non_veg'?'selected':''}}>{{translate('messages.non_veg')}}</option> -->
                                 @endif
                             </select>
 
@@ -154,14 +154,14 @@
                     <div class="card-header border-0 py-2">
                         <div class="search--button-wrapper">
                             <h3 class="card-title">
-                                {{ translate('restaurant report table') }}<span class="badge badge-soft-secondary"
+                                {{ translate('Vendor report table') }}<span class="badge badge-soft-secondary"
                                     id="countrestaurants">{{ $restaurants->total() }}</span>
                             </h3>
                             <form class="search-form">
                                 <!-- Search -->
                                 <div class="input--group input-group">
                                     <input id="datatableSearch" name="search" type="search" class="form-control"
-                                        placeholder="{{ translate('Ex_:_search_restaurant_name') }}" value="{{ request()->search ?? null }}"
+                                        placeholder="{{ translate('Ex_:_search_vendor_name') }}" value="{{ request()->search ?? null }}"
                                         aria-label="{{ translate('messages.search_here') }}">
                                     <button type="submit" class="btn btn--secondary"><i class="tio-search"></i></button>
                                 </div>
@@ -225,8 +225,8 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th>{{ translate('sl') }}</th>
-                                        <th class="w--2">{{ translate('messages.restaurant') }}</th>
-                                        <th>{{ translate('messages.total_food') }}</th>
+                                        <th class="w--2">{{ translate('messages.vendor') }}</th>
+                                        <th>{{ translate('messages.total_product') }}</th>
                                         <th>{{ translate('messages.total_order') }}</th>
                                         <th>{{ translate('messages.total_order_amount') }}</th>
                                         <th>{{ translate('messages.total_discount_given') }}</th>

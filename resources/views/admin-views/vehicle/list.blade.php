@@ -12,12 +12,12 @@
         <div class="page-header">
             <div class="row align-items-center">
                 <div class="col-sm mb-2 mb-sm-0">
-                    <h1 class="page-header-title"><i class="tio-car"></i> {{translate('messages.vehicles_category_list')}} <span class="badge badge-soft-dark ml-2" id="itemCount">{{$vehicles->total()}}</span></h1>
+                    <h1 class="page-header-title"><i class="tio-car"></i> {{translate('messages.vehicles_list')}} <span class="badge badge-soft-dark ml-2" id="itemCount">{{$vehicles->total()}}</span></h1>
                 </div>
 
                 <div class="col-sm-auto">
                     <a class="btn btn--primary" href="{{route('admin.vehicle.create')}}">
-                        <i class="tio-add"></i> {{translate('messages.add_vehicle_category')}}
+                        <i class="tio-add"></i> {{translate('messages.add')}}
                     </a>
                 </div>
             </div>

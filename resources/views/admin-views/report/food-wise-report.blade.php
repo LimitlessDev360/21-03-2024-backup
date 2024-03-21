@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title', translate('messages.food_report'))
+@section('title', translate('messages.product_report'))
 
 @push('css_or_js')
 @endpush
@@ -13,7 +13,7 @@
             <h1 class="page-header-title">
                 <i class="tio-filter-list"></i>
                 <span>
-                    {{ translate('messages.food_report') }}
+                    {{ translate('messages.product_report') }}
                     @if ($from && $to)
                         <span class="h6 mb-0 badge badge-soft-success ml-2">
                             ( {{ $from }} - {{ $to }} )</span>
@@ -47,7 +47,7 @@
                                 @if (isset($restaurant))
                                     <option value="{{ $restaurant->id }}" selected>{{ $restaurant->name }}</option>
                                 @else
-                                    <option value="all" selected>{{ translate('messages.all_restaurants') }}</option>
+                                    <option value="all" selected>{{ translate('messages.all_vendors') }}</option>
                                 @endif
                             </select>
                         </div>
@@ -72,8 +72,8 @@
                             data-placeholder="{{translate('messages.select_type')}}" class="form-control js-select2-custom set-filter">
                                 <option value="all" {{$type=='all'?'selected':''}}>{{translate('messages.all_types')}}</option>
                                 @if ($toggle_veg_non_veg)
-                                <option value="veg" {{$type=='veg'?'selected':''}}>{{translate('messages.veg')}}</option>
-                                <option value="non_veg" {{$type=='non_veg'?'selected':''}}>{{translate('messages.non_veg')}}</option>
+                                <!-- <option value="veg" {{$type=='veg'?'selected':''}}>{{translate('messages.veg')}}</option>
+                                <option value="non_veg" {{$type=='non_veg'?'selected':''}}>{{translate('messages.non_veg')}}</option> -->
                                 @endif
                             </select>
                         </div>
@@ -176,14 +176,14 @@
                         <div class="card-header border-0 py-2">
                             <div class="search--button-wrapper">
                                 <h3 class="card-title">
-                                    {{ translate('food_report_table') }}<span class="badge badge-soft-secondary"
+                                    {{ translate('product_report_table') }}<span class="badge badge-soft-secondary"
                                         id="countfoods">{{ $foods->total() }}</span>
                                 </h3>
                                 <form class="search-form">
                                     <!-- Search -->
                                     <div class="input--group input-group">
                                         <input id="datatableSearch" name="search" type="search" class="form-control" value="{{ request()->search ?? null }}"
-                                            placeholder="{{ translate('Search_by_food_name') }}"
+                                            placeholder="{{ translate('Search_by_product_name') }}"
                                             aria-label="{{ translate('messages.search_here') }}">
                                         <button type="submit" class="btn btn--secondary"><i class="tio-search"></i></button>
                                     </div>
@@ -250,7 +250,7 @@
                                     <tr>
                                         <th>{{ translate('sl') }}</th>
                                         <th class="w--2">{{ translate('messages.name') }}</th>
-                                        <th class="w--2">{{ translate('messages.restaurant') }}</th>
+                                        <th class="w--2">{{ translate('messages.vendor') }}</th>
                                         <th>{{ translate('messages.order_count') }}</th>
                                         <th>{{ translate('messages.price') }}</th>
                                         <th>{{ translate('messages.total_amount_sold') }}</th>

@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title',translate('messages.order_subscriptions'))
+@section('title',translate('messages.scheduled_orders'))
 
 @section('content')
     <div class="content container-fluid">
@@ -9,14 +9,14 @@
                <div class="page-header">
                 <div class="d-flex flex-wrap justify-content-between align-items-center __gap-15px">
                     <h1 class="page-header-title">
-                        <i class="tio-appointment"></i> {{translate('messages.Subscribed_orders')}}<span class="badge badge-soft-dark ml-2" id="itemCount">{{$subscriptions->total()}}</span>
+                        <i class="tio-appointment"></i> {{translate('messages.scheduled_orders')}}<span class="badge badge-soft-dark ml-2" id="itemCount">{{$subscriptions->total()}}</span>
                     </h1>
-                    <div class="text--primary-2 py-1 d-flex flex-wrap align-items-center" type="button" data-toggle="modal" data-target="#how-it-works">
+                    <!-- <div class="text--primary-2 py-1 d-flex flex-wrap align-items-center" type="button" data-toggle="modal" data-target="#how-it-works">
                         <strong class="mr-2">{{translate('See_how_it_works')}}</strong>
                         <div>
                             <i class="tio-info-outined"></i>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         <!-- End Page Header -->
@@ -55,7 +55,7 @@
                             <tr>
                                 <th>{{translate('messages.sl')}}</th>
                                 <th>{{translate('messages.Order_id')}}</th>
-                                <th>{{translate('messages.restaurant')}}</th>
+                                <th>{{translate('messages.vendor')}}</th>
                                 <th>{{translate('messages.customer')}}</th>
                                 <th>{{translate('messages.type')}}</th>
                                 <th>{{translate('messages.status')}}</th>

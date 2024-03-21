@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title',translate('update_vehicle_category'))
+@section('title',translate('update_vehicle'))
 
 @push('css_or_js')
 
@@ -14,7 +14,7 @@
                 <div class="col-sm mb-2 mb-sm-0">
                     <h1 class="page-header-title">
                         <div class="page-header-icon"><i class="tio-add-circle-outlined"></i></div>
-                        {{translate('messages.update_vehicle_category')}}
+                        {{translate('messages.update_vehicle')}}
                     </h1>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                     @php($language = $language?->value )
                     @php($default_lang = str_replace('_', '-', app()->getLocale()))
                     @if ($language)
-                        <ul class="nav nav-tabs mb-4">
+                        <!-- <ul class="nav nav-tabs mb-4">
                             <li class="nav-item">
                                 <a class="nav-link lang_link active"
                                 href="#"
@@ -43,7 +43,7 @@
                                 </li>
                                 @empty
                             @endforelse
-                        </ul>
+                        </ul> -->
                         @endif
 
                     <div class="row mt-3">

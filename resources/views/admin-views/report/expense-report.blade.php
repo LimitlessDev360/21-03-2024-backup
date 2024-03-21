@@ -49,7 +49,7 @@
                                 @if (isset($restaurant))
                                     <option value="{{ $restaurant->id }}" selected>{{ $restaurant->name }}</option>
                                 @else
-                                    <option value="all" selected>{{ translate('messages.all_restaurants') }}</option>
+                                    <option value="all" selected>{{ translate('messages.all_vendors') }}</option>
                                 @endif
                             </select>
                         </div>

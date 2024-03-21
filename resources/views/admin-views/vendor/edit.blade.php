@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title', translate('Update_restaurant_info'))
+@section('title', translate('Update_vendor_info'))
 @push('css_or_js')
     <link href="{{ dynamicAsset('public/assets/admin/css/tags-input.min.css') }}" rel="stylesheet">
 @endpush
@@ -11,7 +11,7 @@
             <div class="row align-items-center">
                 <div class="col-sm mb-2 mb-sm-0">
                     <h1 class="page-header-title"><i class="tio-shop-outlined"></i>
-                        {{ translate('messages.update_restaurant') }}</h1>
+                        {{ translate('messages.update_vendor') }}</h1>
                 </div>
             </div>
         </div>
@@ -33,7 +33,7 @@
                     <div class="card shadow--card-2">
                         <div class="card-body">
                             @if($language)
-                            <ul class="nav nav-tabs mb-4">
+                            <!-- <ul class="nav nav-tabs mb-4">
                                 <li class="nav-item">
                                     <a class="nav-link lang_link active"
                                     href="#"
@@ -46,17 +46,17 @@
                                             id="{{ $lang }}-link">{{ \App\CentralLogics\Helpers::get_language_name($lang) . '(' . strtoupper($lang) . ')' }}</a>
                                     </li>
                                 @endforeach
-                            </ul>
+                            </ul> -->
                             @endif
                             <div class="lang_form" id="default-form">
                                 <div class="form-group ">
-                                <label class="input-label" for="exampleFormControlInput1">{{ translate('messages.restaurant_name') }} ({{translate('messages.default')}})</label>
+                                <label class="input-label" for="exampleFormControlInput1">{{ translate('messages.name') }}</label>
                                     <input type="text" name="name[]" class="form-control"  placeholder="{{ translate('messages.Ex:_ABC_Company') }} " maxlength="191" value="{{$restaurant?->getRawOriginal('name')}}"  oninvalid="document.getElementById('en-link').click()">
                                 </div>
                                 <input type="hidden" name="lang[]" value="default">
 
                                 <div>
-                                    <label class="input-label" for="address">{{ translate('messages.restaurant_address') }} ({{translate('messages.default')}})</label>
+                                    <label class="input-label" for="address">{{ translate('messages.address') }}</label>
                                     <textarea id="address" name="address[]" class="form-control h-70px" placeholder="{{ translate('messages.Ex:_House#94,_Road#8,_Abc_City') }} "  >{{$restaurant?->getRawOriginal('address')}}</textarea>
                                 </div>
                             </div>
@@ -104,8 +104,10 @@
                     <div class="card shadow--card-2">
                         <div class="card-header">
                             <h5 class="card-title">
-                                <span class="card-header-icon mr-1"><i class="tio-dashboard"></i></span>
-                                <span>{{translate('Restaurant_Logo_&_Covers')}}</span>
+                                <span class="card-header-icon mr-1">
+                                    <!-- <i class="tio-dashboard"></i> -->
+                            </span>
+                                <span>{{translate('Logo_&_Covers')}}</span>
                             </h5>
                         </div>
                         <div class="card-body">
@@ -133,7 +135,7 @@
                                 <label class="__custom-upload-img">
 
                                     <label class="form-label">
-                                        {{ translate('Restaurant_Cover') }}  <span class="text--primary">({{ translate('2:1') }})</span>
+                                        {{ translate('Cover') }}  <span class="text--primary">({{ translate('2:1') }})</span>
                                     </label>
                                     <center>
                                         <img class="img--vertical min-height-170px min-width-170px onerror-image" id="coverImageViewer"
@@ -157,14 +159,16 @@
                     <div class="card shadow--card-2">
                         <div class="card-header">
                             <h5 class="card-title">
-                                <span class="card-header-icon mr-1"><i class="tio-dashboard"></i></span>
-                                <span>{{translate('Restaurant_Info')}}</span>
+                                <span class="card-header-icon mr-1">
+                                    <!-- <i class="tio-dashboard"></i> -->
+                                </span>
+                                <span>{{translate('Info')}}</span>
                             </h5>
                         </div>
                         <div class="card-body">
                             <div class="row g-2">
                                 <div class="col-md-6">
-                                    <label class="input-label" for="tax">{{translate('messages.vat/tax (%)')}}</label>
+                                    <label class="input-label" for="tax">{{translate('messages.GST (%)')}}</label>
                                     <input id="tax" type="number" name="tax" class="form-control h--45px"
                                         placeholder="{{ translate('messages.Ex:_100') }} " min="0" step=".01" required
                                         value="{{ $restaurant->tax }}">
@@ -216,7 +220,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label class="input-label" for="cuisine">{{ translate('messages.cuisine') }}</label>
                                         <select name="cuisine_ids[]" id="cuisine" class="form-control h--45px min--45 js-select2-custom"
                                         multiple="multiple"  data-placeholder="{{ translate('messages.select_Cuisine') }}" >
@@ -229,7 +233,7 @@
                                             {{ $cu['name'] }}</option>
                                             @endforeach
                                         </select>
-                                    </div>
+                                    </div> -->
                                     <div class="form-group">
                                         <label class="input-label" for="choice_zones">{{ translate('messages.zone') }}
                                                 <span data-toggle="tooltip" data-placement="right" data-original-title="{{ translate('messages.select_zone_for_map') }}"

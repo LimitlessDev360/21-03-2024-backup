@@ -122,7 +122,7 @@
                             <div class="chart--label">
                                 <span class="indicator bg-0661CB"></span>
                                 <span class="info">
-                                    {{translate('messages.restaurant')}}
+                                    {{translate('messages.vendor')}}
                                 </span>
                             </div>
                             <div class="chart--label">

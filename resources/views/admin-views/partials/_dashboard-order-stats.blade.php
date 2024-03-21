@@ -36,7 +36,7 @@
         <div class="d-flex justify-content-between align-items-center">
             <h6 class="card-subtitle d-flex justify-content-between m-0 align-items-center">
                 <img src="{{dynamicAsset('/public/assets/admin/img/dashboard/7.png')}}" alt="dashboard" class="oder--card-icon">
-                <span>{{translate('cooking_in_restaurant')}}</span>
+                <span>Chopping In Vendors</span>
             </h6>
             <span class="card-title text-danger">
                 {{$data['preparing_in_rs']}}

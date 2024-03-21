@@ -129,7 +129,7 @@
                                             <!-- End Checkbox Switch -->
                                         </div>
                                         <div class="d-flex justify-content-between align-items-center mb-3">
-                                            <span class="mr-2">{{translate('messages.restaurant')}}</span>
+                                            <span class="mr-2">{{translate('messages.vendor')}}</span>
 
                                             <!-- Checkbox Switch -->
                                             <label class="toggle-switch toggle-switch-sm"
@@ -220,7 +220,7 @@
                         <th class="table-column-pl-0">{{translate('messages.order')}}</th>
                         <th>{{translate('messages.date')}}</th>
                         <th class="w-140px">{{translate('messages.customer')}}</th>
-                        <th>{{translate('messages.restaurant')}}</th>
+                        <th>{{translate('messages.vendor')}}</th>
                         <th>{{translate('messages.total_amount')}}</th>
                         <th class="text-center">{{translate('messages.order_status')}}</th>
                         <th class="text-center">{{translate('messages.actions')}}</th>

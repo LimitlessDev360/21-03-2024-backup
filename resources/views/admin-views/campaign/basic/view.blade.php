@@ -34,7 +34,7 @@
                                 @php($allrestaurants=App\Models\Restaurant::Active()->get(['id','name']))
                                 <div class="flex-grow-1">
                                     <select name="restaurant_id" id="restaurant_id" class="form-control js-select2-custom h--45px" required>
-                                        <option value="" selected disabled>{{ translate('Select_Restaurant') }}</option>
+                                        <option value="" selected disabled>{{ translate('Select_Vendor') }}</option>
                                         @forelse($allrestaurants as $restaurant)
                                         @if(!in_array($restaurant->id, $restaurant_ids))
                                             <option value="{{$restaurant->id}}" >{{$restaurant->name}}</option>
@@ -45,7 +45,7 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <button type="submit" class="btn btn--primary">{{translate('messages.add_restaurant')}}</button>
+                                    <button type="submit" class="btn btn--primary">{{translate('messages.add_vendor')}}</button>
                                 </div>
                             </div>
                             <!-- End Search -->
@@ -69,7 +69,7 @@
                             {{-- <input type="hidden" name="campaign_id" value="{{ $campaign->id }}" > --}}
                             <div class="input--group input-group input-group-merge input-group-flush">
                                 <input id="datatableSearch_" type="search" name="search" class="form-control"
-                                        placeholder="{{translate('messages.search_by_restaurant_name') }}" aria-label="Search" required>
+                                        placeholder="{{translate('messages.search_by_vendor_name') }}" aria-label="Search" required>
                                 <button type="submit" class="btn btn--secondary">
                                     <i class="tio-search"></i>
                                 </button>
@@ -88,7 +88,7 @@
                             <thead class="thead-light">
                             <tr>
                                 <th>{{ translate('messages.sl') }}</th>
-                                <th >{{translate('messages.restaurant')}}</th>
+                                <th >{{translate('messages.vendor')}}</th>
                                 <th>{{translate('messages.owner')}}</th>
                                 <th>{{translate('messages.email')}}</th>
                                 <th>{{translate('messages.zone')}}</th>

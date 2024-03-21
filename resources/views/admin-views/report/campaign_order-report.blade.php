@@ -40,12 +40,12 @@
                         </div>
                         <div class="col-sm-6 col-md-3">
                             <select name="restaurant_id" data-url="{{ url()->full() }}" data-filter="restaurant_id"
-                                data-placeholder="{{ translate('messages.select_restaurant') }}"
+                                data-placeholder="{{ translate('messages.select_vendor') }}"
                                 class="js-data-example-ajax form-control set-filter">
                                 @if (isset($restaurant))
                                     <option value="{{ $restaurant->id }}" selected>{{ $restaurant->name }}</option>
                                 @else
-                                    <option value="all" selected>{{ translate('messages.all_restaurants') }}</option>
+                                    <option value="all" selected>{{ translate('messages.all_vendors') }}</option>
                                 @endif
                             </select>
                         </div>
@@ -172,7 +172,7 @@
                         <!-- Search -->
                         <div class="input--group input-group input-group-merge input-group-flush">
                             <input name="search"  type="search" class="form-control" value="{{ request()->search ?? null }}"
-                             placeholder="{{ translate('Search_by_Order_ID_or_Restaurant_Name')}}">
+                             placeholder="{{ translate('Search_by_Order_ID')}}">
                             <button type="submit" class="btn btn--secondary"><i class="tio-search"></i></button>
                         </div>
                         <!-- End Search -->
@@ -223,7 +223,7 @@
                             <tr>
                                 <th class="border-top border-bottom">{{ translate('messages.sl') }}</th>
                                 <th class="border-top border-bottom word-nobreak">{{ translate('messages.order_id') }}</th>
-                                <th class="border-top border-bottom">{{ translate('messages.restaurant') }}</th>
+                                <th class="border-top border-bottom">{{ translate('messages.vendor') }}</th>
                                 <th class="border-top border-bottom">{{ translate('messages.customer_name') }}</th>
                                 <th class="border-top border-bottom min-w-120">{{ translate('messages.total_item_amount') }}</th>
                                 <th class="border-top border-bottom">{{ translate('messages.item_discount') }}</th>

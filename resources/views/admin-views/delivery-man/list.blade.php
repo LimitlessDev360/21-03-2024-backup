@@ -37,7 +37,7 @@
 
                                 <div class="input--group input-group input-group-merge input-group-flush">
                                     <input id="datatableSearch_" type="search" name="search" value="{{ request()?->search ?? null }}" class="form-control"
-                                            placeholder="{{ translate('Search_by_name_or_restaurant')}}" aria-label="Search">
+                                            placeholder="{{ translate('Search_by_name')}}" aria-label="Search">
                                     <button type="submit" class="btn btn--secondary">
                                         <i class="tio-search"></i>
                                     </button>

@@ -36,7 +36,7 @@
                     @php($language = $language->value ?? null)
                     @php($default_lang = str_replace('_', '-', app()->getLocale()))
                     @if($language)
-                        <ul class="nav nav-tabs mb-4">
+                        <!-- <ul class="nav nav-tabs mb-4">
                             <li class="nav-item">
                                 <a class="nav-link lang_link  active" href="#" id="default-link">{{ translate('Default')}}</a>
                             </li>
@@ -45,7 +45,7 @@
                                     <a class="nav-link lang_link " href="#" id="{{$lang}}-link">{{\App\CentralLogics\Helpers::get_language_name($lang).'('.strtoupper($lang).')'}}</a>
                                 </li>
                             @endforeach
-                        </ul>
+                        </ul> -->
                     @endif
                     @if ($language)
                     <div class="form-group lang_form" id="default-form">
@@ -163,11 +163,11 @@
                             <th>{{ translate('messages.sl') }}</th>
                             <th>{{translate('messages.id')}}</th>
                             <th>{{translate('messages.name')}}</th>
-                            <th>
+                            <!-- <th>
                                 <div class="ml-3">
                                     {{translate('messages.priority')}}
                                 </div>
-                            </th>
+                            </th> -->
                             <th>{{translate('messages.status')}}</th>
                             <th class="text-cetner w-130px">{{translate('messages.action')}}</th>
                         </tr>
@@ -191,7 +191,7 @@
                                 {{Str::limit($category['name'], 20,'...')}}
                             </span>
                             </td>
-                            <td>
+                            <!-- <td>
                                 <form action="{{route('admin.category.priority',$category->id)}}" class="priority-form">
                                 <select name="priority" id="priority" class=" form-control form--control-select priority-select {{$category->priority == 0 ? 'text--title':''}} {{$category->priority == 1 ? 'text--info':''}} {{$category->priority == 2 ? 'text--success':''}} ">
                                     <option class="text--title" value="0" {{$category->priority == 0?'selected':''}}>{{translate('messages.normal')}}</option>
@@ -199,7 +199,7 @@
                                     <option class="text--success" value="2" {{$category->priority == 2?'selected':''}}>{{translate('messages.high')}}</option>
                                 </select>
                                 </form>
-                            </td>
+                            </td> -->
                             <td>
                                 <label class="toggle-switch toggle-switch-sm ml-2" for="stocksCheckbox{{$category->id}}">
                                 <input type="checkbox" data-url="{{route('admin.category.status',[$category['id'],$category->status?0:1])}}" class="toggle-switch-input redirect-url" id="stocksCheckbox{{$category->id}}" {{$category->status?'checked':''}}>

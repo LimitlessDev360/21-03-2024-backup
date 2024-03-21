@@ -26,7 +26,7 @@
                                     @php($language = $language->value ?? null)
                                     @php($default_lang = str_replace('_', '-', app()->getLocale()))
                                     @if($language)
-                                    <ul class="nav nav-tabs mb-4">
+                                    <!-- <ul class="nav nav-tabs mb-4">
                                         <li class="nav-item">
                                             <a class="nav-link lang_link active" href="#"
                                                 id="default-link">{{translate('messages.default')}}</a>
@@ -38,12 +38,12 @@
                                                 strtoupper($lang) . ')' }}</a>
                                         </li>
                                         @endforeach
-                                    </ul>
+                                    </ul> -->
                                     <div class="lang_form" id="default-form">
                                         <div class="form-group">
                                             <label class="input-label"
                                                 for="default_title">{{translate('messages.title')}}
-                                                ({{translate('messages.default')}})</label>
+                                            </label>
                                             <input type="text" name="promotional_banner_title[]" id="default_title" class="form-control"
                                                 placeholder="{{translate('messages.new_banner')}}" value="{{ $banner_title?->getRawOriginal('value') ?? null }}"
                                                 oninvalid="document.getElementById('en-link').click()">
@@ -109,7 +109,7 @@
                                         alt="">
                                 </span>
                                 <div>
-                                    <div class="blinkings">
+                                    <!-- <div class="blinkings">
                                         <div>
                                             <i class="tio-info-outined"></i>
                                         </div>
@@ -120,7 +120,7 @@
                                                 {{translate('messages.this_banner_is_only_for_web.')}}
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <div class="col-12">

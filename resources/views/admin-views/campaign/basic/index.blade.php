@@ -28,24 +28,24 @@
                     @php($language = $language->value ?? null)
                     @php($default_lang = str_replace('_', '-', app()->getLocale()))
                     @if($language)
-                        <ul class="nav nav-tabs mb-4">
+                        <!-- <ul class="nav nav-tabs mb-4">
                             <li class="nav-item">
-                                <a class="nav-link lang_link active" href="#" id="default-link">{{ translate('Default') }}</a>
+                                <a class="nav-link lang_link" href="#" id="default-link"></a>
                             </li>
                             @foreach(json_decode($language) as $lang)
                                 <li class="nav-item">
                                     <a class="nav-link lang_link"  href="#" id="{{$lang}}-link">{{\App\CentralLogics\Helpers::get_language_name($lang).'('.strtoupper($lang).')'}}</a>
                                 </li>
                             @endforeach
-                        </ul>
+                        </ul> -->
                         <div class="mb-1 lang_form" id="default-form">
                             <div class="form-group">
-                                <label class="input-label" for="default_title">{{translate('messages.title')}} ({{ translate('Default') }})</label>
+                                <label class="input-label" for="default_title">{{translate('messages.title')}}</label>
                                 <input type="text"  name="title[]" id="default_title" class="form-control h--45px" placeholder="{{ translate('messages.Ex_:_Campaign') }}" oninvalid="document.getElementById('en-link').click()">
                             </div>
                             <input type="hidden" name="lang[]" value="default">
                             <div class="form-group mb-0">
-                                <label class="input-label" for="exampleFormControlInput1">{{translate('messages.short_description')}} ({{ translate('Default') }})</label>
+                                <label class="input-label" for="exampleFormControlInput1">{{translate('messages.short_description')}}</label>
                                 <textarea type="text" name="description[]" class="form-control ckeditor"></textarea>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                                 </div>
                                 <input type="hidden" name="lang[]" value="{{$lang}}">
                                 <div class="form-group mb-0">
-                                    <label class="input-label" for="exampleFormControlInput1">{{translate('messages.short_description')}} ({{strtoupper($lang)}})</label>
+                                    <label class="input-label" for="exampleFormControlInput1">{{translate('messages.short_description')}}</label>
                                     <textarea type="text" name="description[]" class="form-control ckeditor"></textarea>
                                 </div>
                             </div>

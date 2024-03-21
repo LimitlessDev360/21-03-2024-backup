@@ -36,7 +36,7 @@
                     @csrf
                     @if($language)
                         @php($default_lang = json_decode($language)[0])
-                        <ul class="nav nav-tabs mb-4">
+                        <!-- <ul class="nav nav-tabs mb-4">
                             <li class="nav-item">
                                 <a class="nav-link lang_link active" href="#" id="default-link">{{ translate('Default')}}</a>
                             </li>
@@ -45,7 +45,7 @@
                                     <a class="nav-link lang_link" href="#" id="{{$lang}}-link">{{\App\CentralLogics\Helpers::get_language_name($lang).'('.strtoupper($lang).')'}}</a>
                                 </li>
                             @endforeach
-                        </ul>
+                        </ul> -->
                     @endif
                     <div class="row">
                         <div class="col-lg-4">
@@ -72,10 +72,10 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label class="input-label" for="exampleFormControlSelect1">{{translate('messages.restaurant')}}<span
+                                <label class="input-label" for="exampleFormControlSelect1">{{translate('messages.Vendor')}}<span
                                         class="input-label-secondary"></span></label>
 
-                                <select name="restaurant_id" id="restaurant_id" class="js-data-example-ajax form-control"  data-placeholder="{{translate('messages.select_restaurant')}}" oninvalid="this.setCustomValidity('{{translate('messages.please_select_restaurant')}}')">
+                                <select name="restaurant_id" id="restaurant_id" class="js-data-example-ajax form-control"  data-placeholder="{{translate('messages.select_vendor')}}" oninvalid="this.setCustomValidity('{{translate('messages.please_select_restaurant')}}')">
                                 </select>
                             </div>
                         </div>
@@ -104,11 +104,11 @@
                     <h5 class="card-title"> {{translate('messages.addon_list')}}<span class="badge badge-soft-dark ml-2" id="itemCount">{{$addons->total()}}</span></h5>
                     <div class="mr-sm-3">
                         <select name="restaurant_id" id="restaurant" data-placeholder="{{translate('messages.select_restaurant')}}" class="js-data-example-ajax form-control set-filter"
-                        data-url="{{url()->full()}}" data-filter="restaurant_id"   title="Select Restaurant">
+                        data-url="{{url()->full()}}" data-filter="restaurant_id"   title="Select Vendor">
                             @if(isset($restaurant))
                             <option value="{{$restaurant->id}}" selected>{{$restaurant->name}}</option>
                             @else
-                            <option value="all" selected>{{translate('messages.all_restaurants')}}</option>
+                            <option value="all" selected>{{translate('messages.all_vendors')}}</option>
                             @endif
                         </select>
                     </div>
@@ -167,7 +167,7 @@
                             <th>{{translate('sl')}}</th>
                             <th class="text-center w-20p">{{translate('messages.name')}}</th>
                             <th class="text-center w-20p">{{translate('messages.price')}}</th>
-                            <th class="w-26p">{{translate('messages.restaurant')}}</th>
+                            <th class="w-26p">{{translate('messages.vendor')}}</th>
                             <th class="w-12p">{{translate('messages.status')}}</th>
                             <th class="text-center w-12p">{{translate('messages.action')}}</th>
                         </tr>

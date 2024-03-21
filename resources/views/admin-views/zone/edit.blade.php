@@ -54,7 +54,7 @@
                                 @php($language=\App\Models\BusinessSetting::where('key','language')->first())
                                 @php($language = $language->value ?? null)
                                 @php($default_lang = str_replace('_', '-', app()->getLocale()))
-                                <ul class="nav nav-tabs mb-4">
+                                <!-- <ul class="nav nav-tabs mb-4">
                                     <li class="nav-item">
                                         <a class="nav-link lang_link active"
                                         href="#"
@@ -74,11 +74,11 @@
                                             data-original-title="{{ translate('Choose_your_preferred_language_&_set_your_zone_name.') }}"><img
                                             src="{{ dynamicAsset('/public/assets/admin/img/info-circle.svg') }}"
                                             alt="{{ translate('messages.veg_non_veg') }}"></span>
-                                    </ul>
+                                    </ul> -->
                             </div>
 
                             <div class="form-group lang_form" id="default-form">
-                                <label class="input-label" for="exampleFormControlInput1">{{ translate('messages.business_Zone_name')}} ({{ translate('messages.default') }})</label>
+                                <label class="input-label" for="exampleFormControlInput1">{{ translate('messages.business_Zone_name')}}</label>
                                 <input type="text" name="name[]" class="form-control" placeholder="{{translate('messages.Type_new_zone_name_here')}}" maxlength="191" value="{{$zone?->getRawOriginal('name')}}"  oninvalid="document.getElementById('en-link').click()">
                             </div>
                             <input type="hidden" name="lang[]" value="default">

@@ -29,7 +29,7 @@
                         @php($language = $language->value ?? null)
                         @php($default_lang = str_replace('_', '-', app()->getLocale()))
                         @if ($language)
-                        <ul class="nav nav-tabs mb-4">
+                        <!-- <ul class="nav nav-tabs mb-4">
                             <li class="nav-item">
                                 <a class="nav-link lang_link active"
                                 href="#"
@@ -42,20 +42,20 @@
                                         id="{{ $lang }}-link">{{ \App\CentralLogics\Helpers::get_language_name($lang) . '(' . strtoupper($lang) . ')' }}</a>
                                 </li>
                             @endforeach
-                        </ul>
+                        </ul> -->
                         @endif
                         <input type="hidden" name="lang[]" value="default">
 
                         <div class="form-group lang_form" id="default-form">
-                            <label class="form-label input-label " for="name">{{ translate('messages.role_name') }} ({{ translate('messages.default') }})</label>
-                            <input type="text" name="name[]" class="form-control" placeholder="{{translate('role_name_example')}}" maxlength="191"  oninvalid="document.getElementById('en-link').click()">
+                            <label class="form-label input-label " for="name">{{ translate('messages.role_name') }}</label>
+                            <input type="text" name="name[]" class="form-control" placeholder="{{translate('role_name')}}" maxlength="191"  oninvalid="document.getElementById('en-link').click()">
                         </div>
 
                         @if ($language)
                             @foreach(json_decode($language) as $lang)
                                 <div class="form-group d-none lang_form" id="{{$lang}}-form">
                                     <label class="input-label" for="exampleFormControlInput1">{{translate('messages.role_name')}} ({{strtoupper($lang)}})</label>
-                                    <input type="text" name="name[]" class="form-control" placeholder="{{translate('role_name_example')}}" maxlength="191" oninvalid="document.getElementById('en-link').click()">
+                                    <input type="text" name="name[]" class="form-control" placeholder="{{translate('role_name')}}" maxlength="191" oninvalid="document.getElementById('en-link').click()">
                                 </div>
                                 <input type="hidden" name="lang[]" value="{{$lang}}">
                             @endforeach
@@ -157,7 +157,7 @@
                         <div class="form-group form-check form--check">
                             <input type="checkbox" name="modules[]" value="food" class="form-check-input"
                                     id="food">
-                            <label class="form-check-label ml-2 ml-sm-3  text-dark" for="food">{{translate('messages.food')}}</label>
+                            <label class="form-check-label ml-2 ml-sm-3  text-dark" for="food">{{translate('messages.product')}}</label>
                         </div>
                     </div>
                     <div class="check-item">
@@ -178,7 +178,7 @@
                         <div class="form-group form-check form--check">
                             <input type="checkbox" name="modules[]" value="restaurant" class="form-check-input"
                                     id="restaurant">
-                            <label class="form-check-label ml-2 ml-sm-3  text-dark" for="restaurant">{{translate('messages.restaurants')}}</label>
+                            <label class="form-check-label ml-2 ml-sm-3  text-dark" for="restaurant">{{translate('messages.vendors')}}</label>
                         </div>
                     </div>
                     <div class="check-item">
@@ -200,17 +200,17 @@
                         <div class="form-group form-check form--check">
                             <input type="checkbox" name="modules[]" value="withdraw_list" class="form-check-input"
                                     id="withdraw_list">
-                            <label class="form-check-label ml-2 ml-sm-3  text-dark" for="withdraw_list">{{translate('messages.restaurant_withdraws')}}</label>
+                            <label class="form-check-label ml-2 ml-sm-3  text-dark" for="withdraw_list">{{translate('messages.vendor_withdraws')}}</label>
                         </div>
                     </div>
 
-                    <div class="check-item">
+                    <!-- <div class="check-item">
                         <div class="form-group form-check form--check">
                             <input type="checkbox" name="modules[]" value="pos" class="form-check-input"
                                     id="pos">
                             <label class="form-check-label ml-2 ml-sm-3  text-dark" for="pos">{{translate('messages.pos_system')}}</label>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="check-item">
                         <div class="form-group form-check form--check">

@@ -8,7 +8,7 @@
                     <a class="nav-link  {{request('tab')=='order'?'active':''}}" href="{{route('admin.restaurant.view', ['restaurant'=>$restaurant->id, 'tab'=> 'order'])}}"  aria-disabled="true">{{translate('messages.orders')}}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link  {{request('tab')=='product'?'active':''}}" href="{{route('admin.restaurant.view', ['restaurant'=>$restaurant->id, 'tab'=> 'product'])}}"  aria-disabled="true">{{translate('messages.foods')}}</a>
+                    <a class="nav-link  {{request('tab')=='product'?'active':''}}" href="{{route('admin.restaurant.view', ['restaurant'=>$restaurant->id, 'tab'=> 'product'])}}"  aria-disabled="true">{{translate('messages.products')}}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link  {{request('tab')=='reviews'?'active':''}}" href="{{route('admin.restaurant.view', ['restaurant'=>$restaurant->id, 'tab'=> 'reviews'])}}"  aria-disabled="true">{{translate('messages.reviews')}}</a>
@@ -30,9 +30,9 @@
                     <a class="nav-link  {{request('tab') =='subscriptions' || request('tab') =='subscriptions-transactions' ?'active':'' }}" href="{{route('admin.restaurant.view', ['restaurant'=>$restaurant->id, 'tab'=> 'subscriptions'])}}"  aria-disabled="true">{{translate('messages.subscription')}}</a>
                 </li>
                 @endif
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link  {{request('tab')=='meta-data' ?'active':''}}" href="{{route('admin.restaurant.view', ['restaurant'=>$restaurant->id, 'tab'=> 'meta-data'])}}"  aria-disabled="true">{{translate('messages.meta-data')}}</a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a class="nav-link  {{request('tab')=='qr-code' ?'active':''}}" href="{{route('admin.restaurant.view', ['restaurant'=>$restaurant->id, 'tab'=> 'qr-code'])}}"  aria-disabled="true">{{translate('messages.QR_code')}}</a>
                 </li>

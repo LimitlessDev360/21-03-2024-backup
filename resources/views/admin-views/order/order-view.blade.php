@@ -113,14 +113,14 @@ $max_processing_time = $order->restaurant?explode('-', $order->restaurant['deliv
                             @endif
                             @if (isset($order->restaurant))
                                 <h6 class="mt-2 pt-1 mb-2">
-                                    <i class="tio-shop"></i>
-                                    {{ translate('messages.restaurant') }} : <label
+                                    <!-- <i class="tio-shop"></i> -->
+                                    {{ translate('messages.vendor') }} : <label
                                         class="badge badge-soft-info font-regular m-0">{{ Str::limit($order->restaurant->name, 25, '...') }}</label>
                                 </h6>
                             @else
                                 <h6 class="mt-2 pt-1 mb-2">
                                     <i class="tio-shop"></i>
-                                    {{ translate('messages.restaurant') }} : <label
+                                    {{ translate('messages.vendor') }} : <label
                                         class="badge badge-soft-danger font-regular m-0">{{ Str::limit(translate('messages.Restaurant_deleted!'), 25, '...') }}</label>
                                 </h6>
                             @endif
@@ -321,19 +321,19 @@ $max_processing_time = $order->restaurant?explode('-', $order->restaurant['deliv
                                 @endif
 
                                 @if ($order->cutlery)
-                                <h6>
+                                <!-- <h6>
                                     <span>{{ translate('cutlery') }}</span> <span>:</span>
                                         <span class="badge badge-soft-success ml-sm-3">
                                             {{ translate('messages.yes') }}
                                         </span>
-                                </h6>
+                                </h6> -->
                                 @else
-                                <h6>
+                                <!-- <h6>
                                     <span>{{ translate('cutlery') }}</span> <span>:</span>
                                         <span class="badge badge-soft-danger ml-sm-3">
                                             {{ translate('messages.No') }}
                                         </span>
-                                </h6>
+                                </h6> -->
 
                                 @endif
                             </div>
@@ -777,7 +777,7 @@ $max_processing_time = $order->restaurant?explode('-', $order->restaurant['deliv
                                         - {{ \App\CentralLogics\Helpers::format_currency($coupon_discount_amount) }}
                                     </dd>
                                     @if ($order->tax_status == 'excluded' || $order->tax_status == null  )
-                                    <dt class="col-6">{{ translate('messages.vat/tax') }}:</dt>
+                                    <dt class="col-6">Gst:</dt>
                                     <dd class="col-6 text-right">
                                         +
                                         {{ \App\CentralLogics\Helpers::format_currency($tax_a) }}
@@ -1438,9 +1438,9 @@ $max_processing_time = $order->restaurant?explode('-', $order->restaurant['deliv
                                         <!-- Header -->
                                         <h5 class="card-title mb-3">
                                             <span class="card-header-icon">
-                                                <i class="tio-shop"></i>
+                                                <!-- <i class="tio-shop"></i> -->
                                             </span>
-                                            <span>{{ translate('messages.restaurant_info') }}</span>
+                                            <span>{{ translate('messages.vendor_info') }}</span>
                                         </h5>
                                         <!-- End Header -->
                                         <a class="media align-items-center deco-none resturant--information-single"

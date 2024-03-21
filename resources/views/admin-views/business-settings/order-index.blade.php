@@ -17,7 +17,7 @@
                     </span>
                 </h1>
                 <div class="d-flex flex-wrap justify-content-end align-items-center flex-grow-1">
-                    <div class="blinkings active">
+                    <!-- <div class="blinkings active">
                         <i class="tio-info-outined"></i>
                         <div class="business-notes">
                             <h6><img src="{{dynamicAsset('/public/assets/admin/img/notes.png')}}" alt=""> {{translate('Note')}}</h6>
@@ -25,7 +25,7 @@
                                 {{translate('Don’t_forget_to_click_the_respective_‘Save_Information’_and_‘Submit’_buttons_below_to_save_changes')}}
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             @include('admin-views.business-settings.partials.nav-menu')
@@ -269,7 +269,7 @@
                                             @php($canceled_by_restaurant = \App\Models\BusinessSetting::where('key', 'canceled_by_restaurant')->first())
                                             @php($canceled_by_restaurant = $canceled_by_restaurant ? $canceled_by_restaurant->value : 0)
                                             <div class="form-group mb-0">
-                                                <label class="input-label text-capitalize d-flex alig-items-center"><span class="line--limit-1">{{ translate('restaurant_can_cancel_order') }} </span><span class="input-label-secondary text--title" data-toggle="tooltip" data-placement="right" data-original-title="{{translate('If_yes,_restaurants_can_cancel_orders.')}}">
+                                                <label class="input-label text-capitalize d-flex alig-items-center"><span class="line--limit-1">{{ translate('vendor_can_cancel_order') }} </span><span class="input-label-secondary text--title" data-toggle="tooltip" data-placement="right" data-original-title="{{translate('If_yes,_restaurants_can_cancel_orders.')}}">
                                                     <i class="tio-info-outined"></i>
                                                     </span></label>
                                                 <div class="resturant-type-group border">
@@ -324,7 +324,7 @@
                                             @php($order_confirmation_model = \App\Models\BusinessSetting::where('key', 'order_confirmation_model')->first())
                                             @php($order_confirmation_model = $order_confirmation_model ? $order_confirmation_model?->value : 'deliveryman')
                                             <div class="form-group mb-0">
-                                                <label class="input-label text-capitalize d-flex alig-items-center"><span class="line--limit-1">{{ translate('messages.order_confirmation_model') }}</span> <span class="input-label-secondary text--title" data-toggle="tooltip" data-placement="right" data-original-title="{{translate('The_chosen_confirmation_model_will_confirm_the_order_first._For_example,_if_the_deliveryman_confirmation_model_is_enabled,_deliverymen_will_receive_and_confirm_orders_before_restaurants._After_that,_restaurants_will_get_orders_and_process_them.')}}">
+                                                <label class="input-label text-capitalize d-flex alig-items-center"><span class="line--limit-1">{{ translate('messages.order_confirmation_model') }}</span> <span class="input-label-secondary text--title" data-toggle="tooltip" data-placement="right" data-original-title="{{translate('The_chosen_confirmation_model_will_confirm_the_order_first._For_example,_if_the_deliveryman_confirmation_model_is_enabled,_deliverymen_will_receive_and_confirm_orders_before_vendors._After_that,_vendors_will_get_orders_and_process_them.')}}">
                                                     <i class="tio-info-outined"></i>
                                                     </span></label>
                                                 <div class="resturant-type-group border">
@@ -333,7 +333,7 @@
                                                         name="order_confirmation_model" id="order_confirmation_model"
                                                         {{ $order_confirmation_model == 'restaurant' ? 'checked' : '' }}>
                                                         <span class="form-check-label">
-                                                            {{ translate('messages.restaurant') }}
+                                                            {{ translate('messages.vendor') }}
                                                         </span>
                                                     </label>
                                                     <label class="form-check form--check mr-2 mr-md-4">
@@ -515,7 +515,7 @@
                         @php($language = $language->value ?? null)
                         @php($defaultLang = str_replace('_', '-', app()->getLocale()))
                         @if ($language)
-                            <ul class="nav nav-tabs nav--tabs mb-3 border-0">
+                            <!-- <ul class="nav nav-tabs nav--tabs mb-3 border-0">
                                 <li class="nav-item">
                                     <a class="nav-link lang_link1 active" href="#"
                                         id="default-link1">{{ translate('Default') }}</a>
@@ -526,12 +526,12 @@
                                             id="{{ $lang }}-link1">{{ \App\CentralLogics\Helpers::get_language_name($lang) . '(' . strtoupper($lang) . ')' }}</a>
                                     </li>
                                 @endforeach
-                            </ul>
+                            </ul> -->
                         @endif
                         <div class="row g-3">
                             <div class="col-sm-6 lang_form1 default-form1">
                                 <label for="order_cancellation" class="form-label">{{ translate('Order Cancellation Reason') }}
-                                    ({{ translate('messages.default') }})</label>
+                                    </label>
                                 <input type="text" maxlength="191" class="form-control h--45px" name="reason[]"
                                     id="order_cancellation" placeholder="{{ translate('Ex:_Item_is_Broken') }}">
                                 <input type="hidden" name="lang[]" value="default">
@@ -552,14 +552,14 @@
                                     <span class="line--limit-1">{{ translate('User Type') }} </span>
                                     <span class="form-label-secondary text-danger d-flex" data-toggle="tooltip"
                                         data-placement="right"
-                                        data-original-title="{{ translate('Choose_different_Customers_for_different_Order_Cancelation_Reasons,_such_as_Customer,_Restaurant,_Deliveryman,_and_Admin.') }}"><img
+                                        data-original-title="{{ translate('Choose_different_Customers_for_different_Order_Cancelation_Reasons,_such_as_Customer,_Vendor,_Deliveryman,_and_Admin.') }}"><img
                                             src="{{ dynamicAsset('/public/assets/admin/img/info-circle.svg') }}"
                                             alt="{{ translate('messages.prescription_order_status') }}"></span>
                                 </label>
                                 <select id="user_type" name="user_type" class="form-control h--45px" required>
                                     <option value="">{{ translate('messages.select_user_type') }}</option>
                                     <option value="admin">{{ translate('messages.admin') }}</option>
-                                    <option value="restaurant">{{ translate('messages.restaurant') }}</option>
+                                    <option value="restaurant">{{ translate('messages.vendor') }}</option>
                                     <option value="customer">{{ translate('messages.customer') }}</option>
                                     <option value="deliveryman">{{ translate('messages.deliveryman') }}</option>
                                 </select>
@@ -614,7 +614,7 @@
                                                                 {{ Str::limit($reason->reason, 25, '...') }}
                                                             </span>
                                                         </td>
-                                                        <td>{{ Str::title($reason->user_type) }}</td>
+                                                        <td>{{ $reason->user_type == "restaurant"? "Vendor": Str::title($reason->user_type) }}</td>
                                                         <td>
                                                             <label class="toggle-switch toggle-switch-sm"
                                                                 for="stocksCheckbox{{ $reason->id }}">

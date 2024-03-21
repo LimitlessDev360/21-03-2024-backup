@@ -33,7 +33,7 @@
             }],
             labels: [
                 '{{ translate('messages.customer') }}',
-                '{{ translate('messages.restaurant') }}',
+                '{{ translate('messages.vendor') }}',
                 '{{ translate('messages.delivery_man') }}'
             ],
         },
