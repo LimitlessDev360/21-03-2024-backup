@@ -4849,4 +4849,5 @@
   'join_as_vendor' => 'Join as vendor',
   'Order_your_meat' => 'Order your meat',
   'manage_your_Shop' => 'Manage your Shop',
+  'Login' => 'Login',
 );

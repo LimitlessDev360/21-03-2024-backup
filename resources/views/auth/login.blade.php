@@ -36,7 +36,7 @@
     <div class="d-flex flex-wrap align-items-center justify-content-between">
         <div class="auth-content">
             <div class="content">
-                <h2 class="title text-uppercase">{{translate('messages.welcome_to_app')}} {{ $app_name??'STACKFOOD' }}</h2>
+                <h2 class="title text-uppercase">{{translate('messages.welcome_to_app')}} {{ $app_name??'Butcher' }}</h2>
                 <p>
                     {{translate('Manage_your_app_&_website_easily')}}
                 </p>
@@ -53,7 +53,7 @@
                 </a>
                 <div class="text-center">
                     <div class="auth-header mb-5">
-                        <h2 class="signin-txt">{{ translate('messages.Signin_To_Your_Panel')}}</h2>
+                        <h2 class="signin-txt">{{ translate('messages.Login')}}</h2>
                     </div>
                 </div>
                 <!-- Content -->
@@ -173,7 +173,7 @@
                 @endif
                 @if (isset($role) &&  $role == 'vendor')
                     <div class="auto-fill-data-copy">
-                        <div class="d-flex flex-wrap align-items-center justify-content-between">
+                        <!-- <div class="d-flex flex-wrap align-items-center justify-content-between">
                             <div>
                                 <span class="d-block"><strong>Email</strong> : test.restaurant@gmail.com</span>
                                 <span class="d-block"><strong>Password</strong> : 12345678</span>
@@ -182,7 +182,7 @@
                                 <button class="btn btn-primary m-0" id="copy_cred2"><i class="tio-copy"></i>
                                 </button>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 @endif
             @endif
