@@ -4846,4 +4846,7 @@
   'Users_will_download_the_latest_vendor_app_using_this_URL' => 'Users will download the latest vendor app using this URL',
   'Minimum_vendor_App_Version_for_Force_Update' => 'Minimum vendor App Version for Force Update',
   'Users_will_download_the_latest_Vendor_app_version_using_this_URL' => 'Users will download the latest Vendor app version using this URL',
+  'join_as_vendor' => 'Join as vendor',
+  'Order_your_meat' => 'Order your meat',
+  'manage_your_Shop' => 'Manage your Shop',
 );

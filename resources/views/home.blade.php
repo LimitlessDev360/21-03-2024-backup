@@ -31,7 +31,8 @@
                     </div>
                 </div>
                 <div class="banner-content wow fadeInRight">
-                    <h2 class="title"> {{ $landing_data['header_title'] }}</h2>
+                    <!-- <h2 class="title"> {{ $landing_data['header_title'] }}</h2> -->
+                    <h2 class="title"> Why wait</h2>
                     <h3 class="subtitle">{{ $landing_data['header_sub_title'] }}</h3>
                     <h1 class="name">{{ $landing_data['business_name'] }}</h1>
                      <div class="txt">
@@ -112,9 +113,16 @@
                     <div class="about-content wow fadeInDown">
                         <h2 class="title text-base">Butcher</h2>
                         <h3 class="subtitle">{{ $landing_data['about_us_sub_title']}}</h3>
-                        <p class="txt">
+                        <!-- <p class="txt">
                             {{ $landing_data['about_us_text'] }}
+                        </p> -->
+                        <p class="txt">
+                        We make meat delivery more interesting. Find the greatest deals from the vendors near you. Fresh & healthy meats. Bring a meat into your home.
                         </p>
+
+
+
+                        
                         @if ($landing_data['about_us_app_button_status'] &&  $landing_data['about_us_app_button_name'] )
                         <a href="{{  $landing_data['about_us_redirect_link'] ?? '#' }}" class="btn-base btn-sm">
                             <span>
@@ -133,7 +141,7 @@
                 <div class="col-lg-5 text-lg-end text-center wow fadeInLeft">
                     <img
                     src="{{dynamicStorage('storage/app/public/about_us_image')}}/{{ $landing_data['about_us_image_content']  }}"
-                     alt="about" class="about-img">
+                     alt="image" class="about-img">
                 </div>
             </div>
         </div>
@@ -200,7 +208,7 @@
                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#order-your-food">
                        <img src="{{ dynamicAsset('public/assets/admin/img/order_platform_image.png') }}" alt="">
                     
-                       {{  translate('Order_your_food') }}
+                       {{  translate('Order_your_meat') }}
                    </button>
                </li>
                @endif
@@ -210,7 +218,7 @@
                     <button class="nav-link" data-bs-toggle="tab" data-bs-target="#manage-restaurant">
                         <img  src="{{ dynamicAsset('public/assets/admin/img/manage_your_restaurant.png') }}"
                         alt="">
-                        {{  translate('manage_your_restaurant') }}
+                        {{  translate('manage_your_Shop') }}
                     </button>
                 </li>
                 @endif
@@ -236,7 +244,8 @@
                         <div class="col-lg-7">
                             <div class="platform-content wow fadeInUp">
 
-                                <h4 class="subtitle">{{$landing_data['services_order_title_1']}}</h4>
+                                <!-- <h4 class="subtitle">{{$landing_data['services_order_title_1']}}</h4> -->
+                                <h4 class="subtitle">Order your meat</h4>
                                 <p>
                                     {{$landing_data['services_order_description_1']}}
                                 </p>
@@ -6017,7 +6026,7 @@
                         <div class="cta-btn-container d-flex flex-wrap">
                             @if ($landing_data['earn_money_restaurant_req_button_status'] )
                             <a href="{{  $landing_data['earn_money_restaurant_req_button_link'] ?? '#' }}" class="btn-base">
-                                <span> {{ $landing_data['earn_money_restaurant_req_button_name']   }}</span>
+                                <span> Be a Vendor</span>
                                 <svg width="14" height="15" viewBox="0 0 14 15" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd"
