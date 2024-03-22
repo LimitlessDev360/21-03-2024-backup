@@ -126,7 +126,7 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <h6 class="card-subtitle d-flex justify-content-between m-0 align-items-center">
                                 <img src="{{dynamicAsset('/public/assets/admin/img/order-icons/on-the-way.png')}}" alt="dashboard" class="oder--card-icon">
-                                <span>{{ translate('Product_On_the_Way') }}</span>
+                                <span>{{ translate('Food_On_the_Way') }}</span>
                             </h6>
                             <span class="card-title" style="--base-clr:#00AA6D">
                                 {{ $total_on_the_way_count }}
@@ -253,7 +253,7 @@
                             <tr>
                                 <th class="border-top border-bottom word-nobreak">{{ translate('messages.sl') }}</th>
                                 <th class="border-top border-bottom word-nobreak">{{ translate('messages.order_id') }}</th>
-                                <th class="border-top border-bottom word-nobreak">{{ translate('messages.Vendor') }}</th>
+                                <th class="border-top border-bottom word-nobreak">{{ translate('messages.restaurant') }}</th>
                                 <th class="border-top border-bottom word-nobreak">{{ translate('messages.customer_name') }}</th>
                                 <th class="border-top border-bottom word-nobreak">{{ translate('messages.total_item_amount') }}</th>
                                 <th class="border-top border-bottom word-nobreak">{{ translate('messages.item_discount') }}</th>

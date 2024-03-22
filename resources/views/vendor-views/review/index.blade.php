@@ -31,7 +31,7 @@
                 <div class="search--button-wrapper justify-content-end">
                     <form action="javascript:" id="search-form" class="my-2 vendor--search">
                         <div class="input--group input-group">
-                            <input type="search" name="search" id="column1_search" class="form-control" placeholder="{{ translate('messages.Ex :_Search by Product name, name or phone...') }}" required>
+                            <input type="search" name="search" id="column1_search" class="form-control" placeholder="{{ translate('messages.Ex :_Search by food name, name or phone...') }}" required>
                             <button type="submit" class="btn btn--secondary"><i class="tio-search"></i></button>
                         </div>
                     </form>
@@ -51,7 +51,7 @@
                     <thead class="thead-light">
                     <tr>
                         <th>{{ translate('messages.sl') }}</th>
-                        <th>{{translate('messages.Product')}}</th>
+                        <th>{{translate('messages.food')}}</th>
                         <th>{{translate('messages.reviewer')}}</th>
                         <th>{{translate('messages.review')}}</th>
                         <th>{{translate('messages.date')}}</th>

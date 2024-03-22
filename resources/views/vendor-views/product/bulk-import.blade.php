@@ -13,7 +13,7 @@
                 <div class="card-header-icon d-inline-flex mr-2 img">
                     <img src="{{dynamicAsset('public/assets/admin/img/export.png')}}" alt="">
                 </div>
-                {{translate('messages.Product_bulk_import')}}
+                {{translate('messages.foods_bulk_import')}}
             </h1>
         </div>
         <div class="card mb-2">
@@ -52,13 +52,13 @@
 
                     <p>{{ translate('3._Once_you_have_downloaded_and_filled_the_format_file,_upload_it_in_the_form_below_and_submit.') }}</p>
 
-                    <p> {{ translate('4._After_uploading_Product_you_need_to_edit_them_and_set_image_and_variations.') }}</p>
+                    <p> {{ translate('4._After_uploading_foods_you_need_to_edit_them_and_set_image_and_variations.') }}</p>
 
                     <p> {{ translate('5._You_can_get_category_id_from_their_list,_please_input_the_right_ids.') }}</p>
 
                     <p> {{ translate('6._Don`t_forget_to_fill_all_the_fields') }} </p>
 
-                    <p>{{ translate('7._For_veg_Product_enter_1_and_for_non-veg_enter_0_on_veg_field.') }}</p>
+                    <p>{{ translate('7._For_veg_food_enter_1_and_for_non-veg_enter_0_on_veg_field.') }}</p>
 
                 </div>
                 <div class="text-center pb-4">
@@ -76,7 +76,7 @@
             <input type="hidden" name="button" id="btn_value">
             <div class="card rest-part">
                 <div class="card-body">
-                    <h4 class="mb-3 mt-2">{{ translate('Import Vendor') }}</h4>
+                    <h4 class="mb-3 mt-2">{{ translate('Import Restaurants') }}</h4>
                     <div class="custom-file custom--file">
                         <input type="file" name="products_file" class="form-control" id="bulk__import">
                         <label class="custom-file-label" for="bulk__import">{{ translate('Choose File') }}</label>
@@ -100,7 +100,7 @@
                         <h5 class="card-title">
                             <span class="card-header-icon">
                             </span>
-                            <span>{{ translate('messages.Product_variations_generator') }}</span>
+                            <span>{{ translate('messages.food_variations_generator') }}</span>
                         </h5>
                     </div>
                     <div class="card-body">
