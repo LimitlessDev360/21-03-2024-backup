@@ -11,7 +11,7 @@
         <!-- Page Header -->
         <div class="page-header">
             <div class="mb-2 mb-sm-0">
-                <h1 class="page-header-title"><i class="tio-filter-list"></i> {{translate('messages.food_list')}}<span class="badge badge-soft-dark ml-2" id="itemCount">{{$foods->total()}}</span></h1>
+                <h1 class="page-header-title"><i class="tio-filter-list"></i> {{translate('messages.Product_list')}}<span class="badge badge-soft-dark ml-2" id="itemCount">{{$foods->total()}}</span></h1>
             </div>
             <div class="my-2">
                 <div class="row g-2 align-items-center justify-content-end">
@@ -28,7 +28,7 @@
                     @endif
                     <div class="col-auto">
                         <a href="{{route('vendor.food.add-new')}}" class="btn max-sm-12 btn--primary w-100"><i
-                                    class="tio-add-circle"></i> {{translate('messages.add_new_food')}}</a>
+                                    class="tio-add-circle"></i> {{translate('messages.add_new_Product')}}</a>
                     </div>
 
                 </div>
@@ -44,7 +44,7 @@
                         @csrf
                         <!-- Search -->
                         <div class="input-group input--group">
-                            <input id="datatableSearch" type="search" name="search" class="form-control" placeholder="{{ translate('messages.Ex : Search Food Name') }}">
+                            <input id="datatableSearch" type="search" name="search" class="form-control" placeholder="{{ translate('messages.Ex : Search Product Name') }}">
                             <button type="submit" class="btn btn--secondary">
                                 <i class="tio-search"></i>
                             </button>

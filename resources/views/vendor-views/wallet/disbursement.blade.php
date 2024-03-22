@@ -17,7 +17,7 @@
                             <img src="{{dynamicAsset('/public/assets/admin/img/image_90.png')}}" alt="public">
                         </div>
                         <span>
-                            {{translate('messages.restaurant_wallet')}}
+                            {{translate('messages.Vendor_wallet')}}
                         </span>
                     </h2>
                 </div>
