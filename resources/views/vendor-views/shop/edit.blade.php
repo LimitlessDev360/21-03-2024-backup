@@ -20,7 +20,7 @@
                             <img src="{{dynamicAsset('/public/assets/admin/img/resturant-panel/page-title/resturant.png')}}" alt="public">
                         </div>
                         <span>
-                            {{translate('Edit Restaurant Information')}}
+                            {{translate('Edit Vendor Information')}}
                         </span>
                     </h2>
                 </div>
@@ -57,7 +57,7 @@
                                 <div class="col-md-6">
 
                                         <div class="form-group lang_form" id="default-form">
-                                                <label class="input-label" for="exampleFormControlInput1">{{ translate('messages.restaurant') }}
+                                                <label class="input-label" for="exampleFormControlInput1">{{ translate('messages.Vendor') }}
                                                     {{ translate('messages.name') }} ({{translate('messages.default')}})</label>
                                             <input type="text" name="name[]" class="form-control" placeholder="{{ translate('messages.restaurant_name') }}" maxlength="191" value="{{$shop?->getRawOriginal('name')}}" oninvalid="document.getElementById('en-link').click()">
                                         </div>
@@ -77,7 +77,7 @@
                                                     }
                                                 ?>
                                                 <div class="form-group d-none lang_form" id="{{$lang}}-form">
-                                                    <label class="input-label" for="exampleFormControlInput1">{{ translate('messages.restaurant_name') }} ({{strtoupper($lang)}})</label>
+                                                    <label class="input-label" for="exampleFormControlInput1">{{ translate('messages.Vendor_name') }} ({{strtoupper($lang)}})</label>
                                                     <input type="text" name="name[]" class="form-control" placeholder="{{ translate('messages.restaurant_name') }}" maxlength="191" value="{{$translate[$lang]['name']??''}}" oninvalid="document.getElementById('en-link').click()">
                                                 </div>
                                                 <input type="hidden" name="lang[]" value="{{$lang}}">
@@ -91,7 +91,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group mb-0  lang_form default-form"  >
-                                        <label for="address" class="form-label">{{ translate('messages.restaurant_address')}} ({{translate('messages.default')}})<span class="text-danger">*</span></label>
+                                        <label for="address" class="form-label">{{ translate('messages.Vendor_address')}} ({{translate('messages.default')}})<span class="text-danger">*</span></label>
                                         <textarea type="text" rows="4" name="address[]" value="" placeholder="{{ translate('Ex : House-45, Road-08, Sector-12, Mirupara, Test City') }}" class="form-control min-height-149px" id="address">{{$shop->address}}</textarea>
                                     </div>
                                     @if ($language)
@@ -109,7 +109,7 @@
                                             }
                                         ?>
                                         <div class="form-group mb-0  d-none lang_form" id="{{$lang}}-form1">
-                                                <label class="input-label" for="exampleFormControlInput1">{{ translate('messages.restaurant_address') }} ({{strtoupper($lang)}})</label>
+                                                <label class="input-label" for="exampleFormControlInput1">{{ translate('messages.Vendor_address') }} ({{strtoupper($lang)}})</label>
                                             <textarea type="text" rows="4" name="address[]" value="" placeholder="{{ translate('Ex : House-45, Road-08, Sector-12, Mirupara, Test City') }}" class="form-control min-height-149px" id="address" >{{  $translate[$lang]['address'] ?? ''}}</textarea>
                                         </div>
                                     @endforeach
@@ -123,7 +123,7 @@
                     <div class="card h-100">
                         <div class="card-header">
                             <h5 class="card-title font-regular">
-                                {{translate('Upload Restaurant Logo')}} <span class="text-danger">({{translate('messages.Ratio_200x200')}})</span>
+                                {{translate('Upload Vendor Logo')}} <span class="text-danger">({{translate('messages.Ratio_200x200')}})</span>
                             </h5>
                         </div>
                         <div class="card-body d-flex flex-column">
