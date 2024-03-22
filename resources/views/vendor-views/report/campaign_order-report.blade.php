@@ -201,7 +201,7 @@
                             <tr>
                                 <th class="border-top border-bottom">{{ translate('messages.sl') }}</th>
                                 <th class="border-top border-bottom word-nobreak">{{ translate('messages.order_id') }}</th>
-                                <th class="border-top border-bottom">{{ translate('messages.restaurant') }}</th>
+                                <th class="border-top border-bottom">{{ translate('messages.Vendor') }}</th>
                                 <th class="border-top border-bottom">{{ translate('messages.customer_name') }}</th>
                                 <th class="border-top border-bottom min-w-120">{{ translate('messages.total_item_amount') }}</th>
                                 <th class="border-top border-bottom">{{ translate('messages.item_discount') }}</th>

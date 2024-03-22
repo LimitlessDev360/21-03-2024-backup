@@ -184,7 +184,7 @@
                         <tr>
                             <th class="border-0">{{ translate('sl') }}</th>
                             <th class="border-0">{{ translate('messages.order_id') }}</th>
-                            <th class="border-0">{{ translate('messages.restaurant') }}</th>
+                            <th class="border-0">{{ translate('messages.Vendor') }}</th>
                             <th class="border-0">{{ translate('messages.customer_name') }}</th>
                             <th class="border-0 min-w-120">{{ translate('messages.total_item_amount') }}</th>
                             <th class="border-0">{{ translate('messages.item_discount') }}</th>
@@ -194,12 +194,12 @@
                             <th class="border-0">{{ translate('messages.delivery_charge') }}</th>
                             <th class="border-0">{{ translate('messages.order_amount') }}</th>
                             <th class="border-0">{{ translate('messages.admin_discount') }}</th>
-                            <th class="border-0">{{ translate('messages.restaurant_discount') }}</th>
+                            <th class="border-0">{{ translate('messages.Vendor_discount') }}</th>
                             <th class="border-0">{{ translate('messages.admin_commission') }}</th>
                             <th class="border-0">{{ \App\CentralLogics\Helpers::get_business_data('additional_charge_name')??translate('messages.additional_charge') }}</th>
                             <th class="min-w-140 text-capitalize">{{ translate('commision_on_delivery_charge') }}</th>
                             <th class="min-w-140 text-capitalize">{{ translate('admin_net_income') }}</th>
-                            <th class="min-w-140 text-capitalize">{{ translate('restaurant_net_income') }}</th>
+                            <th class="min-w-140 text-capitalize">{{ translate('Vendor_net_income') }}</th>
                             <th class="border-0 min-w-120">{{ translate('messages.amount_received_by') }}</th>
                             <th class="border-top border-bottom text-capitalize">{{ translate('messages.payment_method') }}</th>
                             <th class="border-0">{{ translate('messages.payment_status') }}</th>
