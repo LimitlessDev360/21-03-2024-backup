@@ -2,7 +2,7 @@
 <div class="card-header">
     <h5 class="card-header-title align-items-center d-flex">
         <img src="{{dynamicAsset('/public/assets/admin/img/dashboard/top-selling.png')}}" alt="dashboard" class="card-header-icon mr-2 mb-1">
-        <span>{{translate('messages.top_selling_foods')}}</span>
+        <span>{{translate('messages.top_selling_Product')}}</span>
     </h5>
 </div>
 <!-- End Header -->
