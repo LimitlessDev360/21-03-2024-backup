@@ -1403,26 +1403,26 @@
 
 
                     <!-- Business Section-->
-                    <!-- <li class="nav-item">
+                    <li class="nav-item">
                         <small class="nav-subtitle"
                             title="{{ translate('messages.business_section') }}">{{ translate('messages.transaction_management') }}</small>
                         <small class="tio-more-horizontal nav-subtitle-replacer"></small>
-                    </li> -->
+                    </li>
                     <!-- account -->
                     @if (\App\CentralLogics\Helpers::module_permission_check('account'))
-                        <!-- <li
+                        <li
                             class="navbar-vertical-aside-has-menu {{ Request::is('admin/restaurant-disbursement*') ? 'active' : '' }}">
                             <a class="js-navbar-vertical-aside-menu-link nav-link"
                                href="{{ route('admin.restaurant-disbursement.list', ['status' => 'all']) }}"
                                title="{{ translate('messages.restaurant_disbursement') }}">
                                 <i class="tio-wallet-outlined nav-icon"></i>
                                 <span
-                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{ translate('messages.restaurant_disbursement') }}</span>
+                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{ translate('messages.vendor_disbursement') }}</span>
                             </a>
-                        </li> -->
+                        </li>
                     @endif
                 @if (\App\CentralLogics\Helpers::module_permission_check('account'))
-                    <!-- <li
+                    <li
                         class="navbar-vertical-aside-has-menu {{ Request::is('admin/dm-disbursement*') ? 'active' : '' }}">
                         <a class="js-navbar-vertical-aside-menu-link nav-link"
                            href="{{ route('admin.dm-disbursement.list', ['status' => 'all']) }}"
@@ -1431,10 +1431,10 @@
                             <span
                                 class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{ translate('messages.delivery_man_disbursement') }}</span>
                         </a>
-                    </li> -->
+                    </li>
                 @endif
                     @if (\App\CentralLogics\Helpers::module_permission_check('account'))
-                        <!-- <li
+                        <li
                             class="navbar-vertical-aside-has-menu {{ Request::is('admin/account-transaction*') ? 'active' : '' }}">
                             <a class="js-navbar-vertical-aside-menu-link nav-link"
                                 href="{{ route('admin.account-transaction.index') }}"
@@ -1443,25 +1443,25 @@
                                 <span
                                     class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{ translate('messages.collect_cash') }}</span>
                             </a>
-                        </li> -->
+                        </li>
                     @endif
                     <!-- End account -->
                     <!-- withdraw -->
                     @if (\App\CentralLogics\Helpers::module_permission_check('withdraw_list'))
-                        <!-- <li
+                        <li
                             class="navbar-vertical-aside-has-menu {{ Request::is('admin/restaurant/withdraw*') ? 'active' : '' }}">
                             <a class="js-navbar-vertical-aside-menu-link nav-link"
                                 href="{{ route('admin.restaurant.withdraw_list') }}"
                                 title="{{ translate('messages.restaurant_withdraws') }}">
                                 <i class="tio-table nav-icon"></i>
                                 <span
-                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{ translate('messages.restaurant_withdraws') }}</span>
+                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{ translate('messages.vendor_withdraws') }}</span>
                             </a>
-                        </li> -->
+                        </li>
                     @endif
 
                     @if (\App\CentralLogics\Helpers::module_permission_check('settings'))
-                        <!-- <li
+                        <li
                         class="navbar-vertical-aside-has-menu {{ Request::is('admin/business-settings/withdraw-method*') ? 'active' : '' }}">
                         <a class="js-navbar-vertical-aside-menu-link nav-link"
                             href="{{ route('admin.business-settings.withdraw-method.list') }}"
@@ -1470,13 +1470,13 @@
                             <span
                                 class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{ translate('messages.withdraw_method') }}</span>
                         </a>
-                        </li> -->
+                        </li>
                     @endif
                     <!-- End withdraw -->
 
                     <!-- provide_dm_earning -->
                     @if (\App\CentralLogics\Helpers::module_permission_check('provide_dm_earning'))
-                        <!-- <li
+                        <li
                             class="navbar-vertical-aside-has-menu {{ Request::is('admin/provide-deliveryman-earnings*') ? 'active' : '' }}">
                             <a class="js-navbar-vertical-aside-menu-link nav-link"
                                 href="{{ route('admin.provide-deliveryman-earnings.index') }}"
@@ -1485,7 +1485,7 @@
                                 <span
                                     class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{ translate('messages.DeliveryMan_Payments') }}</span>
                             </a>
-                        </li> -->
+                        </li>
                     @endif
                     <!-- End provide_dm_earning -->
 

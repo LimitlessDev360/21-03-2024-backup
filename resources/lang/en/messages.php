@@ -4725,17 +4725,6 @@
   'instant_order_is_not_available_for_now!' => 'Instant order is not available for now!',
   'Choose_the_business_model_for_this_restaurant_(Commission-based).' => 'Choose the business model for this restaurant (Commission-based).',
   'None' => 'None',
-<<<<<<< HEAD
-  'Vendor_Disbursement' => 'Vendor Disbursement',
-  100002 => '100002',
-  'Vendor' => 'Vendor',
-  'select_vendor' => 'Select vendor',
-  'bank' => 'Bank',
-  'ifsc' => 'Ifsc',
-  'confirm_account_number' => 'Confirm account number',
-  'vendor_Withdraw_Transaction' => 'Vendor Withdraw Transaction',
-  'Ex:_search_by_vendor_name_of_Phone_number' => 'Ex: search by vendor name of Phone number',
-=======
   'Most_Popular_Vendors' => 'Most Popular Vendors',
   'Top_Vendors' => 'Top Vendors',
   'top_rated_products' => 'Top rated products',
@@ -4861,5 +4850,9 @@
   'Order_your_meat' => 'Order your meat',
   'manage_your_Shop' => 'Manage your Shop',
   'Login' => 'Login',
->>>>>>> cf3991e996144651971cf14d989352e1be295fb5
+  'Vendor_Disbursement' => 'Vendor Disbursement',
+  100002 => '100002',
+  'vendor_Withdraw_Transaction' => 'Vendor Withdraw Transaction',
+  'Ex:_search_by_vendor_name_of_Phone_number' => 'Ex: search by vendor name of Phone number',
+  'vendor_disbursement' => 'Vendor disbursement',
 );
