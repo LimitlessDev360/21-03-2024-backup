@@ -4850,4 +4850,9 @@
   'Order_your_meat' => 'Order your meat',
   'manage_your_Shop' => 'Manage your Shop',
   'Login' => 'Login',
+  'Vendor_Disbursement' => 'Vendor Disbursement',
+  100002 => '100002',
+  'vendor_Withdraw_Transaction' => 'Vendor Withdraw Transaction',
+  'Ex:_search_by_vendor_name_of_Phone_number' => 'Ex: search by vendor name of Phone number',
+  'vendor_disbursement' => 'Vendor disbursement',
 );

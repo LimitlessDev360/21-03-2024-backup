@@ -30,14 +30,15 @@
                         <label class="input-label" for="type">{{translate('messages.type')}}<span class="input-label-secondary"></span></label>
                             <select name="type" id="type" class="form-control h--48px">
                                 <option value="deliveryman">{{translate('messages.deliveryman')}}</option>
-                                <option value="restaurant">{{translate('messages.restaurant')}}</option>
+                                <!-- <option value="restaurant">{{translate('messages.restaurant')}}</option> -->
+                                <option value="restaurant">{{translate('messages.Vendor')}}</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label class="input-label" for="restaurant">{{translate('messages.restaurant')}}<span class="input-label-secondary"></span></label>
-                            <select id="restaurant" name="restaurant_id" data-placeholder="{{translate('messages.select_restaurant')}}" data-url="{{url('/')}}/admin/restaurant/get-account-data/" data-type="restaurant" class="form-control h--48px get-account-data" title="Select Restaurant" disabled>
+                            <label class="input-label" for="restaurant">{{translate('messages.Vendor')}}<span class="input-label-secondary"></span></label>
+                            <select id="restaurant" name="restaurant_id" data-placeholder="{{translate('messages.select_vendor')}}" data-url="{{url('/')}}/admin/restaurant/get-account-data/" data-type="restaurant" class="form-control h--48px get-account-data" title="Select Restaurant" disabled>
 
                             </select>
                         </div>
@@ -152,12 +153,12 @@
                                     {{translate('messages.not_found')}}
                                 @endif
                             </td>
-                            <td><label class="text-uppercase">{{ translate($at['from_type'])}}</label></td>
+                            <td><label class="text-uppercase">{{ $at['from_type'] =="restaurant"?"Vendor" :$at['from_type']}}</label></td>
                             <td>
                                 {{ \App\CentralLogics\Helpers::time_date_format($at->created_at)  }}
                             </td>
                             <td>{{\App\CentralLogics\Helpers::format_currency($at['amount'])}}</td>
-                            <td>{{ translate($at['ref']) }}</td>
+                            <td>{{ $at['ref']=="restaurant_collect_cash_payments"?"Vendor collect cash payments":translate($at['ref']) }}</td>
                             <td>
                                 <div class="btn--container justify-content-center">
                                     <a href="{{route('admin.account-transaction.show',[$at['id']])}}"

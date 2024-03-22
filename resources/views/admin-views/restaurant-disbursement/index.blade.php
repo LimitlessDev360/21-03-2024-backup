@@ -15,7 +15,8 @@
             <span class="page-header-icon">
                 <img src="{{dynamicAsset('/public/assets/admin/img/report/new/disburstment.png')}}" class="w--22" alt="">
             </span>
-            <span>{{ translate('Restaurant_Disbursement') }}</span>
+            <!-- <span>{{ translate('Restaurant_Disbursement') }}</span> -->
+            <span>{{ translate('Vendor_Disbursement') }}</span>
         </h1>
         <ul class="nav nav-tabs mb-4 border-0 pt-2">
             <li class="nav-item">

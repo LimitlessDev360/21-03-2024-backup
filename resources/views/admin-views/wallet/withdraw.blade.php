@@ -11,7 +11,7 @@
 
     <div class="d-flex flex-wrap align-items-center justify-content-between mb-3">
         <h2 class="page-header-title text-capitalize m-0">
-            {{ translate('Restaurant_Withdraw_Transaction') }}
+            {{ translate('vendor_Withdraw_Transaction') }}
         </h2>
     </div>
         <!-- Page Heading -->
@@ -26,7 +26,7 @@
                             <form  class="my-2 ml-auto mr-sm-2 mr-xl-4 ml-sm-auto flex-grow-1 flex-grow-sm-0">
                                 <!-- Search -->
                                 <div class="input--group input-group input-group-merge input-group-flush">
-                                    <input id="datatableSearch_" type="search" name="search" value="{{ request()?->search ?? null}}" class="form-control" placeholder="{{ translate('Ex:_search_by_Restaurant_name_of_Phone_number') }}" aria-label="Search">
+                                    <input id="datatableSearch_" type="search" name="search" value="{{ request()?->search ?? null}}" class="form-control" placeholder="{{ translate('Ex:_search_by_vendor_name_of_Phone_number') }}" aria-label="Search">
                                     <button type="submit" class="btn btn--secondary"><i class="tio-search"></i></button>
                                 </div>
                                 <!-- End Search -->
@@ -97,7 +97,7 @@
                                 <tr>
                                     <th>{{ translate('messages.sl') }}</th>
                                     <th>{{translate('messages.amount')}}</th>
-                                    <th>{{ translate('messages.restaurant') }}</th>
+                                    <th>{{ translate('messages.vendor') }}</th>
                                     <th>{{translate('messages.request_time')}}</th>
                                     <th>{{translate('messages.status')}}</th>
                                     <th class="text-center">{{translate('messages.action')}}</th>
