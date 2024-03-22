@@ -12,7 +12,7 @@
     <div class="content container-fluid">
         <!-- Page Header -->
         <div class="page-header">
-            <h1 class="page-header-title"><i class="tio-edit"></i> {{translate('messages.Product_update')}}</h1>
+            <h1 class="page-header-title"><i class="tio-edit"></i> {{translate('messages.food_update')}}</h1>
         </div>
 
 
@@ -109,7 +109,7 @@
                     <div class="card shadow--card-2 border-0 h-100">
                         <div class="card-body">
                             <h5 class="card-title">
-                                <span>{{ translate('Product_Image') }} <small
+                                <span>{{ translate('Food_Image') }} <small
                                         class="text-danger">({{ translate('messages.Ratio_200x200') }})</small></span>
                             </h5>
                             <div class="form-group mb-0 h-100 d-flex flex-column align-items-center justify-content-center">
@@ -132,7 +132,7 @@
                                 <span class="card-header-icon mr-2">
                                     <i class="tio-dashboard-outlined"></i>
                                 </span>
-                                <span> {{ translate('Vendor_&_Category_Info') }}</span>
+                                <span> {{ translate('Restaurants_&_Category_Info') }}</span>
                             </h5>
                         </div>
                         <div class="card-body">
@@ -171,7 +171,7 @@
                                 <div class="col-sm-6 col-lg-4">
                                     <div class="form-group mb-0">
                                         <label class="input-label"
-                                            for="exampleFormControlInput1">{{ translate('messages.Product_type') }}</label>
+                                            for="exampleFormControlInput1">{{ translate('messages.food_type') }}</label>
                                             <select required name="veg" class="form-control js-select2-custom">
                                                 <option value="0" {{ $product['veg'] == 0 ? 'selected' : '' }}>
                                                     {{ translate('messages.non_veg') }}
@@ -320,7 +320,7 @@
                                 <span class="card-header-icon mr-2">
                                     <i class="tio-canvas-text"></i>
                                 </span>
-                                <span>{{ translate('messages.Product_variations') }}</span>
+                                <span>{{ translate('messages.food_variations') }}</span>
                             </h5>
                             <a class="btn text--primary-2" id="add_new_option_button">
                                 {{ translate('add_new_variation') }}

@@ -96,7 +96,7 @@
                             <li class="navbar-vertical-aside-has-menu {{ Request::is('restaurant-panel/campaign/item/list') ? 'active' : '' }}">
                                 <a class="nav-link " href="{{ route('vendor.campaign.itemlist') }}" title="{{ translate('messages.food_campaign') }}">
                                     <span class="tio-circle nav-indicator-icon"></span>
-                                    <span class="text-truncate text-capitalize">{{ translate('messages.product_campaign') }}</span>
+                                    <span class="text-truncate text-capitalize">{{ translate('messages.food_campaign') }}</span>
                                 </a>
                             </li>
                         </ul>
@@ -195,7 +195,7 @@
                                 <a class="nav-link" href="{{route('vendor.order.list',['cooking'])}}" title="{{translate('messages.cooking')}}">
                                     <span class="tio-circle nav-indicator-icon"></span>
                                     <span class="text-truncate sidebar--badge-container">
-                                        {{translate('messages.Chopping')}}
+                                        {{translate('messages.cooking')}}
                                         <span class="badge badge-soft-info badge-pill ml-1">
                                             {{\App\Models\Order::where(['order_status'=>'processing', 'restaurant_id'=>\App\CentralLogics\Helpers::get_restaurant_id()])->NotDigitalOrder()->HasSubscriptionToday()->Notpos()->count()}}
                                         </span>
@@ -217,7 +217,7 @@
                                 <a class="nav-link" href="{{route('vendor.order.list',['food_on_the_way'])}}" title="{{translate('Food On The Way')}}">
                                     <span class="tio-circle nav-indicator-icon"></span>
                                     <span class="text-truncate sidebar--badge-container">
-                                        {{translate('messages.Product_on_the_way')}}
+                                        {{translate('messages.food_on_the_way')}}
                                         <span class="badge badge-soft-info badge-pill ml-1">
                                             {{\App\Models\Order::where(['order_status'=>'picked_up', 'restaurant_id'=>\App\CentralLogics\Helpers::get_restaurant_id()])->NotDigitalOrder()->HasSubscriptionToday()->Notpos()->count()}}
                                         </span>
@@ -297,7 +297,7 @@
                     @endif
                     <li class="nav-item">
                         <small
-                            class="nav-subtitle">{{translate('messages.Product_management')}}</small>
+                            class="nav-subtitle">{{translate('messages.food_management')}}</small>
                         <small class="tio-more-horizontal nav-subtitle-replacer"></small>
                     </li>
                     <!-- End AddOn -->
@@ -335,7 +335,7 @@
                         >
                             <i class="tio-premium-outlined nav-icon"></i>
                             <span
-                                class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{translate('messages.Product')}}</span>
+                                class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{translate('messages.foods')}}</span>
                         </a>
                         <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
                         style="display:{{Request::is('restaurant-panel/food*')?'block':'none'}}">
@@ -445,7 +445,7 @@
                         >
                             <span class="tio-settings nav-icon"></span>
                             <span
-                                class="text-truncate">{{translate('messages.Product_config')}}</span>
+                                class="text-truncate">{{translate('messages.restaurant_config')}}</span>
                         </a>
                     </li>
                     @endif
@@ -593,7 +593,7 @@
                         <a class="nav-link " href="{{ route('vendor.report.food-wise-report') }}"
                             title="{{ translate('messages.food_report') }}">
                             <span class="tio-fastfood nav-icon"></span>
-                            <span class="text-truncate">{{ translate('messages.Product_report') }}</span>
+                            <span class="text-truncate">{{ translate('messages.food_report') }}</span>
                         </a>
                     </li>
                     @endif

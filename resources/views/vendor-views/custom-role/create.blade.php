@@ -86,7 +86,7 @@
                                     <div class="form-group form-check form--check">
                                         <input type="checkbox" name="modules[]" value="food" class="form-check-input"
                                             id="food">
-                                        <label class="form-check-label input-label qcont" for="food">{{translate('messages.Product')}}</label>
+                                        <label class="form-check-label input-label qcont" for="food">{{translate('messages.food')}}</label>
                                     </div>
                                 </div>
                                 <div class="check-item">
@@ -100,7 +100,7 @@
                                     <div class="form-group form-check form--check">
                                         <input type="checkbox" name="modules[]" value="restaurant_setup" class="form-check-input"
                                             id="restaurant_setup">
-                                        <label class="form-check-label input-label qcont" for="restaurant_setup">{{translate('messages.Vendor_setup')}}</label>
+                                        <label class="form-check-label input-label qcont" for="restaurant_setup">{{translate('messages.restaurant_setup')}}</label>
                                     </div>
                                 </div>
                                 <div class="check-item">

@@ -13,7 +13,7 @@
                 <div class="card-header-icon d-inline-flex mr-2 img">
                     <img src="{{dynamicAsset('public/assets/admin/img/export.png')}}" alt="">
                 </div>
-                {{ translate('Export Product') }}
+                {{ translate('Export Foods') }}
             </h1>
         </div>
         <div class="card rest-part">

@@ -16,7 +16,7 @@
                     <img src="{{dynamicAsset('/public/assets/admin/img/resturant-panel/page-title/resturant.png')}}" alt="public">
                 </div>
                 <span>
-                    {{translate('Vendor Setup')}}
+                    {{translate('Restaurant Setup')}}
                 </span>
             </h2>
         </div>
@@ -27,7 +27,7 @@
                         <span class="card-header-icon">
                             <i class="tio-settings-outlined"></i>
                         </span>
-                        {{translate('messages.Close_Vendor_Temporarily')}}
+                        {{translate('messages.Close_Restaurant_Temporarily')}}
                         <span data-toggle="tooltip" data-placement="right" data-original-title="{{translate('If_enabled,_this_restaurant_will_be_closed_temporarily_and_hidden_from_customer_app_and_web_app._Restaurant_owners_can_re-open_this_restaurant_anytime_by_turning_off_this_button.')}}" class="input-label-secondary"><img src="{{dynamicAsset('public/assets/admin/img/info-circle.svg')}}" alt="i"></span>
 
                     </h4>
@@ -469,7 +469,7 @@
                     <span class="card-header-icon">
                         <img class="w--22" src="{{dynamicAsset('public/assets/admin/img/restaurant.png')}}" alt="">
                     </span>
-                    <span class="p-md-1"> {{translate('messages.Vendor_meta_data')}}</span>
+                    <span class="p-md-1"> {{translate('messages.restaurant_meta_data')}}</span>
                 </h5>
             </div>
             @php($language=\App\Models\BusinessSetting::where('key','language')->first())
@@ -578,7 +578,7 @@
                                 <div class="card-header">
                                     <h5 class="card-title">
                                         <span class="card-header-icon mr-1"><i class="tio-dashboard"></i></span>
-                                        <span>{{translate('Vendor_meta_image')}}</span>
+                                        <span>{{translate('restaurant_meta_image')}}</span>
                                     </h5>
                                 </div>
                                 <div class="card-body">
@@ -613,7 +613,7 @@
             <div class="card-header">
                 <h5 class="card-title">
                     <i class="tio-date-range"></i> &nbsp;
-                    {{ translate('Vendor_Opening_&_Closing_Schedules') }}
+                    {{ translate('Restaurant_Opening_&_Closing_Schedules') }}
                 </h5>
             </div>
             <div class="card-body" id="schedule">
