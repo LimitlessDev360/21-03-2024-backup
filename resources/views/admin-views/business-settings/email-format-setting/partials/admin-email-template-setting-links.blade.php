@@ -11,7 +11,7 @@
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('admin/business-settings/email-setup/admin/restaurant-registration') ? 'active' : '' }}"
                 href="{{ route('admin.business-settings.email-setup', ['admin','restaurant-registration']) }}">
-                    {{translate('New_Restaurant_Registration')}}
+                    {{translate('New_Vendor_Registration')}}
                 </a>
             </li>
             <li class="nav-item">
@@ -26,12 +26,12 @@
                     {{translate('Withdraw_Request')}}
                 </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link {{ Request::is('admin/business-settings/email-setup/admin/campaign-request') ? 'active' : '' }}"
                 href="{{ route('admin.business-settings.email-setup', ['admin','campaign-request']) }}">
                     {{translate('Campaign_Join_Request')}}
                 </a>
-            </li>
+            </li> -->
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('admin/business-settings/email-setup/admin/refund-request') ? 'active' : '' }}"
                 href="{{ route('admin.business-settings.email-setup', ['admin','refund-request']) }}">

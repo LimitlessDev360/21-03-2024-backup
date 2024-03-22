@@ -84,7 +84,7 @@
                                         @php($language = $language->value ?? null)
                                         @php($default_lang = str_replace('_', '-', app()->getLocale()))
                                         @if($language)
-                                            <ul class="nav nav-tabs m-0 border-0">
+                                            <!-- <ul class="nav nav-tabs m-0 border-0">
                                                 <li class="nav-item">
                                                     <a class="nav-link lang_link active"
                                                     href="#"
@@ -97,15 +97,15 @@
                                                             id="{{ $lang }}-link">{{ \App\CentralLogics\Helpers::get_language_name($lang) . '(' . strtoupper($lang) . ')' }}</a>
                                                     </li>
                                                 @endforeach
-                                            </ul>
+                                            </ul> -->
                                         @endif
                                         <div class="d-flex justify-content-end">
-                                            <div class="text--primary-2 py-1 d-flex flex-wrap align-items-center py-1" type="button" data-toggle="modal" data-target="#instructions">
+                                            <!-- <div class="text--primary-2 py-1 d-flex flex-wrap align-items-center py-1" type="button" data-toggle="modal" data-target="#instructions">
                                                 <strong class="mr-2">{{translate('Read_Instructions')}}</strong>
                                                 <div class="blinkings">
                                                     <i class="tio-info-outined"></i>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                     <div>
@@ -339,7 +339,7 @@
                                                                     <i class="tio-info-outined"></i>
                                                                 </span>
                                                             </label>
-                                                            <input type="text" maxlength="50" data-id="mail-copyright" name="copyright_text[]"  placeholder="{{ translate('Ex:_Copyright_2023_Stackfood._All_right_reserved')}}" class="form-control" value="{{ $data?->getRawOriginal('copyright_text') }}">
+                                                            <input type="text" maxlength="50" data-id="mail-copyright" name="copyright_text[]"  placeholder="{{ translate('Ex:_Copyright_2023_Butcher._All_right_reserved')}}" class="form-control" value="© 2023 Butcher. All rights reserved.">
                                                         </div>
                                                     @foreach(json_decode($language) as $lang)
                                                     <?php
@@ -360,7 +360,7 @@
                                                                     <i class="tio-info-outined"></i>
                                                                 </span>
                                                             </label>
-                                                            <input type="text" maxlength="50" name="copyright_text[]"  placeholder="{{ translate('Ex:_Copyright_2023_Stackfood._All_right_reserved')}}" class="form-control" value="{{ $translate[$lang]['copyright_text']??'' }}">
+                                                            <input type="text" maxlength="50" name="copyright_text[]"  placeholder="{{ translate('Ex:_Copyright_2023_Butcher._All_right_reserved')}}" class="form-control" value="{{ $translate[$lang]['copyright_text']??'' }}">
                                                         </div>
                                                     @endforeach
                                                 @else
@@ -371,7 +371,7 @@
                                                             <i class="tio-info-outined"></i>
                                                         </span>
                                                     </label>
-                                                    <input type="text" maxlength="50"  placeholder="{{ translate('Ex:_Copyright_2023_Stackfood._All_right_reserved')}}"class="form-control" name="copyright_text[]" value="">
+                                                    <input type="text" maxlength="50"  placeholder="{{ translate('Ex:_Copyright_2023_Butcher._All_right_reserved')}}"class="form-control" name="copyright_text[]" value="">
                                                 </div>
                                                 @endif
                                             </div>
