@@ -178,7 +178,7 @@
                                                 </div>
 
                                                 <textarea name="processing_message[]"
-                                                        class="form-control" placeholder="{{translate('Ex : Your order is started for cooking')}}">{{$oprm['message']??''}}</textarea>
+                                                        class="form-control" placeholder="{{translate('Ex : Your order is started for chopping')}}">{{$oprm['message']??''}}</textarea>
                                             </div>
                                         </div>
 
@@ -188,7 +188,7 @@
                                             <div class="form-group">
                                                 <div class="d-flex flex-wrap justify-content-between mb-3">
                                                     <span class="d-block text--semititle">
-                                                        {{translate('messages.restaurant_handover_message')}}
+                                                        {{translate('messages.Vendor_handover_message')}}
                                                     </span>
                                                     <label class="switch--custom-label toggle-switch toggle-switch-sm d-inline-flex checked" for="order_handover_message_status">
                                                     <input type="checkbox" name="order_handover_message_status"
@@ -251,7 +251,7 @@
                                                 </div>
 
                                                 <textarea name="out_for_delivery_message[]"
-                                                        class="form-control" placeholder="{{translate('Ex : Your food is ready for delivery')}}">{{$ofdm['message']??''}}</textarea>
+                                                        class="form-control" placeholder="{{translate('Ex : Your Product is ready for delivery')}}">{{$ofdm['message']??''}}</textarea>
                                             </div>
                                         </div>
 

@@ -128,7 +128,7 @@
 <div class="d-flex justify-content-between __gap-12px mb-3">
     <h5 class="card-title d-flex align-items-center">
         <span class="card-header-icon mr-2"><i class="tio-settings-outlined"></i></span>
-        {{translate('Registration_Section')}}
+        {{translate('Vendor_Section')}}
     </h5>
 
 </div>
@@ -214,7 +214,7 @@
                 <div class="col-sm-6">
                     <div class="row g-3">
                         <div class="col-md-12">
-                            <label class="form-label">{{translate('Restaurant_Registration_Button')}}</label>
+                            <label class="form-label">{{translate('Vendor_Registration_Button')}}</label>
                             <div class="__bg-F8F9FC-card">
                                 <div class="form-group lang_form default-form">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
