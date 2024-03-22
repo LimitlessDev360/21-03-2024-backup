@@ -10,7 +10,7 @@
     <!-- Card -->
     <a class="resturant-card dashboard--card bg--3" href="{{route('vendor.order.list',['cooking'])}}">
         <h4 class="title">{{$data['cooking']}}</h4>
-        <span class="subtitle">{{translate('messages.cooking')}}</span>
+        <span class="subtitle">{{translate('messages.Chopping')}}</span>
         <img class="resturant-icon max-width-34px" src="{{dynamicAsset('public/assets/admin/img/resturant-panel/dashboard/cooking.png')}}" alt="dashboard">
     </a>
     <!-- End Card -->
@@ -30,7 +30,7 @@
     <!-- Card -->
     <a class="resturant-card dashboard--card bg--14" href="{{route('vendor.order.list',['food_on_the_way'])}}">
         <h4 class="title">{{$data['food_on_the_way']}}</h4>
-        <span class="subtitle">{{translate('messages.food_on_the_way')}}</span>
+        <span class="subtitle">{{translate('messages.Product_on_the_way')}}</span>
         <img class="resturant-icon max-width-34px" src="{{dynamicAsset('public/assets/admin/img/resturant-panel/dashboard/on-the-way.png')}}" alt="dashboard">
     </a>
     <!-- End Card -->
