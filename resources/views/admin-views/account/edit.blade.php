@@ -38,8 +38,8 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label class="input-label" for="restaurant">{{translate('messages.restaurant')}}<span class="input-label-secondary"></span></label>
-                            <select id="restaurant" name="restaurant_id" data-placeholder="{{translate('messages.select_restaurant')}}" class="form-control" title="Select Restaurant" {{$account_transaction->deliveryman?'disabled':''}}>
+                            <label class="input-label" for="restaurant">{{translate('messages.Vendor')}}<span class="input-label-secondary"></span></label>
+                            <select id="restaurant" name="restaurant_id" data-placeholder="{{translate('messages.select_Vendor')}}" class="form-control" title="Select Restaurant" {{$account_transaction->deliveryman?'disabled':''}}>
 
                             </select>
                         </div>

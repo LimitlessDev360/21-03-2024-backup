@@ -4891,4 +4891,9 @@
   'Vendor_net_income' => 'Vendor net income',
   'Product_report_table' => 'Product report table',
   'Vendor_setup' => 'Vendor setup',
+  'Vendor_Disbursement' => 'Vendor Disbursement',
+  100002 => '100002',
+  'vendor_Withdraw_Transaction' => 'Vendor Withdraw Transaction',
+  'Ex:_search_by_vendor_name_of_Phone_number' => 'Ex: search by vendor name of Phone number',
+  'vendor_disbursement' => 'Vendor disbursement',
 );
