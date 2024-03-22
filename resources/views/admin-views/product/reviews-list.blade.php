@@ -12,7 +12,7 @@
         <div class="page-header">
             <div class="row align-items-center">
                 <div class="col-sm mb-2 mb-sm-0">
-                    <h1 class="page-header-title">{{translate('messages.food_reviews')}}<span class="badge badge-soft-dark ml-2" id="itemCount">{{$reviews->total()}}</span></h1>
+                    <h1 class="page-header-title">{{translate('messages.reviews')}}<span class="badge badge-soft-dark ml-2" id="itemCount">{{$reviews->total()}}</span></h1>
                 </div>
             </div>
         </div>
@@ -81,7 +81,7 @@
                                 <thead class="thead-light">
                                 <tr>
                                     <th>{{ translate('messages.sl') }}</th>
-                                    <th class="w-10p">{{translate('messages.food')}}</th>
+                                    <th class="w-10p">{{translate('messages.product')}}</th>
                                     <th class="w-20p">{{translate('messages.customer')}}</th>
                                     <th class="w-30p">{{translate('messages.review')}}</th>
                                     <th>{{translate('messages.rating')}}</th>
@@ -112,7 +112,7 @@
                                                 </a>
                                                 <a class="mr-5 text-body" href="{{route('admin.order.details',['id'=>$review->order_id])}}"> {{ translate('Order_ID') }}: {{$review->order_id}}</a>
                                             @else
-                                                {{translate('messages.Food_deleted!')}}
+                                                {{translate('messages.Product_deleted!')}}
                                             @endif
 
                                         </td>

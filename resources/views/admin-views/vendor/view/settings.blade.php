@@ -34,8 +34,10 @@
         <div class="card mb-3">
             <div class="card-header">
                 <h5 class="card-title">
-                    <span class="card-header-icon"><i class="tio-fastfood"></i></span> &nbsp;
-                    <span>{{translate('messages.restaurant_settings')}}</span>
+                    <span class="card-header-icon">
+                        <!-- <i class="tio-fastfood"></i> -->
+                    </span> &nbsp;
+                    <span>{{translate('messages.vendor_settings')}}</span>
                 </h5>
             </div>
             <div class="card-body">
@@ -46,9 +48,9 @@
                                 class="toggle-switch toggle-switch-sm d-flex justify-content-between border rounded px-3 form-control"
                                 for="food_section">
                             <span class="pr-2 d-flex">
-                                <span>{{translate('messages.Food_Management')}}</span>
+                                <span>{{translate('messages.Product_Management')}}</span>
                                 <span data-toggle="tooltip" data-placement="right"
-                                      data-original-title='{{translate("When_disabled,_the_food_management_feature_will_be_hidden_from_the_restaurant_panel_&_restaurant_app.")}}'
+                                      data-original-title='{{translate("When_disabled,_the_food_management_feature_will_be_hidden_from_the_vendor_panel_&_vendor_app.")}}'
                                       class="input-label-secondary">
                                     <i class="tio-info-outined"></i>
                                 </span>
@@ -86,7 +88,7 @@
                                     {{translate('messages.scheduled_delivery')}}
                                 </span>
                                 <span data-toggle="tooltip" data-placement="right"
-                                      data-original-title="{{translate('When_enabled,_restaurant_owners_can_take_scheduled_orders_from_customers')}}"
+                                      data-original-title="{{translate('When_enabled,_vendor_owners_can_take_scheduled_orders_from_customers')}}"
                                       class="input-label-secondary">
                                     <i class="tio-info-outined"></i>
                                 </span>
@@ -125,7 +127,7 @@
                                 {{translate('messages.Reviews_section')}}
                             </span>
                             <span data-toggle="tooltip" data-placement="right"
-                                  data-original-title="{{translate('When_enabled,_restaurant_owners_can_see_customer’s_review.')}}"
+                                  data-original-title="{{translate('When_enabled,_vendor_owners_can_see_customer’s_review.')}}"
                                   class="input-label-secondary">
                                 <i class="tio-info-outined"></i>
                             </span>
@@ -152,7 +154,7 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="col-xl-4 col-md-4 col-sm-6">
+                        <!-- <div class="col-xl-4 col-md-4 col-sm-6">
                             <div class="form-group mb-0">
                                 <label
                                     class="toggle-switch toggle-switch-sm d-flex justify-content-between border  rounded px-3 form-control"
@@ -187,8 +189,9 @@
                                     method="get" id="pos_system_form">
                                 </form>
                             </div>
-                        </div>
-                        <div class="col-xl-4 col-md-4 col-sm-6">
+                        </div> -->
+
+                        <!-- <div class="col-xl-4 col-md-4 col-sm-6">
                             <div class="form-group mb-0">
                                 <label
                                     class="toggle-switch toggle-switch-sm d-flex justify-content-between border  rounded px-3 form-control"
@@ -224,7 +227,7 @@
                                     method="get" id="self_delivery_system_form">
                                 </form>
                             </div>
-                        </div>
+                        </div> -->
                     @endif
 
                     <div class="col-xl-4 col-md-4 col-sm-6">
@@ -237,7 +240,7 @@
                                     {{translate('messages.home_delivery')}}
                                 </span>
                                 <span data-toggle="tooltip" data-placement="right"
-                                      data-original-title="{{translate('When_enabled,_customers_can_make_home_delivery_orders_from_this_restaurant.')}}"
+                                      data-original-title="{{translate('When_enabled,_customers_can_make_home_delivery_orders_from_this_vendor.')}}"
                                       class="input-label-secondary">
                                     <i class="tio-info-outined"></i>
                                 </span>
@@ -274,7 +277,7 @@
                                     {{translate('messages.Takeaway')}}
                                 </span>
                                 <span data-toggle="tooltip" data-placement="right"
-                                      data-original-title='{{translate("When_enabled,_customers_can_place_takeaway/self-pickup_orders_from_this_restaurant.")}}'
+                                      data-original-title='{{translate("When_enabled,_customers_can_place_takeaway/self-pickup_orders_from_this_vendor.")}}'
                                       class="input-label-secondary">
                                     <i class="tio-info-outined"></i>
                                 </span>
@@ -351,7 +354,7 @@
                                         {{translate('messages.instant_order')}}
                                     </span>
                                     <span data-toggle="tooltip" data-placement="right"
-                                          data-original-title='{{translate("If_enabled,_customers_can_instantly_order_from_this_restaurant._Otherwise,_customers_can_only_place_“scheduled_orders”.")}}'
+                                          data-original-title='{{translate("If_enabled,_customers_can_instantly_order_from_this_vendor._Otherwise,_customers_can_only_place_“scheduled_orders”.")}}'
                                           class="input-label-secondary">
                                         <i class="tio-info-outined"></i>
                                     </span>
@@ -430,7 +433,7 @@
                     @csrf
                     <div class="row g-2 mt-4">
 
-                        <div class="col-lg-4">
+                        <!-- <div class="col-lg-4">
                             <div class="form-group">
                                 <label class="input-label text-capitalize">{{ translate('Restaurant_Type') }}
 
@@ -468,14 +471,14 @@
                                     </label>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-lg-4 col-sm-6">
                             <div class="form-group">
                                 <label class="input-label text-capitalize"
                                        for="minimum_order">{{translate('messages.minimum_order_amount')}}
 
                                     <span data-toggle="tooltip" data-placement="right"
-                                          data-original-title='{{translate("Specify_the_minimum_order_amount_required_for_customers_when_ordering_from_this_restaurant.")}}'
+                                          data-original-title='{{translate("Specify_the_minimum_order_amount_required_for_customers_when_ordering_from_this_vendor.")}}'
                                           class="input-label-secondary">
                                     <i class="tio-info-outined"></i>
                                 </span>
@@ -488,9 +491,9 @@
                         <div class="col-lg-4 col-sm-6">
                             <div class="form-group">
                                 <label id="tax" class="text-dark d-block">
-                                    <span>{{translate('messages.vat/tax')}}(%)</span>
+                                    <span>GST (%)</span>
                                     <span data-toggle="tooltip" data-placement="right"
-                                          data-original-title='{{translate("Specify_the_vat/tax_required_for_customers_when_ordering_from_this_restaurant.")}}'
+                                          data-original-title='{{translate("Specify_the_vat/tax_required_for_customers_when_ordering_from_this_vendor.")}}'
                                           class="input-label-secondary">
                                     <i class="tio-info-outined"></i>
                                 </span>
@@ -534,7 +537,7 @@
                                 <span class="form-check-label">
                                     {{translate('messages.admin_commission')}}(%)
                                     <span data-toggle="tooltip" data-placement="right"
-                                          data-original-title='{{translate("Specify_the_commission_when_ordering_from_this_restaurant.")}}'
+                                          data-original-title='{{translate("Specify_the_commission_when_ordering_from_this_vendor.")}}'
                                           class="input-label-secondary">
                                         <i class="tio-info-outined"></i>
                                     </span>
@@ -580,7 +583,7 @@
             </div>
         </div>
 
-        <form action="{{route('admin.restaurant.update-settings',[$restaurant['id']])}}" id="Business_Model_change"
+        <!-- <form action="{{route('admin.restaurant.update-settings',[$restaurant['id']])}}" id="Business_Model_change"
               method="post">
             @csrf
             <div class="card mb-3">
@@ -589,16 +592,16 @@
                 <span class="card-header-icon">
                     <i class="tio-settings"></i>
                 </span> &nbsp;
-                        <span>{{translate('messages.Restaurant_Business_Model')}}</span>
+                        <span>{{translate('messages.Business_Model')}}</span>
                     </h5>
                 </div>
                 <div class="card-body">
                     @if ($business_model['commission'] == 0 &&  $business_model['subscription'] == 1 )
                         <div class="col-lg-6 col-sm-6">
                             <div class="form-group">
-                                <label for="inputState">{{  translate('Restaurant_Business_Model') }}
+                                <label for="inputState">{{  translate('Business_Model') }}
                                     <span data-toggle="tooltip" data-placement="right"
-                                          data-original-title='{{translate("Choose_the_business_model_for_this_restaurant_(Subscription-based).")}}'
+                                          data-original-title='{{translate("Choose_the_business_model_for_this_vendor_(Subscription-based).")}}'
                                           class="input-label-secondary">
                             <i class="tio-info-outined"></i>
                         </span>
@@ -621,9 +624,9 @@
                     @elseif($business_model['commission'] == 1 &&  $business_model['subscription'] == 1 )
                         <div class="col-lg-6 col-sm-6">
                             <div class="form-group">
-                                <label for="inputState">{{  translate('Restaurant_Business_Model') }}
+                                <label for="inputState">{{  translate('Business_Model') }}
                                     <span data-toggle="tooltip" data-placement="right"
-                                          data-original-title='{{translate("Choose_the_business_model_for_this_restaurant_(Commission-based_or_Subscription-based).")}}'
+                                          data-original-title='{{translate("Choose_the_business_model_for_this_vendor_(Commission-based_or_Subscription-based).")}}'
                                           class="input-label-secondary">
                             <i class="tio-info-outined"></i>
                         </span>
@@ -682,7 +685,7 @@
                     </div>
                 </div>
     </div>
-        </form>
+        </form> -->
 
     <div class="card mb-3">
         <div class="card-header">
@@ -692,7 +695,7 @@
                 </span> &nbsp;
                 <span>{{translate('messages.Schedule_Working_Hours')}}</span>
                 <span data-toggle="tooltip" data-placement="right"
-                        data-original-title='{{translate("Set_the_daily_opening_and_closing_times_for_this_restaurant.")}}'
+                        data-original-title='{{translate("Set_the_daily_opening_and_closing_times_for_this_vendor.")}}'
                         class="input-label-secondary">
                     <i class="tio-info-outined"></i>
                 </span>

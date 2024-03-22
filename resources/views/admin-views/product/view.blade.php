@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title',translate('Food_Preview'))
+@section('title',translate('Product_Preview'))
 
 @push('css_or_js')
 
@@ -256,7 +256,7 @@ $reviewsInfo = $product->rating()->first();
                             </div>
                         </a>
                     @else
-                        <div class="badge badge-soft-danger py-2">{{translate('messages.restaurant_deleted')}}</div>
+                        <div class="badge badge-soft-danger py-2">{{translate('messages.vendor_deleted')}}</div>
                     @endif
                     </div>
 
@@ -364,7 +364,7 @@ $reviewsInfo = $product->rating()->first();
         <!-- Card -->
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title">{{translate('messages.product_reviews')}}</h5>
+                <h5 class="card-title">{{translate('messages.reviews')}}</h5>
 
 
                 <div class="hs-unfold mr-2">

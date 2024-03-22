@@ -18,7 +18,7 @@
                     </span>
                 </h1>
                 <div class="d-flex flex-wrap justify-content-end align-items-center flex-grow-1">
-                    <div class="blinkings active">
+                    <!-- <div class="blinkings active">
                         <i class="tio-info-outined"></i>
                         <div class="business-notes">
                             <h6><img src="{{dynamicAsset('/public/assets/admin/img/notes.png')}}" alt=""> {{translate('Note')}}</h6>
@@ -26,7 +26,7 @@
                                 {{translate('Don’t_forget_to_click_the_respective_‘Save_Information’_buttons_below_to_save_changes')}}
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             @include('admin-views.business-settings.partials.nav-menu')

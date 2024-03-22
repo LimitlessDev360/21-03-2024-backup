@@ -16,7 +16,7 @@
                     </span>
                 </h1>
                 <div class="d-flex flex-wrap justify-content-end align-items-center flex-grow-1">
-                    <div class="blinkings active">
+                    <!-- <div class="blinkings active">
                         <i class="tio-info-outined"></i>
                         <div class="business-notes">
                             <h6><img src="{{dynamicAsset('/public/assets/admin/img/notes.png')}}" alt=""> {{translate('Note')}}
@@ -25,7 +25,7 @@
                                 {{translate('Click_on_the_Add_Now_button_to_add_a_refund_reason_to_the_list')}}
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             @include('admin-views.business-settings.partials.nav-menu')
@@ -77,15 +77,15 @@
                     @csrf
                     <div class="d-flex flex-wrap justify-content-between align-items-center mb-md-0 mb-3">
                         <div class="mx-1">
-                            <h5 class="form-label mb-0">
+                            <!-- <h5 class="form-label mb-0">
                                 {{translate('messages.Add_a_Refund_Reason')}}
-                            </h5>
+                            </h5> -->
                         </div>
                     </div>
                     @php($language=BusinessSetting::where('key','language')->first())
                     @php($language = $language->value ?? null)
                     @if($language)
-                        <ul class="nav  nav--tabs ml-3 mt-3 mb-3  w-100 ">
+                        <!-- <ul class="nav  nav--tabs ml-3 mt-3 mb-3  w-100 ">
                             <li class="nav-item">
                                 <a class="nav-link lang_link1 active"
                                    href="#"
@@ -98,14 +98,14 @@
                                        id="{{ $lang }}-link1">{{ Helpers::get_language_name($lang) . '(' . strtoupper($lang) . ')' }}</a>
                                 </li>
                             @endforeach
-                        </ul>
+                        </ul> -->
                     @endif
                     <div class="row align-items-end">
 
 
                         <div class="col-md-10 lang_form1 default-form1">
-                            <label for="reason" class="form-label">{{translate('Reason')}} ({{ translate('Default') }}
-                                )</label>
+                            <label for="reason" class="form-label">{{translate('Reason')}}
+                            </label>
                             <input id="reason" type="text" class="form-control h--45px" name="reason[]"
                                    maxlength="191" placeholder="{{ translate('Ex:_Item_is_Broken') }}">
                             <input type="hidden" name="lang[]" value="default">
@@ -126,7 +126,7 @@
 
                         <div class="col-md-auto">
                             <button type="submit"
-                                    class="btn btn--primary h--45px btn-block">{{translate('messages.Add Now')}}</button>
+                                    class="btn btn--primary h--45px btn-block">{{translate('messages.Add')}}</button>
                         </div>
                     </div>
                 </form>

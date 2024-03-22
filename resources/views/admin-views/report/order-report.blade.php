@@ -42,12 +42,12 @@
                         </div>
                         <div class="col-sm-6 col-md-3">
                             <select name="restaurant_id" data-url="{{ url()->full() }}" data-filter="restaurant_id"
-                                    data-placeholder="{{ translate('messages.select_restaurant') }}"
+                                    data-placeholder="{{ translate('messages.select_vendor') }}"
                                     class="js-data-example-ajax form-control set-filter">
                                 @if (isset($restaurant))
                                     <option value="{{ $restaurant->id }}" selected>{{ $restaurant->name }}</option>
                                 @else
-                                    <option value="all" selected>{{ translate('messages.all_restaurants') }}</option>
+                                    <option value="all" selected>{{ translate('messages.all_vendors') }}</option>
                                 @endif
                             </select>
                         </div>
@@ -161,7 +161,7 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <h6 class="card-subtitle d-flex justify-content-between m-0 align-items-center">
                                 <img src="{{dynamicAsset('/public/assets/admin/img/order-icons/on-the-way.png')}}" alt="dashboard" class="oder--card-icon">
-                                <span>{{ translate('Food_On_the_Way') }}</span>
+                                <span>{{ translate('Product_On_the_Way') }}</span>
                             </h6>
                             <span class="card-title" style="--base-clr:#00AA6D">
                                 {{ $total_on_the_way_count }}
@@ -288,7 +288,7 @@
                             <tr>
                                 <th class="border-top border-bottom word-nobreak">{{ translate('messages.sl') }}</th>
                                 <th class="border-top border-bottom word-nobreak">{{ translate('messages.order_id') }}</th>
-                                <th class="border-top border-bottom word-nobreak">{{ translate('messages.restaurant') }}</th>
+                                <th class="border-top border-bottom word-nobreak">{{ translate('messages.vendor') }}</th>
                                 <th class="border-top border-bottom word-nobreak">{{ translate('messages.customer_name') }}</th>
                                 <th class="border-top border-bottom word-nobreak">{{ translate('messages.total_item_amount') }}</th>
                                 <th class="border-top border-bottom word-nobreak">{{ translate('messages.item_discount') }}</th>

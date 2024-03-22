@@ -35,7 +35,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     @if ($language)
-                                    <ul class="nav nav-tabs mb-3 border-0">
+                                    <!-- <ul class="nav nav-tabs mb-3 border-0">
                                         <li class="nav-item">
                                             <a class="nav-link lang_link active"
                                             href="#"
@@ -48,14 +48,13 @@
                                                     id="{{ $lang }}-link">{{ \App\CentralLogics\Helpers::get_language_name($lang) . '(' . strtoupper($lang) . ')' }}</a>
                                             </li>
                                         @endforeach
-                                    </ul>
+                                    </ul> -->
                                     <div class="lang_form" id="default-form">
                                         <div class="row">
                                             <div class="col-6">
                                                 <div class="form-group">
                                                     <label class="input-label"
                                                         for="default_title">{{ translate('messages.Bonus_Title') }}
-                                                        ({{ translate('messages.Default') }})
                                                     </label>
                                                     <input type="text" maxlength="255" name="title[]" id="default_title"
                                                         class="form-control" placeholder="{{ translate('messages.Ex:_EID_Dhamaka') }}"
@@ -67,7 +66,6 @@
                                                 <div class="form-group">
                                                     <label class="input-label"
                                                         for="default_description">{{ translate('messages.Short_Description') }}
-                                                        ({{ translate('messages.Default') }})
                                                     </label>
                                                     <input maxlength="255" type="text" name="description[]" id="default_description"
                                                         class="form-control" placeholder="{{ translate('messages.Ex:_EID_Dhamaka') }}"

@@ -33,7 +33,7 @@
                     @php($default_lang = str_replace('_', '-', app()->getLocale()))
 
                     @if($language)
-                        <ul class="nav nav-tabs mb-4">
+                        <!-- <ul class="nav nav-tabs mb-4">
                             <li class="nav-item">
                                 <a class="nav-link lang_link active " href="#" id="default-link">{{ translate('Default')}}</a>
                             </li>
@@ -42,7 +42,7 @@
                                     <a class="nav-link lang_link " href="#" id="{{$lang}}-link">{{\App\CentralLogics\Helpers::get_language_name($lang).'('.strtoupper($lang).')'}}</a>
                                 </li>
                             @endforeach
-                        </ul>
+                        </ul> -->
                     @endif
                     <div class="row">
                         <div class="col-sm-6 col-md-4">
@@ -80,7 +80,7 @@
                         </div>
                         <div class="col-sm-6 col-md-4">
                             <div class="form-group">
-                                <label class="input-label" for="exampleFormControlSelect1">{{translate('messages.restaurant')}}<span
+                                <label class="input-label" for="exampleFormControlSelect1">{{translate('messages.vendor')}}<span
                                         class="input-label-secondary"></span></label>
                                 <select name="restaurant_id" id="restaurant_id" class="form-control  js-data-example-ajax"  data-placeholder="{{translate('messages.select_restaurant')}}" required oninvalid="this.setCustomValidity('{{translate('messages.please_select_restaurant')}}')">
                                 @if($addon->restaurant)

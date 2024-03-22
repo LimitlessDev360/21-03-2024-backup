@@ -47,7 +47,7 @@
                 <form class="search-form">
                     <!-- Search -->
                     <div class="input--group input-group input-group-merge input-group-flush">
-                        <input class="form-control" value="{{ request()?->search  ?? null }}" placeholder="{{ translate('search_by_restaurant_info') }}" name="search">
+                        <input class="form-control" value="{{ request()?->search  ?? null }}" placeholder="{{ translate('search_by_vendor_name') }}" name="search">
                         <button type="submit" class="btn btn--secondary"><i class="tio-search"></i></button>
                     </div>
                     <!-- End Search -->

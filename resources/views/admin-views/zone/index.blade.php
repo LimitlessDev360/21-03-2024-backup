@@ -58,7 +58,7 @@
                                     @php($language=\App\Models\BusinessSetting::where('key','language')->first())
                                     @php($language = $language?->value )
                                     @php($default_lang = str_replace('_', '-', app()->getLocale()))
-                                        <ul class="nav nav-tabs mb-4">
+                                        <!-- <ul class="nav nav-tabs mb-4">
                                             <li class="nav-item">
                                                 <a class="nav-link lang_link active"
                                                 href="#"
@@ -79,11 +79,11 @@
                                             data-original-title="{{ translate('Choose_your_preferred_language_&_set_your_zone_name.') }}"><img
                                             src="{{ dynamicAsset('/public/assets/admin/img/info-circle.svg') }}"
                                             alt="{{ translate('messages.veg_non_veg') }}"></span>
-                                        </ul>
+                                        </ul> -->
                                 <div class="tab-content">
 
                                     <div class="form-group mb-3 lang_form" id="default-form">
-                                        <label class="input-label" for="exampleFormControlInput1">{{ translate('messages.business_Zone_name')}} ({{ translate('messages.default') }})</label>
+                                        <label class="input-label" for="exampleFormControlInput1">{{ translate('messages.business_Zone_name')}}</label>
                                         <input type="text" name="name[]"  class="form-control" placeholder="{{translate('messages.Type_new_zone_name_here')}}" maxlength="191" id="default-form-input"  oninvalid="document.getElementById('default-form-input').click()">
                                     </div>
                                     <input type="hidden" name="lang[]" value="default">
@@ -183,7 +183,7 @@
                                 <th>{{translate('messages.sl')}}</th>
                                 <th class="text-center">{{translate('messages.zone_id')}}</th>
                                 <th class="pl-5">{{translate('messages.name')}}</th>
-                                <th class="text-center">{{translate('messages.restaurants')}}</th>
+                                <th class="text-center">{{translate('messages.vendors')}}</th>
                                 <th class="text-center">{{translate('messages.deliverymen')}}</th>
                                 <th >{{translate('messages.status')}}</th>
                                 <th class="w-40px text-center">{{translate('messages.action')}}</th>

@@ -2,7 +2,7 @@
 <div class="card-header">
     <h5 class="card-header-title">
         <img src="{{dynamicAsset('/public/assets/admin/img/dashboard/top-resturant.png')}}" alt="dashboard" class="card-header-icon">
-        <span>{{ translate('Top_Restaurants') }}</span>
+        <span>{{ translate('Top_Vendors') }}</span>
     </h5>
     @php($params=session('dash_params'))
     @if($params['zone_id']!='all')

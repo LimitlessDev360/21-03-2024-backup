@@ -12,12 +12,12 @@
         <div class="page-header">
             <div class="row align-items-center">
                 <div class="col-sm mb-2 mb-sm-0">
-                    <h1 class="page-header-title"><i class="tio-notice"></i> {{translate('messages.food_campaign')}} <span class="badge badge-soft-dark ml-2" id="itemCount">{{$campaigns->total()}}</span></h1>
+                    <h1 class="page-header-title"><i class="tio-notice"></i> {{translate('messages.product_campaign')}} <span class="badge badge-soft-dark ml-2" id="itemCount">{{$campaigns->total()}}</span></h1>
                 </div>
 
                 <div class="col-sm-auto">
                     <a class="btn btn--primary" href="{{route('admin.campaign.add-new', 'item')}}">
-                        <i class="tio-add"></i> {{translate('messages.add_new_campaign')}}
+                        <i class="tio-add"></i> {{translate('messages.add')}}
                     </a>
                 </div>
             </div>

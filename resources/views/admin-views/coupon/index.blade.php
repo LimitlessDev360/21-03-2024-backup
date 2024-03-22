@@ -27,7 +27,7 @@
                     <div class="row">
                         <div class="col-12">
                             @if ($language)
-                            <ul class="nav nav-tabs mb-3 border-0">
+                            <!-- <ul class="nav nav-tabs mb-3 border-0">
                                 <li class="nav-item">
                                     <a class="nav-link lang_link active"
                                     href="#"
@@ -40,11 +40,11 @@
                                             id="{{ $lang }}-link">{{ \App\CentralLogics\Helpers::get_language_name($lang) . '(' . strtoupper($lang) . ')' }}</a>
                                     </li>
                                 @endforeach
-                            </ul>
+                            </ul> -->
                             <div class="lang_form" id="default-form">
                                 <div class="form-group">
                                     <label class="input-label"
-                                        for="default_title">{{ translate('messages.title') }} ({{ translate('messages.Default') }})
+                                        for="default_title">{{ translate('messages.title') }}
                                     </label>
                                     <input type="text" name="title[]" id="default_title"
                                         class="form-control" placeholder="{{ translate('messages.new_coupon') }}"
@@ -88,7 +88,7 @@
                             <div class="form-group">
                                 <label class="input-label" for="exampleFormControlInput1">{{translate('messages.coupon_type')}}</label>
                                 <select id="coupon_type" name="coupon_type" class="form-control">
-                                    <option value="restaurant_wise">{{translate('messages.restaurant_wise')}}</option>
+                                    <option value="restaurant_wise">{{translate('messages.vendor_wise')}}</option>
                                     <option value="zone_wise">{{translate('messages.zone_wise')}}</option>
                                     <option value="free_delivery">{{translate('messages.free_delivery')}}</option>
                                     <option value="first_order">{{translate('messages.first_order')}}</option>
@@ -97,9 +97,9 @@
                             </div>
                         </div>
                         <div class="form-group col-lg-3 col-sm-6" id="restaurant_wise">
-                            <label class="input-label" for="exampleFormControlSelect1">{{translate('messages.restaurant')}}<span
+                            <label class="input-label" for="exampleFormControlSelect1">{{translate('messages.vendor')}}<span
                                     class="input-label-secondary"></span></label>
-                            <select id="select_restaurant" name="restaurant_ids[]" class="js-data-example-ajax form-control" data-placeholder="{{translate('messages.select_restaurant')}}" title="{{translate('messages.select_restaurant')}}">
+                            <select id="select_restaurant" name="restaurant_ids[]" class="js-data-example-ajax form-control" data-placeholder="{{translate('messages.select_vendor')}}" title="{{translate('messages.select_vendor')}}">
                             </select>
                         </div>
 

@@ -17,7 +17,7 @@
                     </span>
                 </h1>
                 <div class="d-flex flex-wrap justify-content-end align-items-center flex-grow-1">
-                    <div class="blinkings active">
+                    <!-- <div class="blinkings active">
                         <i class="tio-info-outined"></i>
                         <div class="business-notes">
                             <h6><img src="{{dynamicAsset('/public/assets/admin/img/notes.png')}}" alt=""> {{translate('Note')}}</h6>
@@ -25,7 +25,7 @@
                                 {{translate('Don’t_forget_to_click_the_respective_‘Save_Information’_buttons_below_to_save_changes')}}
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             @include('admin-views.business-settings.partials.nav-menu')
@@ -57,7 +57,7 @@
                                                 class="line--limit-1">{{ translate('Disbursement_Request_Type')}}</span>
                                             <span class="form-label-secondary"
                                                   data-toggle="tooltip" data-placement="right"
-                                                  data-original-title="{{ translate('Choose_Manual_or_Automated_Disbursement_Requests._In_Automated_mode,_withdrawal_requests_for_disbursement_are_generated_automatically;_in_Manual_mode,_restaurants_need_to_request_withdrawals_manually.') }}"><img
+                                                  data-original-title="{{ translate('Choose_Manual_or_Automated_Disbursement_Requests._In_Automated_mode,_withdrawal_requests_for_disbursement_are_generated_automatically;_in_Manual_mode,_vendors_need_to_request_withdrawals_manually.') }}"><img
                                                     src="{{ dynamicAsset('/public/assets/admin/img/info-circle.svg') }}"
                                                     alt="{{ translate('messages.Disbursement_Request_Type') }}"></span>
                                         </label>

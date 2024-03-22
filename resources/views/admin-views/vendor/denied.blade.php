@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title',translate('messages.Rejected_Restaurant_List'))
+@section('title',translate('messages.Rejected_Vendor_List'))
 
 @push('css_or_js')
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -11,7 +11,7 @@
     <div class="content container-fluid">
 
         <div class="page-header">
-            <h1 class="page-header-title"><i class="tio-filter-list"></i> {{ translate('messages.Rejected_Restaurant_List')}} </h1>
+            <h1 class="page-header-title"><i class="tio-filter-list"></i> {{ translate('messages.Rejected_Vendor_List')}} </h1>
             <!-- Resturent List -->
                     <!-- Resturent Card Wrapper -->
         </div>
@@ -38,8 +38,8 @@
                             data-placeholder="{{translate('messages.all')}}" class="form-control js-select2-custom set-filter">
                         <option value="all" {{$type=='all'?'selected':''}}>{{translate('messages.all')}}</option>
                         @if ($toggle_veg_non_veg)
-                        <option value="veg" {{$type=='veg'?'selected':''}}>{{translate('messages.veg')}}</option>
-                        <option value="non_veg" {{$type=='non_veg'?'selected':''}}>{{translate('messages.non_veg')}}</option>
+                        <!-- <option value="veg" {{$type=='veg'?'selected':''}}>{{translate('messages.veg')}}</option>
+                        <option value="non_veg" {{$type=='non_veg'?'selected':''}}>{{translate('messages.non_veg')}}</option> -->
                         @endif
                     </select>
 
@@ -94,7 +94,7 @@
 
                     <div class="card-header py-2 border-0">
                         <div class="search--button-wrapper">
-                            <h3 class="card-title">{{translate('messages.restaurants_list')}}
+                            <h3 class="card-title">{{translate('messages.list')}}
                                 <span class="badge badge-soft-dark ml-2" id="itemCount">{{$restaurants->total()}}</span>
                             </h3>
                             <form class="my-2 ml-auto mr-sm-2 mr-xl-4 ml-sm-auto flex-grow-1 flex-grow-sm-0">
@@ -102,7 +102,7 @@
 
                                 <div class="input--group input-group input-group-merge input-group-flush">
                                     <input id="datatableSearch_" type="search" name="search" class="form-control"
-                                            placeholder="{{ translate('Ex:_Search_by_restaurant_name_phone_or_email') }}" aria-label="{{translate('messages.search')}}" >
+                                            placeholder="{{ translate('Ex:_Search_by_vendor_name') }}" aria-label="{{translate('messages.search')}}" >
                                     <button type="submit" class="btn btn--secondary"><i class="tio-search"></i></button>
 
                                 </div>
@@ -125,7 +125,7 @@
                             <thead class="thead-light">
                             <tr>
                                 <th class="text-uppercase w-90px">{{translate('messages.sl')}}</th>
-                                <th class="initial-58">{{translate('messages.restaurant_info')}}</th>
+                                <th class="initial-58">{{translate('messages.vendor_info')}}</th>
                                 <th class="w-230px text-center">{{translate('messages.owner_info')}} </th>
                                 <th class="w-130px">{{translate('messages.zone')}}</th>
                                 <th class="w-100px">{{translate('messages.Business_Model')}}</th>

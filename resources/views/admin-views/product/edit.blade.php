@@ -12,7 +12,7 @@
         <!-- Page Header -->
         <div class="page-header">
             <h1 class="page-header-title"><i class="tio-edit"></i>
-                {{ translate('messages.food_update') }}
+                {{ translate('messages.product_update') }}
             </h1>
         </div>
 
@@ -29,7 +29,7 @@
                             @php($language = $language->value ?? null)
                             @php($default_lang = str_replace('_', '-', app()->getLocale()))
                                 @if ($language)
-                                    <ul class="nav nav-tabs mb-4">
+                                    <!-- <ul class="nav nav-tabs mb-4">
                                         <li class="nav-item">
                                             <a class="nav-link lang_link active"
                                                 href="#"
@@ -42,7 +42,7 @@
                                                     id="{{ $lang }}-link">{{ \App\CentralLogics\Helpers::get_language_name($lang) . '(' . strtoupper($lang) . ')' }}</a>
                                             </li>
                                         @endforeach
-                                    </ul>
+                                    </ul> -->
                                 @endif
                         </div>
 
@@ -51,11 +51,10 @@
                                     <div class="form-group">
                                         <label class="input-label"
                                             for="default_name">{{ translate('messages.name') }}
-                                            ({{ translate('Default') }})
                                         </label>
                                         <input type="text" name="name[]" id="default_name"
                                             class="form-control" value="{{$product?->getRawOriginal('name')}}"
-                                            placeholder="{{ translate('messages.new_food') }}"
+                                            placeholder="{{ translate('messages.new_product') }}"
 
                                             oninvalid="document.getElementById('en-link').click()">
                                     </div>
@@ -63,7 +62,7 @@
                                     <div class="form-group mb-0">
                                         <label class="input-label"
                                             for="exampleFormControlInput1">{{ translate('messages.short_description') }}
-                                            ({{ translate('Default') }})</label>
+                                            </label>
                                         <textarea type="text" name="description[]" class="form-control ckeditor min-height-154px">{!! $product?->getRawOriginal('description') ?? '' !!}</textarea>
                                     </div>
                             </div>
@@ -112,7 +111,7 @@
                     <div class="card shadow--card-2 border-0 h-100">
                         <div class="card-body">
                             <h5 class="card-title">
-                                <span>{{ translate('Food_Image') }} <small
+                                <span>{{ translate('Image') }} <small
                                         class="text-danger">({{ translate('messages.Ratio_200x200') }})</small></span>
                             </h5>
                             <div class="form-group mb-0 h-100 d-flex flex-column align-items-center justify-content-center">
@@ -141,7 +140,7 @@
                                 <span class="card-header-icon mr-2">
                                     <i class="tio-dashboard-outlined"></i>
                                 </span>
-                                <span> {{ translate('Restaurants_&_Category_Info') }}</span>
+                                <span> {{ translate('Info') }}</span>
                             </h5>
                         </div>
                         <div class="card-body">
@@ -177,7 +176,7 @@
                                             </select>
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-lg-3">
+                                <!-- <div class="col-sm-6 col-lg-3">
                                     <div class="form-group mb-0">
                                         <label class="input-label"
                                             for="exampleFormControlSelect1">{{ translate('messages.sub_category') }}<span
@@ -191,8 +190,8 @@
                                                     class="form-control js-select2-custom">
                                                 </select>
                                     </div>
-                                </div>
-                                <div class="col-sm-6 col-lg-3">
+                                </div> -->
+                                <!-- <div class="col-sm-6 col-lg-3">
                                     <div class="form-group mb-0">
                                         <label class="input-label"
                                             for="exampleFormControlInput1">{{ translate('messages.food_type') }}</label>
@@ -205,7 +204,7 @@
                                                 </option>
                                             </select>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -225,9 +224,9 @@
                                 for="exampleFormControlSelect1">{{ translate('Select_Add-on') }}<span
                                     class="input-label-secondary" data-toggle="tooltip"
                                     data-placement="right"
-                                    data-original-title="{{ translate('messages.restaurant_required_warning') }}"><img
+                                    data-original-title="{{ translate('messages.vendor_required_warning') }}"><img
                                         src="{{ dynamicAsset('/public/assets/admin/img/info-circle.svg') }}"
-                                        alt="{{ translate('messages.restaurant_required_warning') }}"></span></label>
+                                        alt="{{ translate('messages.vendor_required_warning') }}"></span></label>
                                         <select name="addon_ids[]" class="form-control border js-select2-custom" multiple="multiple"
                                         id="add_on">
                                     </select>
@@ -239,7 +238,7 @@
                         <div class="card-header">
                             <h5 class="card-title">
                                 <span class="card-header-icon mr-2"><i class="tio-date-range"></i></span>
-                                <span>{{ translate('messages.Availability') }}</span>
+                                <span>{{ translate('messages.Availability') }} *</span>
                             </h5>
                         </div>
                         <div class="card-body">
@@ -269,7 +268,9 @@
                     <div class="card shadow--card-2 border-0">
                         <div class="card-header">
                             <h5 class="card-title">
-                                <span class="card-header-icon mr-2"><i class="tio-dollar-outlined"></i></span>
+                                <span class="card-header-icon mr-2">
+                                    <i class="tio-dashboard"></i>
+                                </span>
                                 <span>{{ translate('Price_Information') }}</span>
                             </h5>
                         </div>
@@ -307,7 +308,7 @@
                                             for="exampleFormControlInput1">{{ translate('messages.discount') }}
                                             <span class="input-label-secondary text--title" data-toggle="tooltip"
                                             data-placement="right"
-                                            data-original-title="{{ translate('Currently_you_need_to_manage_discount_with_the_Restaurant.') }}">
+                                            data-original-title="{{ translate('Currently_you_need_to_manage_discount_with_the_vendor.') }}">
                                             <i class="tio-info-outined"></i>
                                         </span>
                                         </label>
@@ -323,7 +324,7 @@
                                             <span
                                             class="input-label-secondary text--title" data-toggle="tooltip"
                                             data-placement="right"
-                                            data-original-title="{{ translate('If_this_limit_is_exceeded,_customers_can_not_buy_the_food_in_a_single_purchase.') }}">
+                                            data-original-title="{{ translate('If_this_limit_is_exceeded,_customers_can_not_buy_the_product_in_a_single_purchase.') }}">
                                             <i class="tio-info-outined"></i>
                                         </span>
                                         </label>
@@ -341,7 +342,7 @@
                                 <span class="card-header-icon mr-2">
                                     <i class="tio-canvas-text"></i>
                                 </span>
-                                <span>{{ translate('messages.food_variations') }}</span>
+                                <span>{{ translate('messages.variations') }}</span>
                             </h5>
                             <a class="btn text--primary-2" id="add_new_option_button">
                                 {{ translate('add_new_variation') }}

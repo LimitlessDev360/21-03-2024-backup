@@ -14,12 +14,12 @@
                     {{translate('messages.app_settings')}}
                 </span>
             </h1>
-            <div class="text--primary-2 d-flex flex-wrap align-items-center" type="button" data-toggle="modal" data-target="#how-it-works">
+            <!-- <div class="text--primary-2 d-flex flex-wrap align-items-center" type="button" data-toggle="modal" data-target="#how-it-works">
                 <strong class="mr-2">{{translate('See_how_it_works!')}}</strong>
                   <div class="blinkings">
                     <i class="tio-info-outined"></i>
                 </div>
-            </div>
+            </div> -->
         </div>
         <!-- End Page Header -->
 
@@ -56,10 +56,10 @@
                         <div class="form-group m-0">
                             <form action="{{route('admin.business-settings.toggle-settings',['popular_food',$popular_food?0:1, 'popular_food'])}}" id="popular_food_form" method="get">
                             <label class="toggle-switch toggle-switch-sm d-flex justify-content-between border rounded px-3 px-xl-4 form-control" >
-                                <span class="pr-2">{{translate('messages.popular_foods')}}
+                                <span class="pr-2">{{translate('messages.popular_products')}}
                                       <span class="input-label-secondary text--title" data-toggle="tooltip"
                                         data-placement="right"
-                                        data-original-title="{{ translate('If_enabled,_Popular_Foods_will_be_available_on_the_User_App') }}">
+                                        data-original-title="{{ translate('If_enabled,_Popular_products_will_be_available_on_the_User_App') }}">
                                             <i class="tio-info-outined"></i>
                                         </span>
                                     </span>
@@ -87,10 +87,10 @@
                         <div class="form-group m-0">
                             <form action="{{route('admin.business-settings.toggle-settings',['popular_restaurant',$popular_restaurant?0:1, 'popular_restaurant'])}}" id="popular_restaurant_form" method="get">
                             <label class="toggle-switch toggle-switch-sm d-flex justify-content-between border rounded px-3 px-xl-4 form-control" >
-                                <span class="pr-2">{{translate('messages.popular_restaurants')}}
+                                <span class="pr-2">{{translate('messages.popular_vendors')}}
                                       <span class="input-label-secondary text--title" data-toggle="tooltip"
                                         data-placement="right"
-                                        data-original-title="{{ translate('If_enabled,_the_Popular_Restaurants_section_will_be_available_on_the_User_App') }}">
+                                        data-original-title="{{ translate('If_enabled,_the_Popular_vendors_section_will_be_available_on_the_User_App') }}">
                                             <i class="tio-info-outined"></i>
                                         </span>
                                     </span>
@@ -117,10 +117,10 @@
                         <div class="form-group m-0">
                             <form action="{{route('admin.business-settings.toggle-settings',['new_restaurant',$new_restaurant?0:1, 'new_restaurant'])}}" id="new_restaurant_form" method="get">
                             <label class="toggle-switch toggle-switch-sm d-flex justify-content-between border rounded px-3 px-xl-4 form-control" >
-                                <span class="pr-2 text-capitalize">{{translate('messages.new_restaurants')}}
+                                <span class="pr-2 text-capitalize">{{translate('messages.new_vendors')}}
                                       <span class="input-label-secondary text--title" data-toggle="tooltip"
                                         data-placement="right"
-                                        data-original-title="{{ translate('If_enabled,_the_New_Restaurants_will_be_available_on_the_User_App.') }}">
+                                        data-original-title="{{ translate('If_enabled,_the_New_vendors_will_be_available_on_the_User_App.') }}">
                                             <i class="tio-info-outined"></i>
                                         </span>
                                     </span>
@@ -148,10 +148,10 @@
                         <div class="form-group m-0">
                             <form action="{{route('admin.business-settings.toggle-settings',['most_reviewed_foods',$most_reviewed_foods?0:1, 'most_reviewed_foods'])}}" id="most_reviewed_foods_form" method="get">
                             <label class="toggle-switch toggle-switch-sm d-flex justify-content-between border rounded px-3 px-xl-4 form-control" >
-                                <span class="pr-2 text-capitalize">{{translate('messages.most_reviewed_foods')}}
+                                <span class="pr-2 text-capitalize">{{translate('messages.most_reviewed_prpducts')}}
                                       <span class="input-label-secondary text--title" data-toggle="tooltip"
                                         data-placement="right"
-                                        data-original-title="{{ translate('If_enabled,_the_Most_Reviewed_Foods_will_be_available_on_the_User_App.') }}">
+                                        data-original-title="{{ translate('If_enabled,_the_Most_Reviewed_products_will_be_available_on_the_User_App.') }}">
                                             <i class="tio-info-outined"></i>
                                         </span>
                                     </span>
@@ -266,7 +266,7 @@
         enctype="multipart/form-data">
         @csrf
             <h5 class="card-title mb-3 pt-4">
-                <span class="card-header-icon mr-2"><i class="tio-settings-outlined"></i></span> <span>{{ translate('Restaurant_App_Version_Control') }}</span>
+                <span class="card-header-icon mr-2"><i class="tio-settings-outlined"></i></span> <span>{{ translate('Vendor_App_Version_Control') }}</span>
             </h5>
             <input type="hidden" name="type" value="restaurant_app" >
             <div class="card">
@@ -279,10 +279,10 @@
                             </h5>
                             <div class="__bg-F8F9FC-card">
                                 <div class="form-group">
-                                    <label for="app_minimum_version_android_restaurant"  class="form-label text-capitalize">{{translate('messages.Minimum_Restaurant_App_Version_for_Force_Update')}} ({{translate('messages.android')}})
+                                    <label for="app_minimum_version_android_restaurant"  class="form-label text-capitalize">{{translate('messages.Minimum_Vendor_App_Version_for_Force_Update')}} ({{translate('messages.android')}})
                                         <span class="input-label-secondary text--title" data-toggle="tooltip"
                                         data-placement="right"
-                                        data-original-title="{{ translate('messages.The_minimum_Restaurant_app_version_required_for_the_app_functionality.') }}">
+                                        data-original-title="{{ translate('messages.The_minimum_Vendor_app_version_required_for_the_app_functionality.') }}">
                                         <i class="tio-info-outined"></i>
                                     </span>
                                     </label>
@@ -291,10 +291,10 @@
                                 </div>
                                 <div class="form-group mb-md-0">
                                     <label  for="app_url_android_restaurant" class="form-label text-capitalize">
-                                        {{translate('messages.Download_URL_for_Restaurant_App')}} ({{translate('messages.android')}})
+                                        {{translate('messages.Download_URL_for_Vendor_App')}} ({{translate('messages.android')}})
                                         <span class="input-label-secondary text--title" data-toggle="tooltip"
                                         data-placement="right"
-                                        data-original-title="{{ translate('Users_will_download_the_latest_Restaurant_app_using_this_URL') }}">
+                                        data-original-title="{{ translate('Users_will_download_the_latest_vendor_app_using_this_URL') }}">
                                             <i class="tio-info-outined"></i>
                                         </span>
                                     </label>
@@ -310,10 +310,10 @@
                             </h5>
                             <div class="__bg-F8F9FC-card">
                                 <div class="form-group">
-                                    <label for="app_minimum_version_ios_restaurant"  class="form-label text-capitalize">{{translate('messages.Minimum_Restaurant_App_Version_for_Force_Update')}} ({{translate('messages.ios')}})
+                                    <label for="app_minimum_version_ios_restaurant"  class="form-label text-capitalize">{{translate('messages.Minimum_vendor_App_Version_for_Force_Update')}} ({{translate('messages.ios')}})
                                         <span class="input-label-secondary text--title" data-toggle="tooltip"
                                         data-placement="right"
-                                        data-original-title="{{ translate('messages.The_minimum_Restaurant_app_version_required_for_the_app_functionality.') }}">
+                                        data-original-title="{{ translate('messages.The_minimum_Vendor_app_version_required_for_the_app_functionality.') }}">
                                         <i class="tio-info-outined"></i>
                                     </span>
                                     </label>
@@ -322,10 +322,10 @@
                                 </div>
                                 <div class="form-group mb-md-0">
                                     <label for="app_url_ios_restaurant" class="form-label text-capitalize">
-                                        {{translate('messages.Download_URL_for_Restaurant_App')}} ({{translate('messages.ios')}})
+                                        {{translate('messages.Download_URL_for_Vendor_App')}} ({{translate('messages.ios')}})
                                         <span class="input-label-secondary text--title" data-toggle="tooltip"
                                         data-placement="right"
-                                        data-original-title="{{ translate('Users_will_download_the_latest_Restaurant_app_version_using_this_URL') }}">
+                                        data-original-title="{{ translate('Users_will_download_the_latest_Vendor_app_version_using_this_URL') }}">
                                             <i class="tio-info-outined"></i>
                                         </span>
                                     </label>

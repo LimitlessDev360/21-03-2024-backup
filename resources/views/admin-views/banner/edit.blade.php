@@ -27,7 +27,7 @@
                                         @php($language = $language->value ?? null)
                                         @php($default_lang = str_replace('_', '-', app()->getLocale()))
                                         @if($language)
-                                            <ul class="nav nav-tabs mb-4">
+                                            <!-- <ul class="nav nav-tabs mb-4">
                                                 <li class="nav-item">
                                                     <a class="nav-link lang_link active"
                                                     href="#"
@@ -40,10 +40,10 @@
                                                             id="{{ $lang }}-link">{{ \App\CentralLogics\Helpers::get_language_name($lang) . '(' . strtoupper($lang) . ')' }}</a>
                                                     </li>
                                                 @endforeach
-                                            </ul>
+                                            </ul> -->
                                             <div class="lang_form" id="default-form">
                                                 <div class="form-group">
-                                                    <label class="input-label" for="default_title">{{translate('messages.title')}} ({{translate('messages.default')}})</label>
+                                                    <label class="input-label" for="default_title">{{translate('messages.title')}}</label>
                                                     <input type="text" name="title[]" id="default_title" class="form-control" placeholder="{{translate('messages.new_banner')}}" value="{{$banner->getRawOriginal('title')}}" oninvalid="document.getElementById('en-link').click()">
                                                 </div>
                                                 <input type="hidden" name="lang[]" value="default">
@@ -97,12 +97,12 @@
                                     <div class="form-group">
                                         <label class="input-label" for="exampleFormControlInput1">{{translate('messages.banner_type')}}</label>
                                         <select id="banner_type" name="banner_type" class="form-control banner_type_change">
-                                            <option value="restaurant_wise" {{$banner->type == 'restaurant_wise'? 'selected':'' }}>{{translate('messages.restaurant_wise')}}</option>
-                                            <option value="item_wise" {{$banner->type == 'item_wise'? 'selected':'' }}>{{translate('messages.food_wise')}}</option>
+                                            <option value="restaurant_wise" {{$banner->type == 'restaurant_wise'? 'selected':'' }}>{{translate('messages.vendor_wise')}}</option>
+                                            <option value="item_wise" {{$banner->type == 'item_wise'? 'selected':'' }}>{{translate('messages.product_wise')}}</option>
                                         </select>
                                     </div>
                                     <div class="form-group" id="restaurant_wise">
-                                        <label class="input-label" for="exampleFormControlSelect1">{{translate('messages.restaurant')}}<span
+                                        <label class="input-label" for="exampleFormControlSelect1">{{translate('messages.vendor')}}<span
                                                 class="input-label-secondary"></span></label>
                                         <select name="restaurant_id" class="js-data-example-ajax" id="resturant_ids"  title="Select Restaurant">
                                             @if($banner->type=='restaurant_wise')

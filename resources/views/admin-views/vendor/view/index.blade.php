@@ -17,7 +17,7 @@
             </h1>
             @if($restaurant->vendor->status)
             <a href="{{route('admin.restaurant.edit',[$restaurant->id])}}" class="btn btn--primary my-2">
-                <i class="tio-edit mr-2"></i> {{translate('messages.edit_restaurant')}}
+                <i class="tio-edit mr-2"></i> {{translate('messages.edit')}}
             </a>
             @else
             <div>
@@ -51,7 +51,7 @@
             <div class="card bg--1 h-100">
                 <div class="card-body text-center d-flex flex-column justify-content-center align-items-center">
                     <div class="cash--subtitle">
-                        {{translate('messages.collected_cash_by_restaurant')}}
+                        {{translate('messages.collected_cash_by_vendor')}}
                     </div>
                     <div class="d-flex align-items-center justify-content-center mt-3">
                         <img class="cash-icon mr-3" src="{{dynamicAsset('/public/assets/admin/img/transactions/cash.png')}}"
@@ -62,7 +62,7 @@
                 </div>
                 <div class="card-footer pt-0 bg-transparent">
                     <a class="btn btn-- bg--title h--45px w-100" href="{{route('admin.account-transaction.index')}}"
-                        title="{{translate('messages.goto_account_transaction')}}">{{translate('messages.collect_cash_from_restaurant')}}</a>
+                        title="{{translate('messages.goto_account_transaction')}}">{{translate('messages.collect_cash_from_vendor')}}</a>
                 </div>
             </div>
         </div>
@@ -137,7 +137,7 @@
                             <span class="card-header-icon mr-2">
                                 <i class="tio-shop-outlined"></i>
                             </span>
-                            <span class="ml-1">{{translate('messages.restaurant_info')}}</span>
+                            <span class="ml-1">{{translate('messages.info')}}</span>
                         </h5>
                     </div>
                     <div class="card-body">
@@ -281,7 +281,7 @@
                             <span class="card-header-icon mr-2">
                                 <i class="tio-crown"></i>
                             </span>
-                            <span class="ml-1">{{translate('messages.Restaurant_Model')}} : {{
+                            <span class="ml-1">{{translate('messages.vendor_Model')}} : {{
                                 translate($restaurant->restaurant_model ?? 'None') }}</span>
                         </h5>
                     </div>

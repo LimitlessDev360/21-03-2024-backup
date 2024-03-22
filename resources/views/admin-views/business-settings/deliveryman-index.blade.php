@@ -15,7 +15,7 @@
                     </span>
                 </h1>
                 <div class="d-flex flex-wrap justify-content-end align-items-center flex-grow-1">
-                    <div class="blinkings active">
+                    <!-- <div class="blinkings active">
                         <i class="tio-info-outined"></i>
                         <div class="business-notes">
                             <h6><img src="{{dynamicAsset('/public/assets/admin/img/notes.png')}}" alt=""> {{translate('Note')}}</h6>
@@ -23,7 +23,7 @@
                                 {{translate('Don’t_forget_to_click_the_respective_‘Save_Information’_buttons_below_to_save_changes')}}
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             @include('admin-views.business-settings.partials.nav-menu')
@@ -201,7 +201,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6 col-lg-4">
+                                <!-- <div class="col-sm-6 col-lg-4">
                                     @php($dm_max_cash_in_hand = \App\Models\BusinessSetting::where('key', 'dm_max_cash_in_hand')->first())
                                     <div class="form-group mb-0">
                                         <label class="input-label d-flex text-capitalize"
@@ -215,9 +215,9 @@
                                             id="dm_max_cash_in_hand" min="0" step=".001"
                                             value="{{ $dm_max_cash_in_hand ? $dm_max_cash_in_hand->value : 0 }}" required>
                                     </div>
-                                </div>
+                                </div> -->
 
-                                <div class="col-sm-6 col-lg-4">
+                                <!-- <div class="col-sm-6 col-lg-4">
                                     @php($cash_in_hand_overflow = \App\Models\BusinessSetting::where('key', 'cash_in_hand_overflow_delivery_man')->first())
                                     @php($cash_in_hand_overflow = $cash_in_hand_overflow ? $cash_in_hand_overflow->value : 0)
                                     <div class="form-group  mb-0 ">
@@ -255,7 +255,7 @@
                                             </span>
                                         </label>
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="col-sm-6 col-lg-4">
                                     @php($min_amount_to_pay_dm = \App\Models\BusinessSetting::where('key', 'min_amount_to_pay_dm')->first())

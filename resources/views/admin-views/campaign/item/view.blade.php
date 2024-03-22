@@ -61,7 +61,7 @@
                 <div class="card h-100">
                     <div class="card-body d-flex flex-column justify-content-center">
                         <div class="text-center">
-                            <span class="mb-3">{{translate('restaurant_info')}}</span>
+                            <span class="mb-3">{{translate('info')}}</span>
                             @if($campaign->restaurant)
                             <a href="{{route('admin.restaurant.view', $campaign->restaurant_id)}}" class="d-block">
                                     <img class="avatar-img avatar-circle initial-17 onerror-image"   id="viewer"
@@ -70,7 +70,7 @@
                                 <h2 class="m-0">{{$campaign->restaurant['name']}}</h2>
                             </a>
                             @else
-                            <span class="badge-info">{{translate('messages.restaurant_deleted')}}</span>
+                            <span class="badge-info">{{translate('messages.deleted')}}</span>
                             @endif
                         </div>
                     </div>
@@ -81,10 +81,10 @@
                     <div class="card-header">
                         <h5 class="card-title">
                             <span class="card-header-icon">
-                                <i class="tio-fastfood"></i>
+                                <!-- <i class="tio-fastfood"></i> -->
                             </span>
                             <span>
-                                {{translate('food_information')}}
+                                {{translate('information')}}
                             </span>
                         </h5>
                     </div>
@@ -122,7 +122,7 @@
                                             @if(isset($variation["price"]))
                                             <span class="d-block mb-1 text-capitalize">
                                                 <strong>
-                                                    {{ translate('please_update_the_food_variations.') }}
+                                                    {{ translate('please_update_the_variations.') }}
                                                 </strong>
                                                 </span>
                                                 @break
@@ -181,12 +181,12 @@
                         <span class="card-title-icon">
                             <i class="tio-fastfood"></i>
                         </span>
-                        <span>{{translate('campaign_restaurant_list')}}</span>
+                        <span>{{translate('campaign_vendor_list')}}</span>
                         <span class="badge badge-pill badge-soft-secondary">{{ count($orders) }}</span>
                     </h5>
                     <form>
                         <div class="input--group input-group">
-                            <input type="text" name="search" value="{{ request()?->search ?? null }}" class="form-control" placeholder="{{ translate('Search_here_by_restaurants') }}">
+                            <input type="text" name="search" value="{{ request()?->search ?? null }}" class="form-control" placeholder="{{ translate('Search_here_by_vendors') }}">
                             <button type="submit" class="btn btn--secondary"><i class="tio-search"></i></button>
                         </div>
                     </form>

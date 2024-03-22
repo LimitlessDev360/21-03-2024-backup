@@ -26,7 +26,7 @@
                 <div class="search--button-wrapper justify-content-end">
                     <form   class="search-form">
                         <div class="input-group input--group">
-                            <input id="datatableSearch" name="search" type="search" class="form-control h--40px" value="{{ request('search') }}" placeholder="{{translate('ex_:_search_delivery_man_data')}}" aria-label="{{translate('messages.search_here')}}">
+                            <input id="datatableSearch" name="search" type="search" class="form-control h--40px" value="{{ request('search') }}" placeholder="{{translate('ex_:_search_delivery_man')}}" aria-label="{{translate('messages.search_here')}}">
                             <button type="submit" class="btn btn--secondary h--40px"><i class="tio-search"></i></button>
                         </div>
                     </form>

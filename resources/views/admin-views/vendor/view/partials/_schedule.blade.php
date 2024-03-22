@@ -32,7 +32,7 @@ foreach ($restaurant->schedules as $schedule)
                         <span class="dismiss--date delete-schedule" data-url="{{route('admin.restaurant.remove-schedule',['restaurant_schedule'=>$day['id']])}}"><i class="tio-clear-circle-outlined"></i></span></span>
                 @endforeach
             @else
-                <span class="btn btn-sm btn-outline-danger m-1 disabled">{{translate('messages.Offday')}}</span>
+                <!-- <span class="btn btn-sm btn-outline-danger m-1 disabled">{{translate('messages.Offday')}}</span> -->
             @endif
             <span class="btn add--primary" data-toggle="modal" data-target="#exampleModal" data-dayid="1" data-day="{{translate('messages.monday')}}"><i class="tio-add"></i></span>
         </div>
@@ -65,7 +65,7 @@ foreach ($restaurant->schedules as $schedule)
                         <span class="dismiss--date delete-schedule" data-url="{{route('admin.restaurant.remove-schedule',['restaurant_schedule'=>$day['id']])}}"><i class="tio-clear-circle-outlined"></i></span></span>
                 @endforeach
             @else
-                <span class="btn btn-sm btn-outline-danger m-1 disabled">{{translate('messages.Offday')}}</span>
+                <!-- <span class="btn btn-sm btn-outline-danger m-1 disabled">{{translate('messages.Offday')}}</span> -->
             @endif
             <span class="btn add--primary" data-toggle="modal" data-target="#exampleModal" data-dayid="2" data-day="{{translate('messages.tuesday')}}"><i class="tio-add"></i></span>
         </div>
@@ -98,7 +98,7 @@ foreach ($restaurant->schedules as $schedule)
                         <span class="dismiss--date delete-schedule" data-url="{{route('admin.restaurant.remove-schedule',['restaurant_schedule'=>$day['id']])}}"><i class="tio-clear-circle-outlined"></i></span></span>
                     @endforeach
                 @else
-                    <span class="btn btn-sm btn-outline-danger m-1 disabled">{{translate('messages.Offday')}}</span>
+                    <!-- <span class="btn btn-sm btn-outline-danger m-1 disabled">{{translate('messages.Offday')}}</span> -->
                 @endif
                 <span class="btn add--primary" data-toggle="modal" data-target="#exampleModal" data-dayid="3" data-day="{{translate('messages.wednesday')}}"><i class="tio-add"></i></span>
         </div>
@@ -131,7 +131,7 @@ foreach ($restaurant->schedules as $schedule)
                         <span class="dismiss--date delete-schedule" data-url="{{route('admin.restaurant.remove-schedule',['restaurant_schedule'=>$day['id']])}}"><i class="tio-clear-circle-outlined"></i></span></span>
                 @endforeach
             @else
-                <span class="btn btn-sm btn-outline-danger m-1 disabled">{{translate('messages.Offday')}}</span>
+                <!-- <span class="btn btn-sm btn-outline-danger m-1 disabled">{{translate('messages.Offday')}}</span> -->
             @endif
             <span class="btn add--primary" data-toggle="modal" data-target="#exampleModal" data-dayid="4" data-day="{{translate('messages.thursday')}}"><i class="tio-add"></i></span>
         </div>
@@ -164,7 +164,7 @@ foreach ($restaurant->schedules as $schedule)
                         <span class="dismiss--date delete-schedule" data-url="{{route('admin.restaurant.remove-schedule',['restaurant_schedule'=>$day['id']])}}"><i class="tio-clear-circle-outlined"></i></span></span>
                 @endforeach
             @else
-                <span class="btn btn-sm btn-outline-danger m-1 disabled">{{translate('messages.Offday')}}</span>
+                <!-- <span class="btn btn-sm btn-outline-danger m-1 disabled">{{translate('messages.Offday')}}</span> -->
             @endif
             <span class="btn add--primary" data-toggle="modal" data-target="#exampleModal" data-dayid="5" data-day="{{translate('messages.friday')}}"><i class="tio-add"></i></span>
         </div>
@@ -197,7 +197,7 @@ foreach ($restaurant->schedules as $schedule)
                         <span class="dismiss--date delete-schedule" data-url="{{route('admin.restaurant.remove-schedule',['restaurant_schedule'=>$day['id']])}}"><i class="tio-clear-circle-outlined"></i></span></span>
                 @endforeach
             @else
-                <span class="btn btn-sm btn-outline-danger m-1 disabled">{{translate('messages.Offday')}}</span>
+                <!-- <span class="btn btn-sm btn-outline-danger m-1 disabled">{{translate('messages.Offday')}}</span> -->
             @endif
             <span class="btn add--primary" data-toggle="modal" data-target="#exampleModal" data-dayid="6" data-day="{{translate('messages.saturday')}}"><i class="tio-add"></i></span>
     </div>
@@ -230,7 +230,7 @@ foreach ($restaurant->schedules as $schedule)
                         <span class="dismiss--date delete-schedule" data-url="{{route('admin.restaurant.remove-schedule',['restaurant_schedule'=>$day['id']])}}" ><i class="tio-clear-circle-outlined"></i></span></span>
                 @endforeach
             @else
-                <span class="btn btn-sm btn-outline-danger m-1 disabled">{{translate('messages.Offday')}}</span>
+                <!-- <span class="btn btn-sm btn-outline-danger m-1 disabled">{{translate('messages.Offday')}}</span> -->
             @endif
             <span class="btn add--primary" data-toggle="modal" data-target="#exampleModal" data-dayid="0" data-day="{{translate('messages.sunday')}}"><i class="tio-add"></i></span>
     </div>

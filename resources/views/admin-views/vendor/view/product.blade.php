@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title',$restaurant->name."'s".translate('messages.Food'))
+@section('title',$restaurant->name."'s".translate('messages.Product'))
 
 @push('css_or_js')
     <!-- Custom styles for this page -->
@@ -61,7 +61,7 @@
                 @php($food = \App\Models\Food::withoutGlobalScope(\App\Scopes\RestaurantScope::class)->
                 where(['restaurant_id'=>$restaurant->id, 'status'=>1])->count())
                 @php($food = ($food == null) ? 0 : $food)
-                <h6 class="card-subtitle">{{translate('Active_Food')}}<span class="amount text--primary">{{$food}}</span></h6>
+                <h6 class="card-subtitle">{{translate('Active_Products')}}<span class="amount text--primary">{{$food}}</span></h6>
         </div>
         <span class="order-info-seperator"></span>
         <div class="order-info-item">
@@ -71,7 +71,7 @@
                 @php($food = \App\Models\Food::withoutGlobalScope(\App\Scopes\RestaurantScope::class)->
                 where(['restaurant_id'=>$restaurant->id, 'status'=>0])->count())
                 @php($food = ($food == null) ? 0 : $food)
-                <h6 class="card-subtitle">{{translate('Inactive_Food')}}<span class="amount text--primary">{{$food}}</span></h6>
+                <h6 class="card-subtitle">{{translate('Inactive_Products')}}<span class="amount text--primary">{{$food}}</span></h6>
         </div>
     </div>
     <!-- End Page Header -->
@@ -79,7 +79,9 @@
     <div class="card h-100">
         <div class="card-header flex-wrap border-0 py-2">
             <div class="search--button-wrapper">
-                <h3 class="card-title d-flex align-items-center"> <span class="card-header-icon mr-1"><i class="tio-restaurant"></i></span> {{translate('messages.foods')}} <span class="badge badge-soft-dark ml-2 badge-circle">{{$foods->total()}}</span></h3>
+                <h3 class="card-title d-flex align-items-center"> <span class="card-header-icon mr-1">
+                    <!-- <i class="tio-restaurant"></i> -->
+                </span> {{translate('messages.products')}} <span class="badge badge-soft-dark ml-2 badge-circle">{{$foods->total()}}</span></h3>
                 <form class="my-2 ml-auto mr-sm-2 mr-xl-4 ml-sm-auto flex-grow-1 flex-grow-sm-0">
                     <!-- Search -->
                     <input type="hidden" name="restaurant_id" value="{{$restaurant->id}}">
@@ -122,7 +124,7 @@
                 </div>
                 <!-- Static Export Button -->
                 <a href="{{route('admin.food.add-new')}}" class="btn btn--primary pull-right"><i
-                            class="tio-add-circle"></i> {{translate('messages.add_new_food')}}</a>
+                            class="tio-add-circle"></i> {{translate('messages.add')}}</a>
             </div>
         </div>
         <div class="table-responsive datatable-custom">

@@ -3,7 +3,7 @@
     <h5 class="card-header-title">
         <img src="{{ dynamicAsset('/public/assets/admin/img/dashboard/most-popular.png') }}" alt="dashboard"
             class="card-header-icon">
-        {{ translate('Most_Popular_Restaurants') }}
+        {{ translate('Most_Popular_Vendors') }}
     </h5>
     @php($params = session('dash_params'))
     @if ($params['zone_id'] != 'all')

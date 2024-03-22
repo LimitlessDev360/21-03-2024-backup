@@ -16,7 +16,7 @@
             </h1>
             <ul class="nav nav-tabs mb-4 border-0 pt-2">
                 <li class="nav-item">
-                    <a class="nav-link {{ $tab=='restaurant'?'active':'' }}" href="{{ route('admin.report.disbursement_report',  ['tab' => 'restaurant']) }}" >{{ translate('Restaurant_Disbursements') }}</a>
+                    <a class="nav-link {{ $tab=='restaurant'?'active':'' }}" href="{{ route('admin.report.disbursement_report',  ['tab' => 'restaurant']) }}" >{{ translate('Vendor_Disbursements') }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ $tab=='delivery_man'?'active':'' }}" href="{{ route('admin.report.disbursement_report',  ['tab' => 'delivery_man']) }}">{{ translate('Delivery_Man_Disbursements') }}</a>
@@ -76,12 +76,12 @@
                         @if($tab=='restaurant')
                         <div class="col-sm-6 col-md-3">
                             <select name="restaurant_id" data-url="{{ url()->full() }}" data-filter="restaurant_id"
-                                    data-placeholder="{{ translate('messages.select_restaurant') }}"
+                                    data-placeholder="{{ translate('messages.select_vendor') }}"
                                     class="js-data-example-ajax form-control set-filter">
                                 @if (isset($restaurant))
                                     <option value="{{ $restaurant->id }}" selected>{{ $restaurant->name }}</option>
                                 @else
-                                    <option value="all" selected>{{ translate('messages.all_restaurants') }}</option>
+                                    <option value="all" selected>{{ translate('messages.all_vendors') }}</option>
                                 @endif
                             </select>
                         </div>
@@ -204,7 +204,7 @@
                         <th>{{ translate('sl') }}</th>
                         <th>{{ translate('id') }}</th>
                         @if($tab=='restaurant')
-                        <th>{{ translate('Restaurant_Info') }}</th>
+                        <th>{{ translate('Vendor_Info') }}</th>
                         @else
                         <th>{{ translate('Delivery_Man_Info') }}</th>
                         @endif

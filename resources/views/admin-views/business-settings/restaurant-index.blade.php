@@ -17,7 +17,7 @@
                     </span>
                 </h1>
                 <div class="d-flex flex-wrap justify-content-end align-items-center flex-grow-1">
-                    <div class="blinkings active">
+                    <!-- <div class="blinkings active">
                         <i class="tio-info-outined"></i>
                         <div class="business-notes">
                             <h6><img src="{{dynamicAsset('/public/assets/admin/img/notes.png')}}" alt=""> {{translate('Note')}}</h6>
@@ -25,7 +25,7 @@
                                 {{translate('Don’t_forget_to_click_the_respective_‘Save_Information’_buttons_below_to_save_changes')}}
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             @include('admin-views.business-settings.partials.nav-menu')
@@ -46,7 +46,7 @@
                                     @php($canceled_by_restaurant = $canceled_by_restaurant ? $canceled_by_restaurant->value : 0)
                                     <div class="form-group mb-0">
                                         <label class="input-label text-capitalize d-flex alig-items-center"><span
-                                                class="line--limit-1">{{ translate('Can_a_Restaurant_Cancel_Order') }}
+                                                class="line--limit-1">{{ translate('Can_a_Vendor_Cancel_Order') }}
                                             </span><span class="input-label-secondary text--title" data-toggle="tooltip"
                                                 data-placement="right"
                                                 data-original-title="{{ translate('Admin_can_enable/disable_restaurants’_order_cancellation_option.') }}">
@@ -81,7 +81,7 @@
                                             class="toggle-switch h--45px toggle-switch-sm d-flex justify-content-between border rounded px-3 py-0 form-control">
                                             <span class="pr-1 d-flex align-items-center switch--label">
                                                 <span class="line--limit-1">
-                                                    {{ translate('messages.restaurant_self_registration') }}
+                                                    {{ translate('messages.Vendor_self_registration') }}
                                                 </span>
                                                 <span class="form-label-secondary text-danger d-flex"
                                                     data-toggle="tooltip" data-placement="right"
@@ -113,7 +113,7 @@
                                 </div>
 
 
-                                <div class="col-lg-4 col-sm-6">
+                                <!-- <div class="col-lg-4 col-sm-6">
                                     @php($cash_in_hand_overflow = \App\Models\BusinessSetting::where('key', 'cash_in_hand_overflow_restaurant')->first())
                                     @php($cash_in_hand_overflow = $cash_in_hand_overflow ? $cash_in_hand_overflow->value : 0)
                                     <div class="form-group mb-0">
@@ -152,13 +152,13 @@
                                             </span>
                                         </label>
                                     </div>
-                                </div>
+                                </div> -->
 
 
 
 
 
-                                <div class="col-lg-4 col-sm-6">
+                                <!-- <div class="col-lg-4 col-sm-6">
                                     @php($cash_in_hand_overflow_restaurant_amount = \App\Models\BusinessSetting::where('key', 'cash_in_hand_overflow_restaurant_amount')->first())
                                     <div class="form-group mb-0">
                                         <label class=" text-capitalize"
@@ -178,10 +178,10 @@
                                             id="cash_in_hand_overflow_restaurant_amount" min="0" step=".001"
                                             value="{{ $cash_in_hand_overflow_restaurant_amount ? $cash_in_hand_overflow_restaurant_amount->value : '' }}"  {{ $cash_in_hand_overflow  == 1 ? 'required' : 'readonly' }} >
                                     </div>
-                                </div>
+                                </div> -->
 
 
-                                <div class="col-lg-4 col-sm-6">
+                                <!-- <div class="col-lg-4 col-sm-6">
                                     @php($min_amount_to_pay_restaurant = \App\Models\BusinessSetting::where('key', 'min_amount_to_pay_restaurant')->first())
                                     <div class="form-group mb-0">
                                         <label class=" text-capitalize"
@@ -199,7 +199,7 @@
                                             id="min_amount_to_pay_restaurant" min="0" step=".001"
                                             value="{{ $min_amount_to_pay_restaurant ? $min_amount_to_pay_restaurant->value : '' }}"  {{ $cash_in_hand_overflow  == 1 ? 'required' : 'readonly' }} >
                                     </div>
-                                </div>
+                                </div> -->
 
 
                             </div>

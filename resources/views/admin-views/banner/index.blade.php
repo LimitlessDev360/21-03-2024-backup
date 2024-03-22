@@ -25,7 +25,7 @@
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
-                                    @if ($language)
+                                    <!-- @if ($language)
                                     <ul class="nav nav-tabs mb-3 border-0">
                                         <li class="nav-item">
                                             <a class="nav-link lang_link active"
@@ -39,12 +39,11 @@
                                                     id="{{ $lang }}-link">{{ \App\CentralLogics\Helpers::get_language_name($lang) . '(' . strtoupper($lang) . ')' }}</a>
                                             </li>
                                         @endforeach
-                                    </ul>
+                                    </ul> -->
                                     <div class="lang_form" id="default-form">
                                         <div class="form-group">
                                             <label class="input-label"
                                                 for="default_title">{{ translate('messages.title') }}
-                                                (Default)
                                             </label>
                                             <input type="text" name="title[]" id="default_title"
                                                 class="form-control" placeholder="{{ translate('messages.new_banner') }}"
@@ -59,7 +58,6 @@
                                         <div class="form-group">
                                             <label class="input-label"
                                                 for="{{ $lang }}_title">{{ translate('messages.title') }}
-                                                ({{ strtoupper($lang) }})
                                             </label>
                                             <input type="text" name="title[]" id="{{ $lang }}_title"
                                                 class="form-control" placeholder="{{ translate('messages.new_banner') }}"
@@ -72,7 +70,7 @@
                             <div id="default-form">
                                 <div class="form-group">
                                     <label class="input-label"
-                                        for="exampleFormControlInput1">{{ translate('messages.title') }} ({{ translate('messages.default') }})</label>
+                                        for="exampleFormControlInput1">{{ translate('messages.title') }}</label>
                                     <input type="text" name="title[]" class="form-control"
                                         placeholder="{{ translate('messages.new_banner') }}" >
                                 </div>
@@ -98,21 +96,21 @@
                                     <div class="form-group">
                                         <label class="input-label" for="exampleFormControlInput1">{{translate('messages.banner_type')}}</label>
                                         <select name="banner_type" id="banner_type" class="form-control banner_type_change">
-                                            <option value="restaurant_wise">{{translate('messages.restaurant_wise')}}</option>
-                                            <option value="item_wise">{{translate('messages.food_wise')}}</option>
+                                            <option value="restaurant_wise">{{translate('messages.vendor_wise')}}</option>
+                                            <option value="item_wise">{{translate('messages.product_wise')}}</option>
                                         </select>
                                     </div>
                                     <div class="form-group" id="restaurant_wise">
-                                        <label class="input-label" for="exampleFormControlSelect1">{{translate('messages.restaurant')}}<span
+                                        <label class="input-label" for="exampleFormControlSelect1">{{translate('messages.vendor')}}<span
                                                 class="input-label-secondary"></span></label>
-                                        <select name="restaurant_id" class="js-data-example-ajax form-control"  title="Select Restaurant">
+                                        <select name="restaurant_id" class="js-data-example-ajax form-control"  title="Select Vendor">
                                             <option selected disabled>{{ translate('messages.Select') }}</option>
                                         </select>
                                     </div>
                                     <div class="form-group" id="item_wise">
-                                        <label class="input-label" for="exampleFormControlInput1">{{translate('messages.select_food')}}</label>
-                                        <select name="item_id" id="choice_item" class="form-control js-select2-custom get-foods" placeholder="{{translate('messages.select_food')}}">
-                                            <option selected disabled>{{ translate('select_food') }}</option>
+                                        <label class="input-label" for="exampleFormControlInput1">{{translate('messages.select_product')}}</label>
+                                        <select name="item_id" id="choice_item" class="form-control js-select2-custom get-foods" placeholder="{{translate('messages.select_product')}}">
+                                            <option selected disabled>{{ translate('select_product') }}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -202,7 +200,7 @@
 
                                     </span>
                                     </td>
-                                    <td>{{translate('messages.'.$banner['type'])}}</td>
+                                    <td>{{translate('messages.'.$banner['type'])== "Restaurant wise" ? "Vendor wise": "Product wise"}}</td>
                                     <td>
                                         <label class="toggle-switch toggle-switch-sm" for="statusCheckbox{{$banner->id}}">
                                             <input type="checkbox" data-url="{{route('admin.banner.status',[$banner['id'],$banner->status?0:1])}}" class="toggle-switch-input redirect-url" id="statusCheckbox{{$banner->id}}" {{$banner->status?'checked':''}}>
