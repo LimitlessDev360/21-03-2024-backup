@@ -1285,7 +1285,7 @@
                                 <span
                                     class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{ translate('messages.3rd_Party_&_Configurations') }}</span>
                             </a>
-                            <!-- <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
+                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
                                 style="display: {{ Request::is('admin/business-settings/deliveryman/join-us/*') || Request::is('admin/business-settings/restaurant/join-us/*') || Request::is('admin/business-settings/fcm-*')|| Request::is('admin/business-settings/payment-method')  || Request::is('admin/business-settings/sms-module')|| Request::is('admin/business-settings/mail-config') || Request::is('admin/social-login/view') ||Request::is('admin/business-settings/config*') || Request::is('admin/business-settings/recaptcha*') || Request::is('admin/business-settings/offline*') || Request::is('admin/login-url/login-page-setup*')? 'block' : 'none' }}  ">
 
 
@@ -1315,23 +1315,23 @@
                                     </a>
                                 </li>
                                 @if (\App\CentralLogics\Helpers::get_mail_status('offline_payment_status'))
-                                <li class="nav-item {{ Request::is('admin/business-settings/offline*') ? 'active' : '' }}">
+                                <!-- <li class="nav-item {{ Request::is('admin/business-settings/offline*') ? 'active' : '' }}">
                                     <a class="nav-link " href="{{ route('admin.business-settings.offline') }}" title="{{ translate('messages.Offline_Payment_Setup') }}">
                                         <span class="tio-circle nav-indicator-icon"></span>
                                         <span class="text-truncate">{{ translate('messages.Offline_Payment_Setup') }}</span>
                                     </a>
-                                </li>
+                                </li> -->
                                 @endif
 
-                                <li class="nav-item @yield('reg_page')">
+                                <!-- <li class="nav-item @yield('reg_page')">
                                     <a class="nav-link " href="{{ route('admin.business-settings.restaurant_page_setup') }}" title="{{ translate('messages.Join_us_page_setup') }}">
                                         <span class="tio-circle nav-indicator-icon"></span>
                                         <span class="text-truncate">{{ translate('messages.Join_us_page_setup') }}</span>
                                     </a>
-                                </li>
+                                </li> -->
 
 
-                            </ul> -->
+                            </ul>
                         </li>
 
                         <li
@@ -1344,12 +1344,12 @@
                         </li>
 
                     <li class="navbar-vertical-aside-has-menu   {{ Request::is('admin/react-landing-page*') ||   Request::is('admin/landing-page*')  ? 'active' : '' }}">
-                        <!-- <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:"
+                        <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:"
                             title="{{ translate('landing_page_settings') }}">
-                            <span class="tio-files nav-icon"></span> -->
-                            <!-- <span
-                                class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{ translate('messages.landing_page_settings') }}</span> -->
-                        <!-- </a>
+                            <span class="tio-files nav-icon"></span>
+                           <span
+                                class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{ translate('messages.landing_page_settings') }}</span>
+                        </a>
                         <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
                             style="display: {{ Request::is('admin/react-landing-page*') ||   Request::is('admin/landing-page*')  ? 'block' : 'none' }}">
 
@@ -1361,9 +1361,9 @@
                                 <span
                                     class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{ translate('messages.Admin_landing_page') }}</span>
                             </a>
-                        </li> -->
+                        </li>
 
-                            <!-- <li class="nav-item {{ Request::is('admin/react-landing-page*') ? 'active' : '' }}">
+                           <!-- <li class="nav-item {{ Request::is('admin/react-landing-page*') ? 'active' : '' }}">
                             <a class="nav-link"
                                 href="{{ route('admin.react_landing_page.react_header') }}"
                                 title="{{ translate('messages.React_landing_page') }} ">
@@ -1373,8 +1373,8 @@
                             </a>
                         </li> -->
 
-                        <!-- </ul>
-                    </li> -->
+                         </ul>
+                    </li>
 
                         <!-- <li class="navbar-vertical-aside-has-menu {{ Request::is('admin/business-settings/react*') ? 'active' : '' }}">
                             <a class="nav-link " href="{{ route('admin.business-settings.react-setup') }}"
