@@ -1165,12 +1165,12 @@
                         @endif
                         <!-- End Subscription -->
 
-                        <!-- <li class="navbar-vertical-aside-has-menu {{ Request::is('admin/business-settings/email-setup*') ? 'active' : '' }}">
+                        <li class="navbar-vertical-aside-has-menu {{ Request::is('admin/business-settings/email-setup*') ? 'active' : '' }}">
                             <a class="nav-link " href="{{ route('admin.business-settings.email-setup',['admin','forgot-password']) }}" title="{{ translate('messages.email_template') }}">
                                 <span class="tio-email nav-icon"></span>
                                 <span class="text-truncate">{{ translate('messages.email_template') }}</span>
                             </a>
-                        </li> -->
+                        </li>
 
                         <!-- <li class="navbar-vertical-aside-has-menu {{ Request::is('admin/business-settings/theme-settings*') ? 'active' : '' }}">
                             <a class="nav-link " href="{{ route('admin.business-settings.theme-settings') }}"
