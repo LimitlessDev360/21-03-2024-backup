@@ -66,7 +66,7 @@ INSERT INTO `data_settings` (`id`, `key`, `value`, `type`, `created_at`, `update
 (65, 'testimonial_title', 'We satisfied some Customer & Restaurant Owners', 'admin_landing_page', '2023-06-21 09:24:53', '2023-06-21 09:24:53'),
 (66, 'news_letter_title', 'Sign Up to Our Newsletter', 'admin_landing_page', '2023-06-21 09:25:14', '2023-06-21 09:25:14'),
 (67, 'news_letter_sub_title', 'Receive Latest News, Updates and Many Other News Every Week', 'admin_landing_page', '2023-06-21 09:25:14', '2023-06-21 09:25:14'),
-(68, 'footer_data', 'Stackfood is a complete package! It\'s time to empower your online food business with powerful features!', 'admin_landing_page', '2023-06-21 09:26:16', '2023-06-21 09:26:16'),
+(68, 'footer_data', 'Butcher is a complete package! It\'s time to empower your online food business with powerful features!', 'admin_landing_page', '2023-06-21 09:26:16', '2023-06-21 09:26:16'),
 (69, 'react_header_title', 'StackFood', 'react_landing_page', '2023-06-21 09:41:59', '2023-06-21 09:41:59'),
 (70, 'react_header_sub_title', 'Find Restaurants Near You', 'react_landing_page', '2023-06-21 09:41:59', '2023-06-21 09:41:59'),
 (71, 'react_header_image', '2023-06-21-64927187b29c4.png', 'react_landing_page', '2023-06-21 09:41:59', '2023-06-21 09:41:59'),

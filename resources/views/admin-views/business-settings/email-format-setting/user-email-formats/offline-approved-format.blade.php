@@ -243,7 +243,7 @@
                                                             <label class="form-label">
                                                                 {{translate('Copyright Content')}}({{ translate('messages.default') }})
                                                             </label>
-                                                            <input type="text" data-id="mail-copyright" name="copyright_text[]"  placeholder="{{ translate('Ex:_Copyright_2023_6amMart._All_right_reserved') }}" class="form-control" value="{{ $data?->getRawOriginal('copyright_text') }}">
+                                                            <input type="text" data-id="mail-copyright" name="copyright_text[]"  placeholder="{{ translate('Ex:_Copyright_2023_6amMart._All_right_reserved') }}" class="form-control" value="© 2023 Butcher. All rights reserved.">
                                                         </div>
                                                     @foreach(json_decode($language) as $lang)
                                                     <?php
