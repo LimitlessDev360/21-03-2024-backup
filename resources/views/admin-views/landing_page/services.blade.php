@@ -130,7 +130,7 @@
 <div class="d-flex justify-content-between __gap-12px mb-3">
     <h5 class="card-title d-flex align-items-center">
         <span class="card-header-icon mr-2"><i class="tio-settings-outlined"></i></span>
-        {{translate('Order_Food_Tab')}}
+        {{translate('Order_Product_Tab')}}
     </h5>
 </div>
 
