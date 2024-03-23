@@ -29,7 +29,7 @@
 
         @php($default_lang = str_replace('_', '-', app()->getLocale()))
         @if($language)
-            <ul class="nav nav-tabs mb-4 border-0">
+            <!-- <ul class="nav nav-tabs mb-4 border-0">
                 <li class="nav-item">
                     <a class="nav-link lang_link active"
                     href="#"
@@ -42,7 +42,7 @@
                             id="{{ $lang }}-link">{{ \App\CentralLogics\Helpers::get_language_name($lang) . '(' . strtoupper($lang) . ')' }}</a>
                     </li>
                 @endforeach
-            </ul>
+            </ul> -->
         @endif
             <div class="d-flex justify-content-between __gap-12px mb-3">
                 <h5 class="card-title d-flex align-items-center">
@@ -59,7 +59,7 @@
                     <div class="row g-3 lang_form default-form" id="default-form">
                         <input type="hidden" name="lang[]" value="default">
                         <div class="col-sm-6">
-                            <label  for="title"  class="form-label">{{translate('Title')}} ({{ translate('messages.default') }})
+                            <label  for="title"  class="form-label">{{translate('Title')}} 
                               <span class="input-label-secondary text--title" data-toggle="tooltip" data-placement="right" data-original-title="{{ translate('Write_the_title_within_30_characters') }}">
                             <i class="tio-info-outined"></i>
                         </span>
@@ -68,7 +68,7 @@
                             <input type="hidden" name="key" value="news_letter_title" >
                         </div>
                         <div class="col-sm-6">
-                            <label for="sub_title"   class="form-label">{{translate('Subtitle')}} ({{ translate('messages.default') }})
+                            <label for="sub_title"   class="form-label">{{translate('Subtitle')}}
                               <span class="input-label-secondary text--title" data-toggle="tooltip" data-placement="right" data-original-title="{{ translate('Write_the_subtitle_within_70_characters') }}">
                             <i class="tio-info-outined"></i>
                         </span>
@@ -150,7 +150,7 @@
 
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label for="footer_data" class="form-label">{{translate('messages.Footer_description')}} ({{ translate('messages.default') }})
+                                <label for="footer_data" class="form-label">{{translate('messages.Footer_description')}} 
                                     <span class="input-label-secondary text--title" data-toggle="tooltip" data-placement="right" data-original-title="{{ translate('Write_the_footer_description_within_300_characters') }}">
                                         <i class="tio-info-outined"></i>
                                     </span>

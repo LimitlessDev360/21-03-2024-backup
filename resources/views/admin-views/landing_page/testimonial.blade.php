@@ -31,7 +31,7 @@
 
         @php($default_lang = str_replace('_', '-', app()->getLocale()))
         @if($language)
-            <ul class="nav nav-tabs mb-4 border-0">
+            <!-- <ul class="nav nav-tabs mb-4 border-0">
                 <li class="nav-item">
                     <a class="nav-link lang_link active"
                        href="#"
@@ -44,7 +44,7 @@
                            id="{{ $lang }}-link">{{ Helpers::get_language_name($lang) . '(' . strtoupper($lang) . ')' }}</a>
                     </li>
                 @endforeach
-            </ul>
+            </ul> -->
         @endif
 
 
@@ -55,7 +55,7 @@
                     <div class="row g-3 lang_form" id="default-form">
                         <div class="col-sm-12">
                             <label for="testimonial_title" class="form-label">{{translate('Title')}}
-                                ({{translate('default')  }})
+                              
                                 <span class="input-label-secondary text--title" data-toggle="tooltip"
                                       data-placement="right"
                                       data-original-title="{{translate('Write_the_title_within_60_characters')}}">

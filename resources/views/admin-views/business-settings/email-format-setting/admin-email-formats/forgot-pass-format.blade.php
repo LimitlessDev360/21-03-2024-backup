@@ -127,7 +127,7 @@
                                         @if ($language)
                                             <div class="__bg-F8F9FC-card default-form lang_form" id="default-form">
                                                 <div class="form-group">
-                                                    <label class="form-label">{{translate('Main_Title')}}({{ translate('messages.default') }})
+                                                    <label class="form-label">{{translate('Main_Title')}}
                                                         <span class="input-label-secondary" data-toggle="tooltip" data-placement="right" data-original-title="{{ translate('Write_the_main_title_within_45_characters')}}">
                                                             <img src="{{ dynamicAsset('/public/assets/admin/img/info-circle.svg') }}" alt="{{ translate('messages.show_hide_food_menu') }}">
                                                         </span>
@@ -136,7 +136,7 @@
                                                 </div>
                                                 <div class="form-group mb-0">
                                                     <label class="form-label">
-                                                        {{ translate('Mail_Body_Message') }}({{ translate('messages.default') }})
+                                                        {{ translate('Mail_Body_Message') }}
                                                         <span class="input-label-secondary text--title" data-toggle="tooltip" data-placement="right" data-original-title="{{ translate('Write_the_mail_body_message_within_75_words')}}">
                                                             <i class="tio-info-outined"></i>
                                                         </span>
@@ -220,7 +220,7 @@
                                                 @if ($language)
                                                         <div class="form-group lang_form default-form">
                                                             <label class="form-label">
-                                                                {{translate('Section_Text')}}({{ translate('messages.default') }})
+                                                                {{translate('Section_Text')}}
                                                                 <span class="input-label-secondary text--title" data-toggle="tooltip" data-placement="right" data-original-title="{{ translate('Write_the_footer_text_within_75_characters')}}">
                                                                     <i class="tio-info-outined"></i>
                                                                 </span>
@@ -269,7 +269,7 @@
                                                 @if ($language)
                                                         <div class="form-group lang_form default-form">
                                                             <label class="form-label">
-                                                                {{translate('Copyright_Content')}}({{ translate('messages.default') }})
+                                                                {{translate('Copyright_Content')}}
                                                                 <span class="input-label-secondary text--title" data-toggle="tooltip" data-placement="right" data-original-title="{{ translate('Write_the_Copyright_Content_within_50_characters')}}">
                                                                     <i class="tio-info-outined"></i>
                                                                 </span>

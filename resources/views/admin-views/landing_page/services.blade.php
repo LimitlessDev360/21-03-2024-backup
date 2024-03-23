@@ -29,7 +29,7 @@
 
     @php($default_lang = str_replace('_', '-', app()->getLocale()))
     @if($language)
-    <ul class="nav nav-tabs mb-4 border-0">
+    <!-- <ul class="nav nav-tabs mb-4 border-0">
         <li class="nav-item">
             <a class="nav-link lang_link active" href="#" id="default-link">{{translate('messages.default')}}</a>
         </li>
@@ -38,7 +38,7 @@
             <a class="nav-link lang_link" href="#" id="{{ $lang }}-link">{{ \App\CentralLogics\Helpers::get_language_name($lang) . '(' . strtoupper($lang) . ')' }}</a>
         </li>
         @endforeach
-    </ul>
+    </ul> -->
     @endif
     <div class="d-flex justify-content-between __gap-12px mb-3">
         <h5 class="card-title d-flex align-items-center">

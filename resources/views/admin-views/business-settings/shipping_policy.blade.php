@@ -34,7 +34,7 @@
                     @php($language = $language->value ?? null)
                     @php($default_lang = str_replace('_', '-', app()->getLocale()))
                     @if ($language)
-                    <ul class="nav nav-tabs mb-4 border-0">
+                    <!-- <ul class="nav nav-tabs mb-4 border-0">
                         <li class="nav-item">
                             <a class="nav-link lang_link active"
                             href="#"
@@ -48,7 +48,7 @@
                             id="{{ $lang }}-link">{{ \App\CentralLogics\Helpers::get_language_name($lang) . '(' . strtoupper($lang) . ')' }}</a>
                         </li>
                         @endforeach
-                    </ul>
+                    </ul> -->
                     @endif
 
                     <div class="form-group lang_form" id="default-form">
