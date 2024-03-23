@@ -5,19 +5,19 @@
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('admin/business-settings/email-setup/restaurant/registration') ? 'active' : '' }}"
                 href="{{ route('admin.business-settings.email-setup', ['restaurant','registration']) }}">
-                    {{translate('New_Restaurant_Registration')}}
+                    {{translate('New_Vendor_Registration')}}
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('admin/business-settings/email-setup/restaurant/approve') ? 'active' : '' }}"
                 href="{{ route('admin.business-settings.email-setup', ['restaurant','approve']) }}">
-                    {{translate('New_Restaurant_Approval')}}
+                    {{translate('New_Vendor_Approval')}}
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('admin/business-settings/email-setup/restaurant/deny') ? 'active' : '' }}"
                 href="{{ route('admin.business-settings.email-setup', ['restaurant','deny']) }}">
-                    {{translate('New_Restaurant_Rejection')}}
+                    {{translate('New_Vendor_Rejection')}}
                 </a>
             </li>
             <li class="nav-item">

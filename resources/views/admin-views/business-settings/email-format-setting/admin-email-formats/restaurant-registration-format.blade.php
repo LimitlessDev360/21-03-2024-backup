@@ -33,7 +33,7 @@
                         <div class="maintainance-mode-toggle-bar d-flex flex-wrap justify-content-between border rounded align-items-center p-2">
                             <h5 class="text-capitalize m-0 text--primary pl-2">
                                 {{translate('Receive_Mail_On_‘New_Vendor_Registration’')}}
-                                <span class="input-label-secondary" data-toggle="tooltip" data-placement="right" data-original-title="{{ translate('If_a_restaurant_registers_from_the_customer_website_or_restaurant_app,_the_admin_will_receive_an_automated_email.') }}">
+                                <span class="input-label-secondary" data-toggle="tooltip" data-placement="right" data-original-title="{{ translate('If_a_vendor_registers_from_the_customer_website_or_vendor_app,_the_admin_will_receive_an_automated_email.') }}">
                                     <img src="{{ dynamicAsset('/public/assets/admin/img/info-circle.svg') }}" alt="{{ translate('messages.show_hide_food_menu') }}">
                                 </span>
                             </h5>
@@ -44,10 +44,10 @@
                                        data-type="status"
                                        data-image-on='{{dynamicAsset('/public/assets/admin/img/modal')}}/place-order-on.png'
                                        data-image-off="{{dynamicAsset('/public/assets/admin/img/modal')}}/place-order-off.png"
-                                       data-title-on="{{translate('Want_to_enable_Restaurant_Registration_mail?')}}"
-                                       data-title-off="{{translate('Want_to_disable_Restaurant_Registration_mail?')}}"
-                                       data-text-on="<p>{{translate('If_enabled,_the_admin_will_get_an_automated_email_when_a_Restaurant_registers.')}}</p>"
-                                       data-text-off="<p>{{translate('If_disabled,_the_admin_will_not_get_an_automated_email_when_a_Restaurant_registers.')}}</p>"
+                                       data-title-on="{{translate('Want_to_enable_Vendor_Registration_mail?')}}"
+                                       data-title-off="{{translate('Want_to_disable_Vendor_Registration_mail?')}}"
+                                       data-text-on="<p>{{translate('If_enabled,_the_admin_will_get_an_automated_email_when_a_Vendor_registers.')}}</p>"
+                                       data-text-off="<p>{{translate('If_disabled,_the_admin_will_not_get_an_automated_email_when_a_Vendor_registers.')}}</p>"
                                        id="mail-status" {{$mail_status == '1'?'checked':''}}>
                                 <span class="toggle-switch-label text mb-0">
                                     <span class="toggle-switch-indicator"></span>

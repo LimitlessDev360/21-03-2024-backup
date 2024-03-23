@@ -33,7 +33,7 @@
                         <div class="maintainance-mode-toggle-bar d-flex flex-wrap justify-content-between border rounded align-items-center p-2">
                             <h5 class="text-capitalize m-0 text--primary pl-2">
                                 {{translate('Send_Mail_on_Campaign_Join_Rejection')}}
-                                <span class="input-label-secondary" data-toggle="tooltip" data-placement="right" data-original-title="{{ translate('If_a_restaurant_requests_to_join_a_Campaign_and_Admin_rejects_their_joining_request,_they_will_get_an_automated_Rejection_email.')}}">
+                                <span class="input-label-secondary" data-toggle="tooltip" data-placement="right" data-original-title="{{ translate('If_a_vendor_requests_to_join_a_Campaign_and_Admin_rejects_their_joining_request,_they_will_get_an_automated_Rejection_email.')}}">
                                     <img src="{{ dynamicAsset('/public/assets/admin/img/info-circle.svg') }}" alt="{{ translate('messages.show_hide_food_menu') }}">
                                 </span>
                             </h5>
@@ -46,8 +46,8 @@
                                 data-image-off="{{dynamicAsset('/public/assets/admin/img/modal')}}/place-order-off.png"
                                 data-title-on="{{translate('Want_to_enable_Campaign_deny_mail?')}}"
                                 data-title-off="{{translate('Want_to_disable_Campaign_deny_mail?')}}"
-                                data-text-on="<p>{{translate('If_enabled,_restaurants_will_receive_an_email_on_campaign_joining_Rejection.')}}</p>"
-                                data-text-off="<p>{{translate('If_disabled,_restaurants_will_not_receive_any_email_on_campaign_joining_Rejection.')}}</p>"
+                                data-text-on="<p>{{translate('If_enabled,_vendors_will_receive_an_email_on_campaign_joining_Rejection.')}}</p>"
+                                data-text-off="<p>{{translate('If_disabled,_vendors_will_not_receive_any_email_on_campaign_joining_Rejection.')}}</p>"
                                 id="mail-status" {{$mail_status == '1'?'checked':''}}>
 
                                 <span class="toggle-switch-label text mb-0">
@@ -84,7 +84,7 @@
                                         @php($language = $language->value ?? null)
                                         @php($default_lang = str_replace('_', '-', app()->getLocale()))
                                         @if($language)
-                                            <ul class="nav nav-tabs m-0 border-0">
+                                            <!-- <ul class="nav nav-tabs m-0 border-0">
                                                 <li class="nav-item">
                                                     <a class="nav-link lang_link active"
                                                     href="#"
@@ -97,15 +97,15 @@
                                                             id="{{ $lang }}-link">{{ \App\CentralLogics\Helpers::get_language_name($lang) . '(' . strtoupper($lang) . ')' }}</a>
                                                     </li>
                                                 @endforeach
-                                            </ul>
+                                            </ul> -->
                                         @endif
                                         <div class="d-flex justify-content-end">
-                                            <div class="text--primary-2 py-1 d-flex flex-wrap align-items-center py-1" type="button" data-toggle="modal" data-target="#instructions">
+                                            <!-- <div class="text--primary-2 py-1 d-flex flex-wrap align-items-center py-1" type="button" data-toggle="modal" data-target="#instructions">
                                                 <strong class="mr-2">{{translate('Read_Instructions')}}</strong>
                                                 <div class="blinkings">
                                                     <i class="tio-info-outined"></i>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                     <div>
@@ -128,7 +128,7 @@
                                         @if ($language)
                                             <div class="__bg-F8F9FC-card default-form lang_form" id="default-form">
                                                 <div class="form-group">
-                                                    <label class="form-label">{{translate('Main_Title')}}({{ translate('messages.default') }})
+                                                    <label class="form-label">{{translate('Main_Title')}}
                                                         <span class="input-label-secondary" data-toggle="tooltip" data-placement="right" data-original-title="{{ translate('Write_the_main_title_within_45_characters')}}">
                                                             <img src="{{ dynamicAsset('/public/assets/admin/img/info-circle.svg') }}" alt="{{ translate('messages.show_hide_food_menu') }}">
                                                         </span>
@@ -137,7 +137,7 @@
                                                 </div>
                                                 <div class="form-group mb-0">
                                                     <label class="form-label">
-                                                        {{ translate('Mail_Body_Message') }}({{ translate('messages.default') }})
+                                                        {{ translate('Mail_Body_Message') }}
                                                         <span class="input-label-secondary text--title" data-toggle="tooltip" data-placement="right" data-original-title="{{ translate('Write_the_mail_body_message_within_75_words')}}">
                                                             <i class="tio-info-outined"></i>
                                                         </span>
@@ -234,7 +234,7 @@
                                                 @if ($language)
                                                         <div class="form-group lang_form default-form">
                                                             <label class="form-label">
-                                                                {{translate('Section_Text')}}({{ translate('messages.default') }})
+                                                                {{translate('Section_Text')}}
                                                                 <span class="input-label-secondary text--title" data-toggle="tooltip" data-placement="right" data-original-title="{{ translate('Write_the_footer_text_within_75_characters')}}">
                                                                     <i class="tio-info-outined"></i>
                                                                 </span>
@@ -280,7 +280,7 @@
                                                 @if ($language)
                                                        <div class="form-group lang_form default-form">
                                                             <label class="form-label">
-                                                                {{translate('Copyright_Content')}}({{ translate('messages.default') }})
+                                                                {{translate('Copyright_Content')}}
                                                                 <span class="input-label-secondary text--title" data-toggle="tooltip" data-placement="right" data-original-title="{{ translate('Write_the_Copyright_Content_within_50_characters')}}">
                                                                     <i class="tio-info-outined"></i>
                                                                 </span>

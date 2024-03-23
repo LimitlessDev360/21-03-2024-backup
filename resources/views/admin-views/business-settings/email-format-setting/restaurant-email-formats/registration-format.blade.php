@@ -32,8 +32,8 @@
                     <div class="card-body">
                         <div class="maintainance-mode-toggle-bar d-flex flex-wrap justify-content-between border rounded align-items-center p-2">
                             <h5 class="text-capitalize m-0 text--primary pl-2">
-                                {{translate('Send Mail on Restaurant Registration ?')}}
-                                <span class="input-label-secondary" data-toggle="tooltip" data-placement="right" data-original-title="{{ translate('If_a_restaurant_registers_from_the_Customer_app_or_Website,_Admin_Landing_Page_or_Restaurant_app,_they_will_get_a_confirmation_email.') }}">
+                                {{translate('Send Mail on Vendor Registration ?')}}
+                                <span class="input-label-secondary" data-toggle="tooltip" data-placement="right" data-original-title="{{ translate('If_a_vendor_registers_from_the_Customer_app_or_Website,_Admin_Landing_Page_or_Vendor_app,_they_will_get_a_confirmation_email.') }}">
                                     <img src="{{ dynamicAsset('/public/assets/admin/img/info-circle.svg') }}" alt="{{ translate('messages.show_hide_food_menu') }}">
                                 </span>
                             </h5>
@@ -43,10 +43,10 @@
                                 data-type="status"
                                 data-image-on='{{dynamicAsset('/public/assets/admin/img/modal')}}/place-order-on.png'
                                 data-image-off="{{dynamicAsset('/public/assets/admin/img/modal')}}/place-order-off.png"
-                                data-title-on="{{translate('Want_to_enable_Restaurant_Registration_mail?')}}"
-                                data-title-off="{{translate('Want_to_disable_Restaurant_Registration_mail?')}}"
-                                data-text-on="<p>{{translate('If_enabled,_Restaurants_will_get_a_registration_confirmation_email_when_they_register.')}}</p>"
-                                data-text-off="<p>{{translate('If_disabled,_restaurants_will_not_get_a_registration_confirmation_email_when_they_register.')}}</p>"
+                                data-title-on="{{translate('Want_to_enable_Vendor_Registration_mail?')}}"
+                                data-title-off="{{translate('Want_to_disable_Vendor_Registration_mail?')}}"
+                                data-text-on="<p>{{translate('If_enabled,_Vendors_will_get_a_registration_confirmation_email_when_they_register.')}}</p>"
+                                data-text-off="<p>{{translate('If_disabled,_Vendors_will_not_get_a_registration_confirmation_email_when_they_register.')}}</p>"
                                 id="mail-status" {{$mail_status == '1'?'checked':''}}>
 
                                 <span class="toggle-switch-label text mb-0">
@@ -83,7 +83,7 @@
                                         @php($language = $language->value ?? null)
                                         @php($default_lang = str_replace('_', '-', app()->getLocale()))
                                         @if($language)
-                                            <ul class="nav nav-tabs m-0 border-0">
+                                            <!-- <ul class="nav nav-tabs m-0 border-0">
                                                 <li class="nav-item">
                                                     <a class="nav-link lang_link active"
                                                     href="#"
@@ -96,15 +96,15 @@
                                                             id="{{ $lang }}-link">{{ \App\CentralLogics\Helpers::get_language_name($lang) . '(' . strtoupper($lang) . ')' }}</a>
                                                     </li>
                                                 @endforeach
-                                            </ul>
+                                            </ul> -->
                                         @endif
                                         <div class="d-flex justify-content-end">
-                                            <div class="text--primary-2 py-1 d-flex flex-wrap align-items-center py-1" type="button" data-toggle="modal" data-target="#instructions">
+                                            <!-- <div class="text--primary-2 py-1 d-flex flex-wrap align-items-center py-1" type="button" data-toggle="modal" data-target="#instructions">
                                                 <strong class="mr-2">{{translate('Read_Instructions')}}</strong>
                                                 <div class="blinkings">
                                                     <i class="tio-info-outined"></i>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                     <div>
@@ -127,7 +127,7 @@
                                         @if ($language)
                                             <div class="__bg-F8F9FC-card default-form lang_form" id="default-form">
                                                 <div class="form-group">
-                                                    <label class="form-label">{{translate('Main_Title')}}({{ translate('messages.default') }})
+                                                    <label class="form-label">{{translate('Main_Title')}}
                                                         <span class="input-label-secondary" data-toggle="tooltip" data-placement="right" data-original-title="{{ translate('Write_the_main_title_within_45_characters')}}">
                                                             <img src="{{ dynamicAsset('/public/assets/admin/img/info-circle.svg') }}" alt="{{ translate('messages.show_hide_food_menu') }}">
                                                         </span>

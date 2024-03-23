@@ -33,8 +33,8 @@
                         <div class="maintainance-mode-toggle-bar d-flex flex-wrap justify-content-between border rounded align-items-center p-2">
                             <h5 class="text-capitalize m-0 text--primary pl-2">
                                 {{translate('Send_Mail_on_Withdraw_Approval')}}
-                                <span class="input-label-secondary" data-toggle="tooltip" data-placement="right" data-original-title="{{ translate('If_a_restaurant_requests_a_withdrawal_and_Admin_approves_it,_the_restaurant_will_get_an_automated_Withdraw_Approval_email_from_the_system.')}}">
-                                    <img src="{{ dynamicAsset('/public/assets/admin/img/info-circle.svg') }}" alt="{{ translate('messages.show_hide_food_menu') }}">
+                                <span class="input-label-secondary" data-toggle="tooltip" data-placement="right" data-original-title="{{ translate('If_a_vendor_requests_a_withdrawal_and_Admin_approves_it,_the_vendor_will_get_an_automated_Withdraw_Approval_email_from_the_system.')}}">
+                                    <img src="{{ dynamicAsset('/public/assets/admin/img/info-circle.svg') }}" alt="{{ translate('messages.show_hide_product_menu') }}">
                                 </span>
                             </h5>
                             <label class="toggle-switch toggle-switch-sm">
@@ -46,8 +46,8 @@
                                 data-image-off="{{dynamicAsset('/public/assets/admin/img/modal')}}/place-order-off.png"
                                 data-title-on="{{translate('Want_to_enable_Withdraw_approve_mail?')}}"
                                 data-title-off="{{translate('Want_to_disable_Withdraw_approve_mail?')}}"
-                                data-text-on="<p>{{translate('If_enabled,_restaurants_will_receive_an_approval_mail_for_requesting_a_withdrawal.')}}</p>"
-                                data-text-off="<p>{{translate('If_disabled,_restaurants_will_not_receive_any_Withdraw_Approval_mail.')}}</p>"
+                                data-text-on="<p>{{translate('If_enabled,_vendors_will_receive_an_approval_mail_for_requesting_a_withdrawal.')}}</p>"
+                                data-text-off="<p>{{translate('If_disabled,_vendors_will_not_receive_any_Withdraw_Approval_mail.')}}</p>"
                                 id="mail-status" {{$mail_status == '1'?'checked':''}}>
                                 <span class="toggle-switch-label text mb-0">
                                     <span class="toggle-switch-indicator"></span>
@@ -83,7 +83,7 @@
                                         @php($language = $language->value ?? null)
                                         @php($default_lang = str_replace('_', '-', app()->getLocale()))
                                         @if($language)
-                                            <ul class="nav nav-tabs m-0 border-0">
+                                            <!-- <ul class="nav nav-tabs m-0 border-0">
                                                 <li class="nav-item">
                                                     <a class="nav-link lang_link active"
                                                     href="#"
@@ -96,15 +96,15 @@
                                                             id="{{ $lang }}-link">{{ \App\CentralLogics\Helpers::get_language_name($lang) . '(' . strtoupper($lang) . ')' }}</a>
                                                     </li>
                                                 @endforeach
-                                            </ul>
+                                            </ul> -->
                                         @endif
                                         <div class="d-flex justify-content-end">
-                                            <div class="text--primary-2 py-1 d-flex flex-wrap align-items-center py-1" type="button" data-toggle="modal" data-target="#instructions">
+                                            <!-- <div class="text--primary-2 py-1 d-flex flex-wrap align-items-center py-1" type="button" data-toggle="modal" data-target="#instructions">
                                                 <strong class="mr-2">{{translate('Read_Instructions')}}</strong>
                                                 <div class="blinkings">
                                                     <i class="tio-info-outined"></i>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                     <div>
@@ -127,7 +127,7 @@
                                         @if ($language)
                                             <div class="__bg-F8F9FC-card default-form lang_form" id="default-form">
                                                 <div class="form-group">
-                                                    <label class="form-label">{{translate('Main_Title')}}({{ translate('messages.default') }})
+                                                    <label class="form-label">{{translate('Main_Title')}}
                                                         <span class="input-label-secondary" data-toggle="tooltip" data-placement="right" data-original-title="{{ translate('Write_the_main_title_within_45_characters')}}">
                                                             <img src="{{ dynamicAsset('/public/assets/admin/img/info-circle.svg') }}" alt="{{ translate('messages.show_hide_food_menu') }}">
                                                         </span>
@@ -136,7 +136,7 @@
                                                 </div>
                                                 <div class="form-group mb-0">
                                                     <label class="form-label">
-                                                        {{ translate('Mail_Body_Message') }}({{ translate('messages.default') }})
+                                                        {{ translate('Mail_Body_Message') }}
                                                         <span class="input-label-secondary text--title" data-toggle="tooltip" data-placement="right" data-original-title="{{ translate('Write_the_mail_body_message_within_75_words')}}">
                                                             <i class="tio-info-outined"></i>
                                                         </span>

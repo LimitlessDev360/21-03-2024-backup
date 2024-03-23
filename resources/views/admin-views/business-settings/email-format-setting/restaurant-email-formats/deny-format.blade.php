@@ -32,9 +32,9 @@
                     <div class="card-body">
                         <div class="maintainance-mode-toggle-bar d-flex flex-wrap justify-content-between border rounded align-items-center p-2">
                             <h5 class="text-capitalize m-0 text--primary pl-2">
-                                {{translate('Send_Mail_on_‘New_Restaurant_Rejection’')}}
-                                <span class="input-label-secondary" data-toggle="tooltip" data-placement="right" data-original-title="{{ translate('If_Admin_rejects_a_restaurant’s_self-registration,_the_restaurant_will_get_an_automatic_disapproval_mail_from_the_system.')}}">
-                                    <img src="{{ dynamicAsset('/public/assets/admin/img/info-circle.svg') }}" alt="{{ translate('messages.show_hide_food_menu') }}">
+                                {{translate('Send_Mail_on_New_Vendor_Rejection')}}
+                                <span class="input-label-secondary" data-toggle="tooltip" data-placement="right" data-original-title="{{ translate('If_Admin_rejects_a_vendor’s_self-registration,_the_vendor_will_get_an_automatic_disapproval_mail_from_the_system.')}}">
+                                    <img src="{{ dynamicAsset('/public/assets/admin/img/info-circle.svg') }}" alt="{{ translate('messages.show_hide_product_menu') }}">
                                 </span>
                             </h5>
                             <label class="toggle-switch toggle-switch-sm">
@@ -43,10 +43,10 @@
                                 data-type="status"
                                 data-image-on='{{dynamicAsset('/public/assets/admin/img/modal')}}/place-order-on.png'
                                 data-image-off="{{dynamicAsset('/public/assets/admin/img/modal')}}/place-order-off.png"
-                                data-title-on="{{translate('Want_to_enable_New_Restaurant_Rejection_mail?')}}"
-                                data-title-off="{{translate('Want_to_disable_New_Restaurant_Rejection_mail?')}}"
-                                data-text-on="<p>{{translate('If_enabled,_restaurant_will_receive_a_confirmation_email_when_the_Admin_rejects_their_registration_request.')}}</p>"
-                                data-text-off="<p>{{translate('If_disabled,_restaurant_will_not_get_a_registration_rejection_mail.')}}</p>"
+                                data-title-on="{{translate('Want_to_enable_New_Vendor_Rejection_mail?')}}"
+                                data-title-off="{{translate('Want_to_disable_New_Vendor_Rejection_mail?')}}"
+                                data-text-on="<p>{{translate('If_enabled,_vendor_will_receive_a_confirmation_email_when_the_Admin_rejects_their_registration_request.')}}</p>"
+                                data-text-off="<p>{{translate('If_disabled,_vendor_will_not_get_a_registration_rejection_mail.')}}</p>"
                                 id="mail-status" {{$mail_status == '1'?'checked':''}}>
                                 <span class="toggle-switch-label text mb-0">
                                     <span class="toggle-switch-indicator"></span>
@@ -82,7 +82,7 @@
                                         @php($language = $language->value ?? null)
                                         @php($default_lang = str_replace('_', '-', app()->getLocale()))
                                         @if($language)
-                                            <ul class="nav nav-tabs m-0 border-0">
+                                            <!-- <ul class="nav nav-tabs m-0 border-0">
                                                 <li class="nav-item">
                                                     <a class="nav-link lang_link active"
                                                     href="#"
@@ -95,15 +95,15 @@
                                                             id="{{ $lang }}-link">{{ \App\CentralLogics\Helpers::get_language_name($lang) . '(' . strtoupper($lang) . ')' }}</a>
                                                     </li>
                                                 @endforeach
-                                            </ul>
+                                            </ul> -->
                                         @endif
                                         <div class="d-flex justify-content-end">
-                                            <div class="text--primary-2 py-1 d-flex flex-wrap align-items-center py-1" type="button" data-toggle="modal" data-target="#instructions">
+                                            <!-- <div class="text--primary-2 py-1 d-flex flex-wrap align-items-center py-1" type="button" data-toggle="modal" data-target="#instructions">
                                                 <strong class="mr-2">{{translate('Read_Instructions')}}</strong>
                                                 <div class="blinkings">
                                                     <i class="tio-info-outined"></i>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                     <div>
@@ -126,7 +126,7 @@
                                         @if ($language)
                                             <div class="__bg-F8F9FC-card default-form lang_form" id="default-form">
                                                 <div class="form-group">
-                                                    <label class="form-label">{{translate('Main_Title')}}({{ translate('messages.default') }})
+                                                    <label class="form-label">{{translate('Main_Title')}}
                                                         <span class="input-label-secondary" data-toggle="tooltip" data-placement="right" data-original-title="{{ translate('Write_the_main_title_within_45_characters')}}">
                                                             <img src="{{ dynamicAsset('/public/assets/admin/img/info-circle.svg') }}" alt="{{ translate('messages.show_hide_food_menu') }}">
                                                         </span>
