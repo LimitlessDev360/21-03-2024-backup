@@ -4964,4 +4964,11 @@
   'If_enabled,_vendors_will_receive_an_email_on_campaign_joining_Rejection.' => 'If enabled  vendors will receive an email on campaign joining Rejection.',
   'If_disabled,_vendors_will_not_receive_any_email_on_campaign_joining_Rejection.' => 'If disabled  vendors will not receive any email on campaign joining Rejection.',
   'If_a_Deliveryman_registers_from_the_Customer_app_or_Website,_Admin_Landing_Page_or_Vendor app,_he_will_get_a_Registration_Confirmation_email.' => 'If a Deliveryman registers from the Customer app or Website  Admin Landing Page or Vendor app  he will get a Registration Confirmation email.',
+  'If_a_Vendor_or_Admin_suspends_a_Deliveryman’s_account,_he_or_she_will_receive_an_automated_email.' => 'If a Vendor or Admin suspends a Deliveryman’s account  he or she will receive an automated email.',
+  'If_enabled,_the_Deliveryman_will_receive_an_email_after_the_Admin/Vendor_collects_cash_from_him.' => 'If enabled  the Deliveryman will receive an email after the Admin/Vendor collects cash from him.',
+  'If_Admin_or_Vendor_collects_cash_from_a_Deliveryman,_he_will_receive_an_automated_email_from_the_system_showing_how_much_cash_is_collected.' => 'If Admin or Vendor collects cash from a Deliveryman  he will receive an automated email from the system showing how much cash is collected.',
+  'Vendor_Earning' => 'Vendor Earning',
+  'select_Vendor' => 'Select Vendor',
+  'all_Vendor' => 'All Vendor',
+  'new_joined_Vendor' => 'New joined Vendor',
 );

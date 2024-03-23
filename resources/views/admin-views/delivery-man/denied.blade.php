@@ -120,7 +120,7 @@
                                     <th class="text-capitalize w-20p">{{ translate('messages.name') }}</th>
                                     <th class="text-capitalize">{{ translate('messages.contact') }}</th>
                                     <th class="text-capitalize">{{ translate('messages.zone') }}</th>
-                                    <th class="text-capitalize ">{{ translate('Jod_Type') }}</th>
+                                    <th class="text-capitalize ">{{ translate('Job_Type') }}</th>
                                     <th class="text-capitalize ">{{ translate('Vehicle_Type') }}</th>
                                     <th class="text-capitalize">{{ translate('messages.availability_status') }}</th>
                                     <th class="text-capitalize text-center w-110px">{{ translate('messages.action') }}</th>

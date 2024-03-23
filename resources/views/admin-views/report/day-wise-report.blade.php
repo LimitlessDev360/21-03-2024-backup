@@ -43,12 +43,12 @@
                     </div>
                     <div class="col-sm-6 col-md-3">
                         <select name="restaurant_id" data-url="{{ url()->full() }}" data-filter="restaurant_id"
-                                data-placeholder="{{ translate('messages.select_restaurant') }}"
+                                data-placeholder="{{ translate('messages.select_Vendor') }}"
                             class="js-data-example-ajax form-control set-filter">
                             @if (isset($restaurant))
                                 <option value="{{ $restaurant->id }}" selected>{{ $restaurant->name }}</option>
                             @else
-                                <option value="all" selected>{{ translate('messages.all_restaurants') }}</option>
+                                <option value="all" selected>{{ translate('messages.all_Vendor') }}</option>
                             @endif
                         </select>
                     </div>
@@ -155,7 +155,7 @@
                                 <img class="img"
                                     src="{{ dynamicAsset('/public/assets/admin/img/report/new/store-earning.png') }}"
                                     alt="">
-                                <h4 class="name">{{ translate('Restaurant_Earning') }}</h4>
+                                <h4 class="name">{{ translate('Vendor_Earning') }}</h4>
                                 <div class="info-icon" data-toggle="tooltip" data-placement="right"
                                     data-original-title="{{ translate('messages.Deducting_admin_commission_and_restaurant_discount_from_actual_item_price_amount_goes_to_this_section.') }}">
                                     <img src="{{ dynamicAsset('/public/assets/admin/img/report/new/info2.png') }}"
@@ -252,7 +252,7 @@
                         <tr>
                             <th class="border-0">{{ translate('sl') }}</th>
                             <th class="border-0">{{ translate('messages.order_id') }}</th>
-                            <th class="border-0">{{ translate('messages.restaurant') }}</th>
+                            <th class="border-0">{{ translate('messages.Vendor') }}</th>
                             <th class="border-0">{{ translate('messages.customer_name') }}</th>
                             <th class="border-0 min-w-120">{{ translate('messages.total_item_amount') }}</th>
                             <th class="border-0">{{ translate('messages.item_discount') }}</th>
@@ -262,12 +262,12 @@
                             <th class="border-0">{{ translate('messages.delivery_charge') }}</th>
                             <th class="border-0">{{ translate('messages.order_amount') }}</th>
                             <th class="border-0">{{ translate('messages.admin_discount') }}</th>
-                            <th class="border-0">{{ translate('messages.restaurant_discount') }}</th>
+                            <th class="border-0">{{ translate('messages.Vendor_discount') }}</th>
                             <th class="border-0">{{ translate('messages.admin_commission') }}</th>
                             <th class="border-0">{{ \App\CentralLogics\Helpers::get_business_data('additional_charge_name')??translate('messages.additional_charge') }}</th>
                             <th class="min-w-140 text-capitalize">{{ translate('commision_on_delivery_charge') }}</th>
                             <th class="min-w-140 text-capitalize">{{ translate('admin_net_income') }}</th>
-                            <th class="min-w-140 text-capitalize">{{ translate('restaurant_net_income') }}</th>
+                            <th class="min-w-140 text-capitalize">{{ translate('Vendor_net_income') }}</th>
                             <th class="border-0 min-w-120">{{ translate('messages.amount_received_by') }}</th>
                             <th class="border-top border-bottom text-capitalize">{{ translate('messages.payment_method') }}</th>
                             <th class="border-0">{{ translate('messages.payment_status') }}</th>

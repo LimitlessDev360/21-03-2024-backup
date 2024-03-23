@@ -289,7 +289,7 @@
                     <thead class="thead-light">
                         <tr>
                             <th class="text-center max-90px">{{translate('messages.sl')}}</th>
-                            <th>{{translate('messages.food')}}</th>
+                            <th>{{translate('messages.Product')}}</th>
                             <th class="pl-4">{{translate('messages.reviewer_info')}}</th>
                             <th>{{translate('messages.review')}}</th>
                             <th>{{translate('messages.date')}}</th>

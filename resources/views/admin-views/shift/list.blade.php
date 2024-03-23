@@ -111,7 +111,7 @@
                         @php($language = $language->value ?? null)
                         @php($default_lang = str_replace('_', '-', app()->getLocale()))
                         @if($language)
-                        <ul class="nav nav-tabs nav--tabs mb-3 border-0">
+                        <!-- <ul class="nav nav-tabs nav--tabs mb-3 border-0">
                             <li class="nav-item">
                                 <a class="nav-link lang_link1 active"
                                 href="#"
@@ -124,13 +124,13 @@
                                         id="{{ $lang }}-link1">{{ \App\CentralLogics\Helpers::get_language_name($lang) . '(' . strtoupper($lang) . ')' }}</a>
                                 </li>
                             @endforeach
-                        </ul>
+                        </ul> -->
                         @endif
 
 
                         <div class="form-group lang_form1 default-form1 ">
                             <input type="hidden" name="lang[]" value="default">
-                            <label for="name" class="mb-2">{{ translate('messages.name') }} ({{translate('messages.default')}})</label>
+                            <label for="name" class="mb-2">{{ translate('messages.name') }} </label>
                             <input type="text" name="name[]"   id="name" class="form-control" placeholder="{{ translate('messages.Ex:_Morning') }}">
                         </div>
 
