@@ -38,7 +38,7 @@ class FoodController extends Controller
     {
         // dd($request->lang);
         $validator = Validator::make($request->all(), [
-            'name.0' => 'required',
+            // 'name.0' => 'required',
             'name.*' => 'max:191',
             'category_id' => 'required',
             'image' => 'required|max:2048',
@@ -46,12 +46,12 @@ class FoodController extends Controller
             'discount' => 'required|numeric|min:0',
             'restaurant_id' => 'required',
             'description.*' => 'max:1000',
-            'veg'=>'required'
+            // 'veg'=>'required'
         ], [
             'description.*.max' => translate('messages.description_length_warning'),
-            'name.0.required' => translate('messages.item_name_required'),
+            // 'name.0.required' => translate('messages.item_name_required'),
             'category_id.required' => translate('messages.category_required'),
-            'veg.required'=>translate('messages.item_type_is_required')
+            // 'veg.required'=>translate('messages.item_type_is_required')
         ]);
 
 
@@ -159,7 +159,7 @@ class FoodController extends Controller
         $food->attributes = $request->has('attribute_id') ? json_encode($request->attribute_id) : json_encode([]);
         $food->add_ons = $request->has('addon_ids') ? json_encode($request->addon_ids) : json_encode([]);
         $food->restaurant_id = $request->restaurant_id;
-        $food->veg = $request->veg;
+        $food->veg = 0;
         $food->maximum_cart_quantity = $request->maximum_cart_quantity;
 
         $food->save();

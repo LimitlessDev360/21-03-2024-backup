@@ -4964,4 +4964,7 @@
   'If_enabled,_vendors_will_receive_an_email_on_campaign_joining_Rejection.' => 'If enabled  vendors will receive an email on campaign joining Rejection.',
   'If_disabled,_vendors_will_not_receive_any_email_on_campaign_joining_Rejection.' => 'If disabled  vendors will not receive any email on campaign joining Rejection.',
   'If_a_Deliveryman_registers_from_the_Customer_app_or_Website,_Admin_Landing_Page_or_Vendor app,_he_will_get_a_Registration_Confirmation_email.' => 'If a Deliveryman registers from the Customer app or Website  Admin Landing Page or Vendor app  he will get a Registration Confirmation email.',
+  'Withdrawable_Balance' => 'Withdrawable Balance',
+  'Withdraw_methods_are_not_available' => 'Withdraw methods are not available',
+  'ifsc' => 'Ifsc',
 );
