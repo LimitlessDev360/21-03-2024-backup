@@ -4967,4 +4967,12 @@
   'Withdrawable_Balance' => 'Withdrawable Balance',
   'Withdraw_methods_are_not_available' => 'Withdraw methods are not available',
   'ifsc' => 'Ifsc',
+  'Ex:_XXX-XXX-XXXX' => 'Ex: XXX-XXX-XXXX',
+  'Ex:_XX-XXX-XXXX' => 'Ex: XX-XXX-XXXX',
+  'sub_category_added_successfully' => 'Sub category added successfully',
+  'your_application_is_not_approved_yet' => 'Your application is not approved yet',
+  'your_order_is_ready_to_be_delivered,_plesae_share_your_otp_with_delivery_man.' => 'Your order is ready to be delivered  plesae share your otp with delivery man.',
+  'otp:' => 'Otp:',
+  'order_id:' => 'Order id:',
+  'order_ready_to_be_delivered' => 'Order ready to be delivered',
 );

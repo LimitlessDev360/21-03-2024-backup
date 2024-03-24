@@ -140,8 +140,9 @@
                         <th class="text-center pl-4 w-100px">{{ translate('messages.sl') }}</th>
                         <th class="w-120px">{{translate('messages.name')}}</th>
                         <th class="w-120px">{{translate('messages.category')}}</th>
+                        <th class="w-100px">Purchae price</th>
                         <th class="text-center w-120px pr-80px">
-                            {{translate('messages.price')}}
+                            Sale Price
                         </th>
                         <th class="w-100px">{{translate('messages.status')}}</th>
                         <th class="w-60px text-center">{{translate('messages.action')}}</th>
@@ -180,6 +181,11 @@
                         {{ Str::limit(($food?->category?->parent ? $food?->category?->parent?->name : $food?->category?->name )  ?? translate('messages.uncategorize')
                         , 20, '...') }}
                     </div>
+                    </td>
+                    <td>
+                        <div class="table--food-price text-right">
+                           100
+                        </div>
                     </td>
                     <td>
                         <div class="table--food-price text-right">

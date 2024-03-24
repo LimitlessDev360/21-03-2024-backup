@@ -129,7 +129,7 @@
                         <div class="card-header">
                             <h5 class="card-title">
                                 <span class="card-header-icon mr-1"><i class="tio-dashboard"></i></span>
-                                <span>Information</span>
+                                <span>Config</span>
                             </h5>
                         </div>
                         <div class="card-body">
@@ -139,14 +139,14 @@
                                 <div class="col-md-6">
                                     <label class="input-label" for="tax">Gst %</label>
                                     <input id="tax" type="number" name="tax" class="form-control h--45px"
-                                        placeholder="18%" min="0" step=".01" required
-                                        value="{{ old('tax') }}">
+                                        placeholder="18" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==2) return false;" required
+                                        value="">
                                 </div>
 
                                 <!-- Gst Percentage -->
                                 <div class="col-md-6">
                                 <label class="input-label" for="gst_no">GST No</label>
-                                <input id="gst_no" type="text" name="gst_no" class="form-control h--45px"
+                                <input id="gst_no" type="text" name="gst_no" class="form-control h--45px" maxlength="15"
                                     placeholder="HRYD5692RH" required>
                                 </div>
 
@@ -199,22 +199,23 @@
                                 <!-- Halal Certificate -->
                                 <div class="col-md-3">
                                 <label class="__custom-upload-img mr-lg-5">
-                                    @php($logo = \App\Models\BusinessSetting::where('key', 'logo')->first())
-                                    @php($logo = $logo->value ?? '')
+                                    @php($icon = \App\Models\BusinessSetting::where('key', 'icon')->first())
+                                    @php($icon = $icon->value ?? '')
                                     <label class="form-label">
-                                    Halal Certificate <span class="text--primary">({{ translate('1:1') }})</span>
+                                       Halal Certificate
                                     </label>
                                     <div class="text-center">
-                                        <img class="img--110 min-height-170px min-width-170px" id="viewer"
+                                        <img class="img--vertical min-height-170px min-width-170px" id="halal"
                                             src="{{ dynamicAsset('public/assets/admin/img/upload-img.png') }}"
-                                            alt="logo image" />
+                                            alt="Fav icon" />
                                     </div>
-                                    <input type="file" name="halal_certificate" id="customFileEg1" class="custom-file-input"
+                                    <input type="file" name="halal_certificate" id="halalCertificate"  class="custom-file-input"
                                         accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*">
                                 </label>
+
                                 </div>
 
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                 <label class="form-label" for="">Tax</label>
                                     <div class="form-check">
                                         <label class="form-check-label">
@@ -226,7 +227,7 @@
                                         <input type="radio" name="tax_include"  class="form-check-input" value="">Excluded
                                         </label>
                                         </div>             
-                                </div>
+                                </div> -->
                                           
 
                             </div>
@@ -298,6 +299,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- Account Info -->
                 <div class="col-lg-12">
                     <div class="card shadow--card-2">
                         <div class="card-header">
@@ -324,14 +326,78 @@
                                 <div class="col-md-4 col-12">
                                     <div class="form-group">
                                         <label class="input-label" for="phone">{{ translate('messages.phone') }}</label>
-                                        <input id="phone" type="number" name="phone" class="form-control h--45px" placeholder="{{ translate('messages.Ex:_+9XXX-XXX-XXXX') }} "
-                                            value="{{ old('phone') }}" required>
+                                        <input id="phone" type="number" name="phone" class="form-control h--45px" placeholder="{{ translate('messages.Ex:_XXX-XXX-XXXX') }} "
+                                            value="" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-12">
                                     <div class="form-group">
                                         <label class="input-label" for="extra_phone">Additional Phone</label>
-                                        <input id="extra_phone" type="number" name="extra_phone" class="form-control h--45px" placeholder="{{ translate('messages.Ex:_+9XXX-XXX-XXXX') }} "
+                                        <input id="extra_phone" type="number" name="extra_phone" class="form-control h--45px" placeholder="{{ translate('messages.Ex:_XXX-XXX-XXXX') }} "
+                                        pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"  required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+<!-- Bank Details -->
+<div class="col-lg-12">
+                    <div class="card shadow--card-2">
+                        <div class="card-header">
+                            <h4 class="card-title m-0 d-flex align-items-center"> <span class="card-header-icon mr-2"><i class="tio-dashboard"></i></span> <span>Bank Details</span></h4>
+                        </div>
+                        <div class="card-body pb-0">
+                            <div class="row">
+                                <div class="col-md-4 col-12">
+                                    <div class="form-group">
+                                        <label class="input-label" for="f_name">Account Holder</label>
+                                        <input id="account_holder_name" type="text" name="account_holder_name" class="form-control h--45px"
+                                            placeholder="Name"
+                                            value="" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-12">
+                                    <div class="form-group">
+                                        <label class="input-label" for="bank_name">Bank</label>
+                                        <input id="bank_name" type="text" name="bank_name" class="form-control h--45px"
+                                            placeholder="HDFC"
+                                            value="" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-12">
+                                <div class="form-group">
+                                        <label class="input-label" for="account_type">Acocunt Type
+                                                </label>
+                                        <select name="account_type" id="account_type" required class="form-control h--45px js-select2-custom"
+                                            data-placeholder="Select account type">
+                                            <option value="" selected disabled>Select Type</option>
+                
+                                                    <option value="savings">Savings</option>
+                                                    <option value="current">Current</option>
+                                        
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-12">
+                                    <div class="form-group">
+                                        <label class="input-label" for="ifsc_code">IFSC</label>
+                                        <input id="ifsc_code" type="text" name="ifsc_code" class="form-control h--45px" placeholder="HDFCIM22361"
+                                            value="" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-12">
+                                    <div class="form-group">
+                                        <label class="input-label" for="account_number">Account Number</label>
+                                        <input id="account_number" type="number" name="account_number" class="form-control h--45px" placeholder="115969872596325"
+                                             required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-12">
+                                    <div class="form-group">
+                                        <label class="input-label" for="confirm_account_number">Confirm Account Number</label>
+                                        <input id="confirm_account_number" type="number" name="confirm_account_number" class="form-control h--45px" placeholder="115969872596325"
                                              required>
                                     </div>
                                 </div>
@@ -341,8 +407,7 @@
 
                 </div>
 
-
-                    <div class="col-lg-12">
+                    <!-- <div class="col-lg-12">
                         <div class="card shadow--card-2 border-0">
                             <div class="card-header">
                                 <h5 class="card-title">
@@ -354,11 +419,11 @@
                                 <input type="text" class="form-control" name="tags" placeholder="Enter tags" data-role="tagsinput">
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 <div class="col-lg-12">
                     <div class="card shadow--card-2">
                         <div class="card-header">
-                            <h4 class="card-title m-0 d-flex align-items-center"><span class="card-header-icon mr-2"><i class="tio-user"></i></span> <span>{{ translate('messages.account_info') }}</span></h4>
+                            <h4 class="card-title m-0 d-flex align-items-center"><span class="card-header-icon mr-2"><i class="tio-user"></i></span> <span>Vendor Login Details</span></h4>
                         </div>
                         <div class="card-body pb-0">
                             <div class="row">
@@ -468,6 +533,11 @@
         $("#customFileEg1").change(function() {
             readURL(this, 'viewer');
         });
+
+        $("#halalCertificate").change(function() {
+            readURL(this, 'halal');
+        });
+
 
         $("#coverImageUpload").change(function() {
             readURL(this, 'coverImageViewer');
@@ -675,6 +745,7 @@
             $('#minimum_delivery_time').val(null);
             $('#maximum_delivery_time').val(null);
             $('#viewer').attr('src', "{{ dynamicAsset('public/assets/admin/img/upload.png') }}");
+            $('#halal').attr('src', "{{ dynamicAsset('public/assets/admin/img/upload.png') }}");
             $('#customFileEg1').val(null);
             $('#coverImageViewer').attr('src', "{{ dynamicAsset('public/assets/admin/img/upload-img.png') }}");
             $('#coverImageUpload').val(null);
@@ -702,3 +773,4 @@
     })
 </script>
 @endpush
+

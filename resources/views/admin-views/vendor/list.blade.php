@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title',translate('Restaurant_List'))
+@section('title','Vendor List')
 
 @push('css_or_js')
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -35,9 +35,9 @@
                         <!-- End Veg/NonVeg filter -->
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-3">
+                <!-- <div class="col-sm-6 col-md-3">
                     <div class="select-item">
-                        <!-- Veg/NonVeg filter -->
+                        Veg/NonVeg filter
                         <select name="restaurant_model"
                                 data-url="{{url()->full()}}" data-filter="restaurant_model"
                         data-placeholder="{{translate('messages.all')}}" class="form-control js-select2-custom set-filter">
@@ -50,9 +50,9 @@
 
                         </select>
 
-                    <!-- End Veg/NonVeg filter -->
+                    End Veg/NonVeg filter
                     </div>
-                </div>
+                </div> -->
 
                 <!-- <div class="col-sm-6 col-md-3">
                     <div class="select-item">

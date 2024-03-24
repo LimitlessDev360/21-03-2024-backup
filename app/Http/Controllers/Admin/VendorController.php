@@ -87,6 +87,12 @@ class VendorController extends Controller
             'cover_photo' => 'required|max:2048',
             'tax' => 'required',
             'delivery_time_type'=>'required',
+            'account_holder_name'=>'required',
+            'bank_name'=>'required',
+            'account_type'=>'required',
+            'ifsc_code'=>'required',
+            'account_number'=>'required',
+            'confirm_account_number'=>'required',
         ], [
             'f_name.required' => translate('messages.first_name_is_required'),
             // 'additional_documents.max' => translate('You_can_chose_max_5_files_only'),
@@ -166,8 +172,14 @@ class VendorController extends Controller
         $restaurant->gst_no = $request->gst_no;
         $restaurant->tax_include = $request->tax_include;
         $restaurant->halal_no = $request->halal_no;
-        // $restaurant->halal_ceritificate = Helpers::upload( dir: 'restaurant/halal/',  format:'png', image:  $request->file('halal_ceritificate'));
+        $restaurant->halal_certificate = Helpers::upload( dir: 'restaurant/halal/',  format:'png', image:  $request->file('halal_certificate'));
         $restaurant->extra_phone = $request->extra_phone;
+        $restaurant->account_holder_name = $request->account_holder_name;
+        $restaurant->bank_name = $request->bank_name;
+        $restaurant->ifsc_code = $request->ifsc_code;
+        $restaurant->account_type = $request->account_type;
+        $restaurant->account_number = $request->account_number;
+        $restaurant->confirm_account_number = $request->confirm_account_number;
         $restaurant->restaurant_model = 'none';
         $restaurant->delivery_time =$request->minimum_delivery_time .'-'. $request->maximum_delivery_time.'-'.$request->delivery_time_type;
 

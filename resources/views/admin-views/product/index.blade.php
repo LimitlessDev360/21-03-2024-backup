@@ -330,7 +330,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-12">
+                <!-- <div class="col-lg-12">
                     <div class="card shadow--card-2 border-0">
                         <div class="card-header flex-wrap">
                             <h5 class="card-title">
@@ -353,7 +353,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="col-lg-12">
                     <div class="card shadow--card-2 border-0">
                         <div class="card-header">
