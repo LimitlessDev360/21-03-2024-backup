@@ -54,11 +54,12 @@
 
                                 <div class="form-group">
                                     <label class="input-label"
-                                        for="default_name">{{ translate('messages.name') }}
+                                        for="default_name">{{ translate('messages.name') }} *
                                     </label>
                                     <input type="text" name="name[]" id="default_name"
                                         class="form-control"
                                         placeholder="{{ translate('messages.name') }}"
+                                        required
 
                                         oninvalid="document.getElementById('en-link').click()">
                                 </div>
@@ -147,10 +148,10 @@
                         </div>
                         <div class="card-body">
                             <div class="row g-2">
-                                <div class="col-sm-6 col-lg-3">
+                                <!-- <div class="col-sm-6 col-lg-3">
                                     <div class="form-group mb-0">
                                         <label class="input-label"
-                                            for="exampleFormControlSelect1">{{ translate('messages.vendor') }}<span
+                                            for="exampleFormControlSelect1">{{ translate('messages.vendor') }} *<span
                                                 class="input-label-secondary"></span></label>
                                         <select name="restaurant_id" id="restaurant_id"
                                             data-placeholder="{{ translate('messages.select_vendor') }}"
@@ -159,13 +160,13 @@
 
                                         </select>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-sm-6 col-lg-3">
                                     <div class="form-group mb-0">
                                         <label class="input-label"
                                             for="exampleFormControlSelect1">{{ translate('messages.category') }}<span
                                                 class="input-label-secondary">*</span></label>
-                                        <select name="category_id" id="category_id"
+                                        <select name="category_id" id="categoryId"
                                             class="form-control js-select2-custom get-request"
                                             oninvalid="this.setCustomValidity('Select Category')">
                                             <option value="" selected disabled>
@@ -177,7 +178,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <!-- <div class="col-sm-6 col-lg-3">
+                                <div class="col-sm-6 col-lg-3">
                                     <div class="form-group mb-0">
                                         <label class="input-label"
                                             for="exampleFormControlSelect1">{{ translate('messages.sub_category') }}<span
@@ -192,7 +193,7 @@
                                                 {{ translate('Select_Sub_Category') }}</option>
                                         </select>
                                     </div>
-                                </div> -->
+                                </div>
                                 <!-- <div class="col-sm-6 col-lg-3">
                                     <div class="form-group mb-0">
                                         <label class="input-label"
@@ -229,7 +230,7 @@
                                         src="{{ dynamicAsset('/public/assets/admin/img/info-circle.svg') }}"
                                         alt="{{ translate('messages.vendor_required_warning') }}"></span></label>
                             <select name="addon_ids[]" class="form-control border js-select2-custom"
-                                multiple="multiple" id="add_on">
+                                multiple="multiple" id="category_add_on">
 
                             </select>
                         </div>
@@ -280,8 +281,8 @@
                                     <div class="form-group mb-0">
                                         <label class="input-label"
                                             for="exampleFormControlInput1">{{ translate('messages.price') }} *</label>
-                                        <input type="number" min="0" max="999999999999.99"
-                                            step="0.01" value="1" name="price" class="form-control"
+                                        <input type="number" min="0" max="999999999999.99" required
+                                            step="0.01"  name="price" class="form-control"
                                             placeholder="{{ translate('messages.Ex:_100') }}" required>
                                     </div>
                                 </div>
@@ -319,7 +320,7 @@
                                             <span
                                             class="input-label-secondary text--title" data-toggle="tooltip"
                                             data-placement="right"
-                                            data-original-title="{{ translate('If_this_limit_is_exceeded,_customers_can_not_buy_the_food_in_a_single_purchase.') }}">
+                                            data-original-title="{{ translate('If_this_limit_is_exceeded,_customers_can_not_buy_the_product_in_a_single_purchase.') }}">
                                             <i class="tio-info-outined"></i>
                                         </span>
                                         </label>
@@ -524,9 +525,27 @@
             getRestaurantData(route,restaurant_id, id);
 
         });
+
+        $('#categoryId').on('change', function () {
+            let route = '{{ url('/') }}/admin/restaurant/get_category_addons?data[]=0&category_id=';
+            let restaurant_id = $(this).val();
+            let id = 'category_add_on';
+            getAddonsData(route,restaurant_id, id);
+
+        });
         function getRestaurantData(route, restaurant_id, id) {
             $.get({
                 url: route + restaurant_id,
+                dataType: 'json',
+                success: function(data) {
+                    $('#' + id).empty().append(data.options);
+                },
+            });
+        }
+
+        function getAddonsData(route, category_id, id) {
+            $.get({
+                url: route + category_id,
                 dataType: 'json',
                 success: function(data) {
                     $('#' + id).empty().append(data.options);

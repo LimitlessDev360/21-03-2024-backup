@@ -66,6 +66,7 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
             Route::get('edit/{id}', 'FoodController@edit')->name('edit');
             Route::post('update/{id}', 'FoodController@update')->name('update');
             Route::get('list', 'FoodController@list')->name('list');
+            Route::get('get-products/{data}', 'FoodController@get_products')->name('get-products');
             Route::delete('delete/{id}', 'FoodController@delete')->name('delete');
             Route::get('status/{id}/{status}', 'FoodController@status')->name('status');
             Route::get('review-status/{id}/{status}', 'FoodController@reviews_status')->name('reviews.status');
@@ -159,11 +160,13 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
             Route::get('restaurant-filter/{id}', 'VendorController@restaurant_filter')->name('restaurantfilter');
             Route::get('get-account-data/{restaurant}', 'VendorController@get_account_data')->name('restaurantfilter');
             Route::get('get-addons', 'VendorController@get_addons')->name('get_addons');
+            Route::get('get_category_addons', 'VendorController@get_category_addons')->name('get_category_addons');
             Route::group(['middleware' => ['module:restaurant']], function () {
                 Route::get('update-application/{id}/{status}', 'VendorController@update_application')->name('application');
                 Route::get('add', 'VendorController@index')->name('add');
                 Route::post('store', 'VendorController@store')->name('store');
                 Route::get('edit/{id}', 'VendorController@edit')->name('edit');
+                Route::get('assgin-products/{id}', 'VendorController@assign_product')->name('assign-products');
                 Route::post('update/{restaurant}', 'VendorController@update')->name('update');
                 Route::post('discount/{restaurant}', 'VendorController@discountSetup')->name('discount');
                 Route::post('update-settings/{restaurant}', 'VendorController@updateRestaurantSettings')->name('update-settings');

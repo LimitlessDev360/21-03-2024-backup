@@ -4975,4 +4975,11 @@
   'otp:' => 'Otp:',
   'order_id:' => 'Order id:',
   'order_ready_to_be_delivered' => 'Order ready to be delivered',
+  'Sub_Category' => 'Sub Category',
+  'Default name is required' => 'Default name is required',
+  'Sub Category removed!' => 'Sub Category removed!',
+  'Please select restaurant' => 'Please select restaurant',
+  'no vendors' => 'No vendors',
+  'Category is required' => 'Category is required',
+  'no category' => 'No category',
 );

@@ -123,8 +123,8 @@
                     </div>
                 </div>
                 <!-- Static Export Button -->
-                <a href="{{route('admin.food.add-new')}}" class="btn btn--primary pull-right"><i
-                            class="tio-add-circle"></i> {{translate('messages.add')}}</a>
+                <a href="{{ route('admin.food.get-products', ['data'=>$restaurant]) }}" class="btn btn--primary pull-right"><i
+                            class="tio-add-circle"></i>Assign Products</a>
             </div>
         </div>
         <div class="table-responsive datatable-custom">

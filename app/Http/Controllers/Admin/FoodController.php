@@ -41,10 +41,10 @@ class FoodController extends Controller
             // 'name.0' => 'required',
             'name.*' => 'max:191',
             'category_id' => 'required',
-            'image' => 'required|max:2048',
+            'image' => 'max:2048',
             'price' => 'required|numeric|between:.01,999999999999.99',
             'discount' => 'required|numeric|min:0',
-            'restaurant_id' => 'required',
+            'restaurant_id' => '',
             'description.*' => 'max:1000',
             // 'veg'=>'required'
         ], [
@@ -579,6 +579,38 @@ class FoodController extends Controller
         $restaurant =$restaurant_id !='all'? Restaurant::findOrFail($restaurant_id):null;
         $category =$category_id !='all'? Category::with('translations')->findOrFail($category_id):null;
         return view('admin-views.product.list', compact('foods','restaurant','category', 'type'));
+    }
+
+
+    public function get_products(Request $request, $data)
+    {
+        $key = explode(' ', $request['search']);
+        $restaurant_id = $request->query('restaurant_id', 'all');
+        $category_id = $request->query('category_id', 'all');
+        $type = $request->query('type', 'all');
+        $foods = Food::withoutGlobalScope(RestaurantScope::class)
+        ->with(['restaurant','category.parent'])
+        ->when(is_numeric($restaurant_id), function($query)use($restaurant_id){
+            return $query->where('restaurant_id', $restaurant_id);
+        })
+        ->when(is_numeric($category_id), function($query)use($category_id){
+            return $query->whereHas('category',function($q)use($category_id){
+                return $q->whereId($category_id)->orWhere('parent_id', $category_id);
+            });
+        })
+        ->when(isset($key) , function($q) use($key) {
+            $q->where(function($q) use($key){
+                foreach ($key as $value) {
+                    $q->where('name', 'like', "%{$value}%");
+                }
+            });
+        })
+        ->type($type)
+        ->latest()
+        ->paginate(config('default_pagination'));
+        $restaurant =$restaurant_id !='all'? Restaurant::findOrFail($restaurant_id):null;
+        $category =$category_id !='all'? Category::with('translations')->findOrFail($category_id):null;
+        return view('admin-views.vendor.view.assign-products',compact('foods','restaurant','category', 'type', 'data'));
     }
 
     public function search(Request $request){

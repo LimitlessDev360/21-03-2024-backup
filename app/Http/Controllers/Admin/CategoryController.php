@@ -79,6 +79,7 @@ class CategoryController extends Controller
         $category->image = $request->has('image') ? Helpers::upload(dir:'category/',format: 'png',image: $request->file('image')) : 'def.png';
         $category->parent_id = $request?->parent_id ??  0 ;
         $category->position = $request->position;
+        $category->priority = $category->parent_id != 0 ? 2:0;
         $category->save();
         $data = [];
         $default_lang = str_replace('_', '-', app()->getLocale());

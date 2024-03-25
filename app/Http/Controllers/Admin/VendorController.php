@@ -435,6 +435,22 @@ class VendorController extends Controller
         return redirect('admin/restaurant/list');
     }
 
+
+    public function assign_product(Request $request, $id)
+    {
+        $request->validate([
+            'product_ids' => 'required|unique:restaurants,product_ids,'.$id
+        ],[
+            'product_ids.required'=>'product ids required',
+        ]);
+
+        $vendor = Restaurant::find($id);
+        $vendor->product_ids = $request->has('product_ids') ? json_encode($request->product_ids) : json_encode([]);
+        $vendor->save();
+        Toastr::success('Product assign successfully');
+        return redirect('admin/restaurant/list');
+    }
+
     public function destroy(Request $request, Restaurant $restaurant)
     {
         if (env('APP_MODE') == 'demo' && $restaurant->id == 2) {
@@ -1127,6 +1143,22 @@ class VendorController extends Controller
     public function get_addons(Request $request)
     {
         $cat = AddOn::withoutGlobalScope(RestaurantScope::class)->where(['restaurant_id' => $request->restaurant_id])->active()->get();
+        $res = '';
+        foreach ($cat as $row) {
+            $res .= '<option value="' . $row->id . '"';
+            if (count($request->data)) {
+                $res .= in_array($row->id, $request->data) ? 'selected' : '';
+            }
+            $res .=  '>' . $row->name . '</option>';
+        }
+        return response()->json([
+            'options' => $res,
+        ]);
+    }
+
+    public function get_category_addons(Request $request)
+    {
+        $cat = AddOn::where(['category_id' => $request->category_id])->active()->get();
         $res = '';
         foreach ($cat as $row) {
             $res .= '<option value="' . $row->id . '"';

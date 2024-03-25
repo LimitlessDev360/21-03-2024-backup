@@ -15,6 +15,7 @@ use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use Maatwebsite\Excel\Facades\Excel;
 use Rap2hpoutre\FastExcel\FastExcel;
+use App\Models\Category;
 
 class AddOnController extends Controller
 {
@@ -23,6 +24,7 @@ class AddOnController extends Controller
         $key = explode(' ', $request['search']);
         $restaurant_id = $request->query('restaurant_id', 'all');
         $addons = AddOn::withoutGlobalScope(RestaurantScope::class)->with('restaurant')
+        // ->leftJoin('categories', 'add_ons.category_id', '=', 'categories.id')
         ->when(is_numeric($restaurant_id), function($query)use($restaurant_id){
             return $query->where('restaurant_id', $restaurant_id);
         })
@@ -33,9 +35,10 @@ class AddOnController extends Controller
                 }
             });
         })
-        ->orderBy('name')->paginate(config('default_pagination'));
+        ->orderBy('created_at', "DESC")->paginate(config('default_pagination'));
         $restaurant =$restaurant_id !='all'? Restaurant::findOrFail($restaurant_id):null;
-        return view('admin-views.addon.index', compact('addons', 'restaurant'));
+        $categories = Category::where(['position' => 0])->get();
+        return view('admin-views.addon.index', compact('addons', 'restaurant', 'categories'));
     }
 
     public function store(Request $request)
@@ -43,13 +46,15 @@ class AddOnController extends Controller
         $request->validate([
             'name.*' => 'max:191',
             'name'=>'array|required',
-            'restaurant_id' => 'required|numeric',
+            'restaurant_id' => 'numeric',
+            'category_id' => 'required|numeric',
             'price' => 'required|numeric|between:0,999999999999.99',
             'name.0'=>'required',
         ], [
             'name.required' => translate('messages.Name is required!'),
-            'restaurant_id.required' => translate('messages.please_select_restaurant'),
-            'restaurant_id.numeric' => translate('messages.please_select_restaurant'),
+            'category_id.required' => "Category is required",
+            // 'restaurant_id.required' => translate('messages.please_select_restaurant'),
+            // 'restaurant_id.numeric' => translate('messages.please_select_restaurant'),
             'name.0.required'=>translate('default_data_is_required'),
         ]);
 
@@ -58,6 +63,7 @@ class AddOnController extends Controller
         $addon->name = $request->name[array_search('default', $request->lang)];
         $addon->price = $request->price;
         $addon->restaurant_id = $request->restaurant_id;
+        $addon->category_id = $request->category_id;
         $addon->save();
 
         $default_lang = str_replace('_', '-', app()->getLocale());

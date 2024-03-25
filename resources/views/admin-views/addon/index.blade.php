@@ -51,7 +51,7 @@
                         <div class="col-lg-4">
                             <div class="form-group lang_form" id="default-form">
                                 <label class="input-label" for="exampleFormControlInput1">{{translate('messages.name')}}</label>
-                                <input type="text" name="name[]" class="form-control" placeholder="{{ translate('messages.Ex_:_water') }}"   maxlength="191">
+                                <input type="text" name="name[]" required class="form-control" placeholder="{{ translate('messages.Ex_:_water') }}" maxlength="191">
                             </div>
                             <input type="hidden" name="lang[]" value="default">
                         @if ($language)
@@ -78,6 +78,24 @@
                                 <select name="restaurant_id" id="restaurant_id" class="js-data-example-ajax form-control"  data-placeholder="{{translate('messages.select_vendor')}}" oninvalid="this.setCustomValidity('{{translate('messages.please_select_restaurant')}}')">
                                 </select>
                             </div>
+                        </div>
+
+                        <div class="col lg 4">
+                        <div class="form-group">
+                                        <label class="input-label"
+                                            for="exampleFormControlSelect1">{{ translate('messages.category') }}<span
+                                                class="input-label-secondary"><span class="text-danger">*</span></span></label>
+                                        <select name="category_id" id="category_id"
+                                            class="form-control js-select2-custom get-request"
+                                            oninvalid="this.setCustomValidity('Select Category')">
+                                            <option value="" selected disabled>
+                                                {{ translate('Select_Category') }}</option>
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category['id'] }}">{{ $category['name'] }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
@@ -167,6 +185,7 @@
                             <th>{{translate('sl')}}</th>
                             <th class="text-center w-20p">{{translate('messages.name')}}</th>
                             <th class="text-center w-20p">{{translate('messages.price')}}</th>
+                            <!-- <th class="text-center w-20p">Category</th> -->
                             <th class="w-26p">{{translate('messages.vendor')}}</th>
                             <th class="w-12p">{{translate('messages.status')}}</th>
                             <th class="text-center w-12p">{{translate('messages.action')}}</th>
@@ -179,7 +198,7 @@
                                 <td>{{$key+ $addons->firstItem()}}</td>
                                 <td>
                                 <span class="d-block font-size-sm text-body text-center">
-                                    {{Str::limit($addon['name'],20,'...')}}
+                                    {{Str::limit($addon['name'],25,'...')}}
                                 </span>
                                 </td>
                                 <td>
@@ -187,7 +206,9 @@
                                         {{\App\CentralLogics\Helpers::format_currency($addon['price'])}}
                                     </div>
                                 </td>
-                                <td  class="pl-3">{{Str::limit($addon->restaurant?$addon->restaurant->name:translate('messages.restaurant_deleted'),25,'...')}}</td>
+                                <!-- <td class="pl-3">{{Str::limit($addon->categories?$addon->categories->name:translate('messages.no category'),25,'...')}}</td> -->
+
+                                <td  class="pl-3">{{Str::limit($addon->restaurant?$addon->restaurant->name:translate('messages.no vendors'),25,'...')}}</td>
                                 <td>
                                     <label class="toggle-switch toggle-switch-sm" for="stausCheckbox{{$addon->id}}">
                                     <input type="checkbox" data-url="{{route('admin.addon.status',[$addon['id'],$addon->status?0:1])}}" class="toggle-switch-input redirect-url" id="stausCheckbox{{$addon->id}}" {{$addon->status?'checked':''}}>

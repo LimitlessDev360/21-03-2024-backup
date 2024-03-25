@@ -16,7 +16,7 @@
                         <div class="card-header-icon d-inline-flex mr-2 img">
                             <img src="{{dynamicAsset('public/assets/admin/img/sub-category.png')}}" alt="">
                         </div>
-                        <span>{{translate('messages.Sub_Category_Setup')}}</span>
+                        <span>{{translate('messages.Sub_Category')}}</span>
                     </h1>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                 @php($language = $language->value ?? null)
                 @php($default_lang = str_replace('_', '-', app()->getLocale()))
                 @if($language)
-                    <ul class="nav nav-tabs mb-4">
+                    <!-- <ul class="nav nav-tabs mb-4">
                         <li class="nav-item">
                             <a class="nav-link lang_link active" href="#" id="default-link">{{translate('Default')}}</a>
                         </li>
@@ -39,7 +39,7 @@
                                 <a class="nav-link lang_link" href="#" id="{{$lang}}-link">{{\App\CentralLogics\Helpers::get_language_name($lang).'('.strtoupper($lang).')'}}</a>
                             </li>
                         @endforeach
-                    </ul>
+                    </ul> -->
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -58,8 +58,8 @@
                         <div class="col-md-6">
 
                             <div class="form-group lang_form" id="default-form">
-                                <label class="input-label" for="exampleFormControlInput1">{{translate('messages.name')}} ({{translate('Default')}}) </label>
-                                <input type="text" name="name[]" class="form-control" placeholder="{{ translate('Ex:_Sub_Category_Name') }}"   maxlength="191">
+                                <label class="input-label" for="exampleFormControlInput1">{{translate('messages.name')}}</label>
+                                <input type="text" name="name[]" class="form-control" placeholder="{{ translate('Ex:_Sub_Category_Name') }}"   maxlength="191" required>
                             </div>
 
                             <input type="hidden" name="lang[]" value="default">
@@ -122,10 +122,10 @@
                         <thead class="thead-light">
                             <tr>
                                 <th>{{ translate('messages.sl') }}</th>
-                                <th>{{translate('messages.id')}}</th>
+                                <!-- <th>{{translate('messages.id')}}</th> -->
                                 <th>{{translate('messages.main_category')}}</th>
                                 <th>{{translate('messages.sub_category')}}</th>
-                                <th><div class="ml-3"> {{translate('messages.priority')}}</div></th>
+                                <!-- <th><div class="ml-3"> {{translate('messages.priority')}}</div></th> -->
                                 <th class="w-100px">{{translate('messages.status')}}</th>
                                 <th class="text-center">{{translate('messages.action')}}</th>
                             </tr>
@@ -135,7 +135,7 @@
                         @foreach($categories as $key=>$category)
                             <tr>
                                 <td>{{$key+$categories->firstItem()}}</td>
-                                <td>{{$category->id}}</td>
+                                <!-- <td>{{$category->id}}</td> -->
                                 <td>
                                     <span class="d-block font-size-sm text-body">
                                         {{Str::limit($category->parent['name'],20,'...')}}
@@ -146,7 +146,7 @@
                                         {{Str::limit($category->name,20,'...')}}
                                     </span>
                                 </td>
-                                <td>
+                                <!-- <td>
                                     <form action="{{route('admin.category.priority',$category->id)}}" class="priority-form">
                                     <select name="priority" id="priority" class="form-control form--control-select priority-select {{$category->priority == 0 ? 'text--title border-dark':''}} {{$category->priority == 1 ? 'text--info border-info':''}} {{$category->priority == 2 ? 'text--success border-success':''}} ">
                                         <option value="0" {{$category->priority == 0?'selected':''}}>{{translate('messages.normal')}}</option>
@@ -154,7 +154,7 @@
                                         <option value="2" {{$category->priority == 2?'selected':''}}>{{translate('messages.high')}}</option>
                                     </select>
                                     </form>
-                                </td>
+                                </td> -->
                                 <td>
                                     <label class="toggle-switch toggle-switch-sm" for="stocksCheckbox{{$category->id}}">
                                     <input type="checkbox" data-url="{{route('admin.category.status',[$category['id'],$category->status?0:1])}}" class="toggle-switch-input redirect-url" id="stocksCheckbox{{$category->id}}" {{$category->status?'checked':''}}>
