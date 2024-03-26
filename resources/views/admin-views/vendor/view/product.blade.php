@@ -184,7 +184,7 @@
                     </td>
                     <td>
                         <div class="table--food-price text-right">
-                           100
+                           {{$food['purchase_price']}}
                         </div>
                     </td>
                     <td>

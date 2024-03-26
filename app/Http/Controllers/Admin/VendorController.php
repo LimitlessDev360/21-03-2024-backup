@@ -6,6 +6,7 @@ use App\Exports\DisbursementHistoryExport;
 use App\Models\DataSetting;
 use App\Models\DisbursementDetails;
 use App\Models\Food;
+use App\Models\Prices;
 use App\Models\Tag;
 use App\Models\Zone;
 use App\Models\AddOn;
@@ -443,10 +444,19 @@ class VendorController extends Controller
         ],[
             'product_ids.required'=>'product ids required',
         ]);
+        
+        foreach ($request->product_ids as $value) {
+            $item = new Prices();
+            $item->vendor_id = $id;
+            $item->product_id = $value;
+            $item->purchase_price = "0";
+            $item->save();
+        }
+        
 
-        $vendor = Restaurant::find($id);
-        $vendor->product_ids = $request->has('product_ids') ? json_encode($request->product_ids) : json_encode([]);
-        $vendor->save();
+        // $vendor = Restaurant::find($id);
+        // $vendor->product_ids = $request->has('product_ids') ? json_encode($request->product_ids) : json_encode([]);
+        // $vendor->save();
         Toastr::success('Product assign successfully');
         return redirect('admin/restaurant/list');
     }
@@ -604,6 +614,41 @@ class VendorController extends Controller
     }
 
         return view('admin-views.vendor.view.index', compact('restaurant','wallet'));
+    }
+
+
+
+    public function get_vendorwise_product($id,Request $request, $tab = null)
+    {
+        $key = explode(' ', $request['search']);
+
+        $restaurant= Restaurant::find($id);
+
+        $wallet = $restaurant?->vendor?->wallet;
+        if (!$wallet) {
+            $wallet = new RestaurantWallet();
+            $wallet->vendor_id = $restaurant?->vendor?->id;
+            $wallet->total_earning = 0.0;
+            $wallet->total_withdrawn = 0.0;
+            $wallet->pending_withdraw = 0.0;
+            $wallet->created_at = now();
+            $wallet->updated_at = now();
+            $wallet->save();
+        }
+
+        $foods = Prices::leftJoin(
+            'food as fs',
+            'prices.product_id',
+            '=',
+            'fs.id'
+        )->where('vendor_id', $id)->select(
+            'fs.*',
+            'prices.purchase_price',
+            'prices.id as price_id',
+        )->latest()->paginate(config('default_pagination'));
+
+     return view('admin-views.vendor.view.product', compact('restaurant','foods'));
+    
     }
 
 

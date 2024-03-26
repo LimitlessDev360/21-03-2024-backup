@@ -24,7 +24,7 @@
         <!-- End Page Header -->
         <div class="card resturant--cate-form">
             <div class="card-body">
-                <form action="{{ route('admin.restaurant.assign-products', 13) }}" method="POST"
+                <form action="{{ route('admin.restaurant.assign-products', [$data]) }}" method="POST"
             class="js-validate" id="res_form">
                 @csrf
                     <div class="row">

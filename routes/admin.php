@@ -166,7 +166,7 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
                 Route::get('add', 'VendorController@index')->name('add');
                 Route::post('store', 'VendorController@store')->name('store');
                 Route::get('edit/{id}', 'VendorController@edit')->name('edit');
-                Route::get('assgin-products/{id}', 'VendorController@assign_product')->name('assign-products');
+                Route::post('assgin-products/{id}', 'VendorController@assign_product')->name('assign-products');
                 Route::post('update/{restaurant}', 'VendorController@update')->name('update');
                 Route::post('discount/{restaurant}', 'VendorController@discountSetup')->name('discount');
                 Route::post('update-settings/{restaurant}', 'VendorController@updateRestaurantSettings')->name('update-settings');
@@ -174,6 +174,7 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
                 Route::delete('clear-discount/{restaurant}', 'VendorController@cleardiscount')->name('clear-discount');
                 // Route::get('view/{restaurant}', 'VendorController@view')->name('view_tab');
                 Route::get('view/{restaurant}/{tab?}/{sub_tab?}', 'VendorController@view')->name('view');
+                Route::get('view-producs/{id}/{tab?}', 'VendorController@get_vendorwise_product')->name('vendor-wised');
                 Route::get('pending/list', 'VendorController@pending')->name('pending');
                 Route::get('denied/list', 'VendorController@denied')->name('denied');
                 // restaurant Transcation Search
