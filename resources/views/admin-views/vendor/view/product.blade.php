@@ -144,6 +144,8 @@
                         <th class="text-center w-120px pr-80px">
                             Sale Price
                         </th>
+                        <th class="w-100px">Difference</th>
+
                         <th class="w-100px">{{translate('messages.status')}}</th>
                         <th class="w-60px text-center">{{translate('messages.action')}}</th>
                     </tr>
@@ -183,16 +185,36 @@
                     </div>
                     </td>
                     <td>
-                        <div class="table--food-price text-right">
+                    <div class="btn--container justify-content-center">
+                    <div class="form-group">
+                                <input id ="purchasePrice"type="text" name="purchase_price" class="form-control h--45px"
+                                    placeholder=""
+                                    value="{{$food['purchase_price']}}" required>
+                    </div>
+                    <a class="btn btn-sm btn--primary btn-outline-primary action-btn"
+                                href="{{route('admin.food.edit',[$food['id']])}}" title="{{translate('messages.edit_food')}}"><i class="tio-edit"></i>
+                            </a>
+                    </div>
+                        
+
+
+
+
+                        <!-- <div class="table--food-price text-right">
                            {{$food['purchase_price']}}
-                        </div>
+                        </div> -->
                     </td>
                     <td>
-                        <div class="table--food-price text-right">
+                        <div class="table--food-price text-right" id="salePrice">
                             @php($price = \App\CentralLogics\Helpers::format_currency($food['price']))
                             {{$price}}
                         </div>
                     </td>
+                    <td>
+                        
+                    <!-- <input type="number" id="amount2" name="amount2"> -->
+                    
+                    <div id="result"></div></td>
                     <td>
                         <label class="toggle-switch toggle-switch-sm" for="stocksCheckbox{{$food->id}}">
                             <input type="checkbox" data-url="{{route('admin.food.status',[$food['id'],$food->status?0:1])}}" class="toggle-switch-input redirect-url" id="stocksCheckbox{{$food->id}}" {{$food->status?'checked':''}}>
@@ -230,6 +252,27 @@
     </div>
 </div>
 @endsection
+
+<!-- <script>
+        var amount1Input = document.getElementById('purchasePrice');
+        var amount2Input = document.getElementById('salePrice');
+        var resultDiv = document.getElementById('result');
+
+        amount1Input.addEventListener('input', calculateDifference);
+        amount2Input.addEventListener('input', calculateDifference);
+
+        function calculateDifference() {
+            var amount1 = parseFloat(amount1Input.value);
+            var amount2 = parseFloat(amount2Input.value);
+
+            if (!isNaN(amount1) && !isNaN(amount2)) {
+                var difference = amount1 - amount2;
+                resultDiv.innerHTML = 'Difference: ' + difference;
+            } else {
+                resultDiv.innerHTML = 'Please enter valid numbers.';
+            }
+        }
+    </script> -->
 
 @push('script_2')
     <!-- Page level plugins -->
@@ -279,6 +322,27 @@
                 let select2 = $.HSCore.components.HSSelect2.init($(this));
             });
         });
+
+
+
+        var amount1Input = document.getElementById('purchasePrice');
+        var amount2Input = document.getElementById('salePrice');
+        var resultDiv = document.getElementById('result');
+
+        amount1Input.addEventListener('input', calculateDifference);
+        amount2Input.addEventListener('input', calculateDifference);
+
+        function calculateDifference() {
+            var amount1 = parseFloat(amount1Input.value);
+            var amount2 = parseFloat(amount2Input.value);
+
+            if (!isNaN(amount1)) {
+                var difference =  amount2   - 100;
+                resultDiv.innerHTML = 'Difference: ' + difference;
+            } else {
+                resultDiv.innerHTML = 'Please enter valid numbers.';
+            }
+        }
 
     </script>
 @endpush
