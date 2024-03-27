@@ -144,7 +144,7 @@
                         <th class="text-center w-120px pr-80px">
                             Sale Price
                         </th>
-                        <th class="w-100px">Difference</th>
+                        <th class="w-100px">Profit</th>
 
                         <th class="w-100px">{{translate('messages.status')}}</th>
                         <th class="w-60px text-center">{{translate('messages.action')}}</th>
@@ -171,7 +171,6 @@
                                                 'product/'
                                             ) }}"
 
-
                                  data-onerror-image="{{dynamicAsset('public/assets/admin/img/100x100/food-default-image.png')}}" alt="{{$food->name}} image">
                             <div class="media-body">
                                 <h5 class="text-hover-primary mb-0">{{Str::limit($food['name'],20,'...')}}</h5>
@@ -185,36 +184,36 @@
                     </div>
                     </td>
                     <td>
+                    <form action="{{route('admin.food.price-store',[$food['price_id']])}}" method="post">
                     <div class="btn--container justify-content-center">
                     <div class="form-group">
-                                <input id ="purchasePrice"type="text" name="purchase_price" class="form-control h--45px"
+                                <input id ="purchasePrice{{$food['id']}}"type="text" name="purchase_price[]" class="form-control h--45px"
                                     placeholder=""
-                                    value="{{$food['purchase_price']}}" required>
+                                    value="{{$food['purchase_price']}}" required onchange="calculateDifference({{$food['id']}})">
+                                    <div id="alert{{$food['id']}}" class="text-danger"></div>
                     </div>
-                    <a class="btn btn-sm btn--primary btn-outline-primary action-btn"
-                                href="{{route('admin.food.edit',[$food['id']])}}" title="{{translate('messages.edit_food')}}"><i class="tio-edit"></i>
-                            </a>
+                    <button type="submit" class="btn btn-sm btn--primary btn-outline-success  action-btn"><i class="tio-done"></i></button>
                     </div>
-                        
-
-
-
-
                         <!-- <div class="table--food-price text-right">
+
                            {{$food['purchase_price']}}
                         </div> -->
+                        </form>
                     </td>
                     <td>
                         <div class="table--food-price text-right" id="salePrice">
                             @php($price = \App\CentralLogics\Helpers::format_currency($food['price']))
                             {{$price}}
+                            <input id ="salePrice{{$food['id']}}" type="hidden" name="sale_price" class="form-control h--45px"
+                                    placeholder=""
+                                    value="{{$food['price']}}">
                         </div>
                     </td>
                     <td>
-                        
+                    
                     <!-- <input type="number" id="amount2" name="amount2"> -->
                     
-                    <div id="result"></div></td>
+                    <div id="result{{$food['id']}}">{{$food['price']-$food['purchase_price']}}</div></td>
                     <td>
                         <label class="toggle-switch toggle-switch-sm" for="stocksCheckbox{{$food->id}}">
                             <input type="checkbox" data-url="{{route('admin.food.status',[$food['id'],$food->status?0:1])}}" class="toggle-switch-input redirect-url" id="stocksCheckbox{{$food->id}}" {{$food->status?'checked':''}}>
@@ -252,27 +251,6 @@
     </div>
 </div>
 @endsection
-
-<!-- <script>
-        var amount1Input = document.getElementById('purchasePrice');
-        var amount2Input = document.getElementById('salePrice');
-        var resultDiv = document.getElementById('result');
-
-        amount1Input.addEventListener('input', calculateDifference);
-        amount2Input.addEventListener('input', calculateDifference);
-
-        function calculateDifference() {
-            var amount1 = parseFloat(amount1Input.value);
-            var amount2 = parseFloat(amount2Input.value);
-
-            if (!isNaN(amount1) && !isNaN(amount2)) {
-                var difference = amount1 - amount2;
-                resultDiv.innerHTML = 'Difference: ' + difference;
-            } else {
-                resultDiv.innerHTML = 'Please enter valid numbers.';
-            }
-        }
-    </script> -->
 
 @push('script_2')
     <!-- Page level plugins -->
@@ -324,24 +302,22 @@
         });
 
 
+        function calculateDifference(id) {
+            var amount1 = document.getElementById('purchasePrice'+id).value;
+            var amount2 = document.getElementById('salePrice'+id).value;
+            var resultDiv = document.getElementById('result'+id);
+            var alertDiv = document.getElementById('alert'+id);
 
-        var amount1Input = document.getElementById('purchasePrice');
-        var amount2Input = document.getElementById('salePrice');
-        var resultDiv = document.getElementById('result');
-
-        amount1Input.addEventListener('input', calculateDifference);
-        amount2Input.addEventListener('input', calculateDifference);
-
-        function calculateDifference() {
-            var amount1 = parseFloat(amount1Input.value);
-            var amount2 = parseFloat(amount2Input.value);
-
-            if (!isNaN(amount1)) {
-                var difference =  amount2   - 100;
-                resultDiv.innerHTML = 'Difference: ' + difference;
-            } else {
-                resultDiv.innerHTML = 'Please enter valid numbers.';
+            if(parseFloat(amount2)>=parseFloat(amount1)) {
+                var difference =  parseFloat(amount2) - parseFloat(amount1);
+                resultDiv.innerHTML = difference;
+                alertDiv.innerHTML = '';
+            } 
+            else {
+                alertDiv.innerHTML = 'Invalid';                
+                resultDiv.innerHTML = '';
             }
+            
         }
 
     </script>

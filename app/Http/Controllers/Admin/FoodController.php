@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Carbon\Carbon;
 use App\Models\Tag;
 use App\Models\Food;
+use App\Models\Prices;
 use App\Models\Review;
 use App\Models\Category;
 use App\Models\Restaurant;
@@ -236,6 +237,12 @@ class FoodController extends Controller
         $product_category = json_decode($product->category_ids);
         $categories = Category::where(['parent_id' => 0])->get();
         return view('admin-views.product.edit', compact('product', 'product_category', 'categories'));
+    }
+    public function price_store(Request $request, $id)
+    {//return $id;
+        // foreach ($request->purchase_price as $value) {
+            
+        // }
     }
 
     public function status(Request $request)

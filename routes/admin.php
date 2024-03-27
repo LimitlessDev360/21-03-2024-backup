@@ -63,6 +63,7 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
             Route::get('add-new', 'FoodController@index')->name('add-new');
             Route::post('variant-combination', 'FoodController@variant_combination')->name('variant-combination');
             Route::post('store', 'FoodController@store')->name('store');
+            Route::post('price-store/{id}', 'FoodController@price_store')->name('price-store');
             Route::get('edit/{id}', 'FoodController@edit')->name('edit');
             Route::post('update/{id}', 'FoodController@update')->name('update');
             Route::get('list', 'FoodController@list')->name('list');
