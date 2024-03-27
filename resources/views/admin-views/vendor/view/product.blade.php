@@ -187,17 +187,17 @@
                     <form action="{{route('admin.food.price-store',[$food['price_id']])}}" method="post">
                     <div class="btn--container justify-content-center">
                     <div class="form-group">
-                                <input id ="purchasePrice{{$food['id']}}"type="text" name="purchase_price[]" class="form-control h--45px"
+                                <input id ="purchasePrice{{$food['id']}}"type="text" name="purchase_price" class="form-control h--45px"
                                     placeholder=""
                                     value="{{$food['purchase_price']}}" required onchange="calculateDifference({{$food['id']}})">
                                     <div id="alert{{$food['id']}}" class="text-danger"></div>
                     </div>
+                    <input id ="validate_salePrice{{$food['id']}}" type="hidden" name="validate_sale_price" class="form-control h--45px"
+                                    placeholder=""
+                                    value="{{$food['price']}}">
                     <button type="submit" class="btn btn-sm btn--primary btn-outline-success  action-btn"><i class="tio-done"></i></button>
                     </div>
-                        <!-- <div class="table--food-price text-right">
-
-                           {{$food['purchase_price']}}
-                        </div> -->
+                        @csrf @method('post')
                         </form>
                     </td>
                     <td>
