@@ -1155,6 +1155,12 @@ $max_processing_time = $order->restaurant?explode('-', $order->restaurant['deliv
 
                                                 <!-- End Unfold -->
                                                 <!-- Static -->
+                                                <div class="w-100 text-center mt-4">
+                                                        <button type="button" class="btn w-100 btn-primary font-regular" data-toggle="modal"
+                                                            data-target="#myModal2" data-lat='21.03' data-lng='105.85'>
+                                                            <i class="tio-poi-outlined"></i> Vendors
+                                                        </button>
+                                                    </div>
                                                 @if ($order['order_type'] !=  'take_away' && !$order->delivery_man &&
                                                     (isset($order->restaurant) &&   ($order->restaurant->restaurant_model == 'commission'
                                                     && !$order->restaurant->self_delivery_system ) ||  ($order->restaurant->restaurant_model == 'subscription'
@@ -1771,6 +1777,95 @@ $max_processing_time = $order->restaurant?explode('-', $order->restaurant['deliv
                             <div class="location-map" id="dmassign-map">
                                 <div id="map_canvas"></div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->    <!--Dm assign Modal -->
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Buy From Vendors</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 my-2">
+                            <ul class="list-group overflow-auto max-height-400">
+                                <!-- @if ($selected_delivery_man != [] )
+
+                                <li class="list-group-item">
+                                    <div class="d-flex align-items-center gap-2 justify-content-between">
+                                            <div class="dm_list_selected media gap-2" data-id="{{ $selected_delivery_man['id'] }}">
+                                                <img class="avatar-img onerror-image"
+                                                     src="{{ \App\CentralLogics\Helpers::onerror_image_helper(
+                                                        $order->customer->image ?? '',
+                                                        dynamicStorage('storage/app/public/profile/') .'/'. ($order->customer->image ?? ''),
+                                                        dynamicAsset('public/assets/admin/img/160x160/img1.png'),
+                                                        ''
+                                                     ) }}"
+                                                     alt="Image Description"
+                                                     data-onerror-image="{{ dynamicAsset('public/assets/admin/img/160x160/img1.png') }}">
+                                                    <div class="media-body d-flex gap-1 flex-column">
+                                                        <h6 class="mb-1">  {{ $selected_delivery_man['name'] }}</h6>
+                                                        <div class="fs-12 text-muted">
+                                                            {{ translate('Active_Orders') }} : {{ $selected_delivery_man['current_orders'] }}
+                                                        </div>
+
+                                                        <div class="fs-12 text-muted">
+                                                            {{ $selected_delivery_man['distance']}} {{  translate('away_from_restaurant') }}
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                            <span class="badge __badge badge-success __badge-abs">
+                                                {{  translate('Currently_Assigned') }}
+                                            </span>
+                                    </div>
+                                </li>
+                                @endif
+ -->
+                                <p class="mb-2 text-center text-danger"  >{{  count($vendors_list) > 0  ?  count($vendors_list) : 0 }} Vendors Available</p>
+
+                                @foreach ($vendors_list as $vl)
+                                        <li class="list-group-item">
+                                            <div class="d-flex align-items-center gap-2 justify-content-between">
+                                                    <div class="dm_list media gap-2" data-id="{{ $vl['id'] }}">
+                                                        <img class="avatar avatar-60 rounded-10 onerror-image"
+                                                             src="{{ \App\CentralLogics\Helpers::onerror_image_helper(
+                                                                $vl['logo'] ?? '',
+                                                                dynamicStorage('storage/app/public/delivery-man/') .'/'. ($dm['image'] ?? ''),
+                                                                dynamicAsset('public/assets/admin/img/160x160/img1.jpg'),
+                                                                ''
+                                                             ) }}"
+                                                             alt="{{ $vl['name'] }}"
+                                                             data-onerror-image="{{ dynamicAsset('public/assets/admin/img/160x160/img1.jpg') }}">
+                                                            <div class="media-body d-flex gap-1 flex-column">
+                                                                <h6 class="mb-1">  {{ $vl['name'] }}</h6>
+                                                                <div class="fs-12 text-muted">
+                                                                    
+                                                                </div>
+
+                                                                <div class="fs-12 text-muted">
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                    </div>
+
+                                                    @if (!$order->restaurant_id )
+                                                        <a class="btn btn-primary btn-xs float-right add-delivery-man d-none"
+                                                        data-id="{{ $vl['id'] }}">{{ translate('messages.Reassign') }}</a>
+                                                    @else
+                                                        <a class="btn btn-primary btn-xs float-right add-delivery-man"
+                                                        data-id="{{ $vl['id'] }}">{{ translate('messages.assign') }}</a>
+                                                    @endif
+                                            </div>
+                                        </li>
+                                @endforeach
+                            </ul>
                         </div>
                     </div>
                 </div>

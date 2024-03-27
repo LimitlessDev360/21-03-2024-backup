@@ -607,14 +607,15 @@ class OrderController extends Controller
             }
 
             $deliveryMen = Helpers::deliverymen_list_formatting(data:$deliveryMen, restaurant_lat: $order?->restaurant?->latitude, restaurant_lng: $order?->restaurant?->longitude);
-
+            
+            $vendors_list = Restaurant::all();
 
             $selected_delivery_man = DeliveryMan::with('last_location')->where('id',$order->delivery_man_id)->first() ?? [];
             if($order->delivery_man){
                 $selected_delivery_man = Helpers::deliverymen_list_formatting(data:$selected_delivery_man, restaurant_lat: $order?->restaurant?->latitude, restaurant_lng: $order?->restaurant?->longitude , single_data:true);
             }
 
-            return view('admin-views.order.order-view', compact('order', 'deliveryMen', 'categories', 'products', 'category', 'keyword', 'editing', 'selected_delivery_man'));
+            return view('admin-views.order.order-view', compact('order', 'deliveryMen', 'categories', 'products', 'category', 'keyword', 'editing', 'selected_delivery_man','vendors_list'));
         } else {
             Toastr::info(translate('messages.no_more_orders'));
             return back();
