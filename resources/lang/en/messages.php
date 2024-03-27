@@ -4982,4 +4982,10 @@
   'no vendors' => 'No vendors',
   'Category is required' => 'Category is required',
   'no category' => 'No category',
+  'order_canceled_successfully_and_for_refund_amount_contact_admin' => 'Order canceled successfully and for refund amount contact admin',
+  'Deliveryman not available!' => 'Deliveryman not available!',
+  'role_field_is_required' => 'Role field is required',
+  'The given password has appeared in a data leak. Please choose a different password.' => 'The given password has appeared in a data leak. Please choose a different password.',
+  'Role field is required' => 'Role field is required',
+  'employee_added_successfully' => 'Employee added successfully',
 );

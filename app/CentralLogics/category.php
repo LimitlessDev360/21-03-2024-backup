@@ -20,10 +20,11 @@ class CategoryLogic
 
     public static function products(array $additional_data)
     {
-        $paginator = Food::whereHas('restaurant', function($query)use($additional_data){
-            return $query->whereIn('zone_id', $additional_data['zone_id']);
-        })
-        ->whereHas('category',function($q)use($additional_data){
+        // $paginator = Food::whereHas('restaurant', function($query)use($additional_data){
+        //     return $query->whereIn('zone_id', $additional_data['zone_id']);
+        // })
+        $paginator = Food::
+        whereHas('category',function($q)use($additional_data){
             return $q->whereId($additional_data['category_id'])->orWhere('parent_id', $additional_data['category_id']);
         })
 
