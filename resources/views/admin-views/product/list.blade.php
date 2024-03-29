@@ -283,7 +283,7 @@
                                                     {{ Str::limit($food->restaurant->name, 20, '...') }}
                                                 </a>
                                             @else
-                                                <span class="text--danger text-capitalize">{{ Str::limit( translate('messages.Restaurant_deleted!'), 20, '...') }}<span>
+                                                <span class="text--danger text-capitalize">Vendor not assigned<span>
                                             @endif
                                         </td>
                                         <td>{{ \App\CentralLogics\Helpers::format_currency($food['price']) }}</td>

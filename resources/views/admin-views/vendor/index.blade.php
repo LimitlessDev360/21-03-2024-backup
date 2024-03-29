@@ -21,7 +21,7 @@
         @php($language = $language->value ?? null)
         @php($default_lang = str_replace('_', '-', app()->getLocale()))
 
-        <form action="{{ route('admin.restaurant.store') }}" method="post" enctype="multipart/form-data"
+        <form action="{{ route('admin.restaurant.store') }}" method="post" enctype="multipart/form-data" oninput="validateAccountNumber()" onsubmit ="validateTime()"
             class="js-validate" id="res_form">
             @csrf
             <div class="row g-2">
@@ -46,38 +46,40 @@
                             @endif
                             <div class="lang_form" id="default-form">
                                 <div class="form-group ">
-                                <label class="input-label" for="exampleFormControlInput1">Name</label>
-                                    <input type="text" name="name[]" class="form-control"  placeholder="{{ translate('messages.Ex:_ABC_Company') }} " maxlength="191"  oninvalid="document.getElementById('en-link').click()">
+
+
+            
+                                        <label class="input-label" for="name">Name *</label>
+                                        <input id="name" type="text" name="name" class="form-control h--45px"
+                                            placeholder="Name"
+                                            value="{{ old('name') }}" required>
+                                   
+
+                                <!-- <input id="name" type="text" name="name" class="form-control"
+                                            placeholder="Name"
+                                            value="{{ old('name') }}"> -->
+
+
+                                    <!-- <input type="text" name="name" class="form-control"  placeholder="{{ translate('messages.Ex:_ABC_Company') }} " maxlength="191"  oninvalid="document.getElementById('en-link').click()" required
+                                    value="{{ old('name') }}"> -->
                                 </div>
                                 <input type="hidden" name="lang[]" value="default">
 
                                 <div>
-                                    <label class="input-label" for="address">Address</label>
-                                    <textarea id="address" name="address[]" class="form-control h-70px" placeholder="{{ translate('messages.Ex:_House#94,_Road#8,_Abc_City') }} "  ></textarea>
+                                    <!-- <label class="input-label" for="address">Address *</label>
+
+                                    <input id="address" type="text" name="address" class="form-control"
+                                            placeholder="Address"
+                                            value="{{ old('address') }}"> -->
+
+                                            <label class="input-label" for="address">Address *</label>
+                                        <input id="address" type="text" name="address" class="form-control h--45px"
+                                            placeholder="Address"
+                                            value="{{ old('address') }}" required>
+
+                                    <!-- <textarea id="address" name="address" class="form-control h-70px" placeholder="{{ translate('messages.Ex:_House#94,_Road#8,_Abc_City') }}" required value="{{ old('address') }}"></textarea> -->
                                 </div>
                             </div>
-
-
-                                @if ($language)
-                                @foreach(json_decode($language) as $lang)
-                                <div class="d-none lang_form" id="{{$lang}}-form">
-
-                                    <div class="form-group" >
-                                        <label class="input-label" for="exampleFormControlInput1">{{ translate('messages.restaurant_name') }} ({{strtoupper($lang)}})</label>
-                                        <input type="text" name="name[]" class="form-control"  placeholder="{{ translate('messages.Ex:_ABC_Company') }} " maxlength="191" oninvalid="document.getElementById('en-link').click()">
-                                    </div>
-                                    <input type="hidden" name="lang[]" value="{{$lang}}">
-
-                                    <div>
-                                        <label class="input-label" for="address">{{ translate('messages.restaurant_address') }} ({{strtoupper($lang)}})</label>
-                                        <textarea id="address" name="address[]" class="form-control h-70px" placeholder="{{ translate('messages.Ex:_House#94,_Road#8,_Abc_City') }} "  ></textarea>
-                                    </div>
-
-                                </div>
-                                @endforeach
-
-                            @endif
-
                         </div>
                     </div>
                 </div>
@@ -139,31 +141,35 @@
                                 <div class="col-md-6">
                                     <label class="input-label" for="tax">Gst %</label>
                                     <input id="tax" type="number" name="tax" class="form-control h--45px"
-                                        placeholder="18" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==2) return false;" required
-                                        value="">
+                                    value="{{ old('tax') }}"
+                                        placeholder="18" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==2) return false;"
+                                        >
                                 </div>
 
                                 <!-- Gst Percentage -->
                                 <div class="col-md-6">
                                 <label class="input-label" for="gst_no">GST No</label>
                                 <input id="gst_no" type="text" name="gst_no" class="form-control h--45px" maxlength="15"
-                                    placeholder="HRYD5692RH" required>
+                                value= "{{ old('gst_no') }}"
+                                    placeholder="HRYD5692RH">
                                 </div>
 
                                 <!-- Gst Percentage -->
                                 <div class="col-md-6">
                                 <label class="input-label" for="halal_no">Halal Reg No</label>
                                 <input id="halal_no" type="text" name="halal_no" class="form-control h--45px"
-                                    placeholder="HRY/KOI/26F/RYH5" required>
+                                value= "{{ old('halal_no') }}"
+                                    placeholder="HRY/KOI/26F/RYH5">
                                 </div>
 
                                 <!-- Estimated Time -->
                                 <div class="col-md-6">
                                     <div class="position-relative">
-                                        <label class="input-label" for="tax">{{translate('Estimated_Delivery_Time_(_Min_&_Maximum_Time_)')}}</label>
-                                        <input type="text" required id="time_view" class="form-control" readonly>
+                                        <label class="input-label" for="tax">{{translate('Estimated_Delivery_Time_(_Min_&_Maximum_Time_)')}} *</label>
+                                        <input type="text" id="time_view" class="form-control" readonly>
                                         <a href="javascript:void(0)" class="floating-date-toggler">&nbsp;</a>
                                         <span class="offcanvas"></span>
+                                        <span id="timeError" class="error text-danger"></span>
                                         <div class="floating--date" id="floating--date">
                                             <div class="card shadow--card-2">
                                                 <div class="card-body">
@@ -172,13 +178,13 @@
                                                             <label class="input-label"
                                                                 for="minimum_delivery_time">{{ translate('Minimum_Time') }}</label>
                                                             <input id="minimum_delivery_time" type="number" name="minimum_delivery_time" class="form-control h--45px" placeholder="{{ translate('messages.Ex:_30') }}"
-                                                                pattern="^[0-9]{2}$" required value="{{ old('minimum_delivery_time') }}">
+                                                                pattern="^[0-9]{2}$" value="{{ old('minimum_delivery_time') }}" required>
                                                         </div>
                                                         <div class="item">
                                                             <label class="input-label"
                                                                 for="maximum_delivery_time">{{ translate('Maximum_Time') }}</label>
                                                             <input id="maximum_delivery_time" type="number" name="maximum_delivery_time" class="form-control h--45px" placeholder="{{ translate('messages.Ex:_60') }}"
-                                                                pattern="[0-9]{2}" required value="{{ old('maximum_delivery_time') }}">
+                                                                pattern="[0-9]{2}" value="{{ old('maximum_delivery_time') }}" required>
                                                         </div>
                                                         <div class="item smaller">
                                                             <select name="delivery_time_type" id="delivery_time_type" class="custom-select">
@@ -250,7 +256,8 @@
                                         </select>
                                     </div> -->
                                     <div class="form-group">
-                                        <label class="input-label" for="choice_zones">{{ translate('messages.zone') }}
+                                        <span id="zoneError" class="error text-danger"></span>
+                                        <label class="input-label" for="choice_zones">{{ translate('messages.zone') }} *
                                                 <span data-toggle="tooltip" data-placement="right" data-original-title="{{ translate('messages.select_zone_for_map') }}"
                                                 class="input-label-secondary"><img
                                                     src="{{ dynamicAsset('/public/assets/admin/img/info-circle.svg') }}"
@@ -258,7 +265,8 @@
                                                 </label>
                                         <select name="zone_id" id="choice_zones" required class="form-control h--45px js-select2-custom"
                                             data-placeholder="{{ translate('messages.select_zone') }}">
-                                            <option value="" selected disabled>{{ translate('messages.select_zone') }}</option>
+                                            <option value="{{ old('zone_id') }}" selected disabled>{{ translate('messages.select_zone') }}</option>
+                                            
                                             @foreach (\App\Models\Zone::where('status',1 )->get(['id','name']) as $zone)
                                                 @if (isset(auth('admin')->user()->zone_id))
                                                     @if (auth('admin')->user()->zone_id == $zone->id)
@@ -273,22 +281,22 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="input-label" for="latitude">{{ translate('messages.latitude') }}<span data-toggle="tooltip" data-placement="right" data-original-title="{{ translate('messages.restaurant_lat_lng_warning') }}"
+                                        <label class="input-label" for="latitude">{{ translate('messages.latitude') }} *<span data-toggle="tooltip" data-placement="right" data-original-title="{{ translate('messages.restaurant_lat_lng_warning') }}"
                                                 class="input-label-secondary"><img
                                                     src="{{ dynamicAsset('/public/assets/admin/img/info-circle.svg') }}"
                                                     alt="{{ translate('messages.restaurant_lat_lng_warning') }}"></span></label>
                                         <input type="text" id="latitude" name="latitude" class="form-control h--45px disabled"
-                                            placeholder="{{ translate('messages.Ex:_-94.22213') }} " value="{{ old('latitude') }}" required readonly>
+                                            placeholder="{{ translate('messages.Ex:_-94.22213') }} " value="" required readonly>
                                     </div>
                                     <div class="form-group mb-md-0">
-                                        <label class="input-label" for="longitude">{{ translate('messages.longitude') }}
+                                        <label class="input-label" for="longitude">{{ translate('messages.longitude') }} *
                                                 <span data-toggle="tooltip" data-placement="right" data-original-title="{{ translate('messages.restaurant_lat_lng_warning') }}"
                                                 class="input-label-secondary"><img
                                                     src="{{ dynamicAsset('/public/assets/admin/img/info-circle.svg') }}"
                                                     alt="{{ translate('messages.restaurant_lat_lng_warning') }}"></span>
                                                 </label>
                                         <input type="text" name="longitude" class="form-control h--45px disabled" placeholder="{{ translate('messages.Ex:_103.344322') }} "
-                                            id="longitude" value="{{ old('longitude') }}" required readonly>
+                                            id="longitude" value="" required readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-8">
@@ -309,7 +317,7 @@
                             <div class="row">
                                 <div class="col-md-4 col-12">
                                     <div class="form-group">
-                                        <label class="input-label" for="f_name">{{ translate('messages.first_name') }}</label>
+                                        <label class="input-label" for="f_name">{{ translate('messages.first_name') }} *</label>
                                         <input id="f_name" type="text" name="f_name" class="form-control h--45px"
                                             placeholder="{{ translate('messages.Ex:_Jhone') }}"
                                             value="{{ old('f_name') }}" required>
@@ -320,21 +328,31 @@
                                         <label class="input-label" for="l_name">{{ translate('messages.last_name') }}</label>
                                         <input id="l_name" type="text" name="l_name" class="form-control h--45px"
                                             placeholder="{{ translate('messages.Ex:_Doe') }}"
-                                            value="{{ old('l_name') }}" required>
+                                            value="{{ old('l_name') }}">
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-12">
                                     <div class="form-group">
-                                        <label class="input-label" for="phone">{{ translate('messages.phone') }}</label>
-                                        <input id="phone" type="number" name="phone" class="form-control h--45px" placeholder="{{ translate('messages.Ex:_XXX-XXX-XXXX') }} "
-                                            value="" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" required>
+                                        <label class="input-label" for="phone">{{ translate('messages.phone') }} *</label>
+                                        <input id="phone" type="number" name="phone" class="form-control h--45px" placeholder="{{ translate('messages.Ex:XXX-XXX-XXXX') }} "
+                                            value="{{ old('phone') }}" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-12">
                                     <div class="form-group">
                                         <label class="input-label" for="extra_phone">Additional Phone</label>
-                                        <input id="extra_phone" type="number" name="extra_phone" class="form-control h--45px" placeholder="{{ translate('messages.Ex:_XXX-XXX-XXXX') }} "
-                                        pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"  required>
+                                        <input id="extra_phone" type="number" name="extra_phone" class="form-control h--45px" placeholder="{{ translate('messages.Ex:_XXX-XXX-XXXX') }}"
+                                        value= "{{ old('extra_phone') }}"
+                                        pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 col-12">
+                                    <div class="form-group">
+                                        <label class="input-label" for="extra_phone">Gpay No</label>
+                                        <input id="gpay_no" type="number" name="gpay_no" class="form-control h--45px" placeholder="{{ translate('messages.Ex:_XXX-XXX-XXXX') }}"
+                                        value= "{{ old('gpay_no') }}"
+                                        pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;">
                                     </div>
                                 </div>
                             </div>
@@ -355,7 +373,7 @@
                                         <label class="input-label" for="f_name">Account Holder</label>
                                         <input id="account_holder_name" type="text" name="account_holder_name" class="form-control h--45px"
                                             placeholder="Name"
-                                            value="" required>
+                                            value="{{ old('account_holder_name') }}">
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-12">
@@ -363,16 +381,16 @@
                                         <label class="input-label" for="bank_name">Bank</label>
                                         <input id="bank_name" type="text" name="bank_name" class="form-control h--45px"
                                             placeholder="HDFC"
-                                            value="" required>
+                                            value="{{ old('bank_name') }}">
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-12">
                                 <div class="form-group">
                                         <label class="input-label" for="account_type">Acocunt Type
                                                 </label>
-                                        <select name="account_type" id="account_type" required class="form-control h--45px js-select2-custom"
+                                        <select name="account_type" id="account_type"  class="form-control h--45px js-select2-custom"
                                             data-placeholder="Select account type">
-                                            <option value="" selected disabled>Select Type</option>
+                                            <option value="{{ old('account_type') }}" selected disabled>Select Type</option>
                 
                                                     <option value="savings">Savings</option>
                                                     <option value="current">Current</option>
@@ -384,21 +402,24 @@
                                     <div class="form-group">
                                         <label class="input-label" for="ifsc_code">IFSC</label>
                                         <input id="ifsc_code" type="text" name="ifsc_code" class="form-control h--45px" placeholder="HDFCIM22361"
-                                            value="" required>
+                                            value="{{ old('ifsc_code') }}">
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-12">
                                     <div class="form-group">
                                         <label class="input-label" for="account_number">Account Number</label>
                                         <input id="account_number" type="number" name="account_number" class="form-control h--45px" placeholder="115969872596325"
-                                             required>
+                                        value = "{{ old('account_number') }}"
+                                             >
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-12">
                                     <div class="form-group">
                                         <label class="input-label" for="confirm_account_number">Confirm Account Number</label>
-                                        <input id="confirm_account_number" type="number" name="confirm_account_number" class="form-control h--45px" placeholder="115969872596325"
-                                             required>
+                                        <input id="confirm_account_number" type="number" name="confirm_account_number" class="form-control h--45px" placeholder="115969872596325" 
+                                        value = "{{ old('confirm_account_number') }}"
+                                             >
+                                             <span id="accountNumberError" class="error text-danger"></span>
                                     </div>
                                 </div>
                             </div>
@@ -429,26 +450,26 @@
                             <div class="row">
                                 <div class="col-md-4 col-12">
                                     <div class="form-group">
-                                        <label class="input-label" for="email">{{ translate('messages.email') }}</label>
+                                        <label class="input-label" for="email">{{ translate('messages.email') }} *</label>
                                         <input id="email" type="email" name="email" class="form-control h--45px" placeholder="{{ translate('messages.Ex:_Jhone@company.com') }} "
-                                            required>
+                                            required value="{{ old('email') }}">
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-12">
                                     <div class="js-form-message form-group">
                                         <label class="input-label"
-                                            for="signupSrPassword">{{ translate('messages.password') }}
-                                            <span class="input-label-secondary ps-1" data-toggle="tooltip" title="{{ translate('messages.Must_contain_at_least_one_number_and_one_uppercase_and_lowercase_letter_and_symbol,_and_at_least_8_or_more_characters') }}"><img src="{{dynamicAsset('public/assets/admin/img/info-circle.svg')}}" alt="{{ translate('messages.Must_contain_at_least_one_number_and_one_uppercase_and_lowercase_letter_and_symbol,_and_at_least_8_or_more_characters') }}"></span>
+                                            for="signupSrPassword">{{ translate('messages.password') }} *
+                                            <span class="input-label-secondary ps-1" data-toggle="tooltip" title="Atleast 6 characters"><img src="{{dynamicAsset('public/assets/admin/img/info-circle.svg')}}" alt="Atleast 6 characters"></span>
 
                                         </label>
 
                                         <div class="input-group input-group-merge">
                                             <input type="password" class="js-toggle-password form-control h--45px" name="password"
                                                 id="signupSrPassword"
-                                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="{{ translate('messages.Must_contain_at_least_one_number_and_one_uppercase_and_lowercase_letter_and_symbol,_and_at_least_8_or_more_characters') }}"
+                                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Atleast 6 characters"
 
-                                                placeholder="{{ translate('messages.Ex:_8+_Character') }}"
-                                                aria-label="{{translate('messages.password_length_8+')}}"
+                                                placeholder="Atleast 6 characters"
+                                                aria-label="Atleast 6 characters"
                                                 required data-msg="Your password is invalid. Please try again."
                                                 data-hs-toggle-password-options='{
                                                                                     "target": [".js-toggle-password-target-1", ".js-toggle-password-target-2"],
@@ -467,7 +488,7 @@
                                 <div class="col-md-4 col-12">
                                     <div class="js-form-message form-group">
                                         <label class="input-label"
-                                            for="signupSrConfirmPassword">{{ translate('messages.confirm_password') }}</label>
+                                            for="signupSrConfirmPassword">{{ translate('messages.confirm_password') }} *</label>
 
                                         <div class="input-group input-group-merge">
                                             <input type="password" class="js-toggle-password form-control h--45px" name="confirmPassword"
@@ -771,6 +792,57 @@
         $("#time_view").val(min+' to '+max+' '+type);
 
     })
+
+
+
+    function validateAccountNumber() {
+    var accountNumber = document.getElementById("account_number").value;
+    var confirmAccountNumber = document.getElementById("confirm_account_number").value;
+    var errorElement = document.getElementById("accountNumberError");
+
+    if (accountNumber.trim() === "") {
+        errorElement.textContent = "Account number is required";
+        return false;
+    } else if(confirmAccountNumber.trim() === ""){
+        errorElement.textContent = "Confirm Account number is required";
+        return false;
+    }
+    else if (accountNumber !== confirmAccountNumber) {
+        errorElement.textContent = "Account numbers do not match";
+        return false;
+    } else {
+        errorElement.textContent = "";
+        return true;
+    }
+
+}
+
+
+function validateTime() {
+    var time = document.getElementById("time_view").value;
+    var zone = document.getElementById("choice_zones").value;
+    var timeError = document.getElementById("timeError");
+    var zoneError = document.getElementById("zoneError");
+
+    if (time.trim() === "") {
+        timeError.textContent = "Time is required";
+        return false;
+    }else {
+        timeError.textContent = "";
+        return true;
+    }
+
+    if (zone.trim() === "") {
+        zoneError.textContent = "Zone is required";
+        return false;
+    }else {
+        zoneError.textContent = "";
+        return true;
+    }
+
+
+
+}
 </script>
 @endpush
 
