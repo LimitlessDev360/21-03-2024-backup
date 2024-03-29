@@ -130,7 +130,7 @@
                     <!-- End forget password -->
 
 
-                    {{-- recaptcha --}}
+                    <!-- {{-- recaptcha --}}
                     @php($recaptcha = \App\CentralLogics\Helpers::get_business_settings('recaptcha'))
                     @if(isset($recaptcha) && $recaptcha['status'] == 1)
                         <div id="recaptcha_element" class="w-100" data-type="image"></div>
@@ -148,7 +148,7 @@
                             </div>
                         </div>
                     </div>
-                    @endif
+                    @endif -->
 
                     <button type="submit" class="btn btn-lg btn-block btn-primary">{{translate('messages.sign_in')}}</button>
                 </form>

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\WebSockets\Handler\DMLocationSocketHandler;
 use BeyondCode\LaravelWebSockets\Facades\WebSocketsRouter;
+use App\Http\Controllers\Api\DeliveryMan\AmountRequestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,6 +91,12 @@ Route::group(['namespace' => 'Api\V1', 'middleware'=>['localization','react']], 
             Route::delete('remove-account', 'DeliverymanController@remove_account');
             Route::get('get-withdraw-method-list', 'DeliverymanController@withdraw_method_list');
             Route::get('get-disbursement-report', 'DeliverymanController@disbursement_report');
+
+
+            ///custom disbursement
+            Route::post('request-amount', 'DeliverymanController@amountRequest');
+
+
 
 
             // Chatting
@@ -411,3 +418,5 @@ Route::group(['namespace' => 'Api\V1', 'middleware'=>['localization','react']], 
 });
 
 WebSocketsRouter::webSocket('/delivery-man/live-location', DMLocationSocketHandler::class);
+
+
