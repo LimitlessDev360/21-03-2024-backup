@@ -28,6 +28,7 @@ use App\Exports\DeliveryManEarningExport;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 use App\Exports\SingleDeliveryManReviewExport;
+use App\Models\Delivery\DeliverymanAmountRequest;
 
 
 class DeliveryManController extends Controller
@@ -846,6 +847,32 @@ class DeliveryManController extends Controller
         $dm = DeliveryMan::with(['reviews'])->where('type','zone_wise')->where(['id' => $id])->first();
 
         return view('admin-views.delivery-man.pending_list_view', compact('dm'));
+    }
+
+    public function getAmountRequest(Request $request)
+    {
+        $limit= $request['limit'] ?? 25;
+        $offset = $request['offset'] ?? 1;
+
+        //list
+       $amounts =  DeliverymanAmountRequest::where('status', 'requested')->latest()->paginate(config('default_pagination'));
+        // return $amount_requests;
+
+        return view('admin-views.delivery-man.amount.list', compact('amounts'));
+    }
+
+
+    public function payDeliverymanAmount(Request $request)
+    {
+
+
+        //list
+    //    $amounts =  DeliverymanAmountRequest::where('status', 'requested')->latest()->paginate(config('default_pagination'));
+        // return $amount_requests;
+
+        Toastr::success('Success');
+        return back();
+        // return view('admin-views.delivery-man.amount.list', compact('amounts'));
     }
 
 }

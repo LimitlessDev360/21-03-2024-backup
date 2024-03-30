@@ -1138,6 +1138,7 @@ class DeliverymanController extends Controller
         DeliverymanAmountRequest::create([
             'name' => $dm->f_name,
             'deiveryman_id' => $dm->id,
+            'phone' => $dm->phone,
             'requested_amount' => $data['requested_amount'],
             'status' => 'requested',
         ]);

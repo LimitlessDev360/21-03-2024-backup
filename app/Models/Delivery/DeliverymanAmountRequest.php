@@ -9,5 +9,5 @@ class DeliverymanAmountRequest extends Model
 {
     use HasFactory;
     protected $table = 'deliveryman_amount_requests';
-    protected $fillable = ['name', 'deiveryman_id','requested_amount','paid_amount','remaining_amount','status'];
+    protected $fillable = ['name', 'deiveryman_id','requested_amount','paid_amount','remaining_amount','status', 'phone'];
 }

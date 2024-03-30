@@ -275,7 +275,7 @@ class FoodController extends Controller
             'category_id' => 'required',
             'price' => 'required|numeric|between:.01,999999999999.99',
             'restaurant_id' => 'required',
-            'veg' => 'required',
+            // 'veg' => 'required',
             'description' => 'array',
             'description.*' => 'max:1000',
             'discount' => 'required|numeric|min:0',
@@ -284,7 +284,7 @@ class FoodController extends Controller
             'description.*.max' => translate('messages.description_length_warning'),
             'name.0.required' => translate('messages.item_name_required'),
             'category_id.required' => translate('messages.category_required'),
-            'veg.required'=>translate('messages.item_type_is_required'),
+            // 'veg.required'=>translate('messages.item_type_is_required'),
         ]);
 
         if ($request['discount_type'] == 'percent') {

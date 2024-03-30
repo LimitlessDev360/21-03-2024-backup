@@ -1505,6 +1505,28 @@
                     <!-- End Dashboards -->
                     {{-- @endif --}}
 
+
+                    <!-- Deliveryman Payment Requests Settings -->
+                    <li class="nav-item">
+                        <small class="nav-subtitle"
+                            title="DeliveryMan Payment Settings">DeliveryMan Payment Settings</small>
+                        <small class="tio-more-horizontal nav-subtitle-replacer"></small>
+                    </li>
+
+                        <!-- Requests -->
+                        @if (\App\CentralLogics\Helpers::module_permission_check('account'))
+                        <li
+                            class="navbar-vertical-aside-has-menu">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link"
+                               href="{{ route('admin.deliveryman-requests.amount-requests') }}"
+                               title="Amount Requests">
+                                <i class="tio-wallet-outlined nav-icon"></i>
+                                <span
+                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Amount Requests</span>
+                            </a>
+                        </li>
+                    @endif
+
                 {{-- addons--}}
                 {{-- @if(count(config('addon_admin_routes'))>0)
 
