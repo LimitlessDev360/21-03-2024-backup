@@ -239,22 +239,34 @@ class FoodController extends Controller
         return view('admin-views.product.edit', compact('product', 'product_category', 'categories'));
     }
     public function price_store(Request $request, $id)
+    {        
+        $purchase_price = $request['purchase_price'];
+        $validate_sale_price = $request['validate_sale_price'];
+        if($validate_sale_price>$purchase_price){
+            $price = Prices::find($id);
+            $price->purchase_price = $request['purchase_price'];
+            $price->save();
+            Toastr::success("Price updated");
+            return back();
+        }else{
+            Toastr::error("Invalid Puchase Price");
+            return back();
+        }
+    }
+    public function price_status($id, $status)
     {
-        
-    $purchase_price = $request['purchase_price'];
-    $validate_sale_price = $request['validate_sale_price'];
-       if($validate_sale_price>$purchase_price){
-        $price = Prices::find($id);
-        $price->purchase_price = $request['purchase_price'];
-        $price->save();
-        Toastr::success("Price updated");
+        $product = Prices::find($id);
+        $product->status = $request->price_status;
+        $product->save();
+        Toastr::success(translate('Status_updated'));
         return back();
-       }else{
-        Toastr::error("Invalid Puchase Price");
-       return back();
-       }
-       
-
+    }
+    public function price_delete($id)
+    {       
+        $product = Prices::find($id);
+        $product->delete();
+        Toastr::success(translate('messages.product_deleted_successfully'));
+        return back();
     }
 
     public function status(Request $request)

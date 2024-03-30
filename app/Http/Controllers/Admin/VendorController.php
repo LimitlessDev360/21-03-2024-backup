@@ -646,6 +646,7 @@ class VendorController extends Controller
             'fs.*',
             'prices.purchase_price',
             'prices.id as price_id',
+            'prices.status as price_status',
         )->latest()->paginate(config('default_pagination'));
 
      return view('admin-views.vendor.view.product', compact('restaurant','foods'));
