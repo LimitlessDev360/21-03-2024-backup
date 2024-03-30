@@ -31,6 +31,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 use App\Models\DisbursementWithdrawalMethod;
+use App\Models\Delivery\DeliverymanAmountRequest;
+
 
 class DeliverymanController extends Controller
 {
@@ -1122,6 +1124,28 @@ class DeliverymanController extends Controller
         ];
 
         return response()->json($data, 200);
+    }
+
+    public function amountRequest(Request $request)
+    {
+        //validate
+        $data = $request->validate([
+            'requested_amount' => 'required',
+        ]);
+
+        //create
+        $dm = DeliveryMan::where(['auth_token' => $request['token']])->first();
+        DeliverymanAmountRequest::create([
+            'name' => $dm->f_name,
+            'deiveryman_id' => $dm->id,
+            'requested_amount' => $data['requested_amount'],
+            'status' => 'requested',
+        ]);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Amount requested successfully',
+        ]);
     }
 
 }
