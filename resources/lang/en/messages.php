@@ -5003,4 +5003,5 @@
   'Ex:XXX-XXX-XXXX' => 'Ex:XXX-XXX-XXXX',
   'The maximum delivery time must be greater than 30.' => 'The maximum delivery time must be greater than 30.',
   'The password must be at least 6 characters.' => 'The password must be at least 6 characters.',
+  'Status_updated' => 'Status updated',
 );

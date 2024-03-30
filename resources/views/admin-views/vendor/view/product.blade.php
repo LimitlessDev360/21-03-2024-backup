@@ -51,10 +51,10 @@
                 @php($food = \App\Models\Food::withoutGlobalScope(\App\Scopes\RestaurantScope::class)
                 ->where(['restaurant_id'=>$restaurant->id])->count())
                 @php($food = ($food == null) ? 0 : $food)
-                <h6 class="card-subtitle">{{translate('messages.all')}}<span class="amount text--primary">{{$food}}</span></h6>
+                <h6 class="card-subtitle">{{translate('messages.all')}} Products<span class="amount text--primary">{{$foods->total()}}</span></h6>
         </div>
-        <span class="order-info-seperator"></span>
-        <div class="order-info-item">
+        <span class="order-info-seperator d-none"></span>
+        <div class="order-info-item d-none">
             <div class="order-info-icon icon-sm">
                 <img src="{{dynamicAsset('/public/assets/admin/img/resturant/foods/active.png')}}" alt="public">
             </div>
@@ -63,8 +63,8 @@
                 @php($food = ($food == null) ? 0 : $food)
                 <h6 class="card-subtitle">{{translate('Active_Products')}}<span class="amount text--primary">{{$food}}</span></h6>
         </div>
-        <span class="order-info-seperator"></span>
-        <div class="order-info-item">
+        <span class="order-info-seperator d-none"></span>
+        <div class="order-info-item d-none">
             <div class="order-info-icon icon-sm">
                 <img src="{{dynamicAsset('/public/assets/admin/img/resturant/foods/inactive.png')}}" alt="public">
             </div>
@@ -81,7 +81,7 @@
             <div class="search--button-wrapper">
                 <h3 class="card-title d-flex align-items-center"> <span class="card-header-icon mr-1">
                     <!-- <i class="tio-restaurant"></i> -->
-                </span> {{translate('messages.products')}} <span class="badge badge-soft-dark ml-2 badge-circle">{{$foods->total()}}</span></h3>
+                </span> {{translate('messages.products')}}</h3>
                 <form class="my-2 ml-auto mr-sm-2 mr-xl-4 ml-sm-auto flex-grow-1 flex-grow-sm-0">
                     <!-- Search -->
                     <input type="hidden" name="restaurant_id" value="{{$restaurant->id}}">
@@ -214,24 +214,26 @@
                     <!-- <input type="number" id="amount2" name="amount2"> -->
                     
                     <div id="result{{$food['id']}}">{{$food['price']-$food['purchase_price']}}</div></td>
+                    
                     <td>
-                        <label class="toggle-switch toggle-switch-sm" for="stocksCheckbox{{$food->id}}">
-                            <input type="checkbox" data-url="{{route('admin.food.status',[$food['id'],$food->status?0:1])}}" class="toggle-switch-input redirect-url" id="stocksCheckbox{{$food->id}}" {{$food->status?'checked':''}}>
-                            <span class="toggle-switch-label">
-                                <span class="toggle-switch-indicator"></span>
-                            </span>
-                        </label>
-                    </td>
+                                            <label class="toggle-switch toggle-switch-sm"
+                                                for="stocksCheckbox{{ $food->price_id }}">
+                                                <input type="checkbox"
+                                                    data-url="{{ route('admin.food.price-status', [$food->price_id, $food->price_status ? 0 : 1]) }}"
+                                                    class="toggle-switch-input redirect-url" id="stocksCheckbox{{ $food->price_id }}"
+                                                    {{ $food->price_status ? 'checked' : '' }}>
+                                                <span class="toggle-switch-label">
+                                                    <span class="toggle-switch-indicator"></span>
+                                                </span>
+                                            </label>
+                                        </td>
                     <td>
                         <div class="btn--container justify-content-center">
-                            <a class="btn btn-sm btn--primary btn-outline-primary action-btn"
-                                href="{{route('admin.food.edit',[$food['id']])}}" title="{{translate('messages.edit_food')}}"><i class="tio-edit"></i>
-                            </a>
                             <a class="btn btn-sm btn--danger btn-outline-danger action-btn form-alert" href="javascript:"
-                                data-id="food-{{$food['id']}}" data-message="{{ translate('Want to delete this item') }}" title="{{translate('messages.delete_food')}}"><i class="tio-delete-outlined"></i>
+                                data-id="food-{{$food['price_id']}}" data-message="{{ translate('Want to delete this item') }}" title="{{translate('messages.delete_food')}}"><i class="tio-delete-outlined"></i>
                             </a>
-                            <form action="{{route('admin.food.delete',[$food['id']])}}"
-                                    method="post" id="food-{{$food['id']}}">
+                            <form action="{{route('admin.food.price-delete',[$food['price_id']])}}"
+                                    method="post" id="food-{{$food['price_id']}}">
                                 @csrf @method('delete')
                             </form>
                         </div>
