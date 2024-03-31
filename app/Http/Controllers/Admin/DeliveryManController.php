@@ -12,6 +12,7 @@ use App\Models\DataSetting;
 use App\Models\DeliveryMan;
 use App\Models\Conversation;
 use App\Models\IncentiveLog;
+use App\Models\DeliveryManWallet;
 use Illuminate\Http\Request;
 use App\CentralLogics\Helpers;
 use App\Models\OrderTransaction;
@@ -865,13 +866,16 @@ class DeliveryManController extends Controller
     public function payDeliverymanAmount(Request $request)
     {
 
+        // return $request['status_id'];
+        // return $request['paid_amount'];
+        // return $request['total-amount'];
 
-        //list
-    //    $amounts =  DeliverymanAmountRequest::where('status', 'requested')->latest()->paginate(config('default_pagination'));
-        // return $amount_requests;
 
-        Toastr::success('Success');
-        return back();
+    
+      $requests= DeliverymanAmountRequest::find($request['status_id']);
+        // $requests->status = ''
+        // Toastr::success('Success');
+        // return back();
         // return view('admin-views.delivery-man.amount.list', compact('amounts'));
     }
 

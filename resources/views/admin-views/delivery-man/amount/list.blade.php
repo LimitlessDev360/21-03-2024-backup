@@ -186,19 +186,20 @@
                     <label for="checkbox" class="text-primary">If pay parital amount</label>
                     <input type="checkbox" id="checkbox" style="height:15px; width:15px">
                 </div>
+            <form action="{{route('admin.deliveryman-requests.pay-delivery-amount')}}" method="post">
+
                 <label for="total-amount">Total Amount</label>
-                <input id="total-amount" type="text" class="form-control mb-3" placeholder="Amount" value="" readonly>
+                <input id="total-amount" type="text" name="total-amount" class="form-control mb-3" placeholder="Amount" value="" readonly>
 
                 <input type="hidden" name="status_id" id="status_id">
 
                 <div class="form-group" id="textFieldGroup" style="display: none;">
                     <label for="partial_amount">Partial Amount</label>
-                    <input type="number" name="partial_amount" id="partial_amount" class="form-control"
+                    <input type="number" name="paid_amount" id="partial_amount" class="form-control"
                         id="partial_amount" onkeypress="checkAmountExceeded()">
                     <div class="errorDiv text-danger" id="errorDiv"></div>
                 </div>
             </div>
-            <form action="{{route('admin.deliveryman-requests.pay-delivery-amount')}}" method="post">
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary" id="submitButton">Pay</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

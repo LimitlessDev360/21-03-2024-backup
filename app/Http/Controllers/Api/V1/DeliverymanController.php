@@ -1135,18 +1135,29 @@ class DeliverymanController extends Controller
 
         //create
         $dm = DeliveryMan::where(['auth_token' => $request['token']])->first();
-        DeliverymanAmountRequest::create([
-            'name' => $dm->f_name,
-            'deiveryman_id' => $dm->id,
-            'phone' => $dm->phone,
-            'requested_amount' => $data['requested_amount'],
-            'status' => 'requested',
-        ]);
+        $dm_wallet = DeliveryManWallet::where(['delivery_man_id' => $dm->id])->first();
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Amount requested successfully',
-        ]);
+        $blc = (float) ($dm_wallet->total_earning - $dm_wallet->total_withdrawn  ?? 0);
+        if($data['requested_amount'] <= $blc){
+            DeliverymanAmountRequest::create([
+                'name' => $dm->f_name,
+                'deiveryman_id' => $dm->id,
+                'phone' => $dm->phone,
+                'requested_amount' => $data['requested_amount'],
+                'status' => 'requested',
+            ]);
+            return response()->json([
+                'status' => true,
+                'message' => 'Amount requested successfully',
+            ]);
+        }else{
+            return response()->json([
+                'status' => false,
+                'message' => 'Amount should be less than total amount',
+            ],422);
+
+        }
+
     }
 
 }
