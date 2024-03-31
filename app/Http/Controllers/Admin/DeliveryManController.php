@@ -30,6 +30,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 use App\Exports\SingleDeliveryManReviewExport;
 use App\Models\Delivery\DeliverymanAmountRequest;
+use App\Models\Delivery\DeliverymanBankDetail;
 
 
 class DeliveryManController extends Controller
@@ -862,21 +863,75 @@ class DeliveryManController extends Controller
         return view('admin-views.delivery-man.amount.list', compact('amounts'));
     }
 
-
-    public function payDeliverymanAmount(Request $request)
+    public function getPartialRequest(Request $request)
     {
 
-        // return $request['status_id'];
-        // return $request['paid_amount'];
-        // return $request['total-amount'];
+        //list
+       $amounts =  DeliverymanAmountRequest::where('status', 'partial')->latest()->paginate(config('default_pagination'));
+        // return $amount_requests;
+
+        return view('admin-views.delivery-man.amount.partial-list', compact('amounts'));
+    }
+
+    public function getPaidList(Request $request)
+    {
+
+        //list
+       $amounts =  DeliverymanAmountRequest::where('status', 'paid')->latest()->paginate(config('default_pagination'));
+        // return $amount_requests;
+
+        return view('admin-views.delivery-man.amount.paid-list', compact('amounts'));
+    }
+
+    public function deliverymanBankList(Request $request)
+    {
+
+        //list
+       $banks =  DeliverymanBankDetail::where('is_active', 0 || 1)->paginate(config('default_pagination'));
+        // return $amount_requests;
+
+        return view('admin-views.delivery-man.bank.list', compact('banks'));
+    }
+
 
 
     
-      $requests= DeliverymanAmountRequest::find($request['status_id']);
-        // $requests->status = ''
-        // Toastr::success('Success');
-        // return back();
-        // return view('admin-views.delivery-man.amount.list', compact('amounts'));
+
+
+    public function payDeliverymanAmount(Request $request)
+    {
+        $total = $request['total-amount'];
+        $partial = $request['paid_amount'];
+
+        if($partial == ""){
+           $amount = $total;
+        }else {
+           $amount = $partial;
+        }
+
+      $dm_request= DeliverymanAmountRequest::find($request['status_id']);
+      $dm_wallet = DeliveryManWallet::where(['delivery_man_id' => $dm_request->deiveryman_id])->first();
+
+      /// all are wallet table
+    if($amount < $dm_request->requested_amount){
+        $dm_wallet->pending_withdraw = $dm_request->requested_amount - $amount;
+        $dm_wallet->total_withdrawn = $dm_wallet->total_withdrawn + $amount;
+        $dm_request->remaining_amount = $dm_request->requested_amount - $amount;
+        $dm_request->paid_amount = $amount;
+        $dm_request->status = 'partial';
+      $dm_wallet->save();
+      $dm_request->save();
+    }else{
+        /// all are request table
+        $dm_wallet->total_withdrawn = $dm_wallet->total_withdrawn + $amount;
+        $dm_request->paid_amount = $amount;
+        $dm_request->remaining_amount = 0;
+        $dm_request->status = 'paid';
+        $dm_wallet->save();
+        $dm_request->save();
+    }
+    Toastr::success('Success');
+    return back();
     }
 
 }

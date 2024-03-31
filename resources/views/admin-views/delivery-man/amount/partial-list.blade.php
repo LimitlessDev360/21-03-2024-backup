@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title','Amount')
+@section('title','Partial Amount Request')
 
 @push('css_or_js')
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -17,7 +17,7 @@
                         <img src="{{dynamicAsset('/public/assets/admin/img/delivery-man.png')}}" alt="public">
                     </div>
                     <span>
-                        Amount Request List
+                        Partial Amount List
                     </span>
                 </h1>
             </div>
@@ -145,7 +145,7 @@
                                     <div class="btn--container justify-content-center">
                                     <form action="" id="paymentForm">  <a class="btn btn-sm btn--primary btn-outline-primary action-btn payment-data"
                                              title="Approve and pay" data-toggle="modal" data-target="#myModal"
-                                            data-id="{{$amount->id}}" data-total="{{$amount->requested_amount}}"
+                                            data-id="{{$amount->id}}" data-total="{{$amount->remaining_amount}}"
                                             data-status="{{$amount->status}}"><i class="tio-done"></i></a></form>
                                         <!-- <a class="btn btn-sm btn--danger btn-outline-danger action-btn form-alert"
                                             href="javascript:" data-id=""

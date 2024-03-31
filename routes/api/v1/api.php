@@ -96,7 +96,8 @@ Route::group(['namespace' => 'Api\V1', 'middleware'=>['localization','react']], 
             ///custom disbursement
             Route::post('request-amount', 'DeliverymanController@amountRequest');
 
-
+            /// bank detail
+            Route::post('add-bank', 'DeliverymanController@addBankDetail');
 
 
             // Chatting

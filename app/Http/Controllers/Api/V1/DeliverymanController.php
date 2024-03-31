@@ -32,6 +32,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 use App\Models\DisbursementWithdrawalMethod;
 use App\Models\Delivery\DeliverymanAmountRequest;
+use App\Models\Delivery\DeliverymanBankDetail;
 
 
 class DeliverymanController extends Controller
@@ -1157,6 +1158,42 @@ class DeliverymanController extends Controller
             ],422);
 
         }
+
+    }
+
+
+    public function addBankDetail(Request $request)
+    {
+        //validate
+        $data = $request->validate([
+            'account_holder_name' => 'required',
+            'bank_name' => 'required',
+            'ifsc_code' => 'required',
+            'account_number' => 'required|unique:deliveryman_bank_details',
+            'confirm_account_number' => 'required|unique:deliveryman_bank_details',
+            'account_type' => 'required',
+        ]);
+
+        //create
+        $dm = DeliveryMan::where(['auth_token' => $request['token']])->first();
+       
+        DeliverymanBankDetail::create([
+                'deliveryman_name' => $dm->f_name,
+                'deliveryman_id' => $dm->id,
+                'deliveryman_phone' => $dm->phone,
+                'account_holder_name' => $data['account_holder_name'],
+                'bank_name' => $data['bank_name'],
+                'ifsc_code' => $data['ifsc_code'],
+                'account_number' => $data['account_number'],
+                'confirm_account_number' => $data['confirm_account_number'],
+                'account_type' =>$data['account_type'],
+                'is_active' =>1,
+            ]);
+            return response()->json([
+                'status' => true,
+                'message' => 'Bank added successfully',
+            ]);
+    
 
     }
 

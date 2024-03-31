@@ -5004,4 +5004,12 @@
   'The maximum delivery time must be greater than 30.' => 'The maximum delivery time must be greater than 30.',
   'The password must be at least 6 characters.' => 'The password must be at least 6 characters.',
   'Status_updated' => 'Status updated',
+  'KVB' => 'KVB',
+  'Already_Adjusted' => 'Already Adjusted',
+  'account_holder' => 'Account holder',
+  'confirm_account_number' => 'Confirm account number',
+  'account_type' => 'Account type',
+  'phone_number' => 'Phone number',
+  'Paid' => 'Paid',
+  'Bank' => 'Bank',
 );

@@ -855,7 +855,12 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
         // Deliveryman Amount Requests
         Route::group(['prefix' => 'deliveryman-requests', 'as' => 'deliveryman-requests.', 'middleware' => ['module:account']], function () {
             Route::get('amount-requests', 'DeliveryManController@getAmountRequest')->name('amount-requests');
+            Route::get('partial-amount-requests', 'DeliveryManController@getPartialRequest')->name('partial-amount-requests');
+            Route::get('paid-amount-list', 'DeliveryManController@getPaidList')->name('paid-amount-list');
             Route::post('pay-deliveryman-amount', 'DeliveryManController@payDeliverymanAmount')->name('pay-delivery-amount');
+
+            ///bank
+            Route::get('deliveryman-bank-list', 'DeliveryManController@deliverymanBankList')->name('deliveryman-bank-list');
         });
     }); //Admin auth middleware
     Route::get('zone/get-coordinates/{id}', 'ZoneController@get_coordinates')->name('zone.get-coordinates');

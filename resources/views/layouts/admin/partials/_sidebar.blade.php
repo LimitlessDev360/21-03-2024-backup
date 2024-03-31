@@ -1507,14 +1507,26 @@
 
 
                     <!-- Deliveryman Payment Requests Settings -->
+                    @if (\App\CentralLogics\Helpers::module_permission_check('account'))
                     <li class="nav-item">
                         <small class="nav-subtitle"
-                            title="DeliveryMan Payment Settings">DeliveryMan Payment Settings</small>
+                            title="DeliveryMan Payment Settings">Deliveryman Payment Settings</small>
                         <small class="tio-more-horizontal nav-subtitle-replacer"></small>
                     </li>
 
+
+                    <li class="navbar-vertical-aside-has-menu active">
+                        <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:"
+                            title="DeliveryMan Payment Settings">
+                            <span class="tio-files nav-icon"></span>
+                           <span
+                                class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Payments</span>
+                        </a>
+                        <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
+                            style="display: none">
+
                         <!-- Requests -->
-                        @if (\App\CentralLogics\Helpers::module_permission_check('account'))
+                     
                         <li
                             class="navbar-vertical-aside-has-menu">
                             <a class="js-navbar-vertical-aside-menu-link nav-link"
@@ -1522,68 +1534,49 @@
                                title="Amount Requests">
                                 <i class="tio-wallet-outlined nav-icon"></i>
                                 <span
-                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Amount Requests</span>
+                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Requested</span>
                             </a>
                         </li>
+
+
+                        <li
+                            class="navbar-vertical-aside-has-menu">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link"
+                               href="{{ route('admin.deliveryman-requests.partial-amount-requests') }}"
+                               title="Partial">
+                                <i class="tio-wallet-outlined nav-icon"></i>
+                                <span
+                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Partial</span>
+                            </a>
+                        </li>
+
+                        <li
+                            class="navbar-vertical-aside-has-menu">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link"
+                               href="{{ route('admin.deliveryman-requests.paid-amount-list') }}"
+                               title="Partial">
+                                <i class="tio-wallet-outlined nav-icon"></i>
+                                <span
+                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Paid List</span>
+                            </a>
+                        </li>
+
+
+                         </ul>
+
+                         <li
+                            class="navbar-vertical-aside-has-menu">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link"
+                                href="{{ route('admin.deliveryman-requests.deliveryman-bank-list') }}"
+                                title="Bank Details">
+                                <i class="tio-send nav-icon"></i>
+                                <span
+                                    class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Bank Details</span>
+                            </a>
+                        </li>
+                    </li>
+                    
                     @endif
-
-                {{-- addons--}}
-                {{-- @if(count(config('addon_admin_routes'))>0)
-
-
-            {{--
-                    @foreach(config('addon_admin_routes') as $routes)
-                        @foreach($routes as $route)
-                            <li class="navbar-vertical-aside-has-menu {{ Request::is($route['path']) ? 'show active' : '' }}">
-                                <a class="js-navbar-vertical-aside-menu-link nav-link"
-                                href="{{ $route['url'] }}" title="{{ translate($route['name']) }}">
-                                    <i class="tio- nav-icon"></i>
-                                    <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
-                                        {{ translate($route['name']) }}
-                                    </span>
-                                </a>
-                            </li>
-                        @endforeach
-                    @endforeach
-                @endif --}}
-
-
-
-
-
-                @if(count(config('addon_admin_routes'))>0)
-                <li class="nav-item">
-                    <small
-                        class="nav-subtitle">{{translate('messages.addon_menus')}}</small>
-                    <small class="tio-more-horizontal nav-subtitle-replacer"></small>
-                </li>
-                <li class="navbar-vertical-aside-has-menu {{Request::is('admin/payment/configuration/*') || Request::is('admin/sms/configuration/*')?'active':''}}">
-                    <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:" >
-                        <i class="tio-puzzle nav-icon"></i>
-                        <span  class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{translate('Addon Menus')}}</span>
-                    </a>
-                    <ul class="js-navbar-vertical-aside-submenu nav nav-sub" style="display: {{Request::is('admin/payment/configuration/*') || Request::is('admin/sms/configuration/*')?'block':'none'}}">
-                        @foreach(config('addon_admin_routes') as $routes)
-                            @foreach($routes as $route)
-                                <li class="navbar-vertical-aside-has-menu {{Request::is($route['path'])  ? 'active' :''}}">
-                                    <a class="js-navbar-vertical-aside-menu-link nav-link "
-                                    href="{{ $route['url'] }}" title="{{ translate($route['name']) }}">
-                                        <span class="tio-circle nav-indicator-icon"></span>
-                                        <span class="text-truncate">{{ translate($route['name']) }}</span>
-                                    </a>
-                                </li>
-                            @endforeach
-                        @endforeach
-                    </ul>
-                </li>
-            @endif
-            <!--addon end-->
-
-
-
-
-                    <!-- End web & adpp Settings -->
-
 
 
                     <li class="nav-item pt-100px">
