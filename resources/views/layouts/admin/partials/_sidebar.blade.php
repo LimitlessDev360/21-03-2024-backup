@@ -124,7 +124,7 @@
                                 </li>
                                 <li class="nav-item {{ Request::is('admin/campaign/item/*') ? 'active' : '' }}">
                                     <a class="nav-link " href="{{ route('admin.campaign.list', 'item') }}"
-                                        title="{{ translate('messages.food_campaign') }}">
+                                        title="Product Campaign">
                                         <span class="tio-circle nav-indicator-icon"></span>
                                         <span class="text-truncate">{{ translate('messages.product_campaign') }}</span>
                                     </a>
@@ -352,13 +352,13 @@
                         </li>
 
 
-                        <li class="navbar-vertical-aside-has-menu {{ Request::is('admin/order/subscription*') ? 'active' : '' }}">
+                        <!-- <li class="navbar-vertical-aside-has-menu {{ Request::is('admin/order/subscription*') ? 'active' : '' }}">
                             <a class="js-navbar-vertical-aside-menu-link nav-link" href="{{ route('admin.order.subscription.index') }}" title="{{ translate('messages.Subscription_orders') }} ">
                                 <i class="tio-appointment nav-icon"></i>
                                 <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
                                       {{ translate('messages.Scheduled_orders') }}</span>
                             </a>
-                        </li>
+                        </li> -->
 
                         <!-- Order refund -->
                         <li class="navbar-vertical-aside-has-menu {{ Request::is('admin/refund/*') ? 'active' : '' }}">
@@ -444,7 +444,7 @@
                     </li>
 
                     @if (\App\CentralLogics\Helpers::module_permission_check('customerList'))
-                        <li  class="navbar-vertical-aside-has-menu {{ Request::is('admin/message/list') ? 'active' : '' }}">
+                        <!-- <li  class="navbar-vertical-aside-has-menu {{ Request::is('admin/message/list') ? 'active' : '' }}">
                             <a class="js-navbar-vertical-aside-menu-link nav-link"
                                 href="{{ route('admin.message.list') }}"
                                 title="{{ translate('messages.Chattings') }}">
@@ -453,7 +453,7 @@
                                     {{ translate('messages.Chattings') }}
                                 </span>
                             </a>
-                        </li>
+                        </li> -->
                     @endif
                     @if (\App\CentralLogics\Helpers::module_permission_check('contact_message'))
                         <li class="navbar-vertical-aside-has-menu {{ Request::is('admin/contact/*') ? 'active' : '' }}">
@@ -500,7 +500,7 @@
 
                         <li class="navbar-vertical-aside-has-menu {{ Request::is('admin/restaurant*') && !Request::is('admin/restaurant/withdraw_list') ? 'active' : '' }}">
                             <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:"
-                                title="{{ translate('messages.restaurants') }}">
+                                title="Vendors">
                                 <!-- <i class="tio-restaurant nav-icon"></i> -->
                                 <i class="tio-poi-outlined nav-icon"></i>
                                 <span
@@ -514,7 +514,7 @@
                                     class="navbar-vertical-aside-has-menu {{ Request::is('admin/restaurant/add') ? 'active' : '' }}">
                                     <a class="js-navbar-vertical-aside-menu-link nav-link"
                                         href="{{ route('admin.restaurant.add') }}"
-                                        title="{{ translate('messages.add_restaurant') }}">
+                                        title="Add">
                                         <span class="tio-circle nav-indicator-icon"></span>
                                         <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
                                             {{ translate('messages.add') }}
@@ -525,7 +525,7 @@
                                 <li class="navbar-item {{ !stripos(Request()->fullurl(), 'pending-list', 5 ) && (Request::is('admin/restaurant/list') ||  Request::is('admin/restaurant/transcation/*') || Request::is('admin/restaurant/view*')) ? 'active' : '' }} ">
                                     <a class="js-navbar-vertical-aside-menu-link nav-link"
                                         href="{{ route('admin.restaurant.list') }}"
-                                        title="{{ translate('messages.restaurants_list') }}">
+                                        title="List">
                                         <span class="tio-circle nav-indicator-icon"></span>
                                         <span
                                             class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{ translate('messages.list') }}</span>
@@ -675,7 +675,7 @@
                     @if (\App\CentralLogics\Helpers::module_permission_check('food'))
                         <li class="navbar-vertical-aside-has-menu {{ Request::is('admin/food*') ? 'active' : '' }}">
                             <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:"
-                                title="{{ translate('messages.foods') }}">
+                                title="Product">
                                 <i class="tio-dashboard"></i>
                                 <span
                                     class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate ml-2">{{ translate('messages.products') }}</span>
@@ -691,7 +691,7 @@
                                 </li>
                                 <li class="nav-item {{ Request::is('admin/food/list')  ||  Request::is('admin/food/view/*') ? 'active' : '' }}">
                                     <a class="nav-link " href="{{ route('admin.food.list') }}"
-                                        title="{{ translate('messages.food_list') }}">
+                                        title="List">
                                         <span class="tio-circle nav-indicator-icon"></span>
                                         <span class="text-truncate">{{ translate('messages.list') }}</span>
                                     </a>
@@ -1410,7 +1410,7 @@
                     </li>
                     <!-- account -->
                     @if (\App\CentralLogics\Helpers::module_permission_check('account'))
-                        <li
+                        <!-- <li
                             class="navbar-vertical-aside-has-menu {{ Request::is('admin/restaurant-disbursement*') ? 'active' : '' }}">
                             <a class="js-navbar-vertical-aside-menu-link nav-link"
                                href="{{ route('admin.restaurant-disbursement.list', ['status' => 'all']) }}"
@@ -1419,10 +1419,10 @@
                                 <span
                                     class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{ translate('messages.vendor_disbursement') }}</span>
                             </a>
-                        </li>
+                        </li> -->
                     @endif
                 @if (\App\CentralLogics\Helpers::module_permission_check('account'))
-                    <li
+                    <!-- <li
                         class="navbar-vertical-aside-has-menu {{ Request::is('admin/dm-disbursement*') ? 'active' : '' }}">
                         <a class="js-navbar-vertical-aside-menu-link nav-link"
                            href="{{ route('admin.dm-disbursement.list', ['status' => 'all']) }}"
@@ -1431,10 +1431,10 @@
                             <span
                                 class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{ translate('messages.delivery_man_disbursement') }}</span>
                         </a>
-                    </li>
+                    </li> -->
                 @endif
                     @if (\App\CentralLogics\Helpers::module_permission_check('account'))
-                        <li
+                        <!-- <li
                             class="navbar-vertical-aside-has-menu {{ Request::is('admin/account-transaction*') ? 'active' : '' }}">
                             <a class="js-navbar-vertical-aside-menu-link nav-link"
                                 href="{{ route('admin.account-transaction.index') }}"
@@ -1443,7 +1443,7 @@
                                 <span
                                     class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{ translate('messages.collect_cash') }}</span>
                             </a>
-                        </li>
+                        </li> -->
                     @endif
                     <!-- End account -->
                     <!-- withdraw -->
@@ -1452,7 +1452,7 @@
                             class="navbar-vertical-aside-has-menu {{ Request::is('admin/restaurant/withdraw*') ? 'active' : '' }}">
                             <a class="js-navbar-vertical-aside-menu-link nav-link"
                                 href="{{ route('admin.restaurant.withdraw_list') }}"
-                                title="{{ translate('messages.restaurant_withdraws') }}">
+                                title="Vendor withdraws">
                                 <i class="tio-table nav-icon"></i>
                                 <span
                                     class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{ translate('messages.vendor_withdraws') }}</span>
@@ -1476,7 +1476,7 @@
 
                     <!-- provide_dm_earning -->
                     @if (\App\CentralLogics\Helpers::module_permission_check('provide_dm_earning'))
-                        <li
+                        <!-- <li
                             class="navbar-vertical-aside-has-menu {{ Request::is('admin/provide-deliveryman-earnings*') ? 'active' : '' }}">
                             <a class="js-navbar-vertical-aside-menu-link nav-link"
                                 href="{{ route('admin.provide-deliveryman-earnings.index') }}"
@@ -1485,7 +1485,7 @@
                                 <span
                                     class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{ translate('messages.DeliveryMan_Payments') }}</span>
                             </a>
-                        </li>
+                        </li> -->
                     @endif
                     <!-- End provide_dm_earning -->
 

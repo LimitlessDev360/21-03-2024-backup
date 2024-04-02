@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title', translate('Update_vendor_info'))
+@section('title', translate('Update_vendor'))
 @push('css_or_js')
     <link href="{{ dynamicAsset('public/assets/admin/css/tags-input.min.css') }}" rel="stylesheet">
 @endpush
@@ -25,7 +25,7 @@
         @php($language = $language->value ?? null)
         @php($default_lang = str_replace('_', '-', app()->getLocale()))
 
-        <form action="{{ route('admin.restaurant.update', [$restaurant['id']]) }}" method="post"
+        <form action="{{ route('admin.restaurant.update', [$restaurant['id']]) }}" method="post" oninput="validateAccountNumber()"
         class="js-validate" id="res_form" enctype="multipart/form-data">
                         @csrf
             <div class="row g-2">
@@ -33,30 +33,16 @@
                     <div class="card shadow--card-2">
                         <div class="card-body">
                             @if($language)
-                            <!-- <ul class="nav nav-tabs mb-4">
-                                <li class="nav-item">
-                                    <a class="nav-link lang_link active"
-                                    href="#"
-                                    id="default-link">{{ translate('Default') }}</a>
-                                </li>
-                                @foreach (json_decode($language) as $lang)
-                                    <li class="nav-item">
-                                        <a class="nav-link lang_link"
-                                            href="#"
-                                            id="{{ $lang }}-link">{{ \App\CentralLogics\Helpers::get_language_name($lang) . '(' . strtoupper($lang) . ')' }}</a>
-                                    </li>
-                                @endforeach
-                            </ul> -->
                             @endif
                             <div class="lang_form" id="default-form">
                                 <div class="form-group ">
-                                <label class="input-label" for="exampleFormControlInput1">{{ translate('messages.name') }}</label>
+                                <label class="input-label" for="exampleFormControlInput1">{{ translate('messages.name') }} *</label>
                                     <input type="text" name="name[]" class="form-control"  placeholder="{{ translate('messages.Ex:_ABC_Company') }} " maxlength="191" value="{{$restaurant?->getRawOriginal('name')}}"  oninvalid="document.getElementById('en-link').click()">
                                 </div>
                                 <input type="hidden" name="lang[]" value="default">
 
                                 <div>
-                                    <label class="input-label" for="address">{{ translate('messages.address') }}</label>
+                                    <label class="input-label" for="address">{{ translate('messages.address') }} *</label>
                                     <textarea id="address" name="address[]" class="form-control h-70px" placeholder="{{ translate('messages.Ex:_House#94,_Road#8,_Abc_City') }} "  >{{$restaurant?->getRawOriginal('address')}}</textarea>
                                 </div>
                             </div>
@@ -160,19 +146,39 @@
                         <div class="card-header">
                             <h5 class="card-title">
                                 <span class="card-header-icon mr-1">
-                                    <!-- <i class="tio-dashboard"></i> -->
+                                    <i class="tio-dashboard"></i>
                                 </span>
-                                <span>{{translate('Info')}}</span>
+                                <span>Config</span>
                             </h5>
                         </div>
                         <div class="card-body">
                             <div class="row g-2">
+
+                                  <!-- Gst Percentage -->
                                 <div class="col-md-6">
-                                    <label class="input-label" for="tax">{{translate('messages.GST (%)')}}</label>
+                                    <label class="input-label" for="tax">Gst %</label>
                                     <input id="tax" type="number" name="tax" class="form-control h--45px"
                                         placeholder="{{ translate('messages.Ex:_100') }} " min="0" step=".01" required
                                         value="{{ $restaurant->tax }}">
                                 </div>
+
+                                  <!-- Gst Number -->
+                                  <div class="col-md-6">
+                                <label class="input-label" for="gst_no">GST No</label>
+                                <input id="gst_no" type="text" name="gst_no" class="form-control h--45px" maxlength="15"
+                                value= "{{ $restaurant->gst_no }}"
+                                    placeholder="HRYD5692RH">
+                                </div>
+
+                                  <!-- Halal No -->
+                                  <div class="col-md-6">
+                                <label class="input-label" for="halal_no">Halal Reg No</label>
+                                <input id="halal_no" type="text" name="halal_no" class="form-control h--45px"
+                                value= "{{ $restaurant->halal_no }}"
+                                    placeholder="HRY/KOI/26F/RYH5">
+                                </div>
+
+                                <!-- Estimated Time -->
                                 <div class="col-md-6">
                                     <div class="position-relative">
                                         <label class="input-label" for="tax">{{translate('Estimated_Delivery_Time_(_Min_&_Maximum_Time_)')}}</label>
@@ -211,6 +217,30 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- Halal Certificate -->
+                                <div class="col-md-3">
+                                <label class="__custom-upload-img mr-lg-5">
+                                    @php($icon = \App\Models\BusinessSetting::where('key', 'icon')->first())
+                                    @php($icon = $icon->value ?? '')
+                                    <label class="form-label">
+                                       Halal Certificate
+                                    </label>
+                                    <div class="text-center">
+                                        <img class="img--vertical min-height-170px min-width-170px" id="halal"
+                                            src="{{ \App\CentralLogics\Helpers::onerror_image_helper(
+                                            $restaurant->halal_certificate ?? '',
+                                            dynamicStorage('storage/app/public/restaurant/halal').'/'.$restaurant->halal_certificate ?? '',
+                                            dynamicAsset('public/assets/admin/img/upload-img.png'),
+                                            'restaurant/halal/'
+                                        ) }}"
+                                            alt="Fav icon" />
+                                    </div>
+                                    <input type="file" name="halal_certificate" id="halalCertificate"  class="custom-file-input"
+                                        accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*">
+                                </label>
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -220,20 +250,6 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <!-- <div class="form-group">
-                                        <label class="input-label" for="cuisine">{{ translate('messages.cuisine') }}</label>
-                                        <select name="cuisine_ids[]" id="cuisine" class="form-control h--45px min--45 js-select2-custom"
-                                        multiple="multiple"  data-placeholder="{{ translate('messages.select_Cuisine') }}" >
-                                    </option>
-                                    @php($cuisine_array = \App\Models\Cuisine::where('status',1 )->get()->toArray())
-                                    @php($selected_cuisine =isset($restaurant->cuisine) ? $restaurant->cuisine->pluck('id')->toArray() : [])
-                                    @foreach ($cuisine_array as $cu)
-                                        <option value="{{ $cu['id'] }}"
-                                            {{ in_array($cu['id'], $selected_cuisine) ? 'selected' : '' }}>
-                                            {{ $cu['name'] }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div> -->
                                     <div class="form-group">
                                         <label class="input-label" for="choice_zones">{{ translate('messages.zone') }}
                                                 <span data-toggle="tooltip" data-placement="right" data-original-title="{{ translate('messages.select_zone_for_map') }}"
@@ -298,7 +314,7 @@
                             <div class="row">
                                 <div class="col-md-4 col-12">
                                     <div class="form-group">
-                                        <label class="input-label" for="f_name">{{ translate('messages.first_name') }}</label>
+                                        <label class="input-label" for="f_name">{{ translate('messages.first_name') }} *</label>
                                         <input id="f_name" type="text" name="f_name" class="form-control h--45px"
                                             placeholder="{{ translate('messages.Ex:_Jhon') }} "
                                             value="{{ $restaurant->vendor->f_name }}" required>
@@ -309,14 +325,33 @@
                                         <label class="input-label" for="l_name">{{ translate('messages.last_name') }}</label>
                                         <input id="l_name" type="text" name="l_name" class="form-control h--45px"
                                             placeholder="{{ translate('messages.Ex:_Doe') }} "
-                                            value="{{ $restaurant->vendor->l_name }}" required>
+                                            value="{{ $restaurant->vendor->l_name }}">
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-12">
                                     <div class="form-group">
-                                        <label class="input-label" for="phone">{{ translate('messages.phone') }}</label>
+                                        <label class="input-label" for="phone">{{ translate('messages.phone') }} *</label>
                                         <input id="phone" type="number" name="phone" class="form-control h--45px" placeholder="{{ translate('messages.Ex:_+9XXX-XXX-XXXX') }} "
                                         value="{{ $restaurant->phone }}"  required>
+                                    </div>
+                                </div>
+                                <!-- Addtitional Phone -->
+                                <div class="col-md-4 col-12">
+                                    <div class="form-group">
+                                        <label class="input-label" for="extra_phone">Additional Phone</label>
+                                        <input id="extra_phone" type="number" name="extra_phone" class="form-control h--45px" placeholder="{{ translate('messages.Ex:_XXX-XXX-XXXX') }}"
+                                        value= "{{ $restaurant->extra_phone }}"
+                                        pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;">
+                                    </div>
+                                </div>
+                                
+                                <!-- Gpay -->
+                                <div class="col-md-4 col-12">
+                                    <div class="form-group">
+                                        <label class="input-label" for="gpay_no">Gpay No</label>
+                                        <input id="gpay_no" type="number" name="gpay_no" class="form-control h--45px" placeholder="{{ translate('messages.Ex:_XXX-XXX-XXXX') }}"
+                                        value= "{{ $restaurant->gpay_no }}"
+                                        pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;">
                                     </div>
                                 </div>
                             </div>
@@ -324,8 +359,76 @@
                     </div>
                 </div>
 
+                  <!-- Bank Details -->
+                  <div class="col-lg-12">
+                    <div class="card shadow--card-2">
+                        <div class="card-header">
+                            <h4 class="card-title m-0 d-flex align-items-center"> <span class="card-header-icon mr-2"><i class="tio-dashboard"></i></span> <span>Bank Details</span></h4>
+                        </div>
+                        <div class="card-body pb-0">
+                            <div class="row">
+                                <div class="col-md-4 col-12">
+                                    <div class="form-group">
+                                        <label class="input-label" for="account_holder_name">Account Holder</label>
+                                        <input id="account_holder_name" type="text" name="account_holder_name" class="form-control h--45px"
+                                            placeholder="Name"
+                                            value="{{ $restaurant->account_holder_name }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-12">
+                                    <div class="form-group">
+                                        <label class="input-label" for="bank_name">Bank</label>
+                                        <input id="bank_name" type="text" name="bank_name" class="form-control h--45px"
+                                            placeholder="HDFC"
+                                            value="{{ $restaurant->bank_name }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-12">
+                                <div class="form-group">
+                                        <label class="input-label" for="account_type">Account Type
+                                                </label>
+                                        <select name="account_type" id="account_type"  class="form-control h--45px js-select2-custom"
+                                            data-placeholder="Select account type">
+                                            <option value="{{ $restaurant->account_type }}" selected disabled class="text-capitalize">{{ $restaurant->account_type }}</option>
+                
+                                                    <option value="savings">Savings</option>
+                                                    <option value="current">Current</option>
+                                        
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-12">
+                                    <div class="form-group">
+                                        <label class="input-label" for="ifsc_code">IFSC</label>
+                                        <input id="ifsc_code" type="text" name="ifsc_code" class="form-control h--45px" placeholder="HDFCIM22361"
+                                            value="{{ $restaurant->ifsc_code }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-12">
+                                    <div class="form-group">
+                                        <label class="input-label" for="account_number">Account Number</label>
+                                        <input id="account_number" type="number" name="account_number" class="form-control h--45px" placeholder="115969872596325"
+                                        value = "{{ $restaurant->account_number }}"
+                                             >
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-12">
+                                    <div class="form-group">
+                                        <label class="input-label" for="confirm_account_number">Confirm Account Number</label>
+                                        <input id="confirm_account_number" type="number" name="confirm_account_number" class="form-control h--45px" placeholder="115969872596325" 
+                                        value = "{{ $restaurant->confirm_account_number }}"
+                                             >
+                                             <span id="accountNumberError" class="error text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="col-lg-12">
+                    </div>
+
+
+                <!-- <div class="col-lg-12">
                     <div class="card shadow--card-2 border-0">
                         <div class="card-header">
                             <h5 class="card-title">
@@ -337,7 +440,7 @@
                             <input type="text" class="form-control" name="tags"  value="@foreach($restaurant->tags as $c) {{$c->tag.','}} @endforeach" placeholder="Enter tags" data-role="tagsinput">
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="col-lg-12">
                     <div class="card shadow--card-2">
@@ -358,17 +461,17 @@
                                     <div class="js-form-message form-group">
                                         <label class="input-label"
                                             for="signupSrPassword">{{ translate('messages.password') }}
-                                            <span class="input-label-secondary ps-1" data-toggle="tooltip" title="{{ translate('messages.Must_contain_at_least_one_number_and_one_uppercase_and_lowercase_letter_and_symbol,_and_at_least_8_or_more_characters') }}"><img src="{{dynamicAsset('public/assets/admin/img/info-circle.svg')}}" alt="{{ translate('messages.Must_contain_at_least_one_number_and_one_uppercase_and_lowercase_letter_and_symbol,_and_at_least_8_or_more_characters') }}"></span>
+                                            <span class="input-label-secondary ps-1" data-toggle="tooltip" title="Atleat 6 characters"><img src="{{dynamicAsset('public/assets/admin/img/info-circle.svg')}}" alt="Atleat 6 characters"></span>
 
                                         </label>
 
                                         <div class="input-group input-group-merge">
                                             <input type="password" class="js-toggle-password form-control h--45px" name="password"
                                                 id="signupSrPassword"
-                                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="{{ translate('messages.Must_contain_at_least_one_number_and_one_uppercase_and_lowercase_letter_and_symbol,_and_at_least_8_or_more_characters') }}"
+                                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Atleat 6 characters"
 
-                                                placeholder="{{ translate('messages.Ex:_8+_Character') }} "
-                                                aria-label="{{translate('messages.password_length_8+')}}"
+                                                placeholder="Atleat 6 characters "
+                                                aria-label="Atleat 6 characters"
                                                  data-msg="Your password is invalid. Please try again."
                                                 data-hs-toggle-password-options='{
                                                                                     "target": [".js-toggle-password-target-1", ".js-toggle-password-target-2"],
@@ -392,10 +495,10 @@
                                         <div class="input-group input-group-merge">
                                             <input type="password" class="js-toggle-password form-control h--45px" name="confirmPassword"
                                                 id="signupSrConfirmPassword"
-                                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="{{ translate('messages.Must_contain_at_least_one_number_and_one_uppercase_and_lowercase_letter_and_symbol,_and_at_least_8_or_more_characters') }}"
+                                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Atleat 6 characters"
 
-                                                placeholder="{{ translate('messages.Ex:_8+ Character') }}"
-                                                aria-label="{{translate('messages.password_length_8+')}}"
+                                                placeholder="Atleat 6 characters"
+                                                aria-label="Atleat 6 characters"
                                                  data-msg="Password does not match the confirm password."
                                                 data-hs-toggle-password-options='{
                                                                                         "target": [".js-toggle-password-target-1", ".js-toggle-password-target-2"],
@@ -483,6 +586,10 @@
 
         $("#customFileEg1").change(function() {
             readURL(this, 'viewer');
+        });
+
+        $("#halalCertificate").change(function() {
+            readURL(this, 'halal');
         });
 
         $("#coverImageUpload").change(function() {
@@ -697,5 +804,28 @@
         $("#time_view").val(min+' to '+max+' '+type);
 
     })
+
+
+    function validateAccountNumber() {
+    var accountNumber = document.getElementById("account_number").value;
+    var confirmAccountNumber = document.getElementById("confirm_account_number").value;
+    var errorElement = document.getElementById("accountNumberError");
+
+    if (accountNumber.trim() === "") {
+        errorElement.textContent = "Account number is required";
+        return false;
+    } else if(confirmAccountNumber.trim() === ""){
+        errorElement.textContent = "Confirm Account number is required";
+        return false;
+    }
+    else if (accountNumber !== confirmAccountNumber) {
+        errorElement.textContent = "Account numbers do not match";
+        return false;
+    } else {
+        errorElement.textContent = "";
+        return true;
+    }
+
+}
     </script>
 @endpush

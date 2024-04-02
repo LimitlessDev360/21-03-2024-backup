@@ -71,14 +71,16 @@
                     <!-- End POS -->
                     @endif
 
-                    <li class="nav-item">
+                    <!-- Promotions -->
+
+                    <!-- <li class="nav-item">
                         <small
                             class="nav-subtitle">{{translate('Promotions')}}</small>
                         <small class="tio-more-horizontal nav-subtitle-replacer"></small>
-                    </li>
+                    </li> -->
                     <!-- Campaign -->
                     @if(\App\CentralLogics\Helpers::employee_module_permission_check('campaign'))
-                    <li class="navbar-vertical-aside-has-menu {{Request::is('restaurant-panel/campaign*')?'active':''}}">
+                    <!-- <li class="navbar-vertical-aside-has-menu {{Request::is('restaurant-panel/campaign*')?'active':''}}">
                         <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:"
                             title="{{translate('Campaign')}}">
                             <i class="tio-image nav-icon"></i>
@@ -100,14 +102,14 @@
                                 </a>
                             </li>
                         </ul>
-                    </li>
+                    </li> -->
                     @endif
                     <!-- End Campaign -->
 
 
                 <!-- Coupon -->
                 @if (\App\CentralLogics\Helpers::employee_module_permission_check('coupon'))
-                <li class="navbar-vertical-aside-has-menu {{ Request::is('restaurant-panel/coupon*') ? 'active' : '' }}">
+                <!-- <li class="navbar-vertical-aside-has-menu {{ Request::is('restaurant-panel/coupon*') ? 'active' : '' }}">
                 <a class="js-navbar-vertical-aside-menu-link nav-link"
                     href="{{ route('vendor.coupon.add-new') }}"
                     title="{{ translate('messages.coupons') }}">
@@ -115,7 +117,7 @@
                     <span
                         class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{ translate('messages.coupons') }}</span>
                 </a>
-                </li>
+                </li> -->
                 @endif
                 <!-- End Coupon -->
 
@@ -285,7 +287,7 @@
 
                     {{-- @if ($restaurant->order_subscription_active == 1 || (\App\Models\Order::where('restaurant_id', \App\CentralLogics\Helpers::get_restaurant_id())->whereNotNull('subscription_id')->count() > 0 )) --}}
                     <li class="navbar-vertical-aside-has-menu {{ Request::is('restaurant-panel/order/subscription*') ? 'active' : '' }}">
-                        <a class="js-navbar-vertical-aside-menu-link nav-link" href="{{ route('vendor.order.subscription.index') }}" title="{{ translate('messages.order_subscriptiona') }}">
+                        <a class="js-navbar-vertical-aside-menu-link nav-link" href="{{ route('vendor.order.subscription.index') }}" title="{{ translate('messages.order_subscription') }}">
                             <i class="tio-appointment nav-icon"></i>
                             <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
                                 {{ translate('messages.order') }}  {{ translate('messages.subscription') }} </span>
@@ -303,35 +305,35 @@
                     <!-- End AddOn -->
                     @if(\App\CentralLogics\Helpers::employee_module_permission_check('food'))
                     <li class="navbar-vertical-aside-has-menu {{Request::is('restaurant-panel/category*')?'active':''}}">
-                        <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"
+                        <!-- <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"
                             href="javascript:" title="{{translate('messages.categories')}}"
                         >
                             <i class="tio-category nav-icon"></i>
                             <span
                                 class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{translate('messages.categories')}}</span>
-                        </a>
+                        </a> -->
                         <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
                         style="display: {{Request::is('restaurant-panel/category*')?'block':'none'}}">
-                            <li class="nav-item {{Request::is('restaurant-panel/category/list')?'active':''}}">
+                            <!-- <li class="nav-item {{Request::is('restaurant-panel/category/list')?'active':''}}">
                                 <a class="nav-link " href="{{route('vendor.category.add')}}"
                                     title="{{translate('messages.category')}}">
                                     <span class="tio-circle nav-indicator-icon"></span>
                                     <span class="text-truncate">{{translate('messages.category')}}</span>
                                 </a>
-                            </li>
+                            </li> -->
 
-                            <li class="nav-item {{Request::is('restaurant-panel/category/sub-category-list')?'active':''}}">
+                            <!-- <li class="nav-item {{Request::is('restaurant-panel/category/sub-category-list')?'active':''}}">
                                 <a class="nav-link " href="{{route('vendor.category.add-sub-category')}}"
                                     title="{{translate('messages.sub_category')}}">
                                     <span class="tio-circle nav-indicator-icon"></span>
                                     <span class="text-truncate">{{translate('messages.sub_category')}}</span>
                                 </a>
-                            </li>
+                            </li> -->
                         </ul>
                     </li>
                     <!-- Food -->
                     <li class="navbar-vertical-aside-has-menu {{Request::is('restaurant-panel/food*')?'active':''}}">
-                        <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:" title="{{translate('Food')}}"
+                        <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:" title="Product"
                         >
                             <i class="tio-premium-outlined nav-icon"></i>
                             <span
@@ -339,35 +341,35 @@
                         </a>
                         <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
                         style="display:{{Request::is('restaurant-panel/food*')?'block':'none'}}">
-                            <li class="nav-item {{Request::is('restaurant-panel/food/add-new')?'active':''}}">
+                            <!-- <li class="nav-item {{Request::is('restaurant-panel/food/add-new')?'active':''}}">
                                 <a class="nav-link " href="{{route('vendor.food.add-new')}}"
-                                     title="{{translate('Add New Food')}}">
+                                     title="Add">
                                     <span class="tio-circle nav-indicator-icon"></span>
                                     <span
-                                        class="text-truncate">{{translate('messages.add_new')}}</span>
+                                        class="text-truncate">Add</span>
                                 </a>
-                            </li>
+                            </li> -->
                             <li class="nav-item {{Request::is('restaurant-panel/food/list')?'active':''}}">
-                                <a class="nav-link " href="{{route('vendor.food.list')}}"  title="{{translate('Food List')}}">
+                                <a class="nav-link " href="{{route('vendor.food.list')}}"  title="List">
                                     <span class="tio-circle nav-indicator-icon"></span>
                                     <span class="text-truncate">{{translate('messages.list')}}</span>
                                 </a>
                             </li>
                             @if(\App\CentralLogics\Helpers::get_restaurant_data()->food_section)
-                            <li class="nav-item {{Request::is('restaurant-panel/food/bulk-import')?'active':''}}">
+                            <!-- <li class="nav-item {{Request::is('restaurant-panel/food/bulk-import')?'active':''}}">
                                 <a class="nav-link " href="{{route('vendor.food.bulk-import')}}"
                                      title="{{translate('Bulk Import')}}">
                                     <span class="tio-circle nav-indicator-icon"></span>
                                     <span class="text-truncate text-capitalize">{{translate('messages.bulk_import')}}</span>
                                 </a>
-                            </li>
-                            <li class="nav-item {{Request::is('restaurant-panel/food/bulk-export')?'active':''}}">
+                            </li> -->
+                            <!-- <li class="nav-item {{Request::is('restaurant-panel/food/bulk-export')?'active':''}}">
                                 <a class="nav-link " href="{{route('vendor.food.bulk-export-index')}}"
                                      title="{{translate('Bulk Export')}}">
                                     <span class="tio-circle nav-indicator-icon"></span>
                                     <span class="text-truncate text-capitalize">{{translate('messages.bulk_export')}}</span>
                                 </a>
-                            </li>
+                            </li> -->
                             @endif
                         </ul>
                     </li>
@@ -445,7 +447,7 @@
                         >
                             <span class="tio-settings nav-icon"></span>
                             <span
-                                class="text-truncate">{{translate('messages.Product_config')}}</span>
+                                class="text-truncate">Config</span>
                         </a>
                     </li>
                     @endif
@@ -522,7 +524,7 @@
                     @endif
                     <!-- End RestaurantWallet -->
                     @if(\App\CentralLogics\Helpers::employee_module_permission_check('chat'))
-                    <li class="navbar-vertical-aside-has-menu {{Request::is('restaurant-panel/message*')?'active':''}}">
+                    <!-- <li class="navbar-vertical-aside-has-menu {{Request::is('restaurant-panel/message*')?'active':''}}">
                         <a class="js-navbar-vertical-aside-menu-link nav-link"
                             href="{{route('vendor.message.list')}}" title="{{translate('messages.chat')}}"
                         >
@@ -531,7 +533,7 @@
                                 {{translate('messages.chat')}}
                             </span>
                         </a>
-                    </li>
+                    </li> -->
                     @endif
                     <!-- End Business Settings -->
                     <!-- Employee-->
@@ -557,13 +559,13 @@
                     </a>
                     </li>
 
-                    <li class="navbar-vertical-aside-has-menu {{ Request::is('restaurant-panel/report/disbursement-report') ? 'active' : '' }}">
+                    <!-- <li class="navbar-vertical-aside-has-menu {{ Request::is('restaurant-panel/report/disbursement-report') ? 'active' : '' }}">
                     <a class="nav-link " href="{{ route('vendor.report.disbursement-report') }}"
                         title="{{ translate('messages.disbursement_report') }}">
                         <span class="tio-saving nav-icon"></span>
                         <span class="text-truncate">{{ translate('messages.disbursement_report') }}</span>
                     </a>
-                    </li>
+                    </li> -->
 
 
                     <li class="navbar-vertical-aside-has-menu  {{Request::is('restaurant-panel/report/order-report') || Request::is('restaurant-panel/report/campaign-order-report') ? 'active' : '' }}">
@@ -591,7 +593,7 @@
                     </li>
                     <li class="navbar-vertical-aside-has-menu {{ Request::is('restaurant-panel/report/food-wise-report') ? 'active' : '' }}">
                         <a class="nav-link " href="{{ route('vendor.report.food-wise-report') }}"
-                            title="{{ translate('messages.food_report') }}">
+                            title="Product Report">
                             <span class="tio-fastfood nav-icon"></span>
                             <span class="text-truncate">{{ translate('messages.Product_report') }}</span>
                         </a>

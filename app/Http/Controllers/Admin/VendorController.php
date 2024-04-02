@@ -368,6 +368,17 @@ class VendorController extends Controller
         $restaurant->longitude = $request->longitude;
         $restaurant->zone_id = $request->zone_id;
         $restaurant->tax = $request->tax;
+        $restaurant->gst_no = $request->gst_no ??null;
+        $restaurant->halal_no = $request->halal_no??null;
+        $restaurant->halal_certificate = $request->has('halal_certificate') ? Helpers::update( dir:'restaurant/halal/', old_image: $restaurant->halal_certificate, format:'png', image:$request->file('halal_certificate')) : $restaurant->halal_certificate;
+        $restaurant->extra_phone = $request->extra_phone??null;
+        $restaurant->account_holder_name = $request->account_holder_name ??null;
+        $restaurant->bank_name = $request->bank_name??null;
+        $restaurant->ifsc_code = $request->ifsc_code??null;
+        $restaurant->account_type = $request->account_type??null;
+        $restaurant->gpay_no = $request->gpay_no??null;
+        $restaurant->account_number = $request->account_number??null;
+        $restaurant->confirm_account_number = $request->confirm_account_number??null;
         $restaurant->delivery_time =$request->minimum_delivery_time .'-'. $request->maximum_delivery_time.'-'.$request->delivery_time_type;
         $restaurant->save();
         $restaurant->tags()->sync($tag_ids);
@@ -433,7 +444,7 @@ class VendorController extends Controller
             $userinfo->image = $restaurant->logo;
             $userinfo->save();
         }
-        Toastr::success(translate('messages.restaurant') . translate('messages.updated_successfully'));
+        Toastr::success("Updated Successfully");
         return redirect('admin/restaurant/list');
     }
 

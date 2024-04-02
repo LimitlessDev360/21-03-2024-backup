@@ -38,7 +38,7 @@
 
 
 
-                    <li class="nav-item max-sm-m-0">
+                    <!-- <li class="nav-item max-sm-m-0">
                         <div class="hs-unfold">
                             <div>
                                 @php($local = session()->has('vendor_local')?session('vendor_local'):null)
@@ -75,7 +75,7 @@
                                 @endif
                             </div>
                         </div>
-                    </li>
+                    </li> -->
 
                     <li class="nav-item d-none d-sm-inline-block mr-4">
                         <!-- Notification -->

@@ -1,5 +1,5 @@
 @extends('layouts.landing.app')
-@section('title', translate('messages.restaurant_registration'))
+@section('title', 'Vendor Registration')
 @push('css_or_js')
     <link rel="stylesheet" href="{{ dynamicAsset('public/assets/landing') }}/css/style.css" />
 @endpush
@@ -16,7 +16,7 @@
         <div class="container">
             <!-- Page Header -->
             <div class="step__header">
-                <h4 class="title">{{ translate('messages.Restaurant_registration_application') }}</h4>
+                <h4 class="title">Vendor Registration</h4>
                 <div class="step__wrapper">
                     <div class="step__item active">
                         <span class="shapes"></span>

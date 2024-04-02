@@ -242,7 +242,7 @@
                                     <th class="w-60px">{{ translate('messages.sl') }}</th>
                                     <th class="w-100px">{{ translate('messages.name') }}</th>
                                     <th class="w-120px">{{ translate('messages.category') }}</th>
-                                    <th class="w-120px">{{ translate('messages.vendor') }}</th>
+                                    <!-- <th class="w-120px">{{ translate('messages.vendor') }}</th> -->
                                     <th class="w-100px">{{ translate('messages.price') }}</th>
                                     <th class="w-100px">{{ translate('messages.status') }}</th>
                                     <th class="w-120px text-center">
@@ -277,7 +277,7 @@
                                             {{ Str::limit(($food?->category?->parent ? $food?->category?->parent?->name : $food?->category?->name )  ?? translate('messages.uncategorize')
                                             , 20, '...') }}
                                         </td>
-                                        <td>
+                                        <!-- <td>
                                             @if ($food->restaurant)
                                                 <a class="text--title" href="{{route('admin.restaurant.view',['restaurant'=>$food->restaurant_id])}}" title="{{translate('view_restaurant')}}">
                                                     {{ Str::limit($food->restaurant->name, 20, '...') }}
@@ -285,7 +285,7 @@
                                             @else
                                                 <span class="text--danger text-capitalize">Vendor not assigned<span>
                                             @endif
-                                        </td>
+                                        </td> -->
                                         <td>{{ \App\CentralLogics\Helpers::format_currency($food['price']) }}</td>
                                         <td>
                                             <label class="toggle-switch toggle-switch-sm"

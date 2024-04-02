@@ -190,7 +190,7 @@
                             <th class="border-0">{{ translate('messages.item_discount') }}</th>
                             <th class="border-0">{{ translate('messages.coupon_discount') }}</th>
                             <th class="border-0">{{ translate('messages.discounted_amount') }}</th>
-                            <th class="border-0">{{ translate('messages.vat/tax') }}</th>
+                            <th class="border-0">Gst</th>
                             <th class="border-0">{{ translate('messages.delivery_charge') }}</th>
                             <th class="border-0">{{ translate('messages.order_amount') }}</th>
                             <th class="border-0">{{ translate('messages.admin_discount') }}</th>

@@ -280,21 +280,22 @@ class FoodController extends Controller
 
     public function update(Request $request, $id)
     {
+        
+        
         $validator = Validator::make($request->all(), [
-            'name' => 'array',
-            'name.0' => 'required',
+            // 'name' => 'array',
+            // 'name.0' => 'required',
             'name.*' => 'max:191',
-            'category_id' => 'required',
-            'price' => 'required|numeric|between:.01,999999999999.99',
-            'restaurant_id' => 'required',
+            'category_id' => '',
+            'price' => 'numeric|between:.01,999999999999.99',
+            'restaurant_id' => '',
             // 'veg' => 'required',
-            'description' => 'array',
             'description.*' => 'max:1000',
-            'discount' => 'required|numeric|min:0',
-            'image' => 'nullable|max:2048',
+            'discount' => 'numeric|min:0',
+            'image' => 'max:2048',
         ], [
             'description.*.max' => translate('messages.description_length_warning'),
-            'name.0.required' => translate('messages.item_name_required'),
+            // 'name.0.required' => translate('messages.item_name_required'),
             'category_id.required' => translate('messages.category_required'),
             // 'veg.required'=>translate('messages.item_type_is_required'),
         ]);
@@ -410,7 +411,7 @@ class FoodController extends Controller
         $p->attributes = $request->has('attribute_id') ? json_encode($request->attribute_id) : json_encode([]);
         $p->add_ons = $request->has('addon_ids') ? json_encode($request->addon_ids) : json_encode([]);
         $p->restaurant_id = $request->restaurant_id;
-        $p->veg = $request->veg;
+        $p->veg = 0;
         $p->maximum_cart_quantity = $request->maximum_cart_quantity;
 
         $p->save();
@@ -474,7 +475,7 @@ class FoodController extends Controller
             }
         }
 
-        return response()->json([], 200);
+        // return response()->json([], 200);
     }
 
     public function delete(Request $request)

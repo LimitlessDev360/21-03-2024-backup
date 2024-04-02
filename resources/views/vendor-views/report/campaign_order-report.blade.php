@@ -207,7 +207,7 @@
                                 <th class="border-top border-bottom">{{ translate('messages.item_discount') }}</th>
                                 <th class="border-top border-bottom">{{ translate('messages.coupon_discount') }}</th>
                                 <th class="border-top border-bottom">{{ translate('messages.discounted_amount') }}</th>
-                                <th class="border-top border-bottom text-center">{{ translate('messages.tax') }}</th>
+                                <th class="border-top border-bottom text-center">Gst</th>
                                 <th class="border-top border-bottom">{{ translate('messages.delivery_charge') }}</th>
                                 <th class="border-top border-bottom">{{ translate('messages.order_amount') }}</th>
                                 <th class="border-top border-bottom min-w-140">{{ translate('messages.amount_received_by') }}</th>

@@ -9,14 +9,14 @@
 @section('content')
     <div class="content container-fluid">
         <!-- Page Header -->
-        <div class="page-header">
+        <!-- <div class="page-header">
             <div class="d-flex flex-wrap justify-content-between align-items-center">
                 <h1 class="page-header-title text-break">{{$product['name']}}</h1>
                 <a href="{{route('vendor.food.edit',[$product['id']])}}" class="btn btn--primary">
                     <i class="tio-edit"></i> {{translate('messages.edit')}} {{ translate('Info') }}
                 </a>
             </div>
-        </div>
+        </div> -->
         <!-- End Page Header -->
 
         <!-- Card -->

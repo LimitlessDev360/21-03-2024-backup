@@ -49,14 +49,14 @@ class FoodController extends Controller
             'name.0' => 'required',
             'name.*' => 'max:191',
             'category_id' => 'required',
-            'image' => 'required|max:2048',
+            'image' => 'max:2048',
             'price' => 'required|numeric|between:.01,999999999999.99',
             'description.*' => 'max:1000',
             'discount' => 'required|numeric|min:0',
         ], [
             'name.0.required' => translate('messages.item_name_required'),
             'category_id.required' => translate('messages.category_required'),
-            'veg.required'=>translate('messages.item_type_is_required'),
+            // 'veg.required'=>translate('messages.item_type_is_required'),
             'description.*.max' => translate('messages.description_length_warning'),
         ]);
 
@@ -176,7 +176,7 @@ class FoodController extends Controller
         //combinations end
         $food->variations = json_encode($variations);
         $food->price = $request->price;
-        $food->veg = $request->veg;
+        $food->veg = 0;
         $food->image = Helpers::upload(dir:'product/', format:'png', image:$request->file('image'));
         $food->available_time_starts = $request->available_time_starts;
         $food->available_time_ends = $request->available_time_ends;

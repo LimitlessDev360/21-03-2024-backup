@@ -1,6 +1,6 @@
 @extends('layouts.vendor.app')
 
-@section('title',translate('messages.restaurant_wallet'))
+@section('title','Wallet')
 
 @push('css_or_js')
 

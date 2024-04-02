@@ -5012,4 +5012,9 @@
   'phone_number' => 'Phone number',
   'Paid' => 'Paid',
   'Bank' => 'Bank',
+  'Update_vendor' => 'Update vendor',
+  'If_enabled,_this_vendor_will_be_closed_temporarily_and_hidden_from_customer_app_and_web_app._vendor_owners_can_re-open_this_vendor_anytime_by_turning_off_this_button.' => 'If enabled  this vendor will be closed temporarily and hidden from customer app and web app. vendor owners can re-open this vendor anytime by turning off this button.',
+  'Specify_the_minimum_order_amount_required_for_customers_when_ordering_from_this_vednor.' => 'Specify the minimum order amount required for customers when ordering from this vednor.',
+  'Cooking' => 'Cooking',
+  'welcome_to' => 'Welcome to',
 );

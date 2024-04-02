@@ -148,7 +148,7 @@
                     ->type($type)->RestaurantModel($typ)
                     ->count())
                     <h4 class="title">{{$data}}</h4>
-                    <span class="subtitle">{{translate('messages.new_joined_restaurants')}}</span>
+                    <span class="subtitle">New Joined Vendors</span>
                     <img class="resturant-icon" src="{{dynamicAsset('/public/assets/admin/img/resturant/new-rest.png')}}" alt="resturant">
                 </div>
             </div>
@@ -253,8 +253,8 @@
                             <thead class="thead-light">
                             <tr>
                                 <th class="text-uppercase w-90px">{{translate('messages.sl')}}</th>
-                                <th class="initial-58">{{translate('messages.vendor_info')}}</th>
-                                <th class="w-230px text-center">{{translate('messages.owner_info')}} </th>
+                                <th class="">{{translate('messages.vendor_info')}}</th>
+                                <th class="w-180px text-center">{{translate('messages.owner_info')}} </th>
                                 <th class="w-130px">{{translate('messages.zone')}}</th>
                                 <!-- <th class="w-130px">{{translate('messages.cuisine')}}</th> -->
                                 <th class="w-100px">{{translate('messages.status')}}</th>

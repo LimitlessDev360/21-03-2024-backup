@@ -1,5 +1,5 @@
 @extends('layouts.landing.app')
-@section('title', translate('messages.restaurant_registration'))
+@section('title', 'Vendor Registration')
 @push('css_or_js')
 <link rel="stylesheet" href="{{ dynamicAsset('public/assets/landing') }}/css/style.css" />
 
@@ -13,7 +13,7 @@
         <div class="container">
             <!-- Page Header -->
             <div class="step__header">
-                <h4 class="title">{{ translate('messages.Restaurant_registration_application') }}</h4>
+                <h4 class="title">Vendor Registration</h4>
                 <div class="step__wrapper">
                     <div class="step__item active">
                         <span class="shapes"></span>
@@ -53,9 +53,9 @@
                                         <span class="checkicon"></span>
                                         <h4 class="title">{{ translate('messages.comission_base') }}</h4>
                                         <div>
-                                            {{ translate('messages.restaurant_will_pay') }}
+                                            Vendor will pay
                                             {{ $admin_commission }}%  {{ translate('messages.commission_to') }} {{ $business_name }}
-                                            {{ translate('messages.from_each_order_You_will_get_access_of_all_the_features_and_options_in_restaurant_panel_,_app_and_interaction_with_user.') }}
+                                            from each order You will get access of all the features and options in vendor panel , app and interaction with user
                                         </div>
                                     </div>
                                 </label>
@@ -69,8 +69,7 @@
                                     <span class="checkicon"></span>
                                     <h4 class="title">{{ translate('messages.subscription_base') }}</h4>
                                     <div>
-                                        {{ translate('messages.Run restaurant by puchasing subsciption  packages. You will have access the features of in restaurant panel , app and interaction with user according to the subscription packages.
-                                        ') }}
+                                    Run Vendor by puchasing subsciption  packages. You will have access the features of in vendor panel , app and interaction with user according to the subscription packages
                                     </div>
                                 </div>
                             </label>

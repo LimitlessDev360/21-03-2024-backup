@@ -360,8 +360,8 @@
                     </div>
 
                 </div>
-<!-- Bank Details -->
-<div class="col-lg-12">
+                    <!-- Bank Details -->
+                    <div class="col-lg-12">
                     <div class="card shadow--card-2">
                         <div class="card-header">
                             <h4 class="card-title m-0 d-flex align-items-center"> <span class="card-header-icon mr-2"><i class="tio-dashboard"></i></span> <span>Bank Details</span></h4>
@@ -386,7 +386,7 @@
                                 </div>
                                 <div class="col-md-4 col-12">
                                 <div class="form-group">
-                                        <label class="input-label" for="account_type">Acocunt Type
+                                        <label class="input-label" for="account_type">Account Type
                                                 </label>
                                         <select name="account_type" id="account_type"  class="form-control h--45px js-select2-custom"
                                             data-placeholder="Select account type">
@@ -426,7 +426,7 @@
                         </div>
                     </div>
 
-                </div>
+                    </div>
 
                     <!-- <div class="col-lg-12">
                         <div class="card shadow--card-2 border-0">

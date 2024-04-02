@@ -145,7 +145,7 @@
                         </div>
                         <div class="card-body">
                             <div class="row g-2">
-                                <div class="col-sm-6 col-lg-3">
+                                <!-- <div class="col-sm-6 col-lg-3">
                                     <div class="form-group mb-0">
                                         <label class="input-label"
                                             for="exampleFormControlSelect1">{{ translate('messages.restaurant') }}<span
@@ -153,7 +153,7 @@
                                                 <select name="restaurant_id"
                                                 data-placeholder="{{ translate('messages.select_restaurant') }}"
                                                 class="js-data-example-ajax form-control"
-                                                title="{{ translate('select_restaurant') }}" required
+                                                title="{{ translate('select_restaurant') }}"
                                                 oninvalid="this.setCustomValidity('{{ translate('messages.please_select_restaurant') }}')">
                                                 @if (isset($product->restaurant))
                                                     <option value="{{ $product->restaurant_id }}" selected="selected">
@@ -161,13 +161,13 @@
                                                 @endif
                                             </select>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-sm-6 col-lg-3">
                                     <div class="form-group mb-0">
                                         <label class="input-label"
                                             for="exampleFormControlSelect1">{{ translate('messages.category') }}<span
                                                 class="input-label-secondary">*</span></label>
-                                                <select name="category_id" id="category-id" class="form-control js-select2-custom get-request">
+                                                <select name="category_id" id="categoryId" class="form-control js-select2-custom get-request">
                                                 @foreach ($categories as $category)
                                                     <option value="{{ $category['id'] }}"
                                                         {{ $category->id == $product_category[0]->id ? 'selected' : '' }}>
@@ -176,7 +176,7 @@
                                             </select>
                                     </div>
                                 </div>
-                                <!-- <div class="col-sm-6 col-lg-3">
+                                <div class="col-sm-6 col-lg-3">
                                     <div class="form-group mb-0">
                                         <label class="input-label"
                                             for="exampleFormControlSelect1">{{ translate('messages.sub_category') }}<span
@@ -190,7 +190,7 @@
                                                     class="form-control js-select2-custom">
                                                 </select>
                                     </div>
-                                </div> -->
+                                </div>
                                 <!-- <div class="col-sm-6 col-lg-3">
                                     <div class="form-group mb-0">
                                         <label class="input-label"
@@ -228,7 +228,7 @@
                                         src="{{ dynamicAsset('/public/assets/admin/img/info-circle.svg') }}"
                                         alt="{{ translate('messages.vendor_required_warning') }}"></span></label>
                                         <select name="addon_ids[]" class="form-control border js-select2-custom" multiple="multiple"
-                                        id="add_on">
+                                        id="category_add_on">
                                     </select>
                         </div>
                     </div>
@@ -282,7 +282,7 @@
                                             for="exampleFormControlInput1">{{ translate('messages.price') }}</label>
                                         <input type="number" min="0" max="999999999999.99"
                                             step="0.01" value="{{ $product['price'] }}" name="price" class="form-control"
-                                            placeholder="{{ translate('messages.Ex:_100') }}" required>
+                                            placeholder="{{ translate('messages.Ex:_100') }}">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -335,7 +335,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-12">
+                <!-- <div class="col-lg-12">
                     <div class="card shadow--card-2 border-0">
                         <div class="card-header flex-wrap">
                             <h5 class="card-title">
@@ -367,7 +367,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="col-lg-12">
                     <div class="card shadow--card-2 border-0">
                         <div class="card-header">
@@ -799,5 +799,23 @@
         $('#reset_btn').click(function(){
             location.reload(true);
         })
+
+        $('#categoryId').on('change', function () {
+            let route = '{{ url('/') }}/admin/restaurant/get_category_addons?data[]=0&category_id=';
+            let restaurant_id = $(this).val();
+            let id = 'category_add_on';
+            getAddonsData(route,restaurant_id, id);
+
+        });
+
+        function getAddonsData(route, category_id, id) {
+            $.get({
+                url: route + category_id,
+                dataType: 'json',
+                success: function(data) {
+                    $('#' + id).empty().append(data.options);
+                },
+            });
+        }
     </script>
 @endpush

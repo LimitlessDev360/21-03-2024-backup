@@ -36,7 +36,8 @@
                         @endif
                     </div>
                     <span>
-                        {{str_replace('_',' ',$status)}} {{translate('messages.orders')}} <span class="badge badge-soft-dark ml-2">{{$orders->total()}}</span>
+                        <!-- {{str_replace('_',' ',$status)}} {{translate('messages.orders')}}  -->
+                        <span class="badge badge-soft-dark ml-2">{{$orders->total()}}</span>
                     </span>
                 </h2>
             </div>

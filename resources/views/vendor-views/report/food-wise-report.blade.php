@@ -160,7 +160,7 @@
                                     <!-- Search -->
                                     <div class="input--group input-group">
                                         <input id="datatableSearch" name="search" type="search" class="form-control" value="{{ request()->search ?? null }}"
-                                            placeholder="{{ translate('Search_by_food_name') }}"
+                                            placeholder="Search"
                                             aria-label="{{ translate('messages.search_here') }}">
                                         <button type="submit" class="btn btn--secondary"><i class="tio-search"></i></button>
                                     </div>

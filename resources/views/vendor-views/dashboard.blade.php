@@ -18,8 +18,8 @@
                     </span>
                 </h1>
                 <span class="my-2 text--title d-block">
-                    {{translate('messages.followup')}}
-                    <i class="tio-restaurant fz-30px"></i>
+                    <!-- {{translate('messages.followup')}} -->
+                    <!-- <i class="tio-restaurant fz-30px"></i> -->
                 </span>
             </div>
         </div>

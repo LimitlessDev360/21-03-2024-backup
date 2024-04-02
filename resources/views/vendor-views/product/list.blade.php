@@ -1,6 +1,6 @@
 @extends('layouts.vendor.app')
 
-@section('title',translate('messages.food_list'))
+@section('title','Product List')
 
 @push('css_or_js')
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -17,19 +17,19 @@
                 <div class="row g-2 align-items-center justify-content-end">
                     @if ($toggle_veg_non_veg)
                     <!-- Veg/NonVeg filter -->
-                    <div class="col-auto">
+                    <!-- <div class="col-auto">
                         <select name="category_id" data-url="{{url()->full()}}" data-filter="type" data-placeholder="{{translate('messages.all')}}" class="form-control w-100 max-sm-12 set-filter">
                             <option value="all" {{$type=='all'?'selected':''}}>{{translate('messages.all')}}</option>
                             <option value="veg" {{$type=='veg'?'selected':''}}>{{translate('messages.veg')}}</option>
                             <option value="non_veg" {{$type=='non_veg'?'selected':''}}>{{translate('messages.non_veg')}}</option>
                         </select>
-                    </div>
+                    </div> -->
                     <!-- End Veg/NonVeg filter -->
                     @endif
-                    <div class="col-auto">
+                    <!-- <div class="col-auto">
                         <a href="{{route('vendor.food.add-new')}}" class="btn max-sm-12 btn--primary w-100"><i
                                     class="tio-add-circle"></i> {{translate('messages.add_new_Product')}}</a>
-                    </div>
+                    </div> -->
 
                 </div>
             </div>
@@ -175,7 +175,7 @@
                         <th class="text-center">{{translate('messages.price')}}</th>
                         <th class="text-center">{{translate('messages.Recommended')}}</th>
                         <th class="text-center">{{translate('messages.status')}}</th>
-                        <th class="text-center">{{translate('messages.action')}}</th>
+                        <!-- <th class="text-center">{{translate('messages.action')}}</th> -->
                     </tr>
                     </thead>
 
@@ -228,7 +228,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td>
+                            <!-- <td>
                                 <div class="btn--container justify-content-center">
                                     <a class="btn action-btn btn--primary btn-outline-primary"
                                         href="{{route('vendor.food.edit',[$food['id']])}}" title="{{translate('messages.edit_food')}}"><i class="tio-edit"></i>
@@ -241,7 +241,7 @@
                                         @csrf @method('delete')
                                     </form>
                                 </div>
-                            </td>
+                            </td> -->
                         </tr>
                     @endforeach
                     </tbody>

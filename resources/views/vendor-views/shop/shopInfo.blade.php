@@ -57,7 +57,7 @@
                                         </div> <div class="shop-details-model-item">
                                             <img src="{{dynamicAsset('/public/assets/admin/new-img/icon-2.png')}}" alt="">
                                             <div class="shop-details-model-item-content">
-                                                <h6>  {{ translate('VAT/TAX') }} </h6>
+                                                <h6>  Gst</h6>
                                                 <div> {{ $shop->tax  }} %</div>
                                             </div>
                                         </div>

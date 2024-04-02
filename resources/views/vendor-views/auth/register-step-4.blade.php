@@ -1,5 +1,5 @@
 @extends('layouts.landing.app')
-@section('title', translate('messages.restaurant_registration'))
+@section('title', 'Vendor Registration')
 @push('css_or_js')
 <link rel="stylesheet" href="{{ dynamicAsset('public/assets/landing') }}/css/style.css" />
 @endpush
@@ -12,7 +12,7 @@
     <div class="container">
         <!-- Page Header -->
         <div class="step__header">
-            <h4 class="title">{{ translate('messages.Restaurant_registration_application') }}</h4>
+            <h4 class="title"> Vendor Registration</h4>
             <div class="step__wrapper">
                 <div class="step__item active">
                     <span class="shapes"></span>
@@ -40,8 +40,8 @@
                         {{ translate('messages.Your_registration_has_been_completed_successfully.') }}
                     </h6>
                     <div>
-                        {{ translate('messages.You_will_receive_a_confirmation_email_within') }}
-                        <strong> {{ translate('messages.48_hour') }}</strong>
+                       Login
+                        <strong>After 5 minutes</strong>
                     </div>
                 </div>
             </div>

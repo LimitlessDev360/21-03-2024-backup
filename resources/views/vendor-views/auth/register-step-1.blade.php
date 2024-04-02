@@ -1,5 +1,5 @@
 @extends('layouts.landing.app')
-@section('title', translate('messages.restaurant_registration'))
+@section('title', 'Vendor Registration')
 @push('css_or_js')
     <link rel="stylesheet" href="{{ dynamicAsset('public/assets/landing') }}/css/style.css" />
     <link href="{{ dynamicAsset('public/assets/admin/css/tags-input.min.css') }}" rel="stylesheet">
@@ -13,7 +13,7 @@
         <div class="container">
             <!-- Page Header -->
             <div class="step__header">
-                <h4 class="title"> {{ translate('messages.Restaurant_registration_application') }}</h4>
+                <h4 class="title"> Vendor Registration Application</h4>
                 <div class="step__wrapper">
                     <div class="step__item current">
                         <span class="shapes"></span>
@@ -65,7 +65,7 @@
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             @if ($language)
                             <div class="form-group mb-0 lang_form" id="default-form">
-                                <label class="form-label" for="exampleFormControlInput1">{{ translate('messages.restaurant_name') }} ({{translate('messages.default')}})</label>
+                                <label class="form-label" for="exampleFormControlInput1">Vendor Name</label>
                                 <input type="text" name="name[]" class="form-control"  placeholder="{{ translate('messages.Ex :_ABC Company') }}" maxlength="191"  oninvalid="document.getElementById('en-link').click()">
                             </div>
                             <input type="hidden" name="lang[]" value="default">
@@ -78,7 +78,7 @@
                                 @endforeach
                             @else
                                 <div class="form-group mb-0">
-                                    <label class="form-label" for="exampleFormControlInput1">{{ translate('messages.restaurant_name') }}</label>
+                                    <label class="form-label" for="exampleFormControlInput1">Vendor Name</label>
                                     <input type="text" name="name[]" class="form-control"  placeholder="{{ translate('messages.Ex :_ABC Company') }}"  maxlength="191">
                                 </div>
                                 <input type="hidden" name="lang[]" value="default">
@@ -87,9 +87,9 @@
 
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="form-group mb-0">
-                                <label class="form-label" for="tax">{{ translate('messages.vat/tax') }} (%)</label>
+                                <label class="form-label" for="tax">Gst %</label>
                                 <input type="number" name="tax" class="form-control"
-                                    placeholder="{{ translate('messages.vat/tax') }}" min="0" step=".01" required
+                                    placeholder="Gst %" min="0" step=".01" required
                                     value="{{ old('tax') }}">
                             </div>
                         </div>
@@ -99,9 +99,9 @@
                         <div class="col-md-6 col-lg-6 col-sm-12">
                             <div class="lang_form default-form" >
                                 <div class="form-group mb-0">
-                                    <label class="form-label" for="address">{{ translate('messages.restaurant_address') }} ({{translate('messages.default')}})</label>
+                                    <label class="form-label" for="address">Address</label>
                                     <textarea type="text" name="address[]" class="form-control h--77px"
-                                        placeholder="{{ translate('messages.restaurant_address') }}"
+                                        placeholder="Address"
                                         ></textarea>
                                 </div>
                             </div>
@@ -113,9 +113,9 @@
                         @foreach(json_decode($language) as $lang)
                         <div class="d-none lang_form" id="{{$lang}}-form1">
                             <div class="form-group mb-0">
-                                <label class="form-label" for="address">{{ translate('messages.restaurant_address') }} ({{strtoupper($lang)}})</label>
+                                <label class="form-label" for="address">Address</label>
                                 <textarea type="text" name="address[]" class="form-control h--77px"
-                                    placeholder="{{ translate('messages.restaurant_address') }}"></textarea>
+                                    placeholder="Address"></textarea>
                             </div>
                         </div>
 
@@ -157,7 +157,7 @@
                                         <img class="landing-initial-1" id="coverImageViewer" src="{{ dynamicAsset('/public/assets/landing/img/restaurant-cover.png') }}" alt="Product thumbnail" />
                                     </center>
                                     <div class="landing-input-file-grp">
-                                        <label for="name" class="form-label pt-3">{{ translate('messages.restaurant_cover_photo') }} <span
+                                        <label for="name" class="form-label pt-3">Cover Photo<span
                                                 class="text-danger">({{ translate('messages.ratio') }}
                                                 2:1)</span></label>
                                         <label class="custom-file">
@@ -173,7 +173,7 @@
                                         <img class="landing-initial-1" id="logoImageViewer" src="{{ dynamicAsset('/public/assets/landing/img/restaurant-logo.png') }}" alt="Product thumbnail" />
                                     </center>
                                     <div class="landing-input-file-grp">
-                                        <label class="form-label pt-3">{{ translate('messages.restaurant_logo') }}<small class="text-danger"> (
+                                        <label class="form-label pt-3">Logo<small class="text-danger"> (
                                                 {{ translate('messages.ratio') }}
                                                 1:1
                                                 )</small></label>
@@ -187,7 +187,7 @@
                         </div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-md-3">
+                        <!-- <div class="col-md-3">
                             <div class="form-group">
                                 <label class="form-label mb-2 pb-1" for="cuisine">{{ translate('messages.cuisine') }}
                                 </label>
@@ -199,7 +199,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="form-label mb-2 pb-1" for="choice_zones">{{ translate('messages.zone') }}

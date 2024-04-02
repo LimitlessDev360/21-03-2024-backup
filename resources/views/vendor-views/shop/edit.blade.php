@@ -38,7 +38,7 @@
                     <div class="card">
                         <div class="card-body p-xl-4">
                             @if($language)
-                                <ul class="nav nav-tabs mb-4">
+                                <!-- <ul class="nav nav-tabs mb-4">
                                     <li class="nav-item">
                                         <a class="nav-link lang_link active"
                                         href="#"
@@ -51,7 +51,7 @@
                                                 id="{{ $lang }}-link">{{ \App\CentralLogics\Helpers::get_language_name($lang) . '(' . strtoupper($lang) . ')' }}</a>
                                         </li>
                                     @endforeach
-                                </ul>
+                                </ul> -->
                             @endif
                             <div class="row gy-3 gx-2">
                                 <div class="col-md-6">

@@ -22,7 +22,7 @@
                     @php($default_lang = str_replace('_', '-', app()->getLocale()))
                     @if($language)
                         <div class="col-12">
-                            <ul class="nav nav-tabs mb-4">
+                            <!-- <ul class="nav nav-tabs mb-4">
                                 <li class="nav-item">
                                     <a class="nav-link lang_link active" href="#" id="default-link">{{ translate('Default')}}</a>
                                 </li>
@@ -31,7 +31,7 @@
                                         <a class="nav-link lang_link" href="#" id="{{$lang}}-link">{{\App\CentralLogics\Helpers::get_language_name($lang).'('.strtoupper($lang).')'}}</a>
                                     </li>
                                 @endforeach
-                            </ul>
+                            </ul> -->
                         </div>
                         <div class="form-group col-md-6 lang_form" id="default-form">
                             <label class="input-label" for="exampleFormControlInput1">{{translate('messages.name')}}</label>
@@ -77,7 +77,7 @@
                         <form >
                         <div class="input-group input--group">
                             <input autocomplete="false" type="text" class="d-none">
-                            <input type="text" name="search" value="{{ request()?->search ?? null }}"  class="form-control" placeholder="{{ translate('Ex : Search by Addon Name or Restaurant Name') }}">
+                            <input type="text" name="search" value="{{ request()?->search ?? null }}"  class="form-control" placeholder=" Search by Addon Name">
                             <button type="submit" class="btn btn--secondary">
                                 <i class="tio-search"></i>
                             </button>

@@ -259,7 +259,7 @@
                                 <th class="border-top border-bottom word-nobreak">{{ translate('messages.item_discount') }}</th>
                                 <th class="border-top border-bottom word-nobreak">{{ translate('messages.coupon_discount') }}</th>
                                 <th class="border-top border-bottom word-nobreak">{{ translate('messages.discounted_amount') }}</th>
-                                <th class="border-top border-bottom text-center">{{ translate('messages.tax') }}</th>
+                                <th class="border-top border-bottom text-center">Gst</th>
                                 <th class="border-top border-bottom word-nobreak">{{ translate('messages.delivery_charge') }}</th>
                                 <th class="border-top border-bottom text-center">{{ \App\CentralLogics\Helpers::get_business_data('additional_charge_name')??translate('messages.additional_charge') }}</th>
                                 <th class="border-top border-bottom word-nobreak text-right">{{ translate('messages.order_amount') }}</th>

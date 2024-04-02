@@ -28,7 +28,7 @@
                             <i class="tio-settings-outlined"></i>
                         </span>
                         {{translate('messages.Close_Vendor_Temporarily')}}
-                        <span data-toggle="tooltip" data-placement="right" data-original-title="{{translate('If_enabled,_this_restaurant_will_be_closed_temporarily_and_hidden_from_customer_app_and_web_app._Restaurant_owners_can_re-open_this_restaurant_anytime_by_turning_off_this_button.')}}" class="input-label-secondary"><img src="{{dynamicAsset('public/assets/admin/img/info-circle.svg')}}" alt="i"></span>
+                        <span data-toggle="tooltip" data-placement="right" data-original-title="{{translate('If_enabled,_this_vendor_will_be_closed_temporarily_and_hidden_from_customer_app_and_web_app._vendor_owners_can_re-open_this_vendor_anytime_by_turning_off_this_button.')}}" class="input-label-secondary"><img src="{{dynamicAsset('public/assets/admin/img/info-circle.svg')}}" alt="i"></span>
 
                     </h4>
                     <label class="switch toggle-switch-lg m-0">
@@ -42,15 +42,15 @@
             </div>
         </div>
         <!-- End Page Header -->
-        <div class="card mb-3">
+        <!-- <div class="card mb-3">
             <div class="card-header">
                 <h5 class="card-title">
                     <i class="tio-fastfood"></i> &nbsp; {{ translate('General_settings')}}
                 </h5>
             </div>
             <div class="card-body">
-                <div class="row g-3">
-                    <div class="col-lg-4 col-sm-6">
+                <div class="row g-3"> -->
+                    <!-- <div class="col-lg-4 col-sm-6">
                         <div class="form-group m-0">
                             <label class="toggle-switch toggle-switch-sm d-flex justify-content-between border rounded px-3 form-control" for="schedule_order">
                                 <span class="pr-2">{{translate('messages.scheduled_Delivery')}}:
@@ -75,8 +75,8 @@
                             <form action="{{route('vendor.business-settings.toggle-settings',[$restaurant->id,$restaurant->schedule_order?0:1, 'schedule_order'])}}" method="get" id="schedule_order_form">
                             </form>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
+                    </div> -->
+                    <!-- <div class="col-lg-4 col-sm-6">
                         <div class="form-group m-0">
                             <label class="toggle-switch toggle-switch-sm d-flex justify-content-between border rounded px-3 form-control" for="delivery">
                                 <span class="pr-2">
@@ -102,7 +102,7 @@
                             <form action="{{route('vendor.business-settings.toggle-settings',[$restaurant->id,$restaurant->delivery?0:1, 'delivery'])}}" method="get" id="delivery_form">
                             </form>
                         </div>
-                    </div>
+                    </div> -->
 
                     @php($data =0)
                     @if (($restaurant->restaurant_model == 'subscription' && isset($restaurant->restaurant_sub) && $restaurant->restaurant_sub->self_delivery == 1)  || ($restaurant->restaurant_model == 'commission' && $restaurant->self_delivery_system == 1) )
@@ -110,7 +110,7 @@
                     @endif
 
                     @if ($data)
-                    <div class="col-lg-4 col-sm-6">
+                    <!-- <div class="col-lg-4 col-sm-6">
                         <div class="form-group m-0">
                             <label class="toggle-switch toggle-switch-sm d-flex justify-content-between border rounded px-3 form-control" for="free_delivery">
                                 <span class="pr-2">
@@ -135,9 +135,9 @@
                             <form action="{{route('vendor.business-settings.toggle-settings',[$restaurant->id,$restaurant->free_delivery?0:1, 'free_delivery'])}}" method="get" id="free_delivery_form">
                             </form>
                         </div>
-                    </div>
+                    </div> -->
                     @endif
-                    <div class="col-lg-4 col-sm-6">
+                    <!-- <div class="col-lg-4 col-sm-6">
                         <div class="form-group m-0">
                             <label class="toggle-switch toggle-switch-sm d-flex justify-content-between border rounded px-3 form-control" for="take_away">
                                 <span class="pr-2 text-capitalize">
@@ -161,9 +161,9 @@
                             <form action="{{route('vendor.business-settings.toggle-settings',[$restaurant->id,$restaurant->take_away?0:1, 'take_away'])}}" method="get" id="take_away_form">
                             </form>
                         </div>
-                    </div>
+                    </div> -->
                     @if ($toggle_veg_non_veg)
-                    <div class="col-lg-4 col-sm-6">
+                    <!-- <div class="col-lg-4 col-sm-6">
                         <div class="form-group m-0">
                             <label class="toggle-switch toggle-switch-sm d-flex justify-content-between border rounded px-3 form-control" for="veg">
                                 <span class="pr-2 text-capitalize">
@@ -187,9 +187,9 @@
                             <form action="{{route('vendor.business-settings.toggle-settings',[$restaurant->id,$restaurant->veg?0:1, 'veg'])}}" method="get" id="veg_form">
                             </form>
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="col-lg-4 col-sm-6">
+                    <!-- <div class="col-lg-4 col-sm-6">
                         <div class="form-group m-0">
                             <label class="toggle-switch toggle-switch-sm d-flex justify-content-between border rounded px-3 form-control" for="non_veg">
                                 <span class="pr-2 text-capitalize">
@@ -213,12 +213,12 @@
                             <form action="{{route('vendor.business-settings.toggle-settings',[$restaurant->id,$restaurant->non_veg?0:1, 'non_veg'])}}" method="get" id="non_veg_form">
                             </form>
                         </div>
-                    </div>
+                    </div> -->
                     @endif
 
                     @php($order_subscription = \App\Models\BusinessSetting::where('key', 'order_subscription')->first())
                     @if (isset($order_subscription) && $order_subscription->value == 1)
-                    <div class="col-lg-4 col-sm-6">
+                    <!-- <div class="col-lg-4 col-sm-6">
                         <div class="form-group m-0">
                             <label class="toggle-switch toggle-switch-sm d-flex justify-content-between border rounded px-3 form-control" for="order_subscription_active">
                                 <span class="pr-2 text-capitalize">
@@ -243,10 +243,10 @@
                              <form action="{{route('vendor.business-settings.toggle-settings',[$restaurant->id,$restaurant->order_subscription_active?0:1, 'order_subscription_active'])}}" method="get" id="order_subscription_active_form">
                             </form>
                         </div>
-                    </div>
+                    </div> -->
                     @endif
 
-                    <div class="col-lg-4 col-sm-6">
+                    <!-- <div class="col-lg-4 col-sm-6">
                         <div class="form-group m-0">
                             <label class="toggle-switch toggle-switch-sm d-flex justify-content-between border rounded px-3 form-control" for="cutlery">
                                 <span class="pr-2 text-capitalize">
@@ -272,10 +272,10 @@
                                 <form action="{{route('vendor.business-settings.toggle-settings',[$restaurant->id,$restaurant->cutlery?0:1, 'cutlery'])}}" method="get" id="cutlery_form">
                             </form>
                         </div>
-                    </div>
+                    </div> -->
 
 
-                    <div class="col-lg-4 col-sm-6">
+                    <!-- <div class="col-lg-4 col-sm-6">
                         <div class="form-group m-0">
                             <label class="toggle-switch toggle-switch-sm d-flex justify-content-between border rounded px-3 form-control" for="instant_order">
                                 <span class="pr-2 text-capitalize">
@@ -300,10 +300,10 @@
                                 <form action="{{route('vendor.business-settings.toggle-settings',[$restaurant->id,$restaurant?->restaurant_config?->instant_order?0:1, 'instant_order'])}}" method="get" id="instant_order_form">
                             </form>
                         </div>
-                    </div>
+                    </div> -->
 
                     @if ($data)
-                    <div class="col-lg-4 col-sm-6">
+                    <!-- <div class="col-lg-4 col-sm-6">
                         <div class="form-group m-0">
                             <label class="toggle-switch toggle-switch-sm d-flex justify-content-between border rounded px-3 form-control" for="customer_date_order_sratus">
                                 <span class="pr-2 text-capitalize">
@@ -328,12 +328,12 @@
                                 <form action="{{route('vendor.business-settings.toggle-settings',[$restaurant->id,$restaurant?->restaurant_config?->customer_date_order_sratus?0:1, 'customer_date_order_sratus'])}}" method="get" id="customer_date_order_sratus_form">
                             </form>
                         </div>
-                    </div>
+                    </div> -->
                     @endif
 
-                </div>
+                <!-- </div>
             </div>
-        </div>
+        </div> -->
         <div class="card mb-3">
             <div class="card-header">
                 <h5 class="card-title">
@@ -360,7 +360,7 @@
                         <div class="col-sm-{{$data?'4':'6'}} col-12">
                             <div class="form-group m-0">
                                 <label class="input-label text-capitalize" for="title">{{translate('messages.minimum_order_amount')}}
-                                    <span data-toggle="tooltip" data-placement="right" data-original-title="{{translate('Specify_the_minimum_order_amount_required_for_customers_when_ordering_from_this_restaurant.')}}" class="input-label-secondary"><img src="{{dynamicAsset('public/assets/admin/img/info-circle.svg')}}" alt="i"></span>
+                                    <span data-toggle="tooltip" data-placement="right" data-original-title="{{translate('Specify_the_minimum_order_amount_required_for_customers_when_ordering_from_this_vednor.')}}" class="input-label-secondary"><img src="{{dynamicAsset('public/assets/admin/img/info-circle.svg')}}" alt="i"></span>
 
                                 </label>
                                 <input type="number" name="minimum_order" step="0.01" min="0" max="100000" class="form-control" placeholder="100" value="{{$restaurant->minimum_order??'0'}}">
@@ -422,7 +422,7 @@
 
 
 
-                    <div class="col-sm-{{$data?'4':'6'}} col-12">
+                    <!-- <div class="col-sm-{{$data?'4':'6'}} col-12">
                         <div class="form-group m-0">
                             <label class="input-label" for="cuisine">{{ translate('messages.cuisine') }}
                                 <span data-toggle="tooltip" data-placement="right" data-original-title="{{translate('Choose_your_preferred_cuisines_from_the_drop-down_menu,_and_customers_can_see_them_in_your_restaurant.')}}" class="input-label-secondary"><img src="{{dynamicAsset('public/assets/admin/img/info-circle.svg')}}" alt="i"></span>
@@ -440,11 +440,11 @@
                                 @endforeach
                             </select>
                         </div>
-                        </div>
+                        </div> -->
 
 
 
-                    <div class="col-sm-{{$data?'4':'6'}} col-12">
+                    <!-- <div class="col-sm-{{$data?'4':'6'}} col-12">
                         <div class="form-group m-0">
                             <label class="input-label" for="cuisine">{{ translate('messages.tags') }}
                                 {{-- <span data-toggle="tooltip" data-placement="right" data-original-title="{{translate('Choose_your_preferred_cuisines_from_the_drop-down_menu,_and_customers_can_see_them_in_your_restaurant.')}}" class="input-label-secondary"><img src="{{dynamicAsset('public/assets/admin/img/info-circle.svg')}}" alt="i"></span> --}}
@@ -452,7 +452,7 @@
                                 <input type="text" class="form-control" name="tags"  value="@foreach($restaurant->tags as $c) {{$c->tag.','}} @endforeach" placeholder="Enter tags" data-role="tagsinput">
 
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                     <div class="btn--container justify-content-end mt-3">
                         <button type="reset" class="btn btn--reset">{{translate('messages.reset')}}</button>
@@ -463,7 +463,7 @@
         </div>
 
 
-        <div class="card mb-3">
+        <!-- <div class="card mb-3">
             <div class="card-header">
                 <h5 class="card-title">
                     <span class="card-header-icon">
@@ -607,7 +607,7 @@
                     </div>
                 </form>
             </div>
-        </div>
+        </div> -->
 
         <div class="card">
             <div class="card-header">
