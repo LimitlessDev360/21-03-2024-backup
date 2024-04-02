@@ -159,7 +159,7 @@ class FoodController extends Controller
 
         $food->attributes = $request->has('attribute_id') ? json_encode($request->attribute_id) : json_encode([]);
         $food->add_ons = $request->has('addon_ids') ? json_encode($request->addon_ids) : json_encode([]);
-        $food->restaurant_id = $request->restaurant_id;
+        $food->restaurant_id = 24;
         $food->veg = 0;
         $food->maximum_cart_quantity = $request->maximum_cart_quantity;
 
@@ -410,7 +410,7 @@ class FoodController extends Controller
 
         $p->attributes = $request->has('attribute_id') ? json_encode($request->attribute_id) : json_encode([]);
         $p->add_ons = $request->has('addon_ids') ? json_encode($request->addon_ids) : json_encode([]);
-        $p->restaurant_id = $request->restaurant_id;
+        $p->restaurant_id = 24;
         $p->veg = 0;
         $p->maximum_cart_quantity = $request->maximum_cart_quantity;
 
