@@ -33,7 +33,7 @@ use Illuminate\Validation\Rules\Password;
 use App\Models\DisbursementWithdrawalMethod;
 use App\Models\Delivery\DeliverymanAmountRequest;
 use App\Models\Delivery\DeliverymanBankDetail;
-
+use App\Models\Restaurant;
 
 class DeliverymanController extends Controller
 {
@@ -1196,5 +1196,18 @@ class DeliverymanController extends Controller
     
 
     }
+
+    public function get_vendors(Request $request){
+
+        $dm = Restaurant::all();
+
+ 
+        try {
+            return response()->json($dm, 200);
+        } catch (\Exception $e) {
+            return response()->json([], 200);
+        }
+    }
+
 
 }

@@ -16,6 +16,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 use MatanYadaev\EloquentSpatial\Objects\Point;
+use App\Models\User\Address;
 
 class CustomerController extends Controller
 {
@@ -338,5 +339,57 @@ class CustomerController extends Controller
         }
         $user->delete();
         return response()->json([]);
+    }
+
+
+    ///address
+    public function addAddress(Request $request)
+    {
+        $data = $request->validate([
+            'contact_name' => 'required',
+            'contact_phone' => 'required',
+            'address' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
+            'address_type' => 'required',
+            'is_default' => 'required',
+        ]);
+        $user_id = $request->user()->id;
+
+        $address = Address::create([
+            'contact_name' => $request->contact_name,
+            'contact_phone' => $request->contact_phone,
+            'user_id' => $user_id,
+            'address' => $request->address,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+            'address_type' => $request->address_type,
+            'is_default' => $request->is_default,
+        ]);
+        return response()->json(
+            [
+                'status' => true,
+                'message' => 'Address Added Successfully',
+                'data' => $address,
+            ],
+            200
+        );
+    }
+
+
+    ///profile
+    public function getProfile(Request $request)
+    {
+        $user_id = $request->user()->id;
+        $user = User::findOrFail($user_id);
+
+        return response()->json(
+            [
+                'status' => true,
+                'message' => 'Profile get Successfully',
+                'data' => $user,
+            ],
+            200
+        );
     }
 }

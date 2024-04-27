@@ -15,7 +15,7 @@ class CategoryController extends Controller
     public function get_categories(Request $request)
     {
         try {
-            $zone_id=  $request->header('zoneId') ? json_decode($request->header('zoneId'), true) : [];
+            // $zone_id=  $request->header('zoneId') ? json_decode($request->header('zoneId'), true) : [];
             $name= $request->query('name');
             $categories = Category::withCount(['products','childes'])->with(['childes' => function($query)  {
                 $query->withCount(['products','childes']);
@@ -34,13 +34,10 @@ class CategoryController extends Controller
             ->orderBy('priority','desc')->get();
 
 
-
-            if(count($zone_id) > 0){
+          
                 foreach ($categories as $category) {
                         $productCount = Food::active()
-                        ->whereHas('restaurant', function ($query) use ($zone_id) {
-                            $query->whereIn('zone_id', $zone_id);
-                        })
+                        
                         ->whereHas('category',function($q)use($category){
                             return $q->whereId($category->id)->orWhere('parent_id', $category->id);
                         })
@@ -49,7 +46,7 @@ class CategoryController extends Controller
                     unset($category['childes']);
                 }
                 return response()->json($categories, 200);
-            }
+            
 
             return response()->json(Helpers::category_data_formatting($categories, true), 200);
         } catch (\Exception $e) {

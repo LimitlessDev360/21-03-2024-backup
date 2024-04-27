@@ -82,6 +82,7 @@ class CartController extends Controller
         $cart->item_type = $request->model;
         $cart->price = $request->price;
         $cart->quantity = $request->quantity;
+        $cart->kg = $request->kg;
         $cart->variations = json_encode($request->variations);
         $cart->save();
 

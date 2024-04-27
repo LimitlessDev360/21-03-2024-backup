@@ -21,6 +21,8 @@ Route::group(['namespace' => 'Api\V1', 'middleware'=>['localization','react']], 
     Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
         Route::post('sign-up', 'CustomerAuthController@register');
         Route::post('login', 'CustomerAuthController@login');
+        Route::post('phone-login', 'CustomerAuthController@phone_login');
+        Route::post('email-login', 'CustomerAuthController@mail_login');
         Route::post('verify-phone', 'CustomerAuthController@verify_phone');
 
         Route::post('check-email', 'CustomerAuthController@check_email');
@@ -87,6 +89,8 @@ Route::group(['namespace' => 'Api\V1', 'middleware'=>['localization','react']], 
             Route::put('update-fcm-token', 'DeliverymanController@update_fcm_token');
             // Route::post('assign-vehicle', 'DeliverymanController@assign_vehicle');
             Route::get('dm-shift', 'DeliverymanController@dm_shift');
+
+            Route::get('get-vendors', 'DeliverymanController@get_vendors');
             //Remove account
             Route::delete('remove-account', 'DeliverymanController@remove_account');
             Route::get('get-withdraw-method-list', 'DeliverymanController@withdraw_method_list');
@@ -261,6 +265,7 @@ Route::group(['namespace' => 'Api\V1', 'middleware'=>['localization','react']], 
     Route::get('customer/order/send-notification/{order_id}', 'OrderController@order_notification')->middleware('apiGuestCheck');
 
     Route::group(['prefix' => 'products'], function () {
+        Route::get('all', 'ProductController@all_products');
         Route::get('latest', 'ProductController@get_latest_products');
         Route::get('popular', 'ProductController@get_popular_products');
         Route::get('restaurant-popular-products', 'ProductController@get_restaurant_popular_products');
@@ -318,6 +323,14 @@ Route::group(['namespace' => 'Api\V1', 'middleware'=>['localization','react']], 
         Route::get('suggested-foods', 'CustomerController@get_suggested_food');
         //Remove account
         Route::delete('remove-account', 'CustomerController@remove_account');
+
+
+        ///address
+        Route::post('add-address', 'CustomerController@addAddress');
+
+        ///profile
+        Route::get('profile/get', 'CustomerController@getProfile');
+
 
         Route::group(['prefix'=>'loyalty-point'], function() {
             Route::post('point-transfer', 'LoyaltyPointController@point_transfer');

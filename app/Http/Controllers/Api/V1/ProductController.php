@@ -467,4 +467,21 @@ class ProductController extends Controller
         $products = Helpers::product_data_formatting(data:$products,multi_data: true, trans:false, local:app()->getLocale());
         return response()->json($products, 200);
     }
+
+    public function all_products(Request $request){
+        if($request['all'] != null){
+        $product = Food::paginate(20);
+
+        }else{
+        $product = Food::paginate(5);
+
+        }
+
+        return response()->json([
+            'status'=> true,
+            'message'=> "Product get successfully",
+            'data'=> $product
+        ]);
+
+    }
 }
