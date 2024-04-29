@@ -266,6 +266,7 @@ Route::group(['namespace' => 'Api\V1', 'middleware'=>['localization','react']], 
 
     Route::group(['prefix' => 'products'], function () {
         Route::get('all', 'ProductController@all_products');
+        Route::get('addons', 'ProductController@getAddons');
         Route::get('latest', 'ProductController@get_latest_products');
         Route::get('popular', 'ProductController@get_popular_products');
         Route::get('restaurant-popular-products', 'ProductController@get_restaurant_popular_products');

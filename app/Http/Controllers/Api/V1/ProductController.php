@@ -12,6 +12,7 @@ use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use App\Models\AddOn;
 
 class ProductController extends Controller
 {
@@ -482,6 +483,17 @@ class ProductController extends Controller
             'message'=> "Product get successfully",
             'data'=> $product
         ]);
+
+    }
+
+    public function getAddons(Request $request){
+     
+        $addon = AddOn::all();
+        return response()->json([
+            'status'=> true,
+            'message'=> "Addon get successfully",
+            'data'=> $addon
+        ],200);
 
     }
 }
