@@ -15,32 +15,29 @@ class CartController extends Controller
 {
     public function get_carts(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'guest_id' => $request->user ? 'nullable' : 'required',
-        ]);
 
-        if ($validator->fails()) {
-            return response()->json(['errors' => Helpers::error_processor($validator)], 403);
-        }
-        $user_id = $request->user ? $request->user->id : $request['guest_id'];
-        $is_guest = $request->user ? 0 : 1;
-        $carts = Cart::where('user_id', $user_id)->where('is_guest',$is_guest)->get()
+        $user_id = $request->user->id;
+        $carts = Cart::where('user_id', $user_id)->get()
         ->map(function ($data) {
-            $data->add_on_ids = json_decode($data->add_on_ids,true);
-            $data->add_on_qtys = json_decode($data->add_on_qtys,true);
-            $data->variations = json_decode($data->variations,true);
-			$data->item = Helpers::cart_product_data_formatting($data->item, $data->variations,$data->add_on_ids,
-            $data->add_on_qtys, false, app()->getLocale());
+            // $data->add_on_ids = json_decode($data->add_on_ids,true);
+            // $data->add_on_qtys = json_decode($data->add_on_qtys,true);
+            // $data->variations = json_decode($data->variations,true);
+			$data->item = Helpers::cart_product_data_formatting($data->item, false, app()->getLocale());
 			return $data;
 		});
-        return response()->json($carts, 200);
+        return response()->json([
+            'status'=> true,
+            'message'=> "Get cart successfully",
+            'data'=> $carts
+        ],200);
     }
 
     public function add_to_cart(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'guest_id' => $request->user ? 'nullable' : 'required',
             'item_id' => 'required|integer',
+            'addons' => '',
+            'portion' => 'required',
             'model' => 'required|string|in:Food,ItemCampaign',
             'price' => 'required|numeric',
             'quantity' => 'required|integer|min:1',
@@ -50,12 +47,11 @@ class CartController extends Controller
             return response()->json(['errors' => Helpers::error_processor($validator)], 403);
         }
 
-        $user_id = $request->user ? $request->user->id : $request['guest_id'];
-        $is_guest = $request->user ? 0 : 1;
+        $user_id = $request->user->id;
         $model = $request->model === 'Food' ? 'App\Models\Food' : 'App\Models\ItemCampaign';
         $item = $request->model === 'Food' ? Food::find($request->item_id) : ItemCampaign::find($request->item_id);
 
-        $cart = Cart::where('item_id',$request->item_id)->where('item_type',$model)->where('variations',json_encode($request->variations))->where('user_id', $user_id)->where('is_guest',$is_guest)->first();
+        $cart = Cart::where('item_id',$request->item_id)->where('item_type',$model)->where('user_id', $user_id)->first();
 
         if($cart){
             return response()->json([
@@ -76,25 +72,26 @@ class CartController extends Controller
         $cart = new Cart();
         $cart->user_id = $user_id;
         $cart->item_id = $request->item_id;
-        $cart->is_guest = $is_guest;
-        $cart->add_on_ids = json_encode($request->add_on_ids);
-        $cart->add_on_qtys = json_encode($request->add_on_qtys);
+        $cart->is_guest = 0;
+        // $cart->add_on_ids = json_encode($request->add_on_ids);
+        $cart->addons = $request->addons;
+        // $cart->add_on_qtys = json_encode($request->add_on_qtys);
         $cart->item_type = $request->model;
         $cart->price = $request->price;
         $cart->quantity = $request->quantity;
         $cart->kg = $request->kg;
-        $cart->variations = json_encode($request->variations);
+        $cart->portion = $request->portion;
+        // $cart->variations = json_encode($request->variations);
         $cart->save();
 
         $item->carts()->save($cart);
 
-        $carts = Cart::where('user_id', $user_id)->where('is_guest',$is_guest)->get()
+        $carts = Cart::where('user_id', $user_id)->get()
         ->map(function ($data) {
-            $data->add_on_ids = json_decode($data->add_on_ids,true);
-            $data->add_on_qtys = json_decode($data->add_on_qtys,true);
-            $data->variations = json_decode($data->variations,true);
-			$data->item = Helpers::cart_product_data_formatting($data->item, $data->variations,$data->add_on_ids,
-            $data->add_on_qtys, false, app()->getLocale());
+            // $data->add_on_ids = json_decode($data->add_on_ids,true);
+            // $data->add_on_qtys = json_decode($data->add_on_qtys,true);
+            // $data->variations = json_decode($data->variations,true);
+			$data->item = Helpers::cart_product_data_formatting($data->item, false, app()->getLocale());
             return $data;
 		});
         return response()->json($carts, 200);

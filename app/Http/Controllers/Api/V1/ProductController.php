@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use App\Models\AddOn;
+use App\Models\DeliveryTimeSlots;
 
 class ProductController extends Controller
 {
@@ -495,5 +496,15 @@ class ProductController extends Controller
             'data'=> $addon
         ],200);
 
+    }
+    public function deliveryTimes(Request $request){
+
+        // $times = DeliveryTimeSlots::all();
+  
+        return response()->json([
+            'status'=> true,
+            'message'=> 'Time get successfully',
+            'data'=> $times
+        ]);
     }
 }

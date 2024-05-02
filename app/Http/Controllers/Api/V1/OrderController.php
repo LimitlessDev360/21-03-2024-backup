@@ -17,6 +17,7 @@ use App\Models\OrderDetail;
 use App\Models\ItemCampaign;
 use App\Models\RefundReason;
 use App\Models\Subscription;
+use App\Models\DeliveryTimeSlot;
 use Illuminate\Http\Request;
 use App\CentralLogics\Helpers;
 use App\Models\BusinessSetting;
@@ -1370,5 +1371,17 @@ class OrderController extends Controller
             $info->save();
 
         return response()->json([ 'payment' => 'Payment_Info_Updated_successfully'], 200);
+    }
+
+
+    public function getDeliveryTimeSlot(){
+
+        $times = DeliveryTimeSlot::all();
+
+        return response()->json([
+            'status'=> true,
+            'message'=> 'Time get successfully',
+            'data'=> $times
+        ]);
     }
 }

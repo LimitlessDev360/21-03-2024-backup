@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\WebSockets\Handler\DMLocationSocketHandler;
 use BeyondCode\LaravelWebSockets\Facades\WebSocketsRouter;
 use App\Http\Controllers\Api\DeliveryMan\AmountRequestController;
+use App\Http\Controllers\Admin\ConfigController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,13 @@ use App\Http\Controllers\Api\DeliveryMan\AmountRequestController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+
+///config
+Route::post('add_slots', [ConfigController::class,'storeSlots']);
+Route::put('update_slots', [ConfigController::class,'updateSlot']);
+Route::delete('delete_slot', [ConfigController::class,'deleteSlot']);
+Route::get('get_slot', [ConfigController::class,'getSlots']);
 
 Route::group(['namespace' => 'Api\V1', 'middleware'=>['localization','react']], function () {
     Route::get('zone/list', 'ZoneController@get_zones');
@@ -266,6 +274,7 @@ Route::group(['namespace' => 'Api\V1', 'middleware'=>['localization','react']], 
 
     Route::group(['prefix' => 'products'], function () {
         Route::get('all', 'ProductController@all_products');
+        Route::get('delivery_times', 'ProductController@deliveryTimes');
         Route::get('addons', 'ProductController@getAddons');
         Route::get('latest', 'ProductController@get_latest_products');
         Route::get('popular', 'ProductController@get_popular_products');

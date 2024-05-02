@@ -98,7 +98,7 @@ class Helpers
         return $result;
     }
 
-    public static function cart_product_data_formatting($data, $selected_variation, $selected_addons, $selected_addon_quantity,$trans = false, $local = 'en')
+    public static function cart_product_data_formatting($data,$trans = false, $local = 'en')
     {
 
         $variations = [];
@@ -112,18 +112,18 @@ class Helpers
 
         $add_ons = gettype($data['add_ons']) == 'array' ? $data['add_ons'] : json_decode($data['add_ons'],true);
         $data_addons = self::addon_data_formatting(AddOn::whereIn('id', $add_ons)->active()->get(), true, $trans, $local);
-        $selected_data = array_combine($selected_addons, $selected_addon_quantity);
-        foreach ($data_addons as $addon) {
-            $addon_id = $addon['id'];
-            if (in_array($addon_id, $selected_addons)) {
-                $addon['isChecked'] = true;
-                $addon['quantity'] = $selected_data[$addon_id];
-            } else {
-                $addon['isChecked'] = false;
-                $addon['quantity'] = 0;
-            }
-        }
-        $data['addons'] = $data_addons;
+        // $selected_data = array_combine($selected_addons, $selected_addon_quantity);
+        // foreach ($data_addons as $addon) {
+        //     $addon_id = $addon['id'];
+        //     if (in_array($addon_id, $selected_addons)) {
+        //         $addon['isChecked'] = true;
+        //         $addon['quantity'] = $selected_data[$addon_id];
+        //     } else {
+        //         $addon['isChecked'] = false;
+        //         $addon['quantity'] = 0;
+        //     }
+        // }
+        // $data['addons'] = $data_addons;
 
         if ($data->title) {
             $data['name'] = $data->title;
@@ -146,23 +146,23 @@ class Helpers
             unset($data['end_date']);
         }
         $data_variation = $data['variations']?(gettype($data['variations']) == 'array' ? $data['variations'] : json_decode($data['variations'],true)):[];
-        foreach ($selected_variation as $item1) {
-            foreach ($data_variation as &$item2) {
-                if ($item1["name"] === $item2["name"]) {
-                    foreach ($item2["values"] as &$value) {
-                        if (in_array($value["label"], $item1["values"]["label"])) {
-                            $value["isSelected"] = true;
-                        }else{
-                            $value["isSelected"] = false;
-                        }
-                    }
-                }
-            }
-        }
+        // foreach ($selected_variation as $item1) {
+        //     foreach ($data_variation as &$item2) {
+        //         if ($item1["name"] === $item2["name"]) {
+        //             foreach ($item2["values"] as &$value) {
+        //                 if (in_array($value["label"], $item1["values"]["label"])) {
+        //                     $value["isSelected"] = true;
+        //                 }else{
+        //                     $value["isSelected"] = false;
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
 
-        $data['variations'] = $data_variation;
-        $data['restaurant_name'] = $data->restaurant->name;
-        $data['restaurant_status'] = (int) $data->restaurant->status;
+        // $data['variations'] = $data_variation;
+        // $data['restaurant_name'] = $data->restaurant->name;
+        // $data['restaurant_status'] = (int) $data->restaurant->status;
         $data['restaurant_discount'] = self::get_restaurant_discount($data->restaurant) ? $data->restaurant->discount->discount : 0;
         $data['restaurant_opening_time'] = $data->restaurant->opening_time ? $data->restaurant->opening_time->format('H:i') : null;
         $data['restaurant_closing_time'] = $data->restaurant->closeing_time ? $data->restaurant->closeing_time->format('H:i') : null;
