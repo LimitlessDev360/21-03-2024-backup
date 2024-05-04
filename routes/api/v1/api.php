@@ -5,6 +5,7 @@ use App\WebSockets\Handler\DMLocationSocketHandler;
 use BeyondCode\LaravelWebSockets\Facades\WebSocketsRouter;
 use App\Http\Controllers\Api\DeliveryMan\AmountRequestController;
 use App\Http\Controllers\Admin\ConfigController;
+use App\Http\Controllers\Api\V1\User\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,9 @@ Route::post('add_slots', [ConfigController::class,'storeSlots']);
 Route::put('update_slots', [ConfigController::class,'updateSlot']);
 Route::delete('delete_slot', [ConfigController::class,'deleteSlot']);
 Route::get('get_slot', [ConfigController::class,'getSlots']);
+
+
+/// orders
 
 Route::group(['namespace' => 'Api\V1', 'middleware'=>['localization','react']], function () {
     Route::get('zone/list', 'ZoneController@get_zones');
@@ -340,6 +344,10 @@ Route::group(['namespace' => 'Api\V1', 'middleware'=>['localization','react']], 
 
         ///profile
         Route::get('profile/get', 'CustomerController@getProfile');
+
+
+        //order 
+        Route::post('order/add', [OrderController::class,'place_order']);
 
 
         Route::group(['prefix'=>'loyalty-point'], function() {
