@@ -152,4 +152,16 @@ class OrderController extends Controller
             403
         );
     }
+
+    public function orderList(Request $request)
+    {
+        $user_id = $request->user()->id;
+        $paginator = Order::with('details')->where(['user_id' => $user_id])->get();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Order get successfully',
+            'data' => $paginator,
+        ]);
+    }
 }

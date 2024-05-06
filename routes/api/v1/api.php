@@ -348,6 +348,7 @@ Route::group(['namespace' => 'Api\V1', 'middleware'=>['localization','react']], 
 
         //order 
         Route::post('order/add', [OrderController::class,'place_order']);
+        Route::get('order/all-orders', [OrderController::class,'orderList']);
 
 
         Route::group(['prefix'=>'loyalty-point'], function() {
