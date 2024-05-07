@@ -278,6 +278,7 @@ Route::group(['namespace' => 'Api\V1', 'middleware'=>['localization','react']], 
 
     Route::group(['prefix' => 'products'], function () {
         Route::get('all', 'ProductController@all_products');
+        Route::get('category-products', 'ProductController@category_products');
         Route::get('delivery_times', 'ProductController@deliveryTimes');
         Route::get('addons', 'ProductController@getAddons');
         Route::get('latest', 'ProductController@get_latest_products');
@@ -349,6 +350,7 @@ Route::group(['namespace' => 'Api\V1', 'middleware'=>['localization','react']], 
         //order 
         Route::post('order/add', [OrderController::class,'place_order']);
         Route::get('order/all-orders', [OrderController::class,'orderList']);
+        Route::get('order/running', [OrderController::class,'runningOrders']);
 
 
         Route::group(['prefix'=>'loyalty-point'], function() {

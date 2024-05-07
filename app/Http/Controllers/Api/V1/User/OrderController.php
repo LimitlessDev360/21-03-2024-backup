@@ -156,11 +156,34 @@ class OrderController extends Controller
     public function orderList(Request $request)
     {
         $user_id = $request->user()->id;
-        $paginator = Order::with('details')->where(['user_id' => $user_id])->get();
+        $paginator = Order::with('details')
+            ->where(['user_id' => $user_id])
+            ->get();
 
         return response()->json([
             'status' => true,
             'message' => 'Order get successfully',
+            'data' => $paginator,
+        ]);
+    }
+    public function runningOrders(Request $request)
+    {
+        $user_id = $request->user()->id;
+        $paginator = Order::with(['details','delivery_man'])
+            ->where(['user_id' => $user_id])
+            ->whereNotIn('order_status', [
+                'delivered',
+                'canceled',
+                'refund_requested',
+                'refund_request_canceled',
+                'refunded',
+                'failed',
+            ])
+            ->get();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Running orders get successfully',
             'data' => $paginator,
         ]);
     }

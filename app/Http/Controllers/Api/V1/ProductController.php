@@ -487,6 +487,21 @@ class ProductController extends Controller
 
     }
 
+    public function category_products(Request $request){
+        // validate
+        $request->validate([
+        'category_id' => 'required']);
+
+        $product = Food::where('category_id', $request['category_id'])->paginate(20);
+
+        return response()->json([
+            'status'=> true,
+            'message'=> "Category Product get successfully",
+            'data'=> $product
+        ]);
+
+    }
+
     public function getAddons(Request $request){
      
         $addon = AddOn::all();

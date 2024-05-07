@@ -5017,4 +5017,5 @@
   'Specify_the_minimum_order_amount_required_for_customers_when_ordering_from_this_vednor.' => 'Specify the minimum order amount required for customers when ordering from this vednor.',
   'Cooking' => 'Cooking',
   'welcome_to' => 'Welcome to',
+  'favicon.ico' => 'Favicon.ico',
 );
