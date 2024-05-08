@@ -351,6 +351,8 @@ Route::group(['namespace' => 'Api\V1', 'middleware'=>['localization','react']], 
         Route::post('order/add', [OrderController::class,'place_order']);
         Route::get('order/all-orders', [OrderController::class,'orderList']);
         Route::get('order/running', [OrderController::class,'runningOrders']);
+        Route::post('order/cancel', [OrderController::class,'cancelOrder']);
+        Route::post('cart/delete', [OrderController::class,'removeCart']);
 
 
         Route::group(['prefix'=>'loyalty-point'], function() {

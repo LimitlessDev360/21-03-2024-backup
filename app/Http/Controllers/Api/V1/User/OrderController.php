@@ -9,6 +9,7 @@ use App\Models\Cart;
 use App\Models\Food;
 use App\Models\OrderDetail;
 use Illuminate\Support\Facades\DB;
+use App\CentralLogics\Helpers;
 
 class OrderController extends Controller
 {
@@ -29,6 +30,8 @@ class OrderController extends Controller
             'dm_tips' => 'nullable',
             'contact_person_name' => 'required',
             'contact_person_number' => 'required',
+            'preferred_time' => 'required',
+            'preferred_date' => 'required',
             // 'items' => 'required',
         ]);
 
@@ -68,6 +71,8 @@ class OrderController extends Controller
         $order->delivery_address = json_encode($address);
         $order->schedule_at = $request->schedule_at;
         $order->scheduled = $request->schedule_at ? 1 : 0;
+        $order->preferred_time = $request->preferred_time;
+        $order->preferred_date = $request->preferred_date;
         $order->otp = rand(1000, 9999);
         $order->created_at = now();
         $order->updated_at = now();
@@ -102,6 +107,7 @@ class OrderController extends Controller
                 'quantity' => $c['quantity'],
                 'price' => $c['price'],
                 'portion' => $c['portion'],
+                'category' => $c['category'],
                 'tax_amount' => '0',
                 'discount_on_food' => '0',
                 'discount_type' => 'discount_on_product',
@@ -185,6 +191,79 @@ class OrderController extends Controller
             'status' => true,
             'message' => 'Running orders get successfully',
             'data' => $paginator,
+        ]);
+    }
+
+    public function cancelOrder(Request $request){
+        $request->validate([
+            'order_id' => 'required',
+            'reason' => 'required',
+        ]);
+
+        $user_id = $request->user()->id;
+        $order = Order::where(['user_id' => $user_id, 'id' => $request['order_id']])->first();
+        if(!$order){
+            return response()->json([
+                'status' => false,
+                'message' => 'Order not found',
+            ],404);
+        }
+        else if ($order->order_status == 'pending' || $order->order_status == 'failed' || $order->order_status == 'canceled'  ) {
+            $order->order_status = 'canceled';
+            $order->canceled = now();
+            $order->cancellation_reason = $request->reason;
+            $order->canceled_by = 'customer';
+            $order->save();
+
+
+
+            // $wallet_status= BusinessSetting::where('key','wallet_status')->first()?->value;
+            // $refund_to_wallet= BusinessSetting::where('key', 'wallet_add_refund')->first()?->value;
+
+            // if($order?->payments && $order?->is_guest == 0){
+            //     $refund_amount =$order->payments()->where('payment_status','paid')->sum('amount');
+            //     if($wallet_status &&  $refund_to_wallet && $refund_amount > 0){
+            //         CustomerLogic::create_wallet_transaction(user_id:$order->user_id, amount:$refund_amount,transaction_type: 'order_refund',referance: $order->id);
+
+            //         return response()->json(['message' => translate('messages.order_canceled_successfully_and_refunded_to_wallet')], 200);
+            //     } else {
+            //         return response()->json(['message' => translate('messages.order_canceled_successfully_and_for_refund_amount_contact_admin')], 200);
+            //     }
+            // }
+            return response()->json([
+                'status' => true,
+                'message' => 'Order canceled successfully',
+            ]);
+
+        }
+        return response()->json([
+            'status' => false,
+            'message' => 'You cannot cancel after confirm',
+        ],403);
+
+    }
+
+
+    public function removeCart(Request $request){
+        $request->validate([
+            'id' => 'required',
+        ]);
+
+        $user_id = $request->user()->id;
+    
+        $data = Cart::find($request['id']);
+        $data->delete();
+
+        $carts = Cart::where('user_id', $user_id)->get()
+        ->map(function ($data) {
+			$data->item = Helpers::cart_product_data_formatting($data->item, false, app()->getLocale());
+            return $data;
+		});
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Cart Remove Successfully',
+            'data' => $carts,
         ]);
     }
 }

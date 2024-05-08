@@ -40,6 +40,8 @@ class CartController extends Controller
             'portion' => 'required',
             'model' => 'required|string|in:Food,ItemCampaign',
             'price' => 'required|numeric',
+            'product_price' => 'required',
+            'category' => 'required',
             'quantity' => 'required|integer|min:1',
         ]);
 
@@ -78,8 +80,10 @@ class CartController extends Controller
         // $cart->add_on_qtys = json_encode($request->add_on_qtys);
         $cart->item_type = $request->model;
         $cart->price = $request->price;
+        $cart->product_price = $request->product_price;
         $cart->quantity = $request->quantity;
         $cart->kg = $request->kg;
+        $cart->category = $request->category;
         $cart->portion = $request->portion;
         // $cart->variations = json_encode($request->variations);
         $cart->save();
@@ -101,7 +105,6 @@ class CartController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'cart_id' => 'required',
-            'guest_id' => $request->user ? 'nullable' : 'required',
             'price' => 'required|numeric',
             'quantity' => 'required|integer|min:1',
         ]);
@@ -110,7 +113,7 @@ class CartController extends Controller
             return response()->json(['errors' => Helpers::error_processor($validator)], 403);
         }
 
-        $user_id = $request->user ? $request->user->id : $request['guest_id'];
+        $user_id = $request->user->id;
         $is_guest = $request->user ? 0 : 1;
         $cart = Cart::find($request->cart_id);
         $item = $cart->item_type === 'App\Models\Food' ? Food::find($cart->item_id) : ItemCampaign::find($cart->item_id);
@@ -123,21 +126,20 @@ class CartController extends Controller
         }
 
         $cart->user_id = $user_id;
-        $cart->is_guest = $is_guest;
-        $cart->add_on_ids = $request->add_on_ids?json_encode($request->add_on_ids):$cart->add_on_ids;
-        $cart->add_on_qtys = $request->add_on_qtys?json_encode($request->add_on_qtys):$cart->add_on_qtys;
+        $cart->is_guest =0;
+        // $cart->add_on_ids = $request->add_on_ids?json_encode($request->add_on_ids):$cart->add_on_ids;
+        // $cart->add_on_qtys = $request->add_on_qtys?json_encode($request->add_on_qtys):$cart->add_on_qtys;
         $cart->price = $request->price;
         $cart->quantity = $request->quantity;
-        $cart->variations = $request->variations?json_encode($request->variations):$cart->variations;
+        // $cart->variations = $request->variations?json_encode($request->variations):$cart->variations;
         $cart->save();
 
-        $carts = Cart::where('user_id', $user_id)->where('is_guest',$is_guest)->get()
+        $carts = Cart::where('user_id', $user_id)->get()
         ->map(function ($data) {
-            $data->add_on_ids = json_decode($data->add_on_ids,true);
-            $data->add_on_qtys = json_decode($data->add_on_qtys,true);
-            $data->variations = json_decode($data->variations,true);
-			$data->item = Helpers::cart_product_data_formatting($data->item, $data->variations,$data->add_on_ids,
-            $data->add_on_qtys, false, app()->getLocale());
+            // $data->add_on_ids = json_decode($data->add_on_ids,true);
+            // $data->add_on_qtys = json_decode($data->add_on_qtys,true);
+            // $data->variations = json_decode($data->variations,true);
+			$data->item = Helpers::cart_product_data_formatting($data->item, false, app()->getLocale());
             return $data;
 		});
         return response()->json($carts, 200);
@@ -145,31 +147,37 @@ class CartController extends Controller
 
     public function remove_cart_item(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'cart_id' => 'required',
-            'guest_id' => $request->user ? 'nullable' : 'required',
+        $request->validate([
+            'id' => 'required',
         ]);
 
         if ($validator->fails()) {
             return response()->json(['errors' => Helpers::error_processor($validator)], 403);
         }
 
-        $user_id = $request->user ? $request->user->id : $request['guest_id'];
-        $is_guest = $request->user ? 0 : 1;
+        $user_id = $request->user->id;
+        $is_guest = 0 ;
 
-        $cart = Cart::find($request->cart_id);
-        $cart->delete();
+     
 
-        $carts = Cart::where('user_id', $user_id)->where('is_guest',$is_guest)->get()
+        $data = Cart::find($request['id']);
+        $data->delete();
+
+        $carts = Cart::where('user_id', $user_id)->get()
         ->map(function ($data) {
-            $data->add_on_ids = json_decode($data->add_on_ids,true);
-            $data->add_on_qtys = json_decode($data->add_on_qtys,true);
-            $data->variations = json_decode($data->variations,true);
-			$data->item = Helpers::cart_product_data_formatting($data->item, $data->variations,$data->add_on_ids,
-            $data->add_on_qtys, false, app()->getLocale());
+            // $data->add_on_ids = json_decode($data->add_on_ids,true);
+            // $data->add_on_qtys = json_decode($data->add_on_qtys,true);
+            // $data->variations = json_decode($data->variations,true);
+			$data->item = Helpers::cart_product_data_formatting($data->item, false, app()->getLocale());
             return $data;
 		});
-        return response()->json($carts, 200);
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Category Deleted Successfully',
+            'data' => $carts,
+        ]);
+    
     }
 
     public function remove_cart(Request $request)
