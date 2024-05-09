@@ -5018,4 +5018,7 @@
   'Cooking' => 'Cooking',
   'welcome_to' => 'Welcome to',
   'favicon.ico' => 'Favicon.ico',
+  'MaximumPurchaseQuantityLimit' => 'MaximumPurchaseQuantityLimit',
+  'portion' => 'Portion',
+  'vendor_deleted' => 'Vendor deleted',
 );

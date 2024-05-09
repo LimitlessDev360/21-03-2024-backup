@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\WebSockets\Handler\DMLocationSocketHandler;
 use BeyondCode\LaravelWebSockets\Facades\WebSocketsRouter;
 use App\Http\Controllers\Api\DeliveryMan\AmountRequestController;
+use App\Http\Controllers\Api\V1\Deliveryman\AuthController;
 use App\Http\Controllers\Admin\ConfigController;
 use App\Http\Controllers\Api\V1\User\OrderController;
 
@@ -24,6 +25,14 @@ Route::post('add_slots', [ConfigController::class,'storeSlots']);
 Route::put('update_slots', [ConfigController::class,'updateSlot']);
 Route::delete('delete_slot', [ConfigController::class,'deleteSlot']);
 Route::get('get_slot', [ConfigController::class,'getSlots']);
+
+
+//deliveryman
+Route::post('deliveryman/phone_login', [AuthController::class,'phone_login']);
+Route::post('deliveryman/mail_login', [AuthController::class,'mail_login']);
+Route::post('deliveryman/check_phone', [AuthController::class,'check_exitsting_phone']);
+Route::post('deliveryman/check_mail', [AuthController::class,'check_exitsting_mail']);
+Route::get('deliveryman/getprofile', [AuthController::class,'getProfile']);
 
 
 /// orders
@@ -49,6 +58,8 @@ Route::group(['namespace' => 'Api\V1', 'middleware'=>['localization','react']], 
         Route::group(['prefix' => 'delivery-man'], function () {
             Route::post('login', 'DeliveryManLoginController@login');
             Route::post('store', 'DeliveryManLoginController@store');
+            Route::post('phone-login', 'DeliveryManLoginController@phone_login');
+            Route::post('mail-login', 'DeliveryManLoginController@mail_login');
             Route::post('forgot-password', 'DMPasswordResetController@reset_password_request');
             Route::post('verify-token', 'DMPasswordResetController@verify_token');
             Route::put('reset-password', 'DMPasswordResetController@reset_password_submit');

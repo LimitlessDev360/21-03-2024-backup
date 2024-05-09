@@ -12,7 +12,7 @@ class DeliveryMan extends Authenticatable
 {
     use Notifiable;
 
-    protected $casts = [
+    protected $fillable = [
         'vehicle_id' => 'integer',
         'zone_id' => 'integer',
         'status'=>'boolean',
