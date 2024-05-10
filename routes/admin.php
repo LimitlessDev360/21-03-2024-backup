@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\SlotTimeController;
+use App\Http\Controllers\Admin\ServiceChargeController;
 
 
 Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
@@ -862,7 +864,28 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.'], function () {
             ///bank
             Route::get('deliveryman-bank-list', 'DeliveryManController@deliverymanBankList')->name('deliveryman-bank-list');
         });
+
+           /// delivery slots
+           Route::get('add-slot', [SlotTimeController::class,'index'])->name('add-slots');
+           Route::get('slot-list', [SlotTimeController::class,'list'])->name('slot-lists');
+           Route::post('add-slot', [SlotTimeController::class,'store'])->name('add-slot.add');
+           Route::any('/slots/{id}/edit', [SlotTimeController::class, 'edit'])->name('slots.edit');
+           Route::delete('/slots/{id}', [SlotTimeController::class, 'destroy'])->name('slots.destroy');
+           Route::put('/slots/{id}', [SlotTimeController::class, 'update'])->name('slots.update');
+
+
+
+            /// service
+            Route::get('add-service', [ServiceChargeController::class,'index'])->name('add-service');
+            Route::get('service-list', [ServiceChargeController::class,'list'])->name('service-list');
+            Route::post('add-services', [ServiceChargeController::class,'store'])->name('add-service.add');
+            Route::any('/service/{id}/edit', [ServiceChargeController::class, 'edit'])->name('service.edit');
+            Route::delete('/service/{id}', [ServiceChargeController::class, 'destroy'])->name('service.destroy');
+            Route::put('/service/{id}', [ServiceChargeController::class, 'update'])->name('service.update');
+            
     }); //Admin auth middleware
+
+
     Route::get('zone/get-coordinates/{id}', 'ZoneController@get_coordinates')->name('zone.get-coordinates');
 });
 

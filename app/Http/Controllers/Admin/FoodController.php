@@ -37,14 +37,35 @@ class FoodController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->lang);
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            // 'name.0' => 'required',
+            'name.*' => 'max:191',
             'category_id' => 'required',
             'image' => 'max:2048',
             'restaurant_id' => '',
-            'description' => 'required',
+            'description.*' => 'max:1000',
+            // 'veg'=>'required'
+        ], [
+            'description.*.max' => translate('messages.description_length_warning'),
+            // 'name.0.required' => translate('messages.item_name_required'),
+            'category_id.required' => translate('messages.category_required'),
+            // 'veg.required'=>translate('messages.item_type_is_required')
         ]);
 
+        // if ($request['discount_type'] == 'percent') {
+        //     $dis = ($request['price'] / 100) * $request['discount'];
+        // } else {
+        //     $dis = $request['discount'];
+        // }
+
+        // if ($request['price'] <= $dis) {
+        //     $validator->getMessageBag()->add('unit_price', translate('messages.discount_can_not_be_more_than_or_equal'));
+        // }
+
+        // if ($request['price'] <= $dis || $validator->fails()) {
+        //     return response()->json(['errors' => Helpers::error_processor($validator)]);
+        // }
         $tag_ids = [];
         if ($request->tags != null) {
             $tags = explode(",", $request->tags);
@@ -59,7 +80,7 @@ class FoodController extends Controller
             }
         }
         $food = new Food;
-        $food->name = $request->name;
+        $food->name = $request->name[array_search('default', $request->lang)];
 
         $category = [];
         if ($request->category_id != null) {
@@ -83,40 +104,135 @@ class FoodController extends Controller
 
         $food->category_ids = json_encode($category);
         $food->category_id = $request?->sub_category_id ?? $request?->category_id;
-        $food->description =  $request->description;
+        $food->description =  $request->description[array_search('default', $request->lang)];
         $food->choice_options = json_encode([]);
 
         $variations = [];
-       
-        $product_portions = $temp_portion = [];
-        if(isset($request->portions))
+        if(isset($request->options))
         {
-            foreach(array_values($request->portions) as $key=>$por)
+            foreach(array_values($request->options) as $key=>$option)
             {
-                $temp_portion['portion']= $por['portion'];
-                $temp_portion['price']= $por['price'];
-                $temp_portion['discount_type']= $por['discount_type'];
-                $temp_portion['discount']= $por['discount'];
+                $temp_variation['name']= $option['name'];
+                $temp_variation['type']= $option['type'];
+                $temp_variation['min']= $option['min'] ?? 0;
+                $temp_variation['max']= $option['max'] ?? 0;
+                $temp_variation['required']= $option['required']??'off';
+                // if($option['min'] > 0 &&  $option['min'] > $option['max']  ){
+                //     $validator->getMessageBag()->add('name', translate('messages.minimum_value_can_not_be_greater_then_maximum_value'));
+                //     return response()->json(['errors' => Helpers::error_processor($validator)]);
+                // }
+                // if(!isset($option['values'])){
+                //     $validator->getMessageBag()->add('name', translate('messages.please_add_options_for').$option['name']);
+                //     return response()->json(['errors' => Helpers::error_processor($validator)]);
+                // }
+                // if($option['max'] > count($option['values'])  ){
+                //     $validator->getMessageBag()->add('name', translate('messages.please_add_more_options_or_change_the_max_value_for').$option['name']);
+                //     return response()->json(['errors' => Helpers::error_processor($validator)]);
+                // }
+                $temp_value = [];
+
+                foreach(array_values($option['values']) as $value)
+                {
+                    if(isset($value['label'])){
+                        $temp_option['label'] = $value['label'];
+                    }
+                    $temp_option['optionPrice'] = $value['optionPrice'];
+                    array_push($temp_value,$temp_option);
+                }
+                $temp_variation['values']= $temp_value;
+                array_push($variations,$temp_variation);
+            }
+        }
+        // $portions=[];
+        // if ($request->product_portion != null) {
+        // $portions[] = [
+        // 'price' => $request->price,
+        // 'portion' => $request->portion,
+        // 'discount' => $request->discount,
+        // 'discount_type' => $request->discount_type,
+        // ];
+        // }
+        $product_portions = $temp_portion = [];
+        if(isset($request->product_portion))
+        {
+            foreach(array_values($request->product_portion) as $key=>$portions)
+            {
+                $temp_portion['portion']= $portions['portion'];
+                $temp_portion['price']= $portions['price'];
+                $temp_portion['discount_type']= $portions['discount_type'];
+                $temp_portion['discount']= $portions['discount'];
                 array_push($product_portions,$temp_portion);
             }                    
         } 
 
         //combinations end
-        $food->variations = json_encode([]);        
+        $food->variations = json_encode($variations);        
         $food->portions = json_encode($product_portions);  
+        //$food->price = $request->price;
         $food->image = Helpers::upload(dir: 'product/', format:'png', image:$request->file('image'));
         $food->available_time_starts = $request->available_time_starts;
         $food->available_time_ends = $request->available_time_ends;
-  
+        // $food->discount =  $request->discount ?? 0;
+        // $food->discount_type = $request->discount_type;
+
         $food->attributes = $request->has('attribute_id') ? json_encode($request->attribute_id) : json_encode([]);
         $food->add_ons = $request->has('addon_ids') ? json_encode($request->addon_ids) : json_encode([]);
         $food->restaurant_id = $request->restaurant_id;
         $food->veg = 0;
-        $food->slug = "0";
         $food->maximum_cart_quantity = $request->maximum_cart_quantity;
 
         $food->save();
         $food->tags()->sync($tag_ids);
+
+        $data = [];
+        $default_lang = str_replace('_', '-', app()->getLocale());
+        foreach ($request->lang as $index => $key) {
+            if($default_lang == $key && !($request->name[$index])){
+                if ($key != 'default') {
+                    array_push($data, array(
+                        'translationable_type' => 'App\Models\Food',
+                        'translationable_id' => $food->id,
+                        'locale' => $key,
+                        'key' => 'name',
+                        'value' => $food->name,
+                    ));
+                }
+            }else{
+                if ($request->name[$index] && $key != 'default') {
+                    array_push($data, array(
+                        'translationable_type' => 'App\Models\Food',
+                        'translationable_id' => $food->id,
+                        'locale' => $key,
+                        'key' => 'name',
+                        'value' => $request->name[$index],
+                    ));
+                }
+            }
+            if($default_lang == $key && !($request->description[$index])){
+                if ($key != 'default') {
+                    array_push($data, array(
+                        'translationable_type' => 'App\Models\Food',
+                        'translationable_id' => $food->id,
+                        'locale' => $key,
+                        'key' => 'description',
+                        'value' => $food->description,
+                    ));
+                }
+            }else{
+                if ($request->description[$index] && $key != 'default') {
+                    array_push($data, array(
+                        'translationable_type' => 'App\Models\Food',
+                        'translationable_id' => $food->id,
+                        'locale' => $key,
+                        'key' => 'description',
+                        'value' => $request->description[$index],
+                    ));
+                }
+            }
+
+        }
+        Translation::insert($data);
+
         return response()->json([], 200);
     }
 
@@ -164,7 +280,7 @@ class FoodController extends Controller
         $product = Food::withoutGlobalScope(RestaurantScope::class)->findOrFail($request->id);
         $product->status = $request->status;
         $product->save();
-        Toastr::success('Product Status Updated');
+        Toastr::success(translate('messages.food_status_updated'));
         return back();
     }
 
