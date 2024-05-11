@@ -5040,4 +5040,5 @@
   'The end time must be a date after start time.' => 'The end time must be a date after start time.',
   'add_additional_slot' => 'Add additional slot',
   'update_Service' => 'Update Service',
+  'Remove' => 'Remove',
 );

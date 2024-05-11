@@ -335,9 +335,24 @@
                                     </div>
                                 </div>
                                 <a onclick="addVariation()" class="rounded d-flex fw-bold justify-content-center border border-secondary btn btn-primary  align-items-center p-3" style="font-size: 18px; height: 40px; margin-top:38px;">+</a>
-                        </div>
-                       
+       
                             </div>
+                            </div>
+                        <div class="form-check mt-5 ml-4">
+                        <input class="form-check-input" type="checkbox" id="preorderCheckbox" style= "width:15px; height:15px;">
+                        <label class="form-check-label ml-2" for="preorderCheckbox">
+                        Preorder
+                        </label>
+                        </div>
+
+                        <div class="form-check mt-3 ml-4 mb-3">
+        <input class="form-check-input" type="checkbox" id="currentOrderCheckbox" style= "width:15px; height:15px;">
+        <label class="form-check-label ml-2" for="currentOrderCheckbox">
+            Current Order
+        </label>
+    </div>
+<input type="hidden" id="preorderValue" name="is_preorder" value="0">
+<input type="hidden" id="currentOrderValue" name="is_current_order" value="0">
                     </div>
                 </div>
                 <!-- <div class="col-lg-12">
@@ -764,5 +779,15 @@ count=1;
         //     console.log(variations);
         // }
     </script>
+    <script>
+    // JavaScript to update hidden input fields based on checkbox state
+    document.getElementById('preorderCheckbox').addEventListener('change', function() {
+        document.getElementById('preorderValue').value = this.checked ? 1 : 0;
+    });
+
+    document.getElementById('currentOrderCheckbox').addEventListener('change', function() {
+        document.getElementById('currentOrderValue').value = this.checked ? 1 : 0;
+    });
+</script>
 
 @endpush

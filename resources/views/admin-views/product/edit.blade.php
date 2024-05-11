@@ -19,7 +19,7 @@
 
 
 
-        <form action="javascript:" method="post" id="product_form" enctype="multipart/form-data">
+        <form action="{{ route('admin.food.update', [$product['id']]) }}" method="post" enctype="multipart/form-data" id="portionsForm">
             @csrf
             <div class="row g-2">
                 <div class="col-lg-6">
@@ -69,19 +69,31 @@
                                 @if ($language)
                                     @foreach (json_decode($language) as $lang)
 
-                                        <?php
-                                        if (count($product['translations'])) {
+                                        <?php if (
+                                            count($product['translations'])
+                                        ) {
                                             $translate = [];
-                                            foreach ($product['translations'] as $t) {
-                                                if ($t->locale == $lang && $t->key == 'name') {
-                                                    $translate[$lang]['name'] = $t->value;
+                                            foreach (
+                                                $product['translations']
+                                                as $t
+                                            ) {
+                                                if (
+                                                    $t->locale == $lang &&
+                                                    $t->key == 'name'
+                                                ) {
+                                                    $translate[$lang]['name'] =
+                                                        $t->value;
                                                 }
-                                                if ($t->locale == $lang && $t->key == 'description') {
-                                                    $translate[$lang]['description'] = $t->value;
+                                                if (
+                                                    $t->locale == $lang &&
+                                                    $t->key == 'description'
+                                                ) {
+                                                    $translate[$lang][
+                                                        'description'
+                                                    ] = $t->value;
                                                 }
                                             }
-                                        }
-                                        ?>
+                                        } ?>
                                         <div class="d-none lang_form" id="{{ $lang }}-form">
                                                 <div class="form-group">
                                                     <label class="input-label"
@@ -145,23 +157,6 @@
                         </div>
                         <div class="card-body">
                             <div class="row g-2">
-                                <!-- <div class="col-sm-6 col-lg-3">
-                                    <div class="form-group mb-0">
-                                        <label class="input-label"
-                                            for="exampleFormControlSelect1">{{ translate('messages.restaurant') }}<span
-                                                class="input-label-secondary"></span></label>
-                                                <select name="restaurant_id"
-                                                data-placeholder="{{ translate('messages.select_restaurant') }}"
-                                                class="js-data-example-ajax form-control"
-                                                title="{{ translate('select_restaurant') }}"
-                                                oninvalid="this.setCustomValidity('{{ translate('messages.please_select_restaurant') }}')">
-                                                @if (isset($product->restaurant))
-                                                    <option value="{{ $product->restaurant_id }}" selected="selected">
-                                                        {{ $product->restaurant->name }}</option>
-                                                @endif
-                                            </select>
-                                    </div>
-                                </div> -->
                                 <div class="col-sm-6 col-lg-3">
                                     <div class="form-group mb-0">
                                         <label class="input-label"
@@ -191,20 +186,21 @@
                                                 </select>
                                     </div>
                                 </div>
-                                <!-- <div class="col-sm-6 col-lg-3">
+
+                                <div class="col-md-3" id="maximum_cart_quantity">
                                     <div class="form-group mb-0">
                                         <label class="input-label"
-                                            for="exampleFormControlInput1">{{ translate('messages.food_type') }}</label>
-                                            <select name="veg" class="form-control js-select2-custom">
-                                                <option value="0" {{ $product['veg'] == 0 ? 'selected' : '' }}>
-                                                    {{ translate('messages.non_veg') }}
-                                                </option>
-                                                <option value="1" {{ $product['veg'] == 1 ? 'selected' : '' }}>
-                                                    {{ translate('messages.veg') }}
-                                                </option>
-                                            </select>
+                                            for="maximum_cart_quantity">{{ translate('messages.Maximum_Purchase_Quantity_Limit') }}
+                                            <span
+                                            class="input-label-secondary text--title" data-toggle="tooltip"
+                                            data-placement="right"
+                                            data-original-title="{{ translate('If_this_limit_is_exceeded,_customers_can_not_buy_the_product_in_a_single_purchase.') }}">
+                                            <i class="tio-info-outined"></i>
+                                        </span>
+                                        </label>
+                                        <input type="number" placeholder="{{ translate('messages.Ex:_10') }}" class="form-control" name="maximum_cart_quantity" min="0" value="{{ $product->maximum_cart_quantity }}" id="cart_quantity">
                                     </div>
-                                </div> -->
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -268,42 +264,45 @@
                     <div class="card shadow--card-2 border-0">
                         <div class="card-header">
                             <h5 class="card-title">
-                                <span class="card-header-icon mr-2">
-                                    <i class="tio-dashboard"></i>
-                                </span>
+                                <span class="card-header-icon mr-2"><i class="tio-ruppes-outlined"></i></span>
                                 <span>{{ translate('Price_Information') }}</span>
                             </h5>
                         </div>
-                        <div class="card-body">
-                            <div class="row g-2">
-                                <div class="col-md-3">
-                                    <div class="form-group mb-0">
+                        @foreach( $portions as $key =>$service )
+                        <div class="card-body variation">
+                            <div class="row g-1">
+                                <div class="col-lg-4 d-flex gap-2">
+                                    <div class="form-group mb-0 w-50">
                                         <label class="input-label"
-                                            for="exampleFormControlInput1">{{ translate('messages.price') }}</label>
-                                        <input type="number" min="0" max="999999999999.99"
-                                            step="0.01" value="{{ $product['price'] }}" name="price" class="form-control"
-                                            placeholder="{{ translate('messages.Ex:_100') }}">
+                                            for="exampleFormControlInput1">{{ translate('messages.price') }} *</label>
+                                        <input type="number" min="0" max="999999999999.99" required
+                                            step="0.01"  name="product_portion[1][price]" class="form-control"
+                                            value = "{{$service['price']}}" required>
+                                    </div>
+                                    <div class="form-group mb-0 w-50">
+                                        <label class="input-label"
+                                            for="exampleFormControlInput1">{{ translate('messages.portion') }} *</label>
+                                        <input type="text" min="0" max="999999999999.99" required
+                                            step="0.01"  name="product_portion[1][portion]" class="form-control"
+                                            value="{{$service['portion']}}" required>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group mb-0">
+                                <div class="col-lg-3">
+                                    <div class="form-group mb-0 w-70">
                                         <label class="input-label"
                                             for="exampleFormControlInput1">{{ translate('messages.discount_type') }}
 
                                         </label>
-                                        <select name="discount_type" class="form-control js-select2-custom">
-                                            <option value="percent"
-                                                {{ $product['discount_type'] == 'percent' ? 'selected' : '' }}>
-                                                {{ translate('messages.percent').' (%)' }}
-                                            </option>
-                                            <option value="amount" {{ $product['discount_type'] == 'amount' ? 'selected' : '' }}>
-                                                {{ translate('messages.amount').' ('.\App\CentralLogics\Helpers::currency_symbol().')'  }}
-                                            </option>
+                                        <select name="product_portion[1][discount_type]" class="form-control js-select2-custom">
+                                            <option value="percent" {{ $service['discount_type'] == 'percent' ? 'selected' : '' }}>
+                                                {{ translate('messages.percent').' (%)' }}</option>
+                                            <option value="amount" {{ $service['discount_type'] == 'amount' ? 'selected' : '' }}>
+                                                {{ translate('messages.amount').' ('.\App\CentralLogics\Helpers::currency_symbol().')'  }}</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group mb-0">
+                                <div class="col-lg-3">
+                                    <div class="form-group mb-0 w-70">
                                         <label class="input-label"
                                             for="exampleFormControlInput1">{{ translate('messages.discount') }}
                                             <span class="input-label-secondary text--title" data-toggle="tooltip"
@@ -313,61 +312,37 @@
                                         </span>
                                         </label>
                                         <input type="number" min="0" max="9999999999999999999999"
-                                        value="{{ $product['discount'] }}"  name="discount" class="form-control"
-                                            placeholder="{{ translate('messages.Ex:_100') }} ">
+                                            name="product_portion[1][discount]" class="form-control"
+                                            value="{{$service['discount']}}">
                                     </div>
                                 </div>
-                                <div class="col-md-3" id="maximum_cart_quantity">
-                                    <div class="form-group mb-0">
-                                        <label class="input-label"
-                                            for="maximum_cart_quantity">{{ translate('messages.Maximum_Purchase_Quantity_Limit') }}
-                                            <span
-                                            class="input-label-secondary text--title" data-toggle="tooltip"
-                                            data-placement="right"
-                                            data-original-title="{{ translate('If_this_limit_is_exceeded,_customers_can_not_buy_the_product_in_a_single_purchase.') }}">
-                                            <i class="tio-info-outined"></i>
-                                        </span>
-                                        </label>
-                                        <input type="number" placeholder="{{ translate('messages.Ex:_10') }}" class="form-control" name="maximum_cart_quantity" min="0" value="{{ $product->maximum_cart_quantity }}" id="cart_quantity">
-                                    </div>
-                                </div>
+                                <button class="btn btn-sm btn--danger btn-outline-danger action-btn mt-6 mb-0 ml-2 removePortion">
+                                <i class="tio-delete-outlined"></i>
+                                </button>
+                             
                             </div>
+                            </div>
+                            @endforeach
+                            <input type="hidden" name="updatedPortions" id="updatedPortions">
+                        <div class="form-check mt-5 ml-4">
+                        <input class="form-check-input" type="checkbox" id="preorderCheckbox" style= "width:15px; height:15px;"
+                        {{ $product->is_preorder == '1' ? 'checked' : '' }}>
+                        <label class="form-check-label ml-2" for="preorderCheckbox">
+                        Preorder
+                        </label>
                         </div>
+
+                        <div class="form-check mt-3 ml-4 mb-3">
+                        <input class="form-check-input" type="checkbox" id="currentOrderCheckbox" style= "width:15px; height:15px;"
+                        {{ $product->is_current_order == '1' ? 'checked' : '' }}>
+                         <label class="form-check-label ml-2" for="currentOrderCheckbox">
+                            Current Order
+                            </label>
+                        </div>
+                        <input type="hidden" id="preorderValue" name="is_preorder" value="0">
+                        <input type="hidden" id="currentOrderValue" name="is_current_order" value="0">
                     </div>
                 </div>
-                <!-- <div class="col-lg-12">
-                    <div class="card shadow--card-2 border-0">
-                        <div class="card-header flex-wrap">
-                            <h5 class="card-title">
-                                <span class="card-header-icon mr-2">
-                                    <i class="tio-canvas-text"></i>
-                                </span>
-                                <span>{{ translate('messages.variations') }}</span>
-                            </h5>
-                            <a class="btn text--primary-2" id="add_new_option_button">
-                                {{ translate('add_new_variation') }}
-                                <i class="tio-add"></i>
-                            </a>
-                        </div>
-                        <div class="card-body">
-                            <div class="row g-2">
-                                <div class="col-md-12">
-                                    <div id="add_new_option">
-                                        @if (isset($product->variations))
-                                        @foreach (json_decode($product->variations,true) as $key_choice_options=>$item)
-                                            @if (isset($item["price"]))
-                                                @break
-                                            @else
-                                                @include('admin-views.product.partials._new_variations',['item'=>$item,'key'=>$key_choice_options+1])
-                                            @endif
-                                        @endforeach
-                                    @endif
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
                 <div class="col-lg-12">
                     <div class="card shadow--card-2 border-0">
                         <div class="card-header">
@@ -383,10 +358,8 @@
                 </div>
                 <div class="col-lg-12">
                     <div class="btn--container justify-content-end">
-                        <button type="reset" id="reset_btn"
-                            class="btn btn--reset">{{ translate('messages.reset') }}</button>
                         <button type="submit"
-                            class="btn btn--primary">{{ translate('messages.submit') }}</button>
+                            class="btn btn--primary">Update</button>
                     </div>
                 </div>
             </div>
@@ -399,6 +372,77 @@
 @endpush
 
 @push('script_2')
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const removeButtons = document.querySelectorAll('.removePortion');
+    removeButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const portionContainer = this.closest('.variation');
+            portionContainer.remove();
+            updateData();
+        });
+    });
+
+    // Manually call updateData() function when needed
+    document.getElementById('portionsForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+        updateData();
+        this.submit(); // Submit the form
+    });
+
+    // // Or call updateData() when a specific event occurs
+    // // For example, when a button is clicked
+    // const captureButton = document.getElementById('captureButton');
+    // captureButton.addEventListener('click', function () {
+    //     updateData();
+    // });
+
+    function updateData() {
+        const portions = document.querySelectorAll('.variation');
+        const updatedData = [];
+
+        portions.forEach((portionContainer, index) => {
+            const priceInput = portionContainer.querySelector('[name="product_portion[' + index + '][price]"]');
+            const portionInput = portionContainer.querySelector('[name="product_portion[' + index + '][portion]"]');
+            const discountTypeInput = portionContainer.querySelector('[name="product_portion[' + index + '][discount_type]"]');
+            const discountInput = portionContainer.querySelector('[name="product_portion[' + index + '][discount]"]');
+
+            if (priceInput && portionInput && discountTypeInput && discountInput) {
+                updatedData.push({
+                    price: priceInput.value,
+                    portion: portionInput.value,
+                    discount_type: discountTypeInput.value,
+                    discount: discountInput.value,
+                });
+            } else {
+                console.error('One or more input fields not found for portion index ' + index);
+            }
+        });
+
+        // Add existing portions to the updated data array
+        const existingPortions = {!! json_encode($portions) !!};
+        existingPortions.forEach(existingPortion => {
+            const isExistingPortionUpdated = updatedData.some(updatedPortion => updatedPortion.price === existingPortion.price && updatedPortion.portion === existingPortion.portion && updatedPortion.discount_type === existingPortion.discount_type && updatedPortion.discount === existingPortion.discount);
+            if (!isExistingPortionUpdated) {
+                updatedData.push(existingPortion);
+            }
+        });
+
+        document.getElementById('updatedPortions').value = JSON.stringify(updatedData);
+    }
+});
+
+</script>
+<script>
+    // JavaScript to update hidden input fields based on checkbox state
+    document.getElementById('preorderCheckbox').addEventListener('change', function() {
+        document.getElementById('preorderValue').value = this.checked ? 1 : 0;
+    });
+
+    document.getElementById('currentOrderCheckbox').addEventListener('change', function() {
+        document.getElementById('currentOrderValue').value = this.checked ? 1 : 0;
+    });
+</script>
     <script src="{{ dynamicAsset('public/assets/admin') }}/js/tags-input.min.js"></script>
     <script src="{{ dynamicAsset('public/assets/admin/js/spartan-multi-image-picker.js') }}"></script>
     <script>

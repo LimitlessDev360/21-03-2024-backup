@@ -168,6 +168,8 @@ class FoodController extends Controller
         //combinations end
         $food->variations = json_encode($variations);        
         $food->portions = json_encode($product_portions);  
+        $food->is_current_order = $request->is_current_order;
+        $food->is_preorder = $request->is_preorder;  
         //$food->price = $request->price;
         $food->image = Helpers::upload(dir: 'product/', format:'png', image:$request->file('image'));
         $food->available_time_starts = $request->available_time_starts;
@@ -253,8 +255,11 @@ class FoodController extends Controller
             return back();
         }
         $product_category = json_decode($product->category_ids);
+       
+        $portions = json_decode($product->portions, true);
+        // return $portions[0];
         $categories = Category::where(['parent_id' => 0])->get();
-        return view('admin-views.product.edit', compact('product', 'product_category', 'categories'));
+        return view('admin-views.product.edit', compact('product', 'product_category', 'categories', 'portions'));
     }
     public function price_store(Request $request, $id)
     {
@@ -280,44 +285,24 @@ class FoodController extends Controller
         $product = Food::withoutGlobalScope(RestaurantScope::class)->findOrFail($request->id);
         $product->status = $request->status;
         $product->save();
-        Toastr::success(translate('messages.food_status_updated'));
+        Toastr::success("Product status updated");
         return back();
     }
 
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'array',
-            'name.0' => 'required',
             'name.*' => 'max:191',
             'category_id' => 'required',
-            'price' => 'required|numeric|between:.01,999999999999.99',
-            'restaurant_id' => 'required',
-            'veg' => 'required',
-            'description' => 'array',
+            'restaurant_id' => '',
             'description.*' => 'max:1000',
-            'discount' => 'required|numeric|min:0',
             'image' => 'nullable|max:2048',
         ], [
             'description.*.max' => translate('messages.description_length_warning'),
             'name.0.required' => translate('messages.item_name_required'),
-            'category_id.required' => translate('messages.category_required'),
-            'veg.required'=>translate('messages.item_type_is_required'),
+            'category_id.required' => translate('messages.category_required')
         ]);
 
-        if ($request['discount_type'] == 'percent') {
-            $dis = ($request['price'] / 100) * $request['discount'];
-        } else {
-            $dis = $request['discount'];
-        }
-
-        if ($request['price'] <= $dis) {
-            $validator->getMessageBag()->add('unit_price', translate('messages.discount_can_not_be_more_than_or_equal'));
-        }
-
-        if ($request['price'] <= $dis || $validator->fails()) {
-            return response()->json(['errors' => Helpers::error_processor($validator)]);
-        }
 
 
         $tag_ids = [];
@@ -333,6 +318,19 @@ class FoodController extends Controller
                 array_push($tag_ids,$tag->id);
             }
         }
+        // $updatedData = json_decode($request->updatedPortions, true);
+        return $request->updatedPortions;
+
+    
+        $product_portions = $temp_portion = [];
+        foreach ($updatedData as $portionData) {
+            $temp_portion['portion']= $portionData['portion'];
+                $temp_portion['price']= $portionData['price'];
+                $temp_portion['discount_type']= $portionData['discount_type'];
+                $temp_portion['discount']= $portionData['discount'];
+            // Update or insert each portion into the database
+        }
+
 
         $p = Food::withoutGlobalScope(RestaurantScope::class)->find($id);
 
@@ -366,52 +364,23 @@ class FoodController extends Controller
 
 
         $variations = [];
-        if(isset($request->options))
-        {
-            foreach(array_values($request->options) as $key=>$option)
-            {
-                $temp_variation['name']= $option['name'];
-                $temp_variation['type']= $option['type'];
-                $temp_variation['min']= $option['min'] ?? 0;
-                $temp_variation['max']= $option['max'] ?? 0;
-                if($option['min'] > 0 &&  $option['min'] > $option['max']  ){
-                    $validator->getMessageBag()->add('name', translate('messages.minimum_value_can_not_be_greater_then_maximum_value'));
-                    return response()->json(['errors' => Helpers::error_processor($validator)]);
-                }
-                if(!isset($option['values'])){
-                    $validator->getMessageBag()->add('name', translate('messages.please_add_options_for').$option['name']);
-                    return response()->json(['errors' => Helpers::error_processor($validator)]);
-                }
-                if($option['max'] > count($option['values'])  ){
-                    $validator->getMessageBag()->add('name', translate('messages.please_add_more_options_or_change_the_max_value_for').$option['name']);
-                    return response()->json(['errors' => Helpers::error_processor($validator)]);
-                }
-                $temp_variation['required']= $option['required']??'off';
-                $temp_value = [];
-                foreach(array_values($option['values']) as $value)
-                {
-                    if(isset($value['label'])){
-                        $temp_option['label'] = $value['label'];
-                    }
-                    $temp_option['optionPrice'] = $value['optionPrice'];
-                    array_push($temp_value,$temp_option);
-                }
-                $temp_variation['values']= $temp_value;
-                array_push($variations,$temp_variation);
-            }
-        }
+        
+
+
 
         $slug = Str::slug($request->name[array_search('default', $request->lang)]);
         $p->slug = $p->slug? $p->slug :"{$slug}{$p->id}";
         //combinations end
         $p->variations = json_encode($variations);
-        $p->price = $request->price;
+        // $p->portions = json_encode($product_portions); 
+        // $p->price = $request->price;
+        $p->veg = 0;
         $p->image = $request->has('image') ? Helpers::update(dir:'product/', old_image: $p->image, format:'png', image: $request->file('image')) : $p->image;
         $p->available_time_starts = $request->available_time_starts;
         $p->available_time_ends = $request->available_time_ends;
 
-        $p->discount = $request->discount ?? 0;
-        $p->discount_type = $request->discount_type;
+        // $p->discount = $request->discount ?? 0;
+        // $p->discount_type = $request->discount_type;
 
         $p->attributes = $request->has('attribute_id') ? json_encode($request->attribute_id) : json_encode([]);
         $p->add_ons = $request->has('addon_ids') ? json_encode($request->addon_ids) : json_encode([]);
