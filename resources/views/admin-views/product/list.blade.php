@@ -243,7 +243,7 @@
                                     <th class="w-100px">{{ translate('messages.name') }}</th>
                                     <th class="w-120px">{{ translate('messages.category') }}</th>
                                     <!-- <th class="w-120px">{{ translate('messages.vendor') }}</th> -->
-                                    <th class="w-100px">{{ translate('messages.price') }}</th>
+                                    <!-- <th class="w-100px">{{ translate('messages.price') }}</th> -->
                                     <th class="w-100px">{{ translate('messages.status') }}</th>
                                     <th class="w-120px text-center">
                                         {{ translate('messages.action') }}
@@ -286,7 +286,7 @@
                                                 <span class="text--danger text-capitalize">Vendor not assigned<span>
                                             @endif
                                         </td> -->
-                                        <td>{{ \App\CentralLogics\Helpers::format_currency($food['price']) }}</td>
+                                        <!-- <td>{{ \App\CentralLogics\Helpers::format_currency($food['price']) }}</td> -->
                                         <td>
                                             <label class="toggle-switch toggle-switch-sm"
                                                 for="stocksCheckbox{{ $food->id }}">

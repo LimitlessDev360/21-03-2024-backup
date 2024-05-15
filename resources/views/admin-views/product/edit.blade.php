@@ -276,14 +276,14 @@
                                         <label class="input-label"
                                             for="exampleFormControlInput1">{{ translate('messages.price') }} *</label>
                                         <input type="number" min="0" max="999999999999.99" required
-                                            step="0.01"  name="product_portion[1][price]" class="form-control"
+                                            step="0.01"  name="product_portion[{{$key}}][price]" class="form-control"
                                             value = "{{$service['price']}}" required>
                                     </div>
                                     <div class="form-group mb-0 w-50">
                                         <label class="input-label"
                                             for="exampleFormControlInput1">{{ translate('messages.portion') }} *</label>
                                         <input type="text" min="0" max="999999999999.99" required
-                                            step="0.01"  name="product_portion[1][portion]" class="form-control"
+                                            step="0.01"  name="product_portion[{{$key}}][portion]" class="form-control"
                                             value="{{$service['portion']}}" required>
                                     </div>
                                 </div>
@@ -293,7 +293,7 @@
                                             for="exampleFormControlInput1">{{ translate('messages.discount_type') }}
 
                                         </label>
-                                        <select name="product_portion[1][discount_type]" class="form-control js-select2-custom">
+                                        <select name="product_portion[{{$key}}][discount_type]" class="form-control js-select2-custom">
                                             <option value="percent" {{ $service['discount_type'] == 'percent' ? 'selected' : '' }}>
                                                 {{ translate('messages.percent').' (%)' }}</option>
                                             <option value="amount" {{ $service['discount_type'] == 'amount' ? 'selected' : '' }}>
@@ -312,7 +312,7 @@
                                         </span>
                                         </label>
                                         <input type="number" min="0" max="9999999999999999999999"
-                                            name="product_portion[1][discount]" class="form-control"
+                                            name="product_portion[{{$key}}][discount]" class="form-control"
                                             value="{{$service['discount']}}">
                                     </div>
                                 </div>
@@ -386,7 +386,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Manually call updateData() function when needed
     document.getElementById('portionsForm').addEventListener('submit', function (event) {
         event.preventDefault();
-        updateData();
+        // updateData();
         this.submit(); // Submit the form
     });
 
@@ -397,39 +397,39 @@ document.addEventListener('DOMContentLoaded', function () {
     //     updateData();
     // });
 
-    function updateData() {
-        const portions = document.querySelectorAll('.variation');
-        const updatedData = [];
+    // function updateData() {
+    //     const portions = document.querySelectorAll('.variation');
+    //     const updatedData = [];
 
-        portions.forEach((portionContainer, index) => {
-            const priceInput = portionContainer.querySelector('[name="product_portion[' + index + '][price]"]');
-            const portionInput = portionContainer.querySelector('[name="product_portion[' + index + '][portion]"]');
-            const discountTypeInput = portionContainer.querySelector('[name="product_portion[' + index + '][discount_type]"]');
-            const discountInput = portionContainer.querySelector('[name="product_portion[' + index + '][discount]"]');
+    //     portions.forEach((portionContainer, index) => {
+    //         const priceInput = portionContainer.querySelector('[name="product_portion[' + index + '][price]"]');
+    //         const portionInput = portionContainer.querySelector('[name="product_portion[' + index + '][portion]"]');
+    //         const discountTypeInput = portionContainer.querySelector('[name="product_portion[' + index + '][discount_type]"]');
+    //         const discountInput = portionContainer.querySelector('[name="product_portion[' + index + '][discount]"]');
 
-            if (priceInput && portionInput && discountTypeInput && discountInput) {
-                updatedData.push({
-                    price: priceInput.value,
-                    portion: portionInput.value,
-                    discount_type: discountTypeInput.value,
-                    discount: discountInput.value,
-                });
-            } else {
-                console.error('One or more input fields not found for portion index ' + index);
-            }
-        });
+    //         if (priceInput && portionInput && discountTypeInput && discountInput) {
+    //             updatedData.push({
+    //                 price: priceInput.value,
+    //                 portion: portionInput.value,
+    //                 discount_type: discountTypeInput.value,
+    //                 discount: discountInput.value,
+    //             });
+    //         } else {
+    //             console.error('One or more input fields not found for portion index ' + index);
+    //         }
+    //     });
 
-        // Add existing portions to the updated data array
-        const existingPortions = {!! json_encode($portions) !!};
-        existingPortions.forEach(existingPortion => {
-            const isExistingPortionUpdated = updatedData.some(updatedPortion => updatedPortion.price === existingPortion.price && updatedPortion.portion === existingPortion.portion && updatedPortion.discount_type === existingPortion.discount_type && updatedPortion.discount === existingPortion.discount);
-            if (!isExistingPortionUpdated) {
-                updatedData.push(existingPortion);
-            }
-        });
+    //     // Add existing portions to the updated data array
+    //     const existingPortions = {!! json_encode($portions) !!};
+    //     existingPortions.forEach(existingPortion => {
+    //         const isExistingPortionUpdated = updatedData.some(updatedPortion => updatedPortion.price === existingPortion.price && updatedPortion.portion === existingPortion.portion && updatedPortion.discount_type === existingPortion.discount_type && updatedPortion.discount === existingPortion.discount);
+    //         if (!isExistingPortionUpdated) {
+    //             updatedData.push(existingPortion);
+    //         }
+    //     });
 
-        document.getElementById('updatedPortions').value = JSON.stringify(updatedData);
-    }
+    //     document.getElementById('updatedPortions').value = JSON.stringify(updatedData);
+    // }
 });
 
 </script>
@@ -783,7 +783,7 @@ document.addEventListener('DOMContentLoaded', function () {
             $.ajax({
                 type: "POST",
                 url: '{{ route('admin.food.variant-combination') }}',
-                data: $('#product_form').serialize(),
+                data: $('#portionsForm').serialize(),
                 beforeSend: function() {
                     $('#loading').show();
                 },
@@ -799,7 +799,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
 
-        $('#product_form').on('submit', function() {
+        $('#portionsForm').on('submit', function() {
             var formData = new FormData(this);
             $.ajaxSetup({
                 headers: {
@@ -808,7 +808,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
             $.post({
                 url: '{{ route('admin.food.update', [$product['id']]) }}',
-                data: $('#product_form').serialize(),
+                data: $('#portionsForm').serialize(),
                 data: formData,
                 cache: false,
                 contentType: false,

@@ -25,8 +25,27 @@
         <!-- Card -->
         <div class="card">
             <!-- Header -->
-            <div class="card-header flex-wrap py-2">
-                <div class="search--button-wrapper justify-content-end">
+            <div class="card-header flex-wrap py-2 row ">
+            <div id="time-slots " class="col-6 d-flex">
+            <div class="row gap-2 d-flex">
+            @foreach($timewise_orders as $time => $ordersAtTime)
+        
+          <div class="time-box{{ $loop->first ? ' selected' : '' }}  m-1 gap-1 col-2" data-time="{{ $time }}">
+                {{ $time }}
+             
+
+          </div>
+          
+       
+         
+          
+          
+         
+         
+            @endforeach
+            </div>
+            </div>
+                <div class="search--button-wrapper justify-content-end ">
                     <form  class="my-2 ml-auto mr-sm-2 mr-xl-4 ml-sm-auto flex-grow-1 flex-grow-sm-0">
                         <!-- Search -->
                         <div class="input--group input-group input-group-merge input-group-flush">
@@ -215,6 +234,9 @@
 
             <!-- Table -->
             <div class="table-responsive datatable-custom fz--14px">
+
+
+
                 <table id="datatable"
                        class="table table-hover table-borderless table-thead-bordered table-nowrap table-align-middle card-table"
                        data-hs-datatables-options='{
@@ -247,134 +269,8 @@
                     </tr>
                     </thead>
 
-                    <tbody id="set-rows">
-                    @foreach($orders as $key=>$order)
-
-                        <tr class="status-{{$order['order_status']}} class-all">
-                            <td class="">
-                                {{$key+$orders->firstItem()}}
-                            </td>
-                            <td class="table-column-pl-0">
-                                <a href="{{route('admin.order.details',['id'=>$order['id']])}}">{{$order['id']}}</a>
-                            </td>
-                            <td class="text-uppercase">
-                                <div>
-                                    {{ \App\CentralLogics\Helpers::date_format($order->created_at)  }}
-
-                                </div>
-                                <div>
-                                    {{ \App\CentralLogics\Helpers::time_format($order->created_at)  }}
-                                </div>
-                            </td>
-                            <td>
-                                @if($order->is_guest)
-                                    @php
-                                    $customer_details = json_decode($order['delivery_address'],true);
-                                    @endphp
-
-                                    <strong>{{$customer_details['contact_person_name']}}</strong>
-                                    <div>{{$customer_details['contact_person_number']}}</div>
-                                @elseif($order->customer)
-                                <a class="text-body text-capitalize"
-                                   href="{{route('admin.customer.view',[$order['user_id']])}}">
-                                   <div class="customer--name">
-                                        {{$order->customer['f_name'].' '.$order->customer['l_name']}}
-                                   </div>
-                                   <span class="phone">
-                                        {{$order->customer['phone']}}
-                                   </span>
-                                </a>
-                                @else
-                                    <label class="badge badge-danger">{{translate('messages.invalid_customer_data')}}</label>
-                                @endif
-                            </td>
-
-                            <td>
-                                <label class="m-0">
-                                    <a href="{{route('admin.restaurant.view', $order->restaurant_id)}}" class="text--title" alt="view restaurant">
-                                        {{Str::limit($order->restaurant?$order->restaurant->name:translate('messages.Restaurant_deleted!'),20,'...')}}
-                                    </a>
-                                </label>
-                            </td>
-                            <td>
-                                <div class="text-right mw-85px">
-                                    <div>
-                                        {{\App\CentralLogics\Helpers::format_currency($order['order_amount'])}}
-                                    </div>
-                                    @if($order->payment_status=='paid')
-                                        <strong class="text-success">
-                                        {{translate('messages.paid')}}
-                                        </strong>
-                                        @elseif($order->payment_status=='partially_paid')
-                                        <strong class="text-success">
-                                            {{translate('messages.partially_paid')}}
-                                        </strong>
-
-                                    @else
-                                        <strong class="text-danger">
-                                        {{translate('messages.unpaid')}}
-                                        </strong>
-                                    @endif
-                                </div>
-                            </td>
-
-                            @if (isset($order->subscription)  && $order->subscription->status != 'canceled' )
-                                @php
-                                    $order->order_status = $order->subscription_log ? $order->subscription_log->order_status : $order->order_status;
-                                @endphp
-                            @endif
-                            <td class="text-capitalize text-center">
-                                @if($order['order_status']=='pending')
-                                    <span class="badge badge-soft-info mb-1">
-                                      {{translate('messages.pending')}}
-                                    </span>
-                                @elseif($order['order_status']=='confirmed')
-                                    <span class="badge badge-soft-info mb-1">
-                                      {{translate('messages.confirmed')}}
-                                    </span>
-                                @elseif($order['order_status']=='processing')
-                                    <span class="badge badge-soft-warning mb-1">
-                                      {{translate('messages.processing')}}
-                                    </span>
-                                @elseif($order['order_status']=='picked_up')
-                                    <span class="badge badge-soft-warning mb-1">
-                                      {{translate('messages.out_for_delivery')}}
-                                    </span>
-                                @elseif($order['order_status']=='delivered')
-                                    <span class="badge badge-soft-success mb-1">
-                                      {{translate('messages.delivered')}}
-                                    </span>
-                                @elseif($order['order_status']=='failed')
-                                    <span class="badge badge-soft-danger mb-1">
-                                      {{translate('messages.payment_failed')}}
-                                    </span>
-                                @else
-                                    <span class="badge badge-soft-danger mb-1">
-                                      {{translate(str_replace('_',' ',$order['order_status']))}}
-                                    </span>
-                                @endif
-                                <div class="text-capitalze opacity-7">
-                                @if($order['order_type']=='take_away')
-                                    <span>
-                                        {{translate('messages.take_away')}}
-                                    </span>
-                                @else
-                                    <span>
-                                        {{translate('home_delivery')}}
-                                    </span>
-                                @endif
-                                </div>
-                            </td>
-                            <td>
-                                <div class="btn--container justify-content-center">
-                                    <a class="ml-2 btn btn-sm btn--warning btn-outline-warning action-btn" href="{{route('admin.order.details',['id'=>$order['id']])}}"><i class="tio-invisible"></i></a>
-
-                                    <a class="ml-2 btn btn-sm btn--primary btn-outline-primary download--btn action-btn" href={{ route('admin.order.generate-invoice', [$order['id']]) }}><i class="tio-print"></i></a>
-                                </div>
-                            </td>
-                        </tr>
-
-                    @endforeach
+                    <tbody id="order-details">
+                    
                     </tbody>
                 </table>
                 @if(count($orders) === 0)
@@ -387,6 +283,8 @@
                 @endif
             </div>
             <!-- End Table -->
+
+
 
             <div class="card-footer p-0 border-0">
                 <!-- Pagination -->
@@ -720,5 +618,142 @@
         });
     </script>
 
+<style>
+        .time-box {
+            padding: 7px;
+            margin: 7px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+            font-size:12px;
+            
+        }
+        .time-box.selected {
+            background-color: #B6D0E2;
+        }
+        .order-list {
+            display: none;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var timeBoxes = document.querySelectorAll('.time-box');
+
+            function displayOrders(time) {
+                var orders = @json($timewise_orders);
+                var orderDetails = orders[time];
+
+                var tbody = document.getElementById('order-details');
+                tbody.innerHTML = '';
+
+                orderDetails.forEach(function (order, index) {
+                    var tr = document.createElement('tr');
+                    var orderDetailsUrl = "{{ route('admin.order.details', ':orderId') }}";
+                    orderDetailsUrl = orderDetailsUrl.replace(':orderId', order.id);
+
+                    tr.innerHTML = `
+                        <td>${index + 1}</td>
+                        <td class="table-column-pl-0"><a href="${orderDetailsUrl}">${order.id}</a></td>
+                        <td class="text-uppercase">
+                            <div>${order.created_at.split(' ')[0]}</div>
+                            <div>${order.created_at.split(' ')[1]}</div>
+                        </td>
+                        <td>
+                            ${order.customer ? `
+                                <a class="text-body text-capitalize" href="/admin/customer/view/${order.user_id}">
+                                    <div class="customer--name">${order.customer.f_name} ${order.customer.l_name ?? ""}</div>
+                                    <span class="phone">${order.customer.phone}</span>
+                                </a>
+                            ` : `
+                                <label class="badge badge-danger">Invalid customer data</label>
+                            `}
+                        </td>
+                        <td>
+                            <label class="m-0">
+                                <a href="/admin/restaurant/view/${order.restaurant_id}" class="text--title" alt="view restaurant">
+                                    ${order.restaurant ? order.restaurant.name : 'Restaurant deleted!'}
+                                </a>
+                            </label>
+                        </td>
+                        <td class="text-right mw-85px">
+                            <div>${order.order_amount}</div>
+                            ${order.payment_status === 'paid' ? `
+                                <strong class="text-success">Paid</strong>
+                            ` : order.payment_status === 'partially_paid' ? `
+                                <strong class="text-success">Partially Paid</strong>
+                            ` : `
+                                <strong class="text-danger">Unpaid</strong>
+                            `}
+                        </td>
+                        <td class="text-capitalize text-center">
+                            ${order.order_status === 'pending' ? `
+                                <span class="badge badge-soft-info mb-1">Pending</span>
+                            ` : order.order_status === 'confirmed' ? `
+                                <span class="badge badge-soft-info mb-1">Confirmed</span>
+                            ` : order.order_status === 'processing' ? `
+                                <span class="badge badge-soft-warning mb-1">Processing</span>
+                            ` : order.order_status === 'picked_up' ? `
+                                <span class="badge badge-soft-warning mb-1">Out for delivery</span>
+                            ` : order.order_status === 'delivered' ? `
+                                <span class="badge badge-soft-success mb-1">Delivered</span>
+                            ` : order.order_status === 'failed' ? `
+                                <span class="badge badge-soft-danger mb-1">Payment failed</span>
+                            ` : `
+                                <span class="badge badge-soft-danger mb-1">${order.order_status.replace('_', ' ')}</span>
+                            `}
+                            <div class="text-capitalize opacity-7">
+                                ${order.order_type === 'take_away' ? `
+                                    <span>Take away</span>
+                                ` : `
+                                    <span>Home delivery</span>
+                                `}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn--container justify-content-center">
+                                <a class="ml-2 btn btn-sm btn--warning btn-outline-warning action-btn" href="${orderDetailsUrl}"><i class="tio-invisible"></i></a>
+                                <a class="ml-2 btn btn-sm btn--primary btn-outline-primary download--btn action-btn" href="/admin/order/generate-invoice/${order.id}"><i class="tio-print"></i></a>
+                            </div>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            }
+
+            // Display orders for the default selected time slot
+            var defaultTime = document.querySelector('.time-box.selected').dataset.time;
+            displayOrders(defaultTime);
+
+            timeBoxes.forEach(function (box) {
+                box.addEventListener('click', function () {
+                    var time = this.dataset.time;
+
+                    // Remove selected class from all time boxes
+                    timeBoxes.forEach(function (b) {
+                        b.classList.remove('selected');
+                    });
+
+                    // Add selected class to the clicked time box
+                    this.classList.add('selected');
+
+                    // Display orders for the selected time slot
+                    displayOrders(time);
+                });
+            });
+        });
+    </script>
 
 @endpush

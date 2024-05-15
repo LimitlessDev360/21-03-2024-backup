@@ -142,8 +142,9 @@ class OrderController extends Controller
         $to_date = $request?->to_date ?? null;
         $order_type =  $request?->order_type ?? null;
         $total = $orders->total();
-
-        return view('admin-views.order.list', compact('orders', 'status', 'orderstatus', 'scheduled', 'vendor_ids', 'zone_ids', 'from_date', 'to_date', 'total', 'order_type'));
+        
+        $timewise_orders =  $orders->groupBy('preferred_time');
+        return view('admin-views.order.list', compact('orders', 'status', 'orderstatus', 'scheduled', 'vendor_ids', 'zone_ids', 'from_date', 'to_date', 'total', 'order_type', 'timewise_orders'));
     }
 
     public function export_orders($status, $type, Request $request)
@@ -615,6 +616,7 @@ class OrderController extends Controller
                 $selected_delivery_man = Helpers::deliverymen_list_formatting(data:$selected_delivery_man, restaurant_lat: $order?->restaurant?->latitude, restaurant_lng: $order?->restaurant?->longitude , single_data:true);
             }
 
+            // return $products;
             return view('admin-views.order.order-view', compact('order', 'deliveryMen', 'categories', 'products', 'category', 'keyword', 'editing', 'selected_delivery_man','vendors_list'));
         } else {
             Toastr::info(translate('messages.no_more_orders'));

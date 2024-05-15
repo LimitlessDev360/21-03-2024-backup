@@ -318,18 +318,21 @@ class FoodController extends Controller
                 array_push($tag_ids,$tag->id);
             }
         }
-        // $updatedData = json_decode($request->updatedPortions, true);
-        return $request->updatedPortions;
+   
 
     
         $product_portions = $temp_portion = [];
-        foreach ($updatedData as $portionData) {
-            $temp_portion['portion']= $portionData['portion'];
-                $temp_portion['price']= $portionData['price'];
-                $temp_portion['discount_type']= $portionData['discount_type'];
-                $temp_portion['discount']= $portionData['discount'];
-            // Update or insert each portion into the database
-        }
+        if(isset($request->product_portion))
+        {
+            foreach(array_values($request->product_portion) as $key=>$portions)
+            {
+                $temp_portion['portion']= $portions['portion'];
+                $temp_portion['price']= $portions['price'];
+                $temp_portion['discount_type']= $portions['discount_type'];
+                $temp_portion['discount']= $portions['discount'];
+                array_push($product_portions,$temp_portion);
+            }                    
+        } 
 
 
         $p = Food::withoutGlobalScope(RestaurantScope::class)->find($id);
@@ -372,7 +375,7 @@ class FoodController extends Controller
         $p->slug = $p->slug? $p->slug :"{$slug}{$p->id}";
         //combinations end
         $p->variations = json_encode($variations);
-        // $p->portions = json_encode($product_portions); 
+        $p->portions = json_encode($product_portions); 
         // $p->price = $request->price;
         $p->veg = 0;
         $p->image = $request->has('image') ? Helpers::update(dir:'product/', old_image: $p->image, format:'png', image: $request->file('image')) : $p->image;
@@ -385,7 +388,7 @@ class FoodController extends Controller
         $p->attributes = $request->has('attribute_id') ? json_encode($request->attribute_id) : json_encode([]);
         $p->add_ons = $request->has('addon_ids') ? json_encode($request->addon_ids) : json_encode([]);
         $p->restaurant_id = $request->restaurant_id;
-        $p->veg = $request->veg;
+        $p->veg = 0;
         $p->maximum_cart_quantity = $request->maximum_cart_quantity;
 
         $p->save();
@@ -448,8 +451,10 @@ class FoodController extends Controller
 
             }
         }
-
-        return response()->json([], 200);
+        Toastr::success('Product update successfully');
+        return redirect()->route('admin.food.list');
+     
+        // return response()->json([], 200);
     }
 
     public function delete(Request $request)

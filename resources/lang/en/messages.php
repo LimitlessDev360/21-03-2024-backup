@@ -5041,4 +5041,5 @@
   'add_additional_slot' => 'Add additional slot',
   'update_Service' => 'Update Service',
   'Remove' => 'Remove',
+  'product_update_successfully' => 'Product update successfully',
 );
