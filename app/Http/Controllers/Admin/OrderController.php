@@ -616,7 +616,7 @@ class OrderController extends Controller
                 $selected_delivery_man = Helpers::deliverymen_list_formatting(data:$selected_delivery_man, restaurant_lat: $order?->restaurant?->latitude, restaurant_lng: $order?->restaurant?->longitude , single_data:true);
             }
 
-            // return $products;
+            // return $order;
             return view('admin-views.order.order-view', compact('order', 'deliveryMen', 'categories', 'products', 'category', 'keyword', 'editing', 'selected_delivery_man','vendors_list'));
         } else {
             Toastr::info(translate('messages.no_more_orders'));

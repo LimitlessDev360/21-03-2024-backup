@@ -532,6 +532,7 @@ $max_processing_time = $order->restaurant?explode('-', $order->restaurant['deliv
                                         </td>
                                         <td>
                                             <div>
+                                            @if (isset(json_decode($detail['add_ons'],true)[0]))
                                                 @foreach (json_decode($detail['add_ons'], true) as $key2 => $addon)
                                                     <div class="font-size-sm text-body">
                                                         <span>{{ Str::limit($addon['name'], 20, '...') }} : </span>
@@ -543,6 +544,7 @@ $max_processing_time = $order->restaurant?explode('-', $order->restaurant['deliv
                                                     </div>
                                                     @php($total_addon_price += $addon['price'] * $addon['quantity'])
                                                 @endforeach
+                                                @endif
                                             </div>
                                         </td>
                                         <td class="text-right">
@@ -1332,14 +1334,15 @@ $max_processing_time = $order->restaurant?explode('-', $order->restaurant['deliv
                                                 @if (isset($address))
                                                     <span class="delivery--information-single mt-3">
                                                         <span class="name">{{ translate('name') }}</span>
-                                                        <span class="info">{{ $address['contact_person_name'] }}</span>
+                                                        <span class="info">{{ $address['contact_person_name'] ?? ""}}</span>
                                                         <span class="name">{{ translate('contact') }}</span>
-                                                        <a class="deco-none info" href="tel:{{ $address['contact_person_number'] }}">
+                                                     
+                                                        <a class="deco-none info" href="">
                                                             <i class="tio-call-talking-quiet"></i>
-                                                            {{ $address['contact_person_number'] }}</a>
+                                                            {{ $address['contact_person_number'] ?? ""}}</a>
 
                                                         <span class="name">{{ translate('Road') }} #</span>
-                                                        <span class="info">{{ isset($address['road']) ? $address['road'] : '' }}</span>
+                                                        <span class="info">{{ $address['road'] ?? "" }}</span>
                                                         <span class="name">{{ translate('House') }} #</span>
                                                         <span class="info">
                                                             {{ isset($address['house']) ? $address['house'] : '' }}
@@ -1602,7 +1605,7 @@ $max_processing_time = $order->restaurant?explode('-', $order->restaurant['deliv
                                 </label>
                                 <div class="col-md-10 js-form-message">
                                     <input type="text" class="form-control" name="contact_person_number"
-                                        value="{{ $address['contact_person_number'] }}" required>
+                                        value="{{ isset($address['contact_person_number']) ? $address['contact_person_number'] : ''}}" required>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -1611,7 +1614,7 @@ $max_processing_time = $order->restaurant?explode('-', $order->restaurant['deliv
                                 </label>
                                 <div class="col-md-10 js-form-message">
                                     <input type="text" class="form-control" name="contact_person_name"
-                                        value="{{ $address['contact_person_name'] }}" required>
+                                        value="{{ isset($address['contact_person_name']) ? $address['contact_person_name'] : ''}}" required>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -1647,7 +1650,7 @@ $max_processing_time = $order->restaurant?explode('-', $order->restaurant['deliv
                                 </label>
                                 <div class="col-md-10 js-form-message">
                                     <input type="text" class="form-control" name="address"
-                                        value="{{ $address['address'] }}">
+                                        value="{{ isset($address['address']) ? $address['address'] : '' }}">
                                 </div>
                             </div>
 
@@ -2806,7 +2809,7 @@ $max_processing_time = $order->restaurant?explode('-', $order->restaurant['deliv
                     google.maps.event.addListener(marker, 'click', (function(marker) {
                         return function() {
                             infowindow.setContent(
-                                `<div class='float--left'><img class='js--design-1' onerror="this.src='{{ dynamicAsset('public/assets/admin/img/160x160/img1.jpg') }}'"  src='{{ $order->customer ? dynamicStorage('storage/app/public/profile/' . $order?->customer?->image) : dynamicAsset('public/assets/admin/img/160x160/img3.png') }}'></div><div class='float--right p--10px'><b>{{ $order->customer ? $order->customer->f_name .' '. $order->customer->l_name : $address['contact_person_name'] }}</b><br/>{{ $address['address'] }}</div>`
+                                `<div class='float--left'><img class='js--design-1' onerror="this.src='{{ dynamicAsset('public/assets/admin/img/160x160/img1.jpg') }}'"  src='{{ $order->customer ? dynamicStorage('storage/app/public/profile/' . $order?->customer?->image) : dynamicAsset('public/assets/admin/img/160x160/img3.png') }}'></div><div class='float--right p--10px'><b>{{ $order->customer ? $order->customer->f_name .' '. $order->customer->l_name : $address['contact_person_name'] }}</b><br/>{{ isset($address['address']) ? $address['address'] : '' }}</div>`
                             );
                             infowindow.open(map, marker);
                         }
