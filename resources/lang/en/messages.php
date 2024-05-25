@@ -5042,4 +5042,5 @@
   'update_Service' => 'Update Service',
   'Remove' => 'Remove',
   'product_update_successfully' => 'Product update successfully',
+  'can_not_accept' => 'Can not accept',
 );

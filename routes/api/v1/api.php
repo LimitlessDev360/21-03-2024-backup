@@ -33,6 +33,7 @@ Route::post('deliveryman/mail_login', [AuthController::class,'mail_login']);
 Route::post('deliveryman/check_phone', [AuthController::class,'check_exitsting_phone']);
 Route::post('deliveryman/check_mail', [AuthController::class,'check_exitsting_mail']);
 Route::get('deliveryman/getprofile', [AuthController::class,'getProfile']);
+Route::get('get_all_vendors', [AuthController::class,'getAllVendors']);
 
 
 /// orders

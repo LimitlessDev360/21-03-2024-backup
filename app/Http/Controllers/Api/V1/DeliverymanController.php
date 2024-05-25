@@ -182,7 +182,10 @@ class DeliverymanController extends Controller
         ->Notpos()
         ->get();
         $orders= Helpers::order_data_formatting($orders, true);
-        return response()->json($orders, 200);
+        return response()->json([
+            'status'=> true,
+            'data'=> $orders
+        ],200);
     }
 
     public function get_latest_orders(Request $request)
@@ -245,7 +248,7 @@ class DeliverymanController extends Controller
         }
         $dm=DeliveryMan::where(['auth_token' => $request['token']])->first();
         $order = Order::where('id', $request['order_id'])
-        ->whereNull('delivery_man_id')
+        // ->whereNull('delivery_man_id')
         ->Notpos()
         ->first();
         if(!$order)

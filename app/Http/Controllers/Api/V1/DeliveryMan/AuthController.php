@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\DeliveryMan;
 use Illuminate\Support\Str;
+use App\Models\Restaurant;
 
 class AuthController extends Controller
 {
@@ -168,5 +169,18 @@ class AuthController extends Controller
             ],
             200
         );
+    }
+
+    public function getAllVendors(){
+        $vendors = Restaurant::all();
+        return response()->json(
+            [
+                'status' => true,
+                'message' => 'All vendors',
+                'data'=>$vendors
+            ],
+            200
+        );
+
     }
 }

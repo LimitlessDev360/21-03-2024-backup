@@ -868,7 +868,7 @@ class Helpers
 
                 $item['delivery_address'] = $item->delivery_address ? json_decode($item->delivery_address, true) : null;
                 $item['details_count'] = (int)$item->details->count();
-                unset($item['details']);
+                // unset($item['details']);
                 array_push($storage, $item);
             }
             $data = $storage;
