@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\DeliveryMan;
 use Illuminate\Support\Str;
 use App\Models\Restaurant;
+use App\Models\OrderDetail;
 
 class AuthController extends Controller
 {
@@ -157,30 +158,92 @@ class AuthController extends Controller
             );
         }
     }
-    
-    public function getProfile(Request $request){
-        $dm = DeliveryMan::with(['rating','userinfo','dm_shift'])->where(['auth_token' => $request['token']])->first();
+
+    public function getProfile(Request $request)
+    {
+        $dm = DeliveryMan::with(['rating', 'userinfo', 'dm_shift'])
+            ->where(['auth_token' => $request['token']])
+            ->first();
 
         return response()->json(
             [
                 'status' => false,
                 'message' => 'Deliveryman',
-                'data'=>$dm
+                'data' => $dm,
             ],
             200
         );
     }
 
-    public function getAllVendors(){
+    public function getAllVendors()
+    {
         $vendors = Restaurant::all();
         return response()->json(
             [
                 'status' => true,
                 'message' => 'All vendors',
-                'data'=>$vendors
+                'data' => $vendors,
             ],
             200
         );
-
     }
+
+    public function assignOrderToCategorywiseInVendor(Request $request)
+    {
+        $request->validate([
+            'order_id' => 'required',
+            'category' => 'required',
+            'vendor_id' => 'required',
+        ]);
+
+        $ods = OrderDetail::where([
+            ['order_id', '=', $request->order_id],
+            ['category', '=', $request->category],
+        ])->get();
+
+        if (sizeof($ods)) {
+            foreach($ods as $od){
+                $od->vendor_id = $request->vendor_id;
+                $od->save();
+            }
+            return response()->json([
+                'status'=> true,
+                'message'=>"Successflully assign to the vendor"
+            ],200);
+        } else {
+            return response()->json([
+                'status'=> false,
+                'message'=>"Order not found"
+            ],404);
+        }
+    }
+    // public function assignOrderToCategorywiseInVendor(Request $request)
+    // {
+    //     $request->validate([
+    //         'order_id' => 'required',
+    //         'category' => 'required',
+    //         'vendor_id' => 'required',
+    //     ]);
+
+    //     $ods = OrderDetail::where([
+    //         ['order_id', '=', $request->order_id],
+    //         ['category', '=', $request->category],
+    //     ])->get();
+
+    //     if (sizeof($ods)) {
+    //         foreach($ods as $od){
+    //             $od->vendor_id = $request->vendor_id;
+    //             $od->save();
+    //         }
+    //         return response()->json([
+    //             'status'=> true,
+    //             'message'=>"Successflully assign to the vendor"
+    //         ],200);
+    //     } else {
+    //         return response()->json([
+    //             'status'=> false,
+    //             'message'=>"Order not found"
+    //         ],404);
+    //     }
+    // }
 }

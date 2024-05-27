@@ -34,6 +34,7 @@ Route::post('deliveryman/check_phone', [AuthController::class,'check_exitsting_p
 Route::post('deliveryman/check_mail', [AuthController::class,'check_exitsting_mail']);
 Route::get('deliveryman/getprofile', [AuthController::class,'getProfile']);
 Route::get('get_all_vendors', [AuthController::class,'getAllVendors']);
+Route::post('assign-order-categorywise', [AuthController::class,'assignOrderToCategorywiseInVendor']);
 
 
 /// orders
