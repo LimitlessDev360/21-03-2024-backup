@@ -8,6 +8,7 @@ use App\Models\DeliveryMan;
 use Illuminate\Support\Str;
 use App\Models\Restaurant;
 use App\Models\OrderDetail;
+use App\Models\Order;
 
 class AuthController extends Controller
 {
@@ -202,48 +203,62 @@ class AuthController extends Controller
         ])->get();
 
         if (sizeof($ods)) {
-            foreach($ods as $od){
+            foreach ($ods as $od) {
                 $od->vendor_id = $request->vendor_id;
                 $od->save();
             }
-            return response()->json([
-                'status'=> true,
-                'message'=>"Successflully assign to the vendor"
-            ],200);
+            return response()->json(
+                [
+                    'status' => true,
+                    'message' => 'Successflully assign to the vendor',
+                ],
+                200
+            );
         } else {
-            return response()->json([
-                'status'=> false,
-                'message'=>"Order not found"
-            ],404);
+            return response()->json(
+                [
+                    'status' => false,
+                    'message' => 'Order not found',
+                ],
+                404
+            );
         }
     }
-    // public function assignOrderToCategorywiseInVendor(Request $request)
-    // {
-    //     $request->validate([
-    //         'order_id' => 'required',
-    //         'category' => 'required',
-    //         'vendor_id' => 'required',
-    //     ]);
+    public function assignOrderToVendor(Request $request)
+    {
+        $request->validate([
+            'order_id' => 'required',
+            'vendor_id' => 'required',
+        ]);
 
-    //     $ods = OrderDetail::where([
-    //         ['order_id', '=', $request->order_id],
-    //         ['category', '=', $request->category],
-    //     ])->get();
+        $ods = OrderDetail::where('order_id', $request->order_id)->get();
 
-    //     if (sizeof($ods)) {
-    //         foreach($ods as $od){
-    //             $od->vendor_id = $request->vendor_id;
-    //             $od->save();
-    //         }
-    //         return response()->json([
-    //             'status'=> true,
-    //             'message'=>"Successflully assign to the vendor"
-    //         ],200);
-    //     } else {
-    //         return response()->json([
-    //             'status'=> false,
-    //             'message'=>"Order not found"
-    //         ],404);
-    //     }
-    // }
+        $order = Order::where('id', $request->order_id)->first();
+        $order->restaurant_id = $request->vendor_id;
+        $order->order_status = 'confirmed';
+        $order->confirmed = now();
+        $order->save();
+
+        if (sizeof($ods)) {
+            foreach ($ods as $od) {
+                $od->vendor_id = $request->vendor_id;
+                $od->save();
+            }
+            return response()->json(
+                [
+                    'status' => true,
+                    'message' => 'Successflully assign to the vendor',
+                ],
+                200
+            );
+        } else {
+            return response()->json(
+                [
+                    'status' => false,
+                    'message' => 'Order not found',
+                ],
+                404
+            );
+        }
+    }
 }

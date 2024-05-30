@@ -188,6 +188,23 @@ class DeliverymanController extends Controller
         ],200);
     }
 
+    public function get_history(Request $request)
+    {
+        $dm = DeliveryMan::where(['auth_token' => $request['token']])->first();
+        $orders = Order::with(['customer', 'restaurant'])
+        ->whereIn('order_status', ['delivered', 'canceled','refunded'])
+        ->where(['delivery_man_id' => $dm['id']])
+        // ->orderBy('accepted')
+        ->orderBy('schedule_at', 'desc')
+        ->Notpos()
+        ->get();
+        $orders= Helpers::order_data_formatting($orders, true);
+        return response()->json([
+            'status'=> true,
+            'data'=> $orders
+        ],200);
+    }
+
     public function get_latest_orders(Request $request)
     {
         $dm = DeliveryMan::where(['auth_token' => $request['token']])->first();

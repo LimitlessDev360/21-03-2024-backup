@@ -35,6 +35,7 @@ Route::post('deliveryman/check_mail', [AuthController::class,'check_exitsting_ma
 Route::get('deliveryman/getprofile', [AuthController::class,'getProfile']);
 Route::get('get_all_vendors', [AuthController::class,'getAllVendors']);
 Route::post('assign-order-categorywise', [AuthController::class,'assignOrderToCategorywiseInVendor']);
+Route::post('assign-order-vendor', [AuthController::class,'assignOrderToVendor']);
 
 
 /// orders
@@ -106,6 +107,7 @@ Route::group(['namespace' => 'Api\V1', 'middleware'=>['localization','react']], 
             Route::post('record-location-data', 'DeliverymanController@record_location_data');
             Route::get('all-orders', 'DeliverymanController@get_all_orders');
             Route::get('order-delivery-history', 'DeliverymanController@get_order_history');
+            Route::get('order-history', 'DeliverymanController@get_history');
             Route::put('accept-order', 'DeliverymanController@accept_order');
             Route::put('update-order-status', 'DeliverymanController@update_order_status');
             Route::put('update-payment-status', 'DeliverymanController@order_payment_status_update');
